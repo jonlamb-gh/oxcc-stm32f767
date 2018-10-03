@@ -1,0 +1,23 @@
+[package]
+name = "oxcc-stm32f767"
+version = "0.1.0"
+authors = ["Jon Lamb"]
+repository = "https://github.com/jonlamb-gh/stm32f767"
+description = "Peripheral access API for STM32F767 microcontroller used by OxCC"
+keywords = ["no-std", "arm", "cortex-m", "stm32"]
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+bare-metal = "0.2.3"
+cortex-m = "0.5.7"
+vcell = "0.1.0"
+
+[dependencies.cortex-m-rt]
+optional = true
+version = "0.6.4"
+
+[features]
+rt = ["cortex-m-rt/device"]
+
+[package.metadata.docs.rs]
+features = ["rt"]

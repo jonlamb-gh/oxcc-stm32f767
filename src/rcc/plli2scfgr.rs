@@ -1,187 +1,88 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PLLI2SCFGR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register PLLI2SCFGR"]
+pub type R = crate::R<u32, super::PLLI2SCFGR>;
+#[doc = "Writer for register PLLI2SCFGR"]
+pub type W = crate::W<u32, super::PLLI2SCFGR>;
+#[doc = "Register PLLI2SCFGR `reset()`'s with value 0x2000_3000"]
+impl crate::ResetValue for super::PLLI2SCFGR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x2000_3000
     }
 }
-#[doc = r" Value of the field"]
-pub struct PLLI2SRR {
-    bits: u8,
-}
-impl PLLI2SRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PLLI2SQR {
-    bits: u8,
-}
-impl PLLI2SQR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PLLI2SNR {
-    bits: u16,
-}
-impl PLLI2SNR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PLLI2SRW<'a> {
+#[doc = "Reader of field `PLLI2SR`"]
+pub type PLLI2SR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PLLI2SR`"]
+pub struct PLLI2SR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PLLI2SRW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> PLLI2SR_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x07;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x07 << 28)) | (((value as u32) & 0x07) << 28);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PLLI2SQW<'a> {
+#[doc = "Reader of field `PLLI2SQ`"]
+pub type PLLI2SQ_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PLLI2SQ`"]
+pub struct PLLI2SQ_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PLLI2SQW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> PLLI2SQ_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x0f;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 24)) | (((value as u32) & 0x0f) << 24);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PLLI2SNW<'a> {
+#[doc = "Reader of field `PLLI2SN`"]
+pub type PLLI2SN_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `PLLI2SN`"]
+pub struct PLLI2SN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PLLI2SNW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> PLLI2SN_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0x01ff;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01ff << 6)) | (((value as u32) & 0x01ff) << 6);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 28:30 - PLLI2S division factor for I2S clocks"]
-    #[inline]
-    pub fn plli2sr(&self) -> PLLI2SRR {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        PLLI2SRR { bits }
+    #[inline(always)]
+    pub fn plli2sr(&self) -> PLLI2SR_R {
+        PLLI2SR_R::new(((self.bits >> 28) & 0x07) as u8)
     }
     #[doc = "Bits 24:27 - PLLI2S division factor for SAI1 clock"]
-    #[inline]
-    pub fn plli2sq(&self) -> PLLI2SQR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        PLLI2SQR { bits }
+    #[inline(always)]
+    pub fn plli2sq(&self) -> PLLI2SQ_R {
+        PLLI2SQ_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
     #[doc = "Bits 6:14 - PLLI2S multiplication factor for VCO"]
-    #[inline]
-    pub fn plli2sn(&self) -> PLLI2SNR {
-        let bits = {
-            const MASK: u16 = 0x01ff;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        PLLI2SNR { bits }
+    #[inline(always)]
+    pub fn plli2sn(&self) -> PLLI2SN_R {
+        PLLI2SN_R::new(((self.bits >> 6) & 0x01ff) as u16)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0x2000_3000 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 28:30 - PLLI2S division factor for I2S clocks"]
-    #[inline]
-    pub fn plli2sr(&mut self) -> _PLLI2SRW {
-        _PLLI2SRW { w: self }
+    #[inline(always)]
+    pub fn plli2sr(&mut self) -> PLLI2SR_W {
+        PLLI2SR_W { w: self }
     }
     #[doc = "Bits 24:27 - PLLI2S division factor for SAI1 clock"]
-    #[inline]
-    pub fn plli2sq(&mut self) -> _PLLI2SQW {
-        _PLLI2SQW { w: self }
+    #[inline(always)]
+    pub fn plli2sq(&mut self) -> PLLI2SQ_W {
+        PLLI2SQ_W { w: self }
     }
     #[doc = "Bits 6:14 - PLLI2S multiplication factor for VCO"]
-    #[inline]
-    pub fn plli2sn(&mut self) -> _PLLI2SNW {
-        _PLLI2SNW { w: self }
+    #[inline(always)]
+    pub fn plli2sn(&mut self) -> PLLI2SN_W {
+        PLLI2SN_W { w: self }
     }
 }

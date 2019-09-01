@@ -1,343 +1,216 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::I2SPR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register I2SPR"]
+pub type R = crate::R<u32, super::I2SPR>;
+#[doc = "Writer for register I2SPR"]
+pub type W = crate::W<u32, super::I2SPR>;
+#[doc = "Register I2SPR `reset()`'s with value 0x0a"]
+impl crate::ResetValue for super::I2SPR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x0a
     }
 }
-#[doc = "Possible values of the field `MCKOE`"]
+#[doc = "Master clock output enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MCKOER {
-    #[doc = "Master clock output is disabled"]
+pub enum MCKOE_A {
+    #[doc = "0: Master clock output is disabled"]
     DISABLED,
-    #[doc = "Master clock output is enabled"]
+    #[doc = "1: Master clock output is enabled"]
     ENABLED,
 }
-impl MCKOER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MCKOER::DISABLED => false,
-            MCKOER::ENABLED => true,
+impl From<MCKOE_A> for bool {
+    #[inline(always)]
+    fn from(variant: MCKOE_A) -> Self {
+        match variant {
+            MCKOE_A::DISABLED => false,
+            MCKOE_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MCKOER {
-        match value {
-            false => MCKOER::DISABLED,
-            true => MCKOER::ENABLED,
+}
+#[doc = "Reader of field `MCKOE`"]
+pub type MCKOE_R = crate::R<bool, MCKOE_A>;
+impl MCKOE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MCKOE_A {
+        match self.bits {
+            false => MCKOE_A::DISABLED,
+            true => MCKOE_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == MCKOER::DISABLED
+        *self == MCKOE_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == MCKOER::ENABLED
+        *self == MCKOE_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `ODD`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ODDR {
-    #[doc = "Real divider value is I2SDIV * 2"]
-    EVEN,
-    #[doc = "Real divider value is (I2SDIV * 2) + 1"]
-    ODD,
+#[doc = "Write proxy for field `MCKOE`"]
+pub struct MCKOE_W<'a> {
+    w: &'a mut W,
 }
-impl ODDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ODDR::EVEN => false,
-            ODDR::ODD => true,
+impl<'a> MCKOE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MCKOE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ODDR {
-        match value {
-            false => ODDR::EVEN,
-            true => ODDR::ODD,
+    #[doc = "Master clock output is disabled"]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(MCKOE_A::DISABLED)
+    }
+    #[doc = "Master clock output is enabled"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(MCKOE_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w
+    }
+}
+#[doc = "Odd factor for the prescaler\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ODD_A {
+    #[doc = "0: Real divider value is I2SDIV * 2"]
+    EVEN,
+    #[doc = "1: Real divider value is (I2SDIV * 2) + 1"]
+    ODD,
+}
+impl From<ODD_A> for bool {
+    #[inline(always)]
+    fn from(variant: ODD_A) -> Self {
+        match variant {
+            ODD_A::EVEN => false,
+            ODD_A::ODD => true,
+        }
+    }
+}
+#[doc = "Reader of field `ODD`"]
+pub type ODD_R = crate::R<bool, ODD_A>;
+impl ODD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ODD_A {
+        match self.bits {
+            false => ODD_A::EVEN,
+            true => ODD_A::ODD,
         }
     }
     #[doc = "Checks if the value of the field is `EVEN`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_even(&self) -> bool {
-        *self == ODDR::EVEN
+        *self == ODD_A::EVEN
     }
     #[doc = "Checks if the value of the field is `ODD`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_odd(&self) -> bool {
-        *self == ODDR::ODD
+        *self == ODD_A::ODD
     }
 }
-#[doc = r" Value of the field"]
-pub struct I2SDIVR {
-    bits: u8,
-}
-impl I2SDIVR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Values that can be written to the field `MCKOE`"]
-pub enum MCKOEW {
-    #[doc = "Master clock output is disabled"]
-    DISABLED,
-    #[doc = "Master clock output is enabled"]
-    ENABLED,
-}
-impl MCKOEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MCKOEW::DISABLED => false,
-            MCKOEW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MCKOEW<'a> {
+#[doc = "Write proxy for field `ODD`"]
+pub struct ODD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MCKOEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MCKOEW) -> &'a mut W {
+impl<'a> ODD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ODD_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Master clock output is disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(MCKOEW::DISABLED)
-    }
-    #[doc = "Master clock output is enabled"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(MCKOEW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ODD`"]
-pub enum ODDW {
-    #[doc = "Real divider value is I2SDIV * 2"]
-    EVEN,
-    #[doc = "Real divider value is (I2SDIV * 2) + 1"]
-    ODD,
-}
-impl ODDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ODDW::EVEN => false,
-            ODDW::ODD => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ODDW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ODDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ODDW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Real divider value is I2SDIV * 2"]
-    #[inline]
+    #[inline(always)]
     pub fn even(self) -> &'a mut W {
-        self.variant(ODDW::EVEN)
+        self.variant(ODD_A::EVEN)
     }
     #[doc = "Real divider value is (I2SDIV * 2) + 1"]
-    #[inline]
+    #[inline(always)]
     pub fn odd(self) -> &'a mut W {
-        self.variant(ODDW::ODD)
+        self.variant(ODD_A::ODD)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _I2SDIVW<'a> {
+#[doc = "Reader of field `I2SDIV`"]
+pub type I2SDIV_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `I2SDIV`"]
+pub struct I2SDIV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2SDIVW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> I2SDIV_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0xff) | ((value as u32) & 0xff);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 9 - Master clock output enable"]
-    #[inline]
-    pub fn mckoe(&self) -> MCKOER {
-        MCKOER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mckoe(&self) -> MCKOE_R {
+        MCKOE_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 8 - Odd factor for the prescaler"]
-    #[inline]
-    pub fn odd(&self) -> ODDR {
-        ODDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn odd(&self) -> ODD_R {
+        ODD_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bits 0:7 - I2S Linear prescaler"]
-    #[inline]
-    pub fn i2sdiv(&self) -> I2SDIVR {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        I2SDIVR { bits }
+    #[inline(always)]
+    pub fn i2sdiv(&self) -> I2SDIV_R {
+        I2SDIV_R::new((self.bits & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0x0a }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 9 - Master clock output enable"]
-    #[inline]
-    pub fn mckoe(&mut self) -> _MCKOEW {
-        _MCKOEW { w: self }
+    #[inline(always)]
+    pub fn mckoe(&mut self) -> MCKOE_W {
+        MCKOE_W { w: self }
     }
     #[doc = "Bit 8 - Odd factor for the prescaler"]
-    #[inline]
-    pub fn odd(&mut self) -> _ODDW {
-        _ODDW { w: self }
+    #[inline(always)]
+    pub fn odd(&mut self) -> ODD_W {
+        ODD_W { w: self }
     }
     #[doc = "Bits 0:7 - I2S Linear prescaler"]
-    #[inline]
-    pub fn i2sdiv(&mut self) -> _I2SDIVW {
-        _I2SDIVW { w: self }
+    #[inline(always)]
+    pub fn i2sdiv(&mut self) -> I2SDIV_W {
+        I2SDIV_W { w: self }
     }
 }

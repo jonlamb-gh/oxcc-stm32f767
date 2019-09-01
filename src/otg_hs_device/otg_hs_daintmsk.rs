@@ -1,146 +1,64 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::OTG_HS_DAINTMSK {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register OTG_HS_DAINTMSK"]
+pub type R = crate::R<u32, super::OTG_HS_DAINTMSK>;
+#[doc = "Writer for register OTG_HS_DAINTMSK"]
+pub type W = crate::W<u32, super::OTG_HS_DAINTMSK>;
+#[doc = "Register OTG_HS_DAINTMSK `reset()`'s with value 0"]
+impl crate::ResetValue for super::OTG_HS_DAINTMSK {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct IEPMR {
-    bits: u16,
-}
-impl IEPMR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OEPMR {
-    bits: u16,
-}
-impl OEPMR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _IEPMW<'a> {
+#[doc = "Reader of field `IEPM`"]
+pub type IEPM_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `IEPM`"]
+pub struct IEPM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IEPMW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> IEPM_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0xffff;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0xffff) | ((value as u32) & 0xffff);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _OEPMW<'a> {
+#[doc = "Reader of field `OEPM`"]
+pub type OEPM_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `OEPM`"]
+pub struct OEPM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OEPMW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> OEPM_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0xffff;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xffff << 16)) | (((value as u32) & 0xffff) << 16);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:15 - IN EP interrupt mask bits"]
-    #[inline]
-    pub fn iepm(&self) -> IEPMR {
-        let bits = {
-            const MASK: u16 = 0xffff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        IEPMR { bits }
+    #[inline(always)]
+    pub fn iepm(&self) -> IEPM_R {
+        IEPM_R::new((self.bits & 0xffff) as u16)
     }
     #[doc = "Bits 16:31 - OUT EP interrupt mask bits"]
-    #[inline]
-    pub fn oepm(&self) -> OEPMR {
-        let bits = {
-            const MASK: u16 = 0xffff;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        OEPMR { bits }
+    #[inline(always)]
+    pub fn oepm(&self) -> OEPM_R {
+        OEPM_R::new(((self.bits >> 16) & 0xffff) as u16)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:15 - IN EP interrupt mask bits"]
-    #[inline]
-    pub fn iepm(&mut self) -> _IEPMW {
-        _IEPMW { w: self }
+    #[inline(always)]
+    pub fn iepm(&mut self) -> IEPM_W {
+        IEPM_W { w: self }
     }
     #[doc = "Bits 16:31 - OUT EP interrupt mask bits"]
-    #[inline]
-    pub fn oepm(&mut self) -> _OEPMW {
-        _OEPMW { w: self }
+    #[inline(always)]
+    pub fn oepm(&mut self) -> OEPM_W {
+        OEPM_W { w: self }
     }
 }

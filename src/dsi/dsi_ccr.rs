@@ -1,146 +1,64 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::DSI_CCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register DSI_CCR"]
+pub type R = crate::R<u32, super::DSI_CCR>;
+#[doc = "Writer for register DSI_CCR"]
+pub type W = crate::W<u32, super::DSI_CCR>;
+#[doc = "Register DSI_CCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::DSI_CCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct TXECKDIVR {
-    bits: u8,
-}
-impl TXECKDIVR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TOCKDIVR {
-    bits: u8,
-}
-impl TOCKDIVR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TXECKDIVW<'a> {
+#[doc = "Reader of field `TXECKDIV`"]
+pub type TXECKDIV_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TXECKDIV`"]
+pub struct TXECKDIV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXECKDIVW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> TXECKDIV_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0xff) | ((value as u32) & 0xff);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _TOCKDIVW<'a> {
+#[doc = "Reader of field `TOCKDIV`"]
+pub type TOCKDIV_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TOCKDIV`"]
+pub struct TOCKDIV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TOCKDIVW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> TOCKDIV_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xff << 8)) | (((value as u32) & 0xff) << 8);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:7 - TX Escape Clock Division"]
-    #[inline]
-    pub fn txeckdiv(&self) -> TXECKDIVR {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        TXECKDIVR { bits }
+    #[inline(always)]
+    pub fn txeckdiv(&self) -> TXECKDIV_R {
+        TXECKDIV_R::new((self.bits & 0xff) as u8)
     }
     #[doc = "Bits 8:15 - Timeout Clock Division"]
-    #[inline]
-    pub fn tockdiv(&self) -> TOCKDIVR {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        TOCKDIVR { bits }
+    #[inline(always)]
+    pub fn tockdiv(&self) -> TOCKDIV_R {
+        TOCKDIV_R::new(((self.bits >> 8) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:7 - TX Escape Clock Division"]
-    #[inline]
-    pub fn txeckdiv(&mut self) -> _TXECKDIVW {
-        _TXECKDIVW { w: self }
+    #[inline(always)]
+    pub fn txeckdiv(&mut self) -> TXECKDIV_W {
+        TXECKDIV_W { w: self }
     }
     #[doc = "Bits 8:15 - Timeout Clock Division"]
-    #[inline]
-    pub fn tockdiv(&mut self) -> _TOCKDIVW {
-        _TOCKDIVW { w: self }
+    #[inline(always)]
+    pub fn tockdiv(&mut self) -> TOCKDIV_W {
+        TOCKDIV_W { w: self }
     }
 }

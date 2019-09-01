@@ -1,241 +1,118 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::L2CR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register L2CR"]
+pub type R = crate::R<u32, super::L2CR>;
+#[doc = "Writer for register L2CR"]
+pub type W = crate::W<u32, super::L2CR>;
+#[doc = "Register L2CR `reset()`'s with value 0"]
+impl crate::ResetValue for super::L2CR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct CLUTENR {
-    bits: bool,
-}
-impl CLUTENR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct COLKENR {
-    bits: bool,
-}
-impl COLKENR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct LENR {
-    bits: bool,
-}
-impl LENR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CLUTENW<'a> {
+#[doc = "Reader of field `CLUTEN`"]
+pub type CLUTEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CLUTEN`"]
+pub struct CLUTEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CLUTENW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> CLUTEN_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _COLKENW<'a> {
+#[doc = "Reader of field `COLKEN`"]
+pub type COLKEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `COLKEN`"]
+pub struct COLKEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _COLKENW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> COLKEN_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _LENW<'a> {
+#[doc = "Reader of field `LEN`"]
+pub type LEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `LEN`"]
+pub struct LEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LENW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> LEN_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 4 - Color Look-Up Table Enable"]
-    #[inline]
-    pub fn cluten(&self) -> CLUTENR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CLUTENR { bits }
+    #[inline(always)]
+    pub fn cluten(&self) -> CLUTEN_R {
+        CLUTEN_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 1 - Color Keying Enable"]
-    #[inline]
-    pub fn colken(&self) -> COLKENR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        COLKENR { bits }
+    #[inline(always)]
+    pub fn colken(&self) -> COLKEN_R {
+        COLKEN_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 0 - Layer Enable"]
-    #[inline]
-    pub fn len(&self) -> LENR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        LENR { bits }
+    #[inline(always)]
+    pub fn len(&self) -> LEN_R {
+        LEN_R::new((self.bits & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 4 - Color Look-Up Table Enable"]
-    #[inline]
-    pub fn cluten(&mut self) -> _CLUTENW {
-        _CLUTENW { w: self }
+    #[inline(always)]
+    pub fn cluten(&mut self) -> CLUTEN_W {
+        CLUTEN_W { w: self }
     }
     #[doc = "Bit 1 - Color Keying Enable"]
-    #[inline]
-    pub fn colken(&mut self) -> _COLKENW {
-        _COLKENW { w: self }
+    #[inline(always)]
+    pub fn colken(&mut self) -> COLKEN_W {
+        COLKEN_W { w: self }
     }
     #[doc = "Bit 0 - Layer Enable"]
-    #[inline]
-    pub fn len(&mut self) -> _LENW {
-        _LENW { w: self }
+    #[inline(always)]
+    pub fn len(&mut self) -> LEN_W {
+        LEN_W { w: self }
     }
 }

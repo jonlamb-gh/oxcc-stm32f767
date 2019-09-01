@@ -1,418 +1,220 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::IFCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register IFCR"]
+pub type R = crate::R<u32, super::IFCR>;
+#[doc = "Writer for register IFCR"]
+pub type W = crate::W<u32, super::IFCR>;
+#[doc = "Register IFCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::IFCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct CCEIFR {
-    bits: bool,
-}
-impl CCEIFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CCTCIFR {
-    bits: bool,
-}
-impl CCTCIFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CAECIFR {
-    bits: bool,
-}
-impl CAECIFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CTWIFR {
-    bits: bool,
-}
-impl CTWIFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CTCIFR {
-    bits: bool,
-}
-impl CTCIFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CTEIFR {
-    bits: bool,
-}
-impl CTEIFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CCEIFW<'a> {
+#[doc = "Reader of field `CCEIF`"]
+pub type CCEIF_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CCEIF`"]
+pub struct CCEIF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CCEIFW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> CCEIF_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _CCTCIFW<'a> {
+#[doc = "Reader of field `CCTCIF`"]
+pub type CCTCIF_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CCTCIF`"]
+pub struct CCTCIF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CCTCIFW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> CCTCIF_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _CAECIFW<'a> {
+#[doc = "Reader of field `CAECIF`"]
+pub type CAECIF_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CAECIF`"]
+pub struct CAECIF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CAECIFW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> CAECIF_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _CTWIFW<'a> {
+#[doc = "Reader of field `CTWIF`"]
+pub type CTWIF_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CTWIF`"]
+pub struct CTWIF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CTWIFW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> CTWIF_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _CTCIFW<'a> {
+#[doc = "Reader of field `CTCIF`"]
+pub type CTCIF_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CTCIF`"]
+pub struct CTCIF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CTCIFW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> CTCIF_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _CTEIFW<'a> {
+#[doc = "Reader of field `CTEIF`"]
+pub type CTEIF_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CTEIF`"]
+pub struct CTEIF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CTEIFW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> CTEIF_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 5 - Clear configuration error interrupt flag"]
-    #[inline]
-    pub fn cceif(&self) -> CCEIFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CCEIFR { bits }
+    #[inline(always)]
+    pub fn cceif(&self) -> CCEIF_R {
+        CCEIF_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Clear CLUT transfer complete interrupt flag"]
-    #[inline]
-    pub fn cctcif(&self) -> CCTCIFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CCTCIFR { bits }
+    #[inline(always)]
+    pub fn cctcif(&self) -> CCTCIF_R {
+        CCTCIF_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Clear CLUT access error interrupt flag"]
-    #[inline]
-    pub fn caecif(&self) -> CAECIFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CAECIFR { bits }
+    #[inline(always)]
+    pub fn caecif(&self) -> CAECIF_R {
+        CAECIF_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Clear transfer watermark interrupt flag"]
-    #[inline]
-    pub fn ctwif(&self) -> CTWIFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CTWIFR { bits }
+    #[inline(always)]
+    pub fn ctwif(&self) -> CTWIF_R {
+        CTWIF_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 1 - Clear transfer complete interrupt flag"]
-    #[inline]
-    pub fn ctcif(&self) -> CTCIFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CTCIFR { bits }
+    #[inline(always)]
+    pub fn ctcif(&self) -> CTCIF_R {
+        CTCIF_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 0 - Clear Transfer error interrupt flag"]
-    #[inline]
-    pub fn cteif(&self) -> CTEIFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CTEIFR { bits }
+    #[inline(always)]
+    pub fn cteif(&self) -> CTEIF_R {
+        CTEIF_R::new((self.bits & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 5 - Clear configuration error interrupt flag"]
-    #[inline]
-    pub fn cceif(&mut self) -> _CCEIFW {
-        _CCEIFW { w: self }
+    #[inline(always)]
+    pub fn cceif(&mut self) -> CCEIF_W {
+        CCEIF_W { w: self }
     }
     #[doc = "Bit 4 - Clear CLUT transfer complete interrupt flag"]
-    #[inline]
-    pub fn cctcif(&mut self) -> _CCTCIFW {
-        _CCTCIFW { w: self }
+    #[inline(always)]
+    pub fn cctcif(&mut self) -> CCTCIF_W {
+        CCTCIF_W { w: self }
     }
     #[doc = "Bit 3 - Clear CLUT access error interrupt flag"]
-    #[inline]
-    pub fn caecif(&mut self) -> _CAECIFW {
-        _CAECIFW { w: self }
+    #[inline(always)]
+    pub fn caecif(&mut self) -> CAECIF_W {
+        CAECIF_W { w: self }
     }
     #[doc = "Bit 2 - Clear transfer watermark interrupt flag"]
-    #[inline]
-    pub fn ctwif(&mut self) -> _CTWIFW {
-        _CTWIFW { w: self }
+    #[inline(always)]
+    pub fn ctwif(&mut self) -> CTWIF_W {
+        CTWIF_W { w: self }
     }
     #[doc = "Bit 1 - Clear transfer complete interrupt flag"]
-    #[inline]
-    pub fn ctcif(&mut self) -> _CTCIFW {
-        _CTCIFW { w: self }
+    #[inline(always)]
+    pub fn ctcif(&mut self) -> CTCIF_W {
+        CTCIF_W { w: self }
     }
     #[doc = "Bit 0 - Clear Transfer error interrupt flag"]
-    #[inline]
-    pub fn cteif(&mut self) -> _CTEIFW {
-        _CTEIFW { w: self }
+    #[inline(always)]
+    pub fn cteif(&mut self) -> CTEIF_W {
+        CTEIF_W { w: self }
     }
 }

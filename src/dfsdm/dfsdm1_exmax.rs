@@ -1,62 +1,18 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::DFSDM1_EXMAX {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct EXMAXCHR {
-    bits: u8,
-}
-impl EXMAXCHR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct EXMAXR {
-    bits: u32,
-}
-impl EXMAXR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-}
+#[doc = "Reader of register DFSDM1_EXMAX"]
+pub type R = crate::R<u32, super::DFSDM1_EXMAX>;
+#[doc = "Reader of field `EXMAXCH`"]
+pub type EXMAXCH_R = crate::R<u8, u8>;
+#[doc = "Reader of field `EXMAX`"]
+pub type EXMAX_R = crate::R<u32, u32>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Extremes detector maximum data channel"]
-    #[inline]
-    pub fn exmaxch(&self) -> EXMAXCHR {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        EXMAXCHR { bits }
+    #[inline(always)]
+    pub fn exmaxch(&self) -> EXMAXCH_R {
+        EXMAXCH_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bits 8:31 - Extremes detector maximum value"]
-    #[inline]
-    pub fn exmax(&self) -> EXMAXR {
-        let bits = {
-            const MASK: u32 = 0x00ff_ffff;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u32
-        };
-        EXMAXR { bits }
+    #[inline(always)]
+    pub fn exmax(&self) -> EXMAX_R {
+        EXMAX_R::new(((self.bits >> 8) & 0x00ff_ffff) as u32)
     }
 }

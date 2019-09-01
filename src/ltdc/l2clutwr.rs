@@ -1,109 +1,80 @@
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::L2CLUTWR {
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+#[doc = "Writer for register L2CLUTWR"]
+pub type W = crate::W<u32, super::L2CLUTWR>;
+#[doc = "Register L2CLUTWR `reset()`'s with value 0"]
+impl crate::ResetValue for super::L2CLUTWR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Proxy"]
-pub struct _CLUTADDW<'a> {
+#[doc = "Write proxy for field `CLUTADD`"]
+pub struct CLUTADD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CLUTADDW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> CLUTADD_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xff << 24)) | (((value as u32) & 0xff) << 24);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _REDW<'a> {
+#[doc = "Write proxy for field `RED`"]
+pub struct RED_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _REDW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> RED_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xff << 16)) | (((value as u32) & 0xff) << 16);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _GREENW<'a> {
+#[doc = "Write proxy for field `GREEN`"]
+pub struct GREEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _GREENW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> GREEN_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xff << 8)) | (((value as u32) & 0xff) << 8);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _BLUEW<'a> {
+#[doc = "Write proxy for field `BLUE`"]
+pub struct BLUE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BLUEW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> BLUE_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0xff) | ((value as u32) & 0xff);
         self.w
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 24:31 - CLUT Address"]
-    #[inline]
-    pub fn clutadd(&mut self) -> _CLUTADDW {
-        _CLUTADDW { w: self }
+    #[inline(always)]
+    pub fn clutadd(&mut self) -> CLUTADD_W {
+        CLUTADD_W { w: self }
     }
     #[doc = "Bits 16:23 - Red value"]
-    #[inline]
-    pub fn red(&mut self) -> _REDW {
-        _REDW { w: self }
+    #[inline(always)]
+    pub fn red(&mut self) -> RED_W {
+        RED_W { w: self }
     }
     #[doc = "Bits 8:15 - Green value"]
-    #[inline]
-    pub fn green(&mut self) -> _GREENW {
-        _GREENW { w: self }
+    #[inline(always)]
+    pub fn green(&mut self) -> GREEN_W {
+        GREEN_W { w: self }
     }
     #[doc = "Bits 0:7 - Blue value"]
-    #[inline]
-    pub fn blue(&mut self) -> _BLUEW {
-        _BLUEW { w: self }
+    #[inline(always)]
+    pub fn blue(&mut self) -> BLUE_W {
+        BLUE_W { w: self }
     }
 }

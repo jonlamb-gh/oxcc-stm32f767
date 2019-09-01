@@ -1,302 +1,192 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MACIMR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register MACIMR"]
+pub type R = crate::R<u32, super::MACIMR>;
+#[doc = "Writer for register MACIMR"]
+pub type W = crate::W<u32, super::MACIMR>;
+#[doc = "Register MACIMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::MACIMR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `PMTIM`"]
+#[doc = "PMTIM\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PMTIMR {
-    #[doc = "PMT Status interrupt generation enabled"]
+pub enum PMTIM_A {
+    #[doc = "0: PMT Status interrupt generation enabled"]
     UNMASKED,
-    #[doc = "PMT Status interrupt generation disabled"]
+    #[doc = "1: PMT Status interrupt generation disabled"]
     MASKED,
 }
-impl PMTIMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PMTIMR::UNMASKED => false,
-            PMTIMR::MASKED => true,
+impl From<PMTIM_A> for bool {
+    #[inline(always)]
+    fn from(variant: PMTIM_A) -> Self {
+        match variant {
+            PMTIM_A::UNMASKED => false,
+            PMTIM_A::MASKED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PMTIMR {
-        match value {
-            false => PMTIMR::UNMASKED,
-            true => PMTIMR::MASKED,
+}
+#[doc = "Reader of field `PMTIM`"]
+pub type PMTIM_R = crate::R<bool, PMTIM_A>;
+impl PMTIM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PMTIM_A {
+        match self.bits {
+            false => PMTIM_A::UNMASKED,
+            true => PMTIM_A::MASKED,
         }
     }
     #[doc = "Checks if the value of the field is `UNMASKED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_unmasked(&self) -> bool {
-        *self == PMTIMR::UNMASKED
+        *self == PMTIM_A::UNMASKED
     }
     #[doc = "Checks if the value of the field is `MASKED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_masked(&self) -> bool {
-        *self == PMTIMR::MASKED
+        *self == PMTIM_A::MASKED
     }
 }
-#[doc = "Possible values of the field `TSTIM`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TSTIMR {
-    #[doc = "Time stamp interrupt generation enabled"]
-    UNMASKED,
-    #[doc = "Time stamp interrupt generation disabled"]
-    MASKED,
-}
-impl TSTIMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TSTIMR::UNMASKED => false,
-            TSTIMR::MASKED => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TSTIMR {
-        match value {
-            false => TSTIMR::UNMASKED,
-            true => TSTIMR::MASKED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `UNMASKED`"]
-    #[inline]
-    pub fn is_unmasked(&self) -> bool {
-        *self == TSTIMR::UNMASKED
-    }
-    #[doc = "Checks if the value of the field is `MASKED`"]
-    #[inline]
-    pub fn is_masked(&self) -> bool {
-        *self == TSTIMR::MASKED
-    }
-}
-#[doc = "Values that can be written to the field `PMTIM`"]
-pub enum PMTIMW {
-    #[doc = "PMT Status interrupt generation enabled"]
-    UNMASKED,
-    #[doc = "PMT Status interrupt generation disabled"]
-    MASKED,
-}
-impl PMTIMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PMTIMW::UNMASKED => false,
-            PMTIMW::MASKED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PMTIMW<'a> {
+#[doc = "Write proxy for field `PMTIM`"]
+pub struct PMTIM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PMTIMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PMTIMW) -> &'a mut W {
+impl<'a> PMTIM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PMTIM_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "PMT Status interrupt generation enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn unmasked(self) -> &'a mut W {
-        self.variant(PMTIMW::UNMASKED)
+        self.variant(PMTIM_A::UNMASKED)
     }
     #[doc = "PMT Status interrupt generation disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn masked(self) -> &'a mut W {
-        self.variant(PMTIMW::MASKED)
+        self.variant(PMTIM_A::MASKED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TSTIM`"]
-pub enum TSTIMW {
-    #[doc = "Time stamp interrupt generation enabled"]
+#[doc = "TSTIM\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TSTIM_A {
+    #[doc = "0: Time stamp interrupt generation enabled"]
     UNMASKED,
-    #[doc = "Time stamp interrupt generation disabled"]
+    #[doc = "1: Time stamp interrupt generation disabled"]
     MASKED,
 }
-impl TSTIMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TSTIMW::UNMASKED => false,
-            TSTIMW::MASKED => true,
+impl From<TSTIM_A> for bool {
+    #[inline(always)]
+    fn from(variant: TSTIM_A) -> Self {
+        match variant {
+            TSTIM_A::UNMASKED => false,
+            TSTIM_A::MASKED => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TSTIMW<'a> {
+#[doc = "Reader of field `TSTIM`"]
+pub type TSTIM_R = crate::R<bool, TSTIM_A>;
+impl TSTIM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TSTIM_A {
+        match self.bits {
+            false => TSTIM_A::UNMASKED,
+            true => TSTIM_A::MASKED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `UNMASKED`"]
+    #[inline(always)]
+    pub fn is_unmasked(&self) -> bool {
+        *self == TSTIM_A::UNMASKED
+    }
+    #[doc = "Checks if the value of the field is `MASKED`"]
+    #[inline(always)]
+    pub fn is_masked(&self) -> bool {
+        *self == TSTIM_A::MASKED
+    }
+}
+#[doc = "Write proxy for field `TSTIM`"]
+pub struct TSTIM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TSTIMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TSTIMW) -> &'a mut W {
+impl<'a> TSTIM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TSTIM_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Time stamp interrupt generation enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn unmasked(self) -> &'a mut W {
-        self.variant(TSTIMW::UNMASKED)
+        self.variant(TSTIM_A::UNMASKED)
     }
     #[doc = "Time stamp interrupt generation disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn masked(self) -> &'a mut W {
-        self.variant(TSTIMW::MASKED)
+        self.variant(TSTIM_A::MASKED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 3 - PMTIM"]
-    #[inline]
-    pub fn pmtim(&self) -> PMTIMR {
-        PMTIMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pmtim(&self) -> PMTIM_R {
+        PMTIM_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 9 - TSTIM"]
-    #[inline]
-    pub fn tstim(&self) -> TSTIMR {
-        TSTIMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tstim(&self) -> TSTIM_R {
+        TSTIM_R::new(((self.bits >> 9) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 3 - PMTIM"]
-    #[inline]
-    pub fn pmtim(&mut self) -> _PMTIMW {
-        _PMTIMW { w: self }
+    #[inline(always)]
+    pub fn pmtim(&mut self) -> PMTIM_W {
+        PMTIM_W { w: self }
     }
     #[doc = "Bit 9 - TSTIM"]
-    #[inline]
-    pub fn tstim(&mut self) -> _TSTIMW {
-        _TSTIMW { w: self }
+    #[inline(always)]
+    pub fn tstim(&mut self) -> TSTIM_W {
+        TSTIM_W { w: self }
     }
 }

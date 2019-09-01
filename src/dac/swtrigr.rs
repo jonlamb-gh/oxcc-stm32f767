@@ -1,155 +1,134 @@
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SWTRIGR {
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+#[doc = "Writer for register SWTRIGR"]
+pub type W = crate::W<u32, super::SWTRIGR>;
+#[doc = "Register SWTRIGR `reset()`'s with value 0"]
+impl crate::ResetValue for super::SWTRIGR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Values that can be written to the field `SWTRIG2`"]
-pub enum SWTRIG2W {
-    #[doc = "DAC channel2 software trigger disabled"]
+#[doc = "DAC channel2 software trigger\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SWTRIG2_AW {
+    #[doc = "0: DAC channel2 software trigger disabled"]
     DISABLED,
-    #[doc = "DAC channel2 software trigger enabled"]
+    #[doc = "1: DAC channel2 software trigger enabled"]
     ENABLED,
 }
-impl SWTRIG2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SWTRIG2W::DISABLED => false,
-            SWTRIG2W::ENABLED => true,
+impl From<SWTRIG2_AW> for bool {
+    #[inline(always)]
+    fn from(variant: SWTRIG2_AW) -> Self {
+        match variant {
+            SWTRIG2_AW::DISABLED => false,
+            SWTRIG2_AW::ENABLED => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SWTRIG2W<'a> {
+#[doc = "Write proxy for field `SWTRIG2`"]
+pub struct SWTRIG2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWTRIG2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SWTRIG2W) -> &'a mut W {
+impl<'a> SWTRIG2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SWTRIG2_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "DAC channel2 software trigger disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(SWTRIG2W::DISABLED)
+        self.variant(SWTRIG2_AW::DISABLED)
     }
     #[doc = "DAC channel2 software trigger enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(SWTRIG2W::ENABLED)
+        self.variant(SWTRIG2_AW::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SWTRIG1`"]
-pub enum SWTRIG1W {
-    #[doc = "DAC channel1 software trigger disabled"]
+#[doc = "DAC channel1 software trigger\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SWTRIG1_AW {
+    #[doc = "0: DAC channel1 software trigger disabled"]
     DISABLED,
-    #[doc = "DAC channel1 software trigger enabled"]
+    #[doc = "1: DAC channel1 software trigger enabled"]
     ENABLED,
 }
-impl SWTRIG1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SWTRIG1W::DISABLED => false,
-            SWTRIG1W::ENABLED => true,
+impl From<SWTRIG1_AW> for bool {
+    #[inline(always)]
+    fn from(variant: SWTRIG1_AW) -> Self {
+        match variant {
+            SWTRIG1_AW::DISABLED => false,
+            SWTRIG1_AW::ENABLED => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SWTRIG1W<'a> {
+#[doc = "Write proxy for field `SWTRIG1`"]
+pub struct SWTRIG1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWTRIG1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SWTRIG1W) -> &'a mut W {
+impl<'a> SWTRIG1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SWTRIG1_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "DAC channel1 software trigger disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(SWTRIG1W::DISABLED)
+        self.variant(SWTRIG1_AW::DISABLED)
     }
     #[doc = "DAC channel1 software trigger enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(SWTRIG1W::ENABLED)
+        self.variant(SWTRIG1_AW::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 1 - DAC channel2 software trigger"]
-    #[inline]
-    pub fn swtrig2(&mut self) -> _SWTRIG2W {
-        _SWTRIG2W { w: self }
+    #[inline(always)]
+    pub fn swtrig2(&mut self) -> SWTRIG2_W {
+        SWTRIG2_W { w: self }
     }
     #[doc = "Bit 0 - DAC channel1 software trigger"]
-    #[inline]
-    pub fn swtrig1(&mut self) -> _SWTRIG1W {
-        _SWTRIG1W { w: self }
+    #[inline(always)]
+    pub fn swtrig1(&mut self) -> SWTRIG1_W {
+        SWTRIG1_W { w: self }
     }
 }

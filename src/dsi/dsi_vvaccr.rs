@@ -1,41 +1,11 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::DSI_VVACCR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct VAR {
-    bits: u16,
-}
-impl VAR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
+#[doc = "Reader of register DSI_VVACCR"]
+pub type R = crate::R<u32, super::DSI_VVACCR>;
+#[doc = "Reader of field `VA`"]
+pub type VA_R = crate::R<u16, u16>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:13 - Vertical Active duration"]
-    #[inline]
-    pub fn va(&self) -> VAR {
-        let bits = {
-            const MASK: u16 = 0x3fff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        VAR { bits }
+    #[inline(always)]
+    pub fn va(&self) -> VA_R {
+        VA_R::new((self.bits & 0x3fff) as u16)
     }
 }

@@ -1,41 +1,11 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::RXDR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RXDRR {
-    bits: u8,
-}
-impl RXDRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
+#[doc = "Reader of register RXDR"]
+pub type R = crate::R<u32, super::RXDR>;
+#[doc = "Reader of field `RXDR`"]
+pub type RXDR_R = crate::R<u8, u8>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:7 - CEC Rx Data Register"]
-    #[inline]
-    pub fn rxdr(&self) -> RXDRR {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        RXDRR { bits }
+    #[inline(always)]
+    pub fn rxdr(&self) -> RXDR_R {
+        RXDR_R::new((self.bits & 0xff) as u8)
     }
 }

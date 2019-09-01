@@ -1,93 +1,25 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::CSR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct USRR {
-    bits: u16,
-}
-impl USRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CSR {
-    bits: u8,
-}
-impl CSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SOBR {
-    bits: bool,
-}
-impl SOBR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = "Reader of register CSR"]
+pub type R = crate::R<u32, super::CSR>;
+#[doc = "Reader of field `USR`"]
+pub type USR_R = crate::R<u16, u16>;
+#[doc = "Reader of field `CS`"]
+pub type CS_R = crate::R<u8, u8>;
+#[doc = "Reader of field `SOB`"]
+pub type SOB_R = crate::R<bool, bool>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:15 - User data information"]
-    #[inline]
-    pub fn usr(&self) -> USRR {
-        let bits = {
-            const MASK: u16 = 0xffff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        USRR { bits }
+    #[inline(always)]
+    pub fn usr(&self) -> USR_R {
+        USR_R::new((self.bits & 0xffff) as u16)
     }
     #[doc = "Bits 16:23 - Channel A status information"]
-    #[inline]
-    pub fn cs(&self) -> CSR {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        CSR { bits }
+    #[inline(always)]
+    pub fn cs(&self) -> CS_R {
+        CS_R::new(((self.bits >> 16) & 0xff) as u8)
     }
     #[doc = "Bit 24 - Start Of Block"]
-    #[inline]
-    pub fn sob(&self) -> SOBR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SOBR { bits }
+    #[inline(always)]
+    pub fn sob(&self) -> SOB_R {
+        SOB_R::new(((self.bits >> 24) & 0x01) != 0)
     }
 }

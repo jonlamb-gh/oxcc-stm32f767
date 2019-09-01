@@ -1,83 +1,25 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::RDT0R {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TIMER {
-    bits: u16,
-}
-impl TIMER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct FMIR {
-    bits: u8,
-}
-impl FMIR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DLCR {
-    bits: u8,
-}
-impl DLCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
+#[doc = "Reader of register RDT0R"]
+pub type R = crate::R<u32, super::RDT0R>;
+#[doc = "Reader of field `TIME`"]
+pub type TIME_R = crate::R<u16, u16>;
+#[doc = "Reader of field `FMI`"]
+pub type FMI_R = crate::R<u8, u8>;
+#[doc = "Reader of field `DLC`"]
+pub type DLC_R = crate::R<u8, u8>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 16:31 - TIME"]
-    #[inline]
-    pub fn time(&self) -> TIMER {
-        let bits = {
-            const MASK: u16 = 0xffff;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        TIMER { bits }
+    #[inline(always)]
+    pub fn time(&self) -> TIME_R {
+        TIME_R::new(((self.bits >> 16) & 0xffff) as u16)
     }
     #[doc = "Bits 8:15 - FMI"]
-    #[inline]
-    pub fn fmi(&self) -> FMIR {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        FMIR { bits }
+    #[inline(always)]
+    pub fn fmi(&self) -> FMI_R {
+        FMI_R::new(((self.bits >> 8) & 0xff) as u8)
     }
     #[doc = "Bits 0:3 - DLC"]
-    #[inline]
-    pub fn dlc(&self) -> DLCR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        DLCR { bits }
+    #[inline(always)]
+    pub fn dlc(&self) -> DLC_R {
+        DLC_R::new((self.bits & 0x0f) as u8)
     }
 }

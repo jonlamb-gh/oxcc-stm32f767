@@ -1,305 +1,156 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::DSI_WRPCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register DSI_WRPCR"]
+pub type R = crate::R<u32, super::DSI_WRPCR>;
+#[doc = "Writer for register DSI_WRPCR"]
+pub type W = crate::W<u32, super::DSI_WRPCR>;
+#[doc = "Register DSI_WRPCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::DSI_WRPCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct REGENR {
-    bits: bool,
-}
-impl REGENR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct ODFR {
-    bits: u8,
-}
-impl ODFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct IDFR {
-    bits: u8,
-}
-impl IDFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct NDIVR {
-    bits: u8,
-}
-impl NDIVR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PLLENR {
-    bits: bool,
-}
-impl PLLENR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _REGENW<'a> {
+#[doc = "Reader of field `REGEN`"]
+pub type REGEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `REGEN`"]
+pub struct REGEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _REGENW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> REGEN_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _ODFW<'a> {
+#[doc = "Reader of field `ODF`"]
+pub type ODF_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `ODF`"]
+pub struct ODF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ODFW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> ODF_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 16)) | (((value as u32) & 0x03) << 16);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _IDFW<'a> {
+#[doc = "Reader of field `IDF`"]
+pub type IDF_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `IDF`"]
+pub struct IDF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IDFW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> IDF_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x0f;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 11)) | (((value as u32) & 0x0f) << 11);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _NDIVW<'a> {
+#[doc = "Reader of field `NDIV`"]
+pub type NDIV_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `NDIV`"]
+pub struct NDIV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NDIVW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> NDIV_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x7f;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x7f << 2)) | (((value as u32) & 0x7f) << 2);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PLLENW<'a> {
+#[doc = "Reader of field `PLLEN`"]
+pub type PLLEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PLLEN`"]
+pub struct PLLEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PLLENW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PLLEN_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 24 - Regulator Enable"]
-    #[inline]
-    pub fn regen(&self) -> REGENR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        REGENR { bits }
+    #[inline(always)]
+    pub fn regen(&self) -> REGEN_R {
+        REGEN_R::new(((self.bits >> 24) & 0x01) != 0)
     }
     #[doc = "Bits 16:17 - PLL Output Division Factor"]
-    #[inline]
-    pub fn odf(&self) -> ODFR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        ODFR { bits }
+    #[inline(always)]
+    pub fn odf(&self) -> ODF_R {
+        ODF_R::new(((self.bits >> 16) & 0x03) as u8)
     }
     #[doc = "Bits 11:14 - PLL Input Division Factor"]
-    #[inline]
-    pub fn idf(&self) -> IDFR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        IDFR { bits }
+    #[inline(always)]
+    pub fn idf(&self) -> IDF_R {
+        IDF_R::new(((self.bits >> 11) & 0x0f) as u8)
     }
     #[doc = "Bits 2:8 - PLL Loop Division Factor"]
-    #[inline]
-    pub fn ndiv(&self) -> NDIVR {
-        let bits = {
-            const MASK: u8 = 0x7f;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        NDIVR { bits }
+    #[inline(always)]
+    pub fn ndiv(&self) -> NDIV_R {
+        NDIV_R::new(((self.bits >> 2) & 0x7f) as u8)
     }
     #[doc = "Bit 0 - PLL Enable"]
-    #[inline]
-    pub fn pllen(&self) -> PLLENR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PLLENR { bits }
+    #[inline(always)]
+    pub fn pllen(&self) -> PLLEN_R {
+        PLLEN_R::new((self.bits & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 24 - Regulator Enable"]
-    #[inline]
-    pub fn regen(&mut self) -> _REGENW {
-        _REGENW { w: self }
+    #[inline(always)]
+    pub fn regen(&mut self) -> REGEN_W {
+        REGEN_W { w: self }
     }
     #[doc = "Bits 16:17 - PLL Output Division Factor"]
-    #[inline]
-    pub fn odf(&mut self) -> _ODFW {
-        _ODFW { w: self }
+    #[inline(always)]
+    pub fn odf(&mut self) -> ODF_W {
+        ODF_W { w: self }
     }
     #[doc = "Bits 11:14 - PLL Input Division Factor"]
-    #[inline]
-    pub fn idf(&mut self) -> _IDFW {
-        _IDFW { w: self }
+    #[inline(always)]
+    pub fn idf(&mut self) -> IDF_W {
+        IDF_W { w: self }
     }
     #[doc = "Bits 2:8 - PLL Loop Division Factor"]
-    #[inline]
-    pub fn ndiv(&mut self) -> _NDIVW {
-        _NDIVW { w: self }
+    #[inline(always)]
+    pub fn ndiv(&mut self) -> NDIV_W {
+        NDIV_W { w: self }
     }
     #[doc = "Bit 0 - PLL Enable"]
-    #[inline]
-    pub fn pllen(&mut self) -> _PLLENW {
-        _PLLENW { w: self }
+    #[inline(always)]
+    pub fn pllen(&mut self) -> PLLEN_W {
+        PLLEN_W { w: self }
     }
 }

@@ -1,41 +1,11 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::DFSDM_CHWDAT7R {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct WDATAR {
-    bits: u16,
-}
-impl WDATAR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
+#[doc = "Reader of register DFSDM_CHWDAT7R"]
+pub type R = crate::R<u32, super::DFSDM_CHWDAT7R>;
+#[doc = "Reader of field `WDATA`"]
+pub type WDATA_R = crate::R<u16, u16>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:15 - Input channel y watchdog data"]
-    #[inline]
-    pub fn wdata(&self) -> WDATAR {
-        let bits = {
-            const MASK: u16 = 0xffff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        WDATAR { bits }
+    #[inline(always)]
+    pub fn wdata(&self) -> WDATA_R {
+        WDATA_R::new((self.bits & 0xffff) as u16)
     }
 }

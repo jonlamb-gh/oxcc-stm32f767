@@ -1,1421 +1,798 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register PR"]
+pub type R = crate::R<u32, super::PR>;
+#[doc = "Writer for register PR"]
+pub type W = crate::W<u32, super::PR>;
+#[doc = "Register PR `reset()`'s with value 0"]
+impl crate::ResetValue for super::PR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct PR0R {
-    bits: bool,
-}
-impl PR0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR1R {
-    bits: bool,
-}
-impl PR1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR2R {
-    bits: bool,
-}
-impl PR2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR3R {
-    bits: bool,
-}
-impl PR3R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR4R {
-    bits: bool,
-}
-impl PR4R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR5R {
-    bits: bool,
-}
-impl PR5R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR6R {
-    bits: bool,
-}
-impl PR6R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR7R {
-    bits: bool,
-}
-impl PR7R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR8R {
-    bits: bool,
-}
-impl PR8R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR9R {
-    bits: bool,
-}
-impl PR9R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR10R {
-    bits: bool,
-}
-impl PR10R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR11R {
-    bits: bool,
-}
-impl PR11R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR12R {
-    bits: bool,
-}
-impl PR12R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR13R {
-    bits: bool,
-}
-impl PR13R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR14R {
-    bits: bool,
-}
-impl PR14R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR15R {
-    bits: bool,
-}
-impl PR15R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR16R {
-    bits: bool,
-}
-impl PR16R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR17R {
-    bits: bool,
-}
-impl PR17R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR18R {
-    bits: bool,
-}
-impl PR18R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR19R {
-    bits: bool,
-}
-impl PR19R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR20R {
-    bits: bool,
-}
-impl PR20R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR21R {
-    bits: bool,
-}
-impl PR21R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PR22R {
-    bits: bool,
-}
-impl PR22R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PR0W<'a> {
+#[doc = "Reader of field `PR0`"]
+pub type PR0_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR0`"]
+pub struct PR0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR0W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR0_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR1W<'a> {
+#[doc = "Reader of field `PR1`"]
+pub type PR1_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR1`"]
+pub struct PR1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR1W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR1_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR2W<'a> {
+#[doc = "Reader of field `PR2`"]
+pub type PR2_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR2`"]
+pub struct PR2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR2W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR2_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR3W<'a> {
+#[doc = "Reader of field `PR3`"]
+pub type PR3_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR3`"]
+pub struct PR3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR3W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR3_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR4W<'a> {
+#[doc = "Reader of field `PR4`"]
+pub type PR4_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR4`"]
+pub struct PR4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR4W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR4_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR5W<'a> {
+#[doc = "Reader of field `PR5`"]
+pub type PR5_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR5`"]
+pub struct PR5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR5W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR5_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR6W<'a> {
+#[doc = "Reader of field `PR6`"]
+pub type PR6_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR6`"]
+pub struct PR6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR6W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR6_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR7W<'a> {
+#[doc = "Reader of field `PR7`"]
+pub type PR7_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR7`"]
+pub struct PR7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR7W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR7_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR8W<'a> {
+#[doc = "Reader of field `PR8`"]
+pub type PR8_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR8`"]
+pub struct PR8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR8W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR8_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR9W<'a> {
+#[doc = "Reader of field `PR9`"]
+pub type PR9_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR9`"]
+pub struct PR9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR9W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR9_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR10W<'a> {
+#[doc = "Reader of field `PR10`"]
+pub type PR10_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR10`"]
+pub struct PR10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR10W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR10_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR11W<'a> {
+#[doc = "Reader of field `PR11`"]
+pub type PR11_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR11`"]
+pub struct PR11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR11W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR11_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR12W<'a> {
+#[doc = "Reader of field `PR12`"]
+pub type PR12_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR12`"]
+pub struct PR12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR12W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR12_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR13W<'a> {
+#[doc = "Reader of field `PR13`"]
+pub type PR13_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR13`"]
+pub struct PR13_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR13W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR13_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 13;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR14W<'a> {
+#[doc = "Reader of field `PR14`"]
+pub type PR14_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR14`"]
+pub struct PR14_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR14W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR14_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 14;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR15W<'a> {
+#[doc = "Reader of field `PR15`"]
+pub type PR15_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR15`"]
+pub struct PR15_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR15W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR15_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 15;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR16W<'a> {
+#[doc = "Reader of field `PR16`"]
+pub type PR16_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR16`"]
+pub struct PR16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR16W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR16_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR17W<'a> {
+#[doc = "Reader of field `PR17`"]
+pub type PR17_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR17`"]
+pub struct PR17_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR17W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR17_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR18W<'a> {
+#[doc = "Reader of field `PR18`"]
+pub type PR18_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR18`"]
+pub struct PR18_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR18W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR18_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR19W<'a> {
+#[doc = "Reader of field `PR19`"]
+pub type PR19_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR19`"]
+pub struct PR19_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR19W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR19_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR20W<'a> {
+#[doc = "Reader of field `PR20`"]
+pub type PR20_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR20`"]
+pub struct PR20_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR20W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR20_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR21W<'a> {
+#[doc = "Reader of field `PR21`"]
+pub type PR21_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR21`"]
+pub struct PR21_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR21W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR21_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 21;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PR22W<'a> {
+#[doc = "Reader of field `PR22`"]
+pub type PR22_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PR22`"]
+pub struct PR22_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PR22W<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PR22_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Pending bit 0"]
-    #[inline]
-    pub fn pr0(&self) -> PR0R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR0R { bits }
+    #[inline(always)]
+    pub fn pr0(&self) -> PR0_R {
+        PR0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Pending bit 1"]
-    #[inline]
-    pub fn pr1(&self) -> PR1R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR1R { bits }
+    #[inline(always)]
+    pub fn pr1(&self) -> PR1_R {
+        PR1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Pending bit 2"]
-    #[inline]
-    pub fn pr2(&self) -> PR2R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR2R { bits }
+    #[inline(always)]
+    pub fn pr2(&self) -> PR2_R {
+        PR2_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Pending bit 3"]
-    #[inline]
-    pub fn pr3(&self) -> PR3R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR3R { bits }
+    #[inline(always)]
+    pub fn pr3(&self) -> PR3_R {
+        PR3_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Pending bit 4"]
-    #[inline]
-    pub fn pr4(&self) -> PR4R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR4R { bits }
+    #[inline(always)]
+    pub fn pr4(&self) -> PR4_R {
+        PR4_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Pending bit 5"]
-    #[inline]
-    pub fn pr5(&self) -> PR5R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR5R { bits }
+    #[inline(always)]
+    pub fn pr5(&self) -> PR5_R {
+        PR5_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Pending bit 6"]
-    #[inline]
-    pub fn pr6(&self) -> PR6R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR6R { bits }
+    #[inline(always)]
+    pub fn pr6(&self) -> PR6_R {
+        PR6_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Pending bit 7"]
-    #[inline]
-    pub fn pr7(&self) -> PR7R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR7R { bits }
+    #[inline(always)]
+    pub fn pr7(&self) -> PR7_R {
+        PR7_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - Pending bit 8"]
-    #[inline]
-    pub fn pr8(&self) -> PR8R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR8R { bits }
+    #[inline(always)]
+    pub fn pr8(&self) -> PR8_R {
+        PR8_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Pending bit 9"]
-    #[inline]
-    pub fn pr9(&self) -> PR9R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR9R { bits }
+    #[inline(always)]
+    pub fn pr9(&self) -> PR9_R {
+        PR9_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Pending bit 10"]
-    #[inline]
-    pub fn pr10(&self) -> PR10R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR10R { bits }
+    #[inline(always)]
+    pub fn pr10(&self) -> PR10_R {
+        PR10_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Pending bit 11"]
-    #[inline]
-    pub fn pr11(&self) -> PR11R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR11R { bits }
+    #[inline(always)]
+    pub fn pr11(&self) -> PR11_R {
+        PR11_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Pending bit 12"]
-    #[inline]
-    pub fn pr12(&self) -> PR12R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR12R { bits }
+    #[inline(always)]
+    pub fn pr12(&self) -> PR12_R {
+        PR12_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - Pending bit 13"]
-    #[inline]
-    pub fn pr13(&self) -> PR13R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 13;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR13R { bits }
+    #[inline(always)]
+    pub fn pr13(&self) -> PR13_R {
+        PR13_R::new(((self.bits >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 14 - Pending bit 14"]
-    #[inline]
-    pub fn pr14(&self) -> PR14R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR14R { bits }
+    #[inline(always)]
+    pub fn pr14(&self) -> PR14_R {
+        PR14_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - Pending bit 15"]
-    #[inline]
-    pub fn pr15(&self) -> PR15R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR15R { bits }
+    #[inline(always)]
+    pub fn pr15(&self) -> PR15_R {
+        PR15_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 16 - Pending bit 16"]
-    #[inline]
-    pub fn pr16(&self) -> PR16R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR16R { bits }
+    #[inline(always)]
+    pub fn pr16(&self) -> PR16_R {
+        PR16_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Pending bit 17"]
-    #[inline]
-    pub fn pr17(&self) -> PR17R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR17R { bits }
+    #[inline(always)]
+    pub fn pr17(&self) -> PR17_R {
+        PR17_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - Pending bit 18"]
-    #[inline]
-    pub fn pr18(&self) -> PR18R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR18R { bits }
+    #[inline(always)]
+    pub fn pr18(&self) -> PR18_R {
+        PR18_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - Pending bit 19"]
-    #[inline]
-    pub fn pr19(&self) -> PR19R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR19R { bits }
+    #[inline(always)]
+    pub fn pr19(&self) -> PR19_R {
+        PR19_R::new(((self.bits >> 19) & 0x01) != 0)
     }
     #[doc = "Bit 20 - Pending bit 20"]
-    #[inline]
-    pub fn pr20(&self) -> PR20R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR20R { bits }
+    #[inline(always)]
+    pub fn pr20(&self) -> PR20_R {
+        PR20_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 21 - Pending bit 21"]
-    #[inline]
-    pub fn pr21(&self) -> PR21R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 21;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR21R { bits }
+    #[inline(always)]
+    pub fn pr21(&self) -> PR21_R {
+        PR21_R::new(((self.bits >> 21) & 0x01) != 0)
     }
     #[doc = "Bit 22 - Pending bit 22"]
-    #[inline]
-    pub fn pr22(&self) -> PR22R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PR22R { bits }
+    #[inline(always)]
+    pub fn pr22(&self) -> PR22_R {
+        PR22_R::new(((self.bits >> 22) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Pending bit 0"]
-    #[inline]
-    pub fn pr0(&mut self) -> _PR0W {
-        _PR0W { w: self }
+    #[inline(always)]
+    pub fn pr0(&mut self) -> PR0_W {
+        PR0_W { w: self }
     }
     #[doc = "Bit 1 - Pending bit 1"]
-    #[inline]
-    pub fn pr1(&mut self) -> _PR1W {
-        _PR1W { w: self }
+    #[inline(always)]
+    pub fn pr1(&mut self) -> PR1_W {
+        PR1_W { w: self }
     }
     #[doc = "Bit 2 - Pending bit 2"]
-    #[inline]
-    pub fn pr2(&mut self) -> _PR2W {
-        _PR2W { w: self }
+    #[inline(always)]
+    pub fn pr2(&mut self) -> PR2_W {
+        PR2_W { w: self }
     }
     #[doc = "Bit 3 - Pending bit 3"]
-    #[inline]
-    pub fn pr3(&mut self) -> _PR3W {
-        _PR3W { w: self }
+    #[inline(always)]
+    pub fn pr3(&mut self) -> PR3_W {
+        PR3_W { w: self }
     }
     #[doc = "Bit 4 - Pending bit 4"]
-    #[inline]
-    pub fn pr4(&mut self) -> _PR4W {
-        _PR4W { w: self }
+    #[inline(always)]
+    pub fn pr4(&mut self) -> PR4_W {
+        PR4_W { w: self }
     }
     #[doc = "Bit 5 - Pending bit 5"]
-    #[inline]
-    pub fn pr5(&mut self) -> _PR5W {
-        _PR5W { w: self }
+    #[inline(always)]
+    pub fn pr5(&mut self) -> PR5_W {
+        PR5_W { w: self }
     }
     #[doc = "Bit 6 - Pending bit 6"]
-    #[inline]
-    pub fn pr6(&mut self) -> _PR6W {
-        _PR6W { w: self }
+    #[inline(always)]
+    pub fn pr6(&mut self) -> PR6_W {
+        PR6_W { w: self }
     }
     #[doc = "Bit 7 - Pending bit 7"]
-    #[inline]
-    pub fn pr7(&mut self) -> _PR7W {
-        _PR7W { w: self }
+    #[inline(always)]
+    pub fn pr7(&mut self) -> PR7_W {
+        PR7_W { w: self }
     }
     #[doc = "Bit 8 - Pending bit 8"]
-    #[inline]
-    pub fn pr8(&mut self) -> _PR8W {
-        _PR8W { w: self }
+    #[inline(always)]
+    pub fn pr8(&mut self) -> PR8_W {
+        PR8_W { w: self }
     }
     #[doc = "Bit 9 - Pending bit 9"]
-    #[inline]
-    pub fn pr9(&mut self) -> _PR9W {
-        _PR9W { w: self }
+    #[inline(always)]
+    pub fn pr9(&mut self) -> PR9_W {
+        PR9_W { w: self }
     }
     #[doc = "Bit 10 - Pending bit 10"]
-    #[inline]
-    pub fn pr10(&mut self) -> _PR10W {
-        _PR10W { w: self }
+    #[inline(always)]
+    pub fn pr10(&mut self) -> PR10_W {
+        PR10_W { w: self }
     }
     #[doc = "Bit 11 - Pending bit 11"]
-    #[inline]
-    pub fn pr11(&mut self) -> _PR11W {
-        _PR11W { w: self }
+    #[inline(always)]
+    pub fn pr11(&mut self) -> PR11_W {
+        PR11_W { w: self }
     }
     #[doc = "Bit 12 - Pending bit 12"]
-    #[inline]
-    pub fn pr12(&mut self) -> _PR12W {
-        _PR12W { w: self }
+    #[inline(always)]
+    pub fn pr12(&mut self) -> PR12_W {
+        PR12_W { w: self }
     }
     #[doc = "Bit 13 - Pending bit 13"]
-    #[inline]
-    pub fn pr13(&mut self) -> _PR13W {
-        _PR13W { w: self }
+    #[inline(always)]
+    pub fn pr13(&mut self) -> PR13_W {
+        PR13_W { w: self }
     }
     #[doc = "Bit 14 - Pending bit 14"]
-    #[inline]
-    pub fn pr14(&mut self) -> _PR14W {
-        _PR14W { w: self }
+    #[inline(always)]
+    pub fn pr14(&mut self) -> PR14_W {
+        PR14_W { w: self }
     }
     #[doc = "Bit 15 - Pending bit 15"]
-    #[inline]
-    pub fn pr15(&mut self) -> _PR15W {
-        _PR15W { w: self }
+    #[inline(always)]
+    pub fn pr15(&mut self) -> PR15_W {
+        PR15_W { w: self }
     }
     #[doc = "Bit 16 - Pending bit 16"]
-    #[inline]
-    pub fn pr16(&mut self) -> _PR16W {
-        _PR16W { w: self }
+    #[inline(always)]
+    pub fn pr16(&mut self) -> PR16_W {
+        PR16_W { w: self }
     }
     #[doc = "Bit 17 - Pending bit 17"]
-    #[inline]
-    pub fn pr17(&mut self) -> _PR17W {
-        _PR17W { w: self }
+    #[inline(always)]
+    pub fn pr17(&mut self) -> PR17_W {
+        PR17_W { w: self }
     }
     #[doc = "Bit 18 - Pending bit 18"]
-    #[inline]
-    pub fn pr18(&mut self) -> _PR18W {
-        _PR18W { w: self }
+    #[inline(always)]
+    pub fn pr18(&mut self) -> PR18_W {
+        PR18_W { w: self }
     }
     #[doc = "Bit 19 - Pending bit 19"]
-    #[inline]
-    pub fn pr19(&mut self) -> _PR19W {
-        _PR19W { w: self }
+    #[inline(always)]
+    pub fn pr19(&mut self) -> PR19_W {
+        PR19_W { w: self }
     }
     #[doc = "Bit 20 - Pending bit 20"]
-    #[inline]
-    pub fn pr20(&mut self) -> _PR20W {
-        _PR20W { w: self }
+    #[inline(always)]
+    pub fn pr20(&mut self) -> PR20_W {
+        PR20_W { w: self }
     }
     #[doc = "Bit 21 - Pending bit 21"]
-    #[inline]
-    pub fn pr21(&mut self) -> _PR21W {
-        _PR21W { w: self }
+    #[inline(always)]
+    pub fn pr21(&mut self) -> PR21_W {
+        PR21_W { w: self }
     }
     #[doc = "Bit 22 - Pending bit 22"]
-    #[inline]
-    pub fn pr22(&mut self) -> _PR22W {
-        _PR22W { w: self }
+    #[inline(always)]
+    pub fn pr22(&mut self) -> PR22_W {
+        PR22_W { w: self }
     }
 }

@@ -1,300 +1,181 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CFR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CFR"]
+pub type R = crate::R<u32, super::CFR>;
+#[doc = "Writer for register CFR"]
+pub type W = crate::W<u32, super::CFR>;
+#[doc = "Register CFR `reset()`'s with value 0x7f"]
+impl crate::ResetValue for super::CFR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x7f
     }
 }
-#[doc = r" Value of the field"]
-pub struct EWIR {
-    bits: bool,
+#[doc = "Reader of field `EWI`"]
+pub type EWI_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `EWI`"]
+pub struct EWI_W<'a> {
+    w: &'a mut W,
 }
-impl EWIR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
+impl<'a> EWI_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct WR {
-    bits: u8,
-}
-impl WR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w
     }
 }
-#[doc = "Possible values of the field `WDGTB`"]
+#[doc = "Reader of field `W`"]
+pub type W_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `W`"]
+pub struct W_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> W_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x7f) | ((value as u32) & 0x7f);
+        self.w
+    }
+}
+#[doc = "Timer base\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WDGTBR {
-    #[doc = "Counter clock (PCLK1 div 4096) div 1"]
+pub enum WDGTB_A {
+    #[doc = "0: Counter clock (PCLK1 div 4096) div 1"]
     DIV1,
-    #[doc = "Counter clock (PCLK1 div 4096) div 2"]
+    #[doc = "1: Counter clock (PCLK1 div 4096) div 2"]
     DIV2,
-    #[doc = "Counter clock (PCLK1 div 4096) div 4"]
+    #[doc = "2: Counter clock (PCLK1 div 4096) div 4"]
     DIV4,
-    #[doc = "Counter clock (PCLK1 div 4096) div 8"]
+    #[doc = "3: Counter clock (PCLK1 div 4096) div 8"]
     DIV8,
 }
-impl WDGTBR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            WDGTBR::DIV1 => 0,
-            WDGTBR::DIV2 => 0x01,
-            WDGTBR::DIV4 => 0x02,
-            WDGTBR::DIV8 => 0x03,
+impl From<WDGTB_A> for u8 {
+    #[inline(always)]
+    fn from(variant: WDGTB_A) -> Self {
+        match variant {
+            WDGTB_A::DIV1 => 0,
+            WDGTB_A::DIV2 => 1,
+            WDGTB_A::DIV4 => 2,
+            WDGTB_A::DIV8 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> WDGTBR {
-        match value {
-            0 => WDGTBR::DIV1,
-            1 => WDGTBR::DIV2,
-            2 => WDGTBR::DIV4,
-            3 => WDGTBR::DIV8,
+}
+#[doc = "Reader of field `WDGTB`"]
+pub type WDGTB_R = crate::R<u8, WDGTB_A>;
+impl WDGTB_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WDGTB_A {
+        match self.bits {
+            0 => WDGTB_A::DIV1,
+            1 => WDGTB_A::DIV2,
+            2 => WDGTB_A::DIV4,
+            3 => WDGTB_A::DIV8,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `DIV1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_div1(&self) -> bool {
-        *self == WDGTBR::DIV1
+        *self == WDGTB_A::DIV1
     }
     #[doc = "Checks if the value of the field is `DIV2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_div2(&self) -> bool {
-        *self == WDGTBR::DIV2
+        *self == WDGTB_A::DIV2
     }
     #[doc = "Checks if the value of the field is `DIV4`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_div4(&self) -> bool {
-        *self == WDGTBR::DIV4
+        *self == WDGTB_A::DIV4
     }
     #[doc = "Checks if the value of the field is `DIV8`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_div8(&self) -> bool {
-        *self == WDGTBR::DIV8
+        *self == WDGTB_A::DIV8
     }
 }
-#[doc = r" Proxy"]
-pub struct _EWIW<'a> {
+#[doc = "Write proxy for field `WDGTB`"]
+pub struct WDGTB_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EWIW<'a> {
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _WW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x7f;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `WDGTB`"]
-pub enum WDGTBW {
-    #[doc = "Counter clock (PCLK1 div 4096) div 1"]
-    DIV1,
-    #[doc = "Counter clock (PCLK1 div 4096) div 2"]
-    DIV2,
-    #[doc = "Counter clock (PCLK1 div 4096) div 4"]
-    DIV4,
-    #[doc = "Counter clock (PCLK1 div 4096) div 8"]
-    DIV8,
-}
-impl WDGTBW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            WDGTBW::DIV1 => 0,
-            WDGTBW::DIV2 => 1,
-            WDGTBW::DIV4 => 2,
-            WDGTBW::DIV8 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WDGTBW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _WDGTBW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WDGTBW) -> &'a mut W {
+impl<'a> WDGTB_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WDGTB_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Counter clock (PCLK1 div 4096) div 1"]
-    #[inline]
+    #[inline(always)]
     pub fn div1(self) -> &'a mut W {
-        self.variant(WDGTBW::DIV1)
+        self.variant(WDGTB_A::DIV1)
     }
     #[doc = "Counter clock (PCLK1 div 4096) div 2"]
-    #[inline]
+    #[inline(always)]
     pub fn div2(self) -> &'a mut W {
-        self.variant(WDGTBW::DIV2)
+        self.variant(WDGTB_A::DIV2)
     }
     #[doc = "Counter clock (PCLK1 div 4096) div 4"]
-    #[inline]
+    #[inline(always)]
     pub fn div4(self) -> &'a mut W {
-        self.variant(WDGTBW::DIV4)
+        self.variant(WDGTB_A::DIV4)
     }
     #[doc = "Counter clock (PCLK1 div 4096) div 8"]
-    #[inline]
+    #[inline(always)]
     pub fn div8(self) -> &'a mut W {
-        self.variant(WDGTBW::DIV8)
+        self.variant(WDGTB_A::DIV8)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 7)) | (((value as u32) & 0x03) << 7);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 9 - Early wakeup interrupt"]
-    #[inline]
-    pub fn ewi(&self) -> EWIR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        EWIR { bits }
+    #[inline(always)]
+    pub fn ewi(&self) -> EWI_R {
+        EWI_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bits 0:6 - 7-bit window value"]
-    #[inline]
-    pub fn w(&self) -> WR {
-        let bits = {
-            const MASK: u8 = 0x7f;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        WR { bits }
+    #[inline(always)]
+    pub fn w(&self) -> W_R {
+        W_R::new((self.bits & 0x7f) as u8)
     }
     #[doc = "Bits 7:8 - Timer base"]
-    #[inline]
-    pub fn wdgtb(&self) -> WDGTBR {
-        WDGTBR::_from({
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn wdgtb(&self) -> WDGTB_R {
+        WDGTB_R::new(((self.bits >> 7) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0x7f }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 9 - Early wakeup interrupt"]
-    #[inline]
-    pub fn ewi(&mut self) -> _EWIW {
-        _EWIW { w: self }
+    #[inline(always)]
+    pub fn ewi(&mut self) -> EWI_W {
+        EWI_W { w: self }
     }
     #[doc = "Bits 0:6 - 7-bit window value"]
-    #[inline]
-    pub fn w(&mut self) -> _WW {
-        _WW { w: self }
+    #[inline(always)]
+    pub fn w(&mut self) -> W_W {
+        W_W { w: self }
     }
     #[doc = "Bits 7:8 - Timer base"]
-    #[inline]
-    pub fn wdgtb(&mut self) -> _WDGTBW {
-        _WDGTBW { w: self }
+    #[inline(always)]
+    pub fn wdgtb(&mut self) -> WDGTB_W {
+        WDGTB_W { w: self }
     }
 }

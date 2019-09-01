@@ -1,41 +1,11 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::HASH_HR0 {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct H0R {
-    bits: u32,
-}
-impl H0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-}
+#[doc = "Reader of register HASH_HR0"]
+pub type R = crate::R<u32, super::HASH_HR0>;
+#[doc = "Reader of field `H0`"]
+pub type H0_R = crate::R<u32, u32>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:31 - H0"]
-    #[inline]
-    pub fn h0(&self) -> H0R {
-        let bits = {
-            const MASK: u32 = 0xffff_ffff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u32
-        };
-        H0R { bits }
+    #[inline(always)]
+    pub fn h0(&self) -> H0_R {
+        H0_R::new((self.bits & 0xffff_ffff) as u32)
     }
 }

@@ -1,751 +1,500 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MACPMTCSR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
+#[doc = "Reader of register MACPMTCSR"]
+pub type R = crate::R<u32, super::MACPMTCSR>;
+#[doc = "Writer for register MACPMTCSR"]
+pub type W = crate::W<u32, super::MACPMTCSR>;
+#[doc = "Register MACPMTCSR `reset()`'s with value 0"]
+impl crate::ResetValue for super::MACPMTCSR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
+}
+#[doc = "PD\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PD_A {
+    #[doc = "1: All received frames will be dropped. Cleared automatically when a magic packet or wakeup frame is received"]
+    ENABLED,
+}
+impl From<PD_A> for bool {
+    #[inline(always)]
+    fn from(variant: PD_A) -> Self {
+        match variant {
+            PD_A::ENABLED => true,
         }
     }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+}
+#[doc = "Reader of field `PD`"]
+pub type PD_R = crate::R<bool, PD_A>;
+impl PD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<bool, PD_A> {
+        use crate::Variant::*;
+        match self.bits {
+            true => Val(PD_A::ENABLED),
+            i => Res(i),
+        }
     }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == PD_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `PD`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PDR {
+#[doc = "Write proxy for field `PD`"]
+pub struct PD_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PD_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "All received frames will be dropped. Cleared automatically when a magic packet or wakeup frame is received"]
-    ENABLED,
-    #[doc = r" Reserved"]
-    _Reserved(bool),
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(PD_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w
+    }
 }
-impl PDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PDR::ENABLED => true,
-            PDR::_Reserved(bits) => bits,
+#[doc = "MPE\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MPE_A {
+    #[doc = "0: No power management event generated due to Magic Packet reception"]
+    DISABLED,
+    #[doc = "1: Enable generation of a power management event due to Magic Packet reception"]
+    ENABLED,
+}
+impl From<MPE_A> for bool {
+    #[inline(always)]
+    fn from(variant: MPE_A) -> Self {
+        match variant {
+            MPE_A::DISABLED => false,
+            MPE_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PDR {
-        match value {
-            true => PDR::ENABLED,
-            i => PDR::_Reserved(i),
+}
+#[doc = "Reader of field `MPE`"]
+pub type MPE_R = crate::R<bool, MPE_A>;
+impl MPE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MPE_A {
+        match self.bits {
+            false => MPE_A::DISABLED,
+            true => MPE_A::ENABLED,
         }
+    }
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == MPE_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == PDR::ENABLED
+        *self == MPE_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `MPE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MPER {
+#[doc = "Write proxy for field `MPE`"]
+pub struct MPE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> MPE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MPE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "No power management event generated due to Magic Packet reception"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(MPE_A::DISABLED)
+    }
     #[doc = "Enable generation of a power management event due to Magic Packet reception"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(MPE_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w
+    }
+}
+#[doc = "WFE\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WFE_A {
+    #[doc = "0: No power management event generated due to wakeup frame reception"]
+    DISABLED,
+    #[doc = "1: Enable generation of a power management event due to wakeup frame reception"]
     ENABLED,
 }
-impl MPER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MPER::DISABLED => false,
-            MPER::ENABLED => true,
+impl From<WFE_A> for bool {
+    #[inline(always)]
+    fn from(variant: WFE_A) -> Self {
+        match variant {
+            WFE_A::DISABLED => false,
+            WFE_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MPER {
-        match value {
-            false => MPER::DISABLED,
-            true => MPER::ENABLED,
+}
+#[doc = "Reader of field `WFE`"]
+pub type WFE_R = crate::R<bool, WFE_A>;
+impl WFE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WFE_A {
+        match self.bits {
+            false => WFE_A::DISABLED,
+            true => WFE_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == MPER::DISABLED
+        *self == WFE_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == MPER::ENABLED
+        *self == WFE_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `WFE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WFER {
+#[doc = "Write proxy for field `WFE`"]
+pub struct WFE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> WFE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WFE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "No power management event generated due to wakeup frame reception"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(WFE_A::DISABLED)
+    }
     #[doc = "Enable generation of a power management event due to wakeup frame reception"]
-    ENABLED,
-}
-impl WFER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(WFE_A::ENABLED)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WFER::DISABLED => false,
-            WFER::ENABLED => true,
-        }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WFER {
-        match value {
-            false => WFER::DISABLED,
-            true => WFER::ENABLED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
-    pub fn is_disabled(&self) -> bool {
-        *self == WFER::DISABLED
-    }
-    #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
-    pub fn is_enabled(&self) -> bool {
-        *self == WFER::ENABLED
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct MPRR {
-    bits: bool,
+#[doc = "Reader of field `MPR`"]
+pub type MPR_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `MPR`"]
+pub struct MPR_W<'a> {
+    w: &'a mut W,
 }
-impl MPRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
+impl<'a> MPR_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct WFRR {
-    bits: bool,
-}
-impl WFRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w
     }
 }
-#[doc = "Possible values of the field `GU`"]
+#[doc = "Reader of field `WFR`"]
+pub type WFR_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `WFR`"]
+pub struct WFR_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> WFR_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
+        self.w
+    }
+}
+#[doc = "GU\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum GUR {
-    #[doc = "Normal operation"]
+pub enum GU_A {
+    #[doc = "0: Normal operation"]
     DISABLED,
-    #[doc = "Any unicast packet filtered by the MAC address recognition may be a wakeup frame"]
+    #[doc = "1: Any unicast packet filtered by the MAC address recognition may be a wakeup frame"]
     ENABLED,
 }
-impl GUR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            GUR::DISABLED => false,
-            GUR::ENABLED => true,
+impl From<GU_A> for bool {
+    #[inline(always)]
+    fn from(variant: GU_A) -> Self {
+        match variant {
+            GU_A::DISABLED => false,
+            GU_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> GUR {
-        match value {
-            false => GUR::DISABLED,
-            true => GUR::ENABLED,
+}
+#[doc = "Reader of field `GU`"]
+pub type GU_R = crate::R<bool, GU_A>;
+impl GU_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> GU_A {
+        match self.bits {
+            false => GU_A::DISABLED,
+            true => GU_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == GUR::DISABLED
+        *self == GU_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == GUR::ENABLED
+        *self == GU_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `WFFRPR`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WFFRPRR {
-    #[doc = "Reset wakeup frame filter register point to 0b000. Automatically cleared"]
-    RESET,
-    #[doc = r" Reserved"]
-    _Reserved(bool),
+#[doc = "Write proxy for field `GU`"]
+pub struct GU_W<'a> {
+    w: &'a mut W,
 }
-impl WFFRPRR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WFFRPRR::RESET => true,
-            WFFRPRR::_Reserved(bits) => bits,
+impl<'a> GU_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: GU_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WFFRPRR {
-        match value {
-            true => WFFRPRR::RESET,
-            i => WFFRPRR::_Reserved(i),
+    #[doc = "Normal operation"]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(GU_A::DISABLED)
+    }
+    #[doc = "Any unicast packet filtered by the MAC address recognition may be a wakeup frame"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(GU_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w
+    }
+}
+#[doc = "WFFRPR\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum WFFRPR_A {
+    #[doc = "1: Reset wakeup frame filter register point to 0b000. Automatically cleared"]
+    RESET,
+}
+impl From<WFFRPR_A> for bool {
+    #[inline(always)]
+    fn from(variant: WFFRPR_A) -> Self {
+        match variant {
+            WFFRPR_A::RESET => true,
+        }
+    }
+}
+#[doc = "Reader of field `WFFRPR`"]
+pub type WFFRPR_R = crate::R<bool, WFFRPR_A>;
+impl WFFRPR_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<bool, WFFRPR_A> {
+        use crate::Variant::*;
+        match self.bits {
+            true => Val(WFFRPR_A::RESET),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `RESET`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_reset(&self) -> bool {
-        *self == WFFRPRR::RESET
+        *self == WFFRPR_A::RESET
     }
 }
-#[doc = "Values that can be written to the field `PD`"]
-pub enum PDW {
-    #[doc = "All received frames will be dropped. Cleared automatically when a magic packet or wakeup frame is received"]
-    ENABLED,
-}
-impl PDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PDW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PDW<'a> {
+#[doc = "Write proxy for field `WFFRPR`"]
+pub struct WFFRPR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PDW) -> &'a mut W {
+impl<'a> WFFRPR_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WFFRPR_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "All received frames will be dropped. Cleared automatically when a magic packet or wakeup frame is received"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(PDW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `MPE`"]
-pub enum MPEW {
-    #[doc = "No power management event generated due to Magic Packet reception"]
-    DISABLED,
-    #[doc = "Enable generation of a power management event due to Magic Packet reception"]
-    ENABLED,
-}
-impl MPEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MPEW::DISABLED => false,
-            MPEW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MPEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _MPEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MPEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "No power management event generated due to Magic Packet reception"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(MPEW::DISABLED)
-    }
-    #[doc = "Enable generation of a power management event due to Magic Packet reception"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(MPEW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `WFE`"]
-pub enum WFEW {
-    #[doc = "No power management event generated due to wakeup frame reception"]
-    DISABLED,
-    #[doc = "Enable generation of a power management event due to wakeup frame reception"]
-    ENABLED,
-}
-impl WFEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WFEW::DISABLED => false,
-            WFEW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WFEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _WFEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WFEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "No power management event generated due to wakeup frame reception"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(WFEW::DISABLED)
-    }
-    #[doc = "Enable generation of a power management event due to wakeup frame reception"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(WFEW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MPRW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _MPRW<'a> {
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WFRW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _WFRW<'a> {
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `GU`"]
-pub enum GUW {
-    #[doc = "Normal operation"]
-    DISABLED,
-    #[doc = "Any unicast packet filtered by the MAC address recognition may be a wakeup frame"]
-    ENABLED,
-}
-impl GUW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            GUW::DISABLED => false,
-            GUW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _GUW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _GUW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: GUW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Normal operation"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(GUW::DISABLED)
-    }
-    #[doc = "Any unicast packet filtered by the MAC address recognition may be a wakeup frame"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(GUW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `WFFRPR`"]
-pub enum WFFRPRW {
-    #[doc = "Reset wakeup frame filter register point to 0b000. Automatically cleared"]
-    RESET,
-}
-impl WFFRPRW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WFFRPRW::RESET => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WFFRPRW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _WFFRPRW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WFFRPRW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset wakeup frame filter register point to 0b000. Automatically cleared"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(WFFRPRW::RESET)
+        self.variant(WFFRPR_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - PD"]
-    #[inline]
-    pub fn pd(&self) -> PDR {
-        PDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pd(&self) -> PD_R {
+        PD_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - MPE"]
-    #[inline]
-    pub fn mpe(&self) -> MPER {
-        MPER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mpe(&self) -> MPE_R {
+        MPE_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - WFE"]
-    #[inline]
-    pub fn wfe(&self) -> WFER {
-        WFER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn wfe(&self) -> WFE_R {
+        WFE_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 5 - MPR"]
-    #[inline]
-    pub fn mpr(&self) -> MPRR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        MPRR { bits }
+    #[inline(always)]
+    pub fn mpr(&self) -> MPR_R {
+        MPR_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - WFR"]
-    #[inline]
-    pub fn wfr(&self) -> WFRR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        WFRR { bits }
+    #[inline(always)]
+    pub fn wfr(&self) -> WFR_R {
+        WFR_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 9 - GU"]
-    #[inline]
-    pub fn gu(&self) -> GUR {
-        GUR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn gu(&self) -> GU_R {
+        GU_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 31 - WFFRPR"]
-    #[inline]
-    pub fn wffrpr(&self) -> WFFRPRR {
-        WFFRPRR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn wffrpr(&self) -> WFFRPR_R {
+        WFFRPR_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - PD"]
-    #[inline]
-    pub fn pd(&mut self) -> _PDW {
-        _PDW { w: self }
+    #[inline(always)]
+    pub fn pd(&mut self) -> PD_W {
+        PD_W { w: self }
     }
     #[doc = "Bit 1 - MPE"]
-    #[inline]
-    pub fn mpe(&mut self) -> _MPEW {
-        _MPEW { w: self }
+    #[inline(always)]
+    pub fn mpe(&mut self) -> MPE_W {
+        MPE_W { w: self }
     }
     #[doc = "Bit 2 - WFE"]
-    #[inline]
-    pub fn wfe(&mut self) -> _WFEW {
-        _WFEW { w: self }
+    #[inline(always)]
+    pub fn wfe(&mut self) -> WFE_W {
+        WFE_W { w: self }
     }
     #[doc = "Bit 5 - MPR"]
-    #[inline]
-    pub fn mpr(&mut self) -> _MPRW {
-        _MPRW { w: self }
+    #[inline(always)]
+    pub fn mpr(&mut self) -> MPR_W {
+        MPR_W { w: self }
     }
     #[doc = "Bit 6 - WFR"]
-    #[inline]
-    pub fn wfr(&mut self) -> _WFRW {
-        _WFRW { w: self }
+    #[inline(always)]
+    pub fn wfr(&mut self) -> WFR_W {
+        WFR_W { w: self }
     }
     #[doc = "Bit 9 - GU"]
-    #[inline]
-    pub fn gu(&mut self) -> _GUW {
-        _GUW { w: self }
+    #[inline(always)]
+    pub fn gu(&mut self) -> GU_W {
+        GU_W { w: self }
     }
     #[doc = "Bit 31 - WFFRPR"]
-    #[inline]
-    pub fn wffrpr(&mut self) -> _WFFRPRW {
-        _WFFRPRW { w: self }
+    #[inline(always)]
+    pub fn wffrpr(&mut self) -> WFFRPR_W {
+        WFFRPR_W { w: self }
     }
 }

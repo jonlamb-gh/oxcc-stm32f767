@@ -1,230 +1,74 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::CLIDR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CL1R {
-    bits: u8,
-}
-impl CL1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CL2R {
-    bits: u8,
-}
-impl CL2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CL3R {
-    bits: u8,
-}
-impl CL3R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CL4R {
-    bits: u8,
-}
-impl CL4R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CL5R {
-    bits: u8,
-}
-impl CL5R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CL6R {
-    bits: u8,
-}
-impl CL6R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CL7R {
-    bits: u8,
-}
-impl CL7R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct LOUISR {
-    bits: u8,
-}
-impl LOUISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct LOCR {
-    bits: u8,
-}
-impl LOCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct LOUR {
-    bits: u8,
-}
-impl LOUR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
+#[doc = "Reader of register CLIDR"]
+pub type R = crate::R<u32, super::CLIDR>;
+#[doc = "Reader of field `CL1`"]
+pub type CL1_R = crate::R<u8, u8>;
+#[doc = "Reader of field `CL2`"]
+pub type CL2_R = crate::R<u8, u8>;
+#[doc = "Reader of field `CL3`"]
+pub type CL3_R = crate::R<u8, u8>;
+#[doc = "Reader of field `CL4`"]
+pub type CL4_R = crate::R<u8, u8>;
+#[doc = "Reader of field `CL5`"]
+pub type CL5_R = crate::R<u8, u8>;
+#[doc = "Reader of field `CL6`"]
+pub type CL6_R = crate::R<u8, u8>;
+#[doc = "Reader of field `CL7`"]
+pub type CL7_R = crate::R<u8, u8>;
+#[doc = "Reader of field `LoUIS`"]
+pub type LOUIS_R = crate::R<u8, u8>;
+#[doc = "Reader of field `LoC`"]
+pub type LOC_R = crate::R<u8, u8>;
+#[doc = "Reader of field `LoU`"]
+pub type LOU_R = crate::R<u8, u8>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - CL1"]
-    #[inline]
-    pub fn cl1(&self) -> CL1R {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        CL1R { bits }
+    #[inline(always)]
+    pub fn cl1(&self) -> CL1_R {
+        CL1_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bits 3:5 - CL2"]
-    #[inline]
-    pub fn cl2(&self) -> CL2R {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        CL2R { bits }
+    #[inline(always)]
+    pub fn cl2(&self) -> CL2_R {
+        CL2_R::new(((self.bits >> 3) & 0x07) as u8)
     }
     #[doc = "Bits 6:8 - CL3"]
-    #[inline]
-    pub fn cl3(&self) -> CL3R {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        CL3R { bits }
+    #[inline(always)]
+    pub fn cl3(&self) -> CL3_R {
+        CL3_R::new(((self.bits >> 6) & 0x07) as u8)
     }
     #[doc = "Bits 9:11 - CL4"]
-    #[inline]
-    pub fn cl4(&self) -> CL4R {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        CL4R { bits }
+    #[inline(always)]
+    pub fn cl4(&self) -> CL4_R {
+        CL4_R::new(((self.bits >> 9) & 0x07) as u8)
     }
     #[doc = "Bits 12:14 - CL5"]
-    #[inline]
-    pub fn cl5(&self) -> CL5R {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        CL5R { bits }
+    #[inline(always)]
+    pub fn cl5(&self) -> CL5_R {
+        CL5_R::new(((self.bits >> 12) & 0x07) as u8)
     }
     #[doc = "Bits 15:17 - CL6"]
-    #[inline]
-    pub fn cl6(&self) -> CL6R {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        CL6R { bits }
+    #[inline(always)]
+    pub fn cl6(&self) -> CL6_R {
+        CL6_R::new(((self.bits >> 15) & 0x07) as u8)
     }
     #[doc = "Bits 18:20 - CL7"]
-    #[inline]
-    pub fn cl7(&self) -> CL7R {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        CL7R { bits }
+    #[inline(always)]
+    pub fn cl7(&self) -> CL7_R {
+        CL7_R::new(((self.bits >> 18) & 0x07) as u8)
     }
     #[doc = "Bits 21:23 - LoUIS"]
-    #[inline]
-    pub fn lo_uis(&self) -> LOUISR {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 21;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        LOUISR { bits }
+    #[inline(always)]
+    pub fn lo_uis(&self) -> LOUIS_R {
+        LOUIS_R::new(((self.bits >> 21) & 0x07) as u8)
     }
     #[doc = "Bits 24:26 - LoC"]
-    #[inline]
-    pub fn lo_c(&self) -> LOCR {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        LOCR { bits }
+    #[inline(always)]
+    pub fn lo_c(&self) -> LOC_R {
+        LOC_R::new(((self.bits >> 24) & 0x07) as u8)
     }
     #[doc = "Bits 27:29 - LoU"]
-    #[inline]
-    pub fn lo_u(&self) -> LOUR {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 27;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        LOUR { bits }
+    #[inline(always)]
+    pub fn lo_u(&self) -> LOU_R {
+        LOU_R::new(((self.bits >> 27) & 0x07) as u8)
     }
 }

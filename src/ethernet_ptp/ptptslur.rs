@@ -1,164 +1,74 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PTPTSLUR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register PTPTSLUR"]
+pub type R = crate::R<u32, super::PTPTSLUR>;
+#[doc = "Writer for register PTPTSLUR"]
+pub type W = crate::W<u32, super::PTPTSLUR>;
+#[doc = "Register PTPTSLUR `reset()`'s with value 0"]
+impl crate::ResetValue for super::PTPTSLUR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct TSUSSR {
-    bits: u32,
-}
-impl TSUSSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TSUPNSR {
-    bits: bool,
-}
-impl TSUPNSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TSUSSW<'a> {
+#[doc = "Reader of field `TSUSS`"]
+pub type TSUSS_R = crate::R<u32, u32>;
+#[doc = "Write proxy for field `TSUSS`"]
+pub struct TSUSS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TSUSSW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> TSUSS_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u32) -> &'a mut W {
-        const MASK: u32 = 0x7fff_ffff;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x7fff_ffff) | ((value as u32) & 0x7fff_ffff);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _TSUPNSW<'a> {
+#[doc = "Reader of field `TSUPNS`"]
+pub type TSUPNS_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `TSUPNS`"]
+pub struct TSUPNS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TSUPNSW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> TSUPNS_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:30 - TSUSS"]
-    #[inline]
-    pub fn tsuss(&self) -> TSUSSR {
-        let bits = {
-            const MASK: u32 = 0x7fff_ffff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u32
-        };
-        TSUSSR { bits }
+    #[inline(always)]
+    pub fn tsuss(&self) -> TSUSS_R {
+        TSUSS_R::new((self.bits & 0x7fff_ffff) as u32)
     }
     #[doc = "Bit 31 - TSUPNS"]
-    #[inline]
-    pub fn tsupns(&self) -> TSUPNSR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        TSUPNSR { bits }
+    #[inline(always)]
+    pub fn tsupns(&self) -> TSUPNS_R {
+        TSUPNS_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:30 - TSUSS"]
-    #[inline]
-    pub fn tsuss(&mut self) -> _TSUSSW {
-        _TSUSSW { w: self }
+    #[inline(always)]
+    pub fn tsuss(&mut self) -> TSUSS_W {
+        TSUSS_W { w: self }
     }
     #[doc = "Bit 31 - TSUPNS"]
-    #[inline]
-    pub fn tsupns(&mut self) -> _TSUPNSW {
-        _TSUPNSW { w: self }
+    #[inline(always)]
+    pub fn tsupns(&mut self) -> TSUPNS_W {
+        TSUPNS_W { w: self }
     }
 }

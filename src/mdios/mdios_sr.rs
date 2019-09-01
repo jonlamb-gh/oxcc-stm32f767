@@ -1,113 +1,25 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::MDIOS_SR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PERFR {
-    bits: bool,
-}
-impl PERFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SERFR {
-    bits: bool,
-}
-impl SERFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TERFR {
-    bits: bool,
-}
-impl TERFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = "Reader of register MDIOS_SR"]
+pub type R = crate::R<u32, super::MDIOS_SR>;
+#[doc = "Reader of field `PERF`"]
+pub type PERF_R = crate::R<bool, bool>;
+#[doc = "Reader of field `SERF`"]
+pub type SERF_R = crate::R<bool, bool>;
+#[doc = "Reader of field `TERF`"]
+pub type TERF_R = crate::R<bool, bool>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Preamble error flag"]
-    #[inline]
-    pub fn perf(&self) -> PERFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PERFR { bits }
+    #[inline(always)]
+    pub fn perf(&self) -> PERF_R {
+        PERF_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Start error flag"]
-    #[inline]
-    pub fn serf(&self) -> SERFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SERFR { bits }
+    #[inline(always)]
+    pub fn serf(&self) -> SERF_R {
+        SERF_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Turnaround error flag"]
-    #[inline]
-    pub fn terf(&self) -> TERFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        TERFR { bits }
+    #[inline(always)]
+    pub fn terf(&self) -> TERF_R {
+        TERF_R::new(((self.bits >> 2) & 0x01) != 0)
     }
 }

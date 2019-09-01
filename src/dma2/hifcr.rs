@@ -1,934 +1,892 @@
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::HIFCR {
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+#[doc = "Writer for register HIFCR"]
+pub type W = crate::W<u32, super::HIFCR>;
+#[doc = "Register HIFCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::HIFCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Values that can be written to the field `CTCIF7`"]
-pub enum CTCIF7W {
-    #[doc = "Clear the corresponding TCIFx flag"]
+#[doc = "Stream x clear transfer complete interrupt flag (x = 7..4)\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CTCIF7_AW {
+    #[doc = "1: Clear the corresponding TCIFx flag"]
     CLEAR,
 }
-impl CTCIF7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CTCIF7W::CLEAR => true,
+impl From<CTCIF7_AW> for bool {
+    #[inline(always)]
+    fn from(variant: CTCIF7_AW) -> Self {
+        match variant {
+            CTCIF7_AW::CLEAR => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CTCIF7W<'a> {
+#[doc = "Write proxy for field `CTCIF7`"]
+pub struct CTCIF7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CTCIF7W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CTCIF7W) -> &'a mut W {
+impl<'a> CTCIF7_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CTCIF7_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding TCIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CTCIF7W::CLEAR)
+        self.variant(CTCIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 27;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CHTIF7`"]
-pub enum CHTIF7W {
-    #[doc = "Clear the corresponding HTIFx flag"]
+#[doc = "Stream x clear half transfer interrupt flag (x = 7..4)\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CHTIF7_AW {
+    #[doc = "1: Clear the corresponding HTIFx flag"]
     CLEAR,
 }
-impl CHTIF7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CHTIF7W::CLEAR => true,
+impl From<CHTIF7_AW> for bool {
+    #[inline(always)]
+    fn from(variant: CHTIF7_AW) -> Self {
+        match variant {
+            CHTIF7_AW::CLEAR => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CHTIF7W<'a> {
+#[doc = "Write proxy for field `CHTIF7`"]
+pub struct CHTIF7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHTIF7W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CHTIF7W) -> &'a mut W {
+impl<'a> CHTIF7_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CHTIF7_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding HTIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CHTIF7W::CLEAR)
+        self.variant(CHTIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 26;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CTEIF7`"]
-pub enum CTEIF7W {
-    #[doc = "Clear the corresponding TEIFx flag"]
+#[doc = "Stream x clear transfer error interrupt flag (x = 7..4)\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CTEIF7_AW {
+    #[doc = "1: Clear the corresponding TEIFx flag"]
     CLEAR,
 }
-impl CTEIF7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CTEIF7W::CLEAR => true,
+impl From<CTEIF7_AW> for bool {
+    #[inline(always)]
+    fn from(variant: CTEIF7_AW) -> Self {
+        match variant {
+            CTEIF7_AW::CLEAR => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CTEIF7W<'a> {
+#[doc = "Write proxy for field `CTEIF7`"]
+pub struct CTEIF7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CTEIF7W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CTEIF7W) -> &'a mut W {
+impl<'a> CTEIF7_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CTEIF7_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding TEIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CTEIF7W::CLEAR)
+        self.variant(CTEIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 25;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CDMEIF7`"]
-pub enum CDMEIF7W {
-    #[doc = "Clear the corresponding DMEIFx flag"]
+#[doc = "Stream x clear direct mode error interrupt flag (x = 7..4)\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CDMEIF7_AW {
+    #[doc = "1: Clear the corresponding DMEIFx flag"]
     CLEAR,
 }
-impl CDMEIF7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CDMEIF7W::CLEAR => true,
+impl From<CDMEIF7_AW> for bool {
+    #[inline(always)]
+    fn from(variant: CDMEIF7_AW) -> Self {
+        match variant {
+            CDMEIF7_AW::CLEAR => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CDMEIF7W<'a> {
+#[doc = "Write proxy for field `CDMEIF7`"]
+pub struct CDMEIF7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CDMEIF7W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CDMEIF7W) -> &'a mut W {
+impl<'a> CDMEIF7_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CDMEIF7_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding DMEIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CDMEIF7W::CLEAR)
+        self.variant(CDMEIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CFEIF7`"]
-pub enum CFEIF7W {
-    #[doc = "Clear the corresponding CFEIFx flag"]
+#[doc = "Stream x clear FIFO error interrupt flag (x = 7..4)\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CFEIF7_AW {
+    #[doc = "1: Clear the corresponding CFEIFx flag"]
     CLEAR,
 }
-impl CFEIF7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CFEIF7W::CLEAR => true,
+impl From<CFEIF7_AW> for bool {
+    #[inline(always)]
+    fn from(variant: CFEIF7_AW) -> Self {
+        match variant {
+            CFEIF7_AW::CLEAR => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CFEIF7W<'a> {
+#[doc = "Write proxy for field `CFEIF7`"]
+pub struct CFEIF7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CFEIF7W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CFEIF7W) -> &'a mut W {
+impl<'a> CFEIF7_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CFEIF7_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding CFEIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CFEIF7W::CLEAR)
+        self.variant(CFEIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CTCIF6`"]
-pub type CTCIF6W = CTCIF7W;
-#[doc = r" Proxy"]
-pub struct _CTCIF6W<'a> {
+#[doc = "Stream x clear transfer complete interrupt flag (x = 7..4)"]
+pub type CTCIF6_AW = CTCIF7_AW;
+#[doc = "Write proxy for field `CTCIF6`"]
+pub struct CTCIF6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CTCIF6W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CTCIF6W) -> &'a mut W {
+impl<'a> CTCIF6_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CTCIF6_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding TCIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CTCIF7W::CLEAR)
+        self.variant(CTCIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 21;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CHTIF6`"]
-pub type CHTIF6W = CHTIF7W;
-#[doc = r" Proxy"]
-pub struct _CHTIF6W<'a> {
+#[doc = "Stream x clear half transfer interrupt flag (x = 7..4)"]
+pub type CHTIF6_AW = CHTIF7_AW;
+#[doc = "Write proxy for field `CHTIF6`"]
+pub struct CHTIF6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHTIF6W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CHTIF6W) -> &'a mut W {
+impl<'a> CHTIF6_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CHTIF6_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding HTIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CHTIF7W::CLEAR)
+        self.variant(CHTIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CTEIF6`"]
-pub type CTEIF6W = CTEIF7W;
-#[doc = r" Proxy"]
-pub struct _CTEIF6W<'a> {
+#[doc = "Stream x clear transfer error interrupt flag (x = 7..4)"]
+pub type CTEIF6_AW = CTEIF7_AW;
+#[doc = "Write proxy for field `CTEIF6`"]
+pub struct CTEIF6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CTEIF6W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CTEIF6W) -> &'a mut W {
+impl<'a> CTEIF6_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CTEIF6_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding TEIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CTEIF7W::CLEAR)
+        self.variant(CTEIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CDMEIF6`"]
-pub type CDMEIF6W = CDMEIF7W;
-#[doc = r" Proxy"]
-pub struct _CDMEIF6W<'a> {
+#[doc = "Stream x clear direct mode error interrupt flag (x = 7..4)"]
+pub type CDMEIF6_AW = CDMEIF7_AW;
+#[doc = "Write proxy for field `CDMEIF6`"]
+pub struct CDMEIF6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CDMEIF6W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CDMEIF6W) -> &'a mut W {
+impl<'a> CDMEIF6_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CDMEIF6_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding DMEIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CDMEIF7W::CLEAR)
+        self.variant(CDMEIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CFEIF6`"]
-pub type CFEIF6W = CFEIF7W;
-#[doc = r" Proxy"]
-pub struct _CFEIF6W<'a> {
+#[doc = "Stream x clear FIFO error interrupt flag (x = 7..4)"]
+pub type CFEIF6_AW = CFEIF7_AW;
+#[doc = "Write proxy for field `CFEIF6`"]
+pub struct CFEIF6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CFEIF6W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CFEIF6W) -> &'a mut W {
+impl<'a> CFEIF6_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CFEIF6_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding CFEIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CFEIF7W::CLEAR)
+        self.variant(CFEIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CTCIF5`"]
-pub type CTCIF5W = CTCIF7W;
-#[doc = r" Proxy"]
-pub struct _CTCIF5W<'a> {
+#[doc = "Stream x clear transfer complete interrupt flag (x = 7..4)"]
+pub type CTCIF5_AW = CTCIF7_AW;
+#[doc = "Write proxy for field `CTCIF5`"]
+pub struct CTCIF5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CTCIF5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CTCIF5W) -> &'a mut W {
+impl<'a> CTCIF5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CTCIF5_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding TCIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CTCIF7W::CLEAR)
+        self.variant(CTCIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CHTIF5`"]
-pub type CHTIF5W = CHTIF7W;
-#[doc = r" Proxy"]
-pub struct _CHTIF5W<'a> {
+#[doc = "Stream x clear half transfer interrupt flag (x = 7..4)"]
+pub type CHTIF5_AW = CHTIF7_AW;
+#[doc = "Write proxy for field `CHTIF5`"]
+pub struct CHTIF5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHTIF5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CHTIF5W) -> &'a mut W {
+impl<'a> CHTIF5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CHTIF5_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding HTIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CHTIF7W::CLEAR)
+        self.variant(CHTIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CTEIF5`"]
-pub type CTEIF5W = CTEIF7W;
-#[doc = r" Proxy"]
-pub struct _CTEIF5W<'a> {
+#[doc = "Stream x clear transfer error interrupt flag (x = 7..4)"]
+pub type CTEIF5_AW = CTEIF7_AW;
+#[doc = "Write proxy for field `CTEIF5`"]
+pub struct CTEIF5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CTEIF5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CTEIF5W) -> &'a mut W {
+impl<'a> CTEIF5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CTEIF5_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding TEIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CTEIF7W::CLEAR)
+        self.variant(CTEIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CDMEIF5`"]
-pub type CDMEIF5W = CDMEIF7W;
-#[doc = r" Proxy"]
-pub struct _CDMEIF5W<'a> {
+#[doc = "Stream x clear direct mode error interrupt flag (x = 7..4)"]
+pub type CDMEIF5_AW = CDMEIF7_AW;
+#[doc = "Write proxy for field `CDMEIF5`"]
+pub struct CDMEIF5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CDMEIF5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CDMEIF5W) -> &'a mut W {
+impl<'a> CDMEIF5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CDMEIF5_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding DMEIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CDMEIF7W::CLEAR)
+        self.variant(CDMEIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CFEIF5`"]
-pub type CFEIF5W = CFEIF7W;
-#[doc = r" Proxy"]
-pub struct _CFEIF5W<'a> {
+#[doc = "Stream x clear FIFO error interrupt flag (x = 7..4)"]
+pub type CFEIF5_AW = CFEIF7_AW;
+#[doc = "Write proxy for field `CFEIF5`"]
+pub struct CFEIF5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CFEIF5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CFEIF5W) -> &'a mut W {
+impl<'a> CFEIF5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CFEIF5_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding CFEIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CFEIF7W::CLEAR)
+        self.variant(CFEIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CTCIF4`"]
-pub type CTCIF4W = CTCIF7W;
-#[doc = r" Proxy"]
-pub struct _CTCIF4W<'a> {
+#[doc = "Stream x clear transfer complete interrupt flag (x = 7..4)"]
+pub type CTCIF4_AW = CTCIF7_AW;
+#[doc = "Write proxy for field `CTCIF4`"]
+pub struct CTCIF4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CTCIF4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CTCIF4W) -> &'a mut W {
+impl<'a> CTCIF4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CTCIF4_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding TCIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CTCIF7W::CLEAR)
+        self.variant(CTCIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CHTIF4`"]
-pub type CHTIF4W = CHTIF7W;
-#[doc = r" Proxy"]
-pub struct _CHTIF4W<'a> {
+#[doc = "Stream x clear half transfer interrupt flag (x = 7..4)"]
+pub type CHTIF4_AW = CHTIF7_AW;
+#[doc = "Write proxy for field `CHTIF4`"]
+pub struct CHTIF4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHTIF4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CHTIF4W) -> &'a mut W {
+impl<'a> CHTIF4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CHTIF4_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding HTIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CHTIF7W::CLEAR)
+        self.variant(CHTIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CTEIF4`"]
-pub type CTEIF4W = CTEIF7W;
-#[doc = r" Proxy"]
-pub struct _CTEIF4W<'a> {
+#[doc = "Stream x clear transfer error interrupt flag (x = 7..4)"]
+pub type CTEIF4_AW = CTEIF7_AW;
+#[doc = "Write proxy for field `CTEIF4`"]
+pub struct CTEIF4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CTEIF4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CTEIF4W) -> &'a mut W {
+impl<'a> CTEIF4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CTEIF4_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding TEIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CTEIF7W::CLEAR)
+        self.variant(CTEIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CDMEIF4`"]
-pub type CDMEIF4W = CDMEIF7W;
-#[doc = r" Proxy"]
-pub struct _CDMEIF4W<'a> {
+#[doc = "Stream x clear direct mode error interrupt flag (x = 7..4)"]
+pub type CDMEIF4_AW = CDMEIF7_AW;
+#[doc = "Write proxy for field `CDMEIF4`"]
+pub struct CDMEIF4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CDMEIF4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CDMEIF4W) -> &'a mut W {
+impl<'a> CDMEIF4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CDMEIF4_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding DMEIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CDMEIF7W::CLEAR)
+        self.variant(CDMEIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CFEIF4`"]
-pub type CFEIF4W = CFEIF7W;
-#[doc = r" Proxy"]
-pub struct _CFEIF4W<'a> {
+#[doc = "Stream x clear FIFO error interrupt flag (x = 7..4)"]
+pub type CFEIF4_AW = CFEIF7_AW;
+#[doc = "Write proxy for field `CFEIF4`"]
+pub struct CFEIF4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CFEIF4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CFEIF4W) -> &'a mut W {
+impl<'a> CFEIF4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CFEIF4_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Clear the corresponding CFEIFx flag"]
-    #[inline]
+    #[inline(always)]
     pub fn clear(self) -> &'a mut W {
-        self.variant(CFEIF7W::CLEAR)
+        self.variant(CFEIF7_AW::CLEAR)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 27 - Stream x clear transfer complete interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn ctcif7(&mut self) -> _CTCIF7W {
-        _CTCIF7W { w: self }
+    #[inline(always)]
+    pub fn ctcif7(&mut self) -> CTCIF7_W {
+        CTCIF7_W { w: self }
     }
     #[doc = "Bit 26 - Stream x clear half transfer interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn chtif7(&mut self) -> _CHTIF7W {
-        _CHTIF7W { w: self }
+    #[inline(always)]
+    pub fn chtif7(&mut self) -> CHTIF7_W {
+        CHTIF7_W { w: self }
     }
     #[doc = "Bit 25 - Stream x clear transfer error interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn cteif7(&mut self) -> _CTEIF7W {
-        _CTEIF7W { w: self }
+    #[inline(always)]
+    pub fn cteif7(&mut self) -> CTEIF7_W {
+        CTEIF7_W { w: self }
     }
     #[doc = "Bit 24 - Stream x clear direct mode error interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn cdmeif7(&mut self) -> _CDMEIF7W {
-        _CDMEIF7W { w: self }
+    #[inline(always)]
+    pub fn cdmeif7(&mut self) -> CDMEIF7_W {
+        CDMEIF7_W { w: self }
     }
     #[doc = "Bit 22 - Stream x clear FIFO error interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn cfeif7(&mut self) -> _CFEIF7W {
-        _CFEIF7W { w: self }
+    #[inline(always)]
+    pub fn cfeif7(&mut self) -> CFEIF7_W {
+        CFEIF7_W { w: self }
     }
     #[doc = "Bit 21 - Stream x clear transfer complete interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn ctcif6(&mut self) -> _CTCIF6W {
-        _CTCIF6W { w: self }
+    #[inline(always)]
+    pub fn ctcif6(&mut self) -> CTCIF6_W {
+        CTCIF6_W { w: self }
     }
     #[doc = "Bit 20 - Stream x clear half transfer interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn chtif6(&mut self) -> _CHTIF6W {
-        _CHTIF6W { w: self }
+    #[inline(always)]
+    pub fn chtif6(&mut self) -> CHTIF6_W {
+        CHTIF6_W { w: self }
     }
     #[doc = "Bit 19 - Stream x clear transfer error interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn cteif6(&mut self) -> _CTEIF6W {
-        _CTEIF6W { w: self }
+    #[inline(always)]
+    pub fn cteif6(&mut self) -> CTEIF6_W {
+        CTEIF6_W { w: self }
     }
     #[doc = "Bit 18 - Stream x clear direct mode error interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn cdmeif6(&mut self) -> _CDMEIF6W {
-        _CDMEIF6W { w: self }
+    #[inline(always)]
+    pub fn cdmeif6(&mut self) -> CDMEIF6_W {
+        CDMEIF6_W { w: self }
     }
     #[doc = "Bit 16 - Stream x clear FIFO error interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn cfeif6(&mut self) -> _CFEIF6W {
-        _CFEIF6W { w: self }
+    #[inline(always)]
+    pub fn cfeif6(&mut self) -> CFEIF6_W {
+        CFEIF6_W { w: self }
     }
     #[doc = "Bit 11 - Stream x clear transfer complete interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn ctcif5(&mut self) -> _CTCIF5W {
-        _CTCIF5W { w: self }
+    #[inline(always)]
+    pub fn ctcif5(&mut self) -> CTCIF5_W {
+        CTCIF5_W { w: self }
     }
     #[doc = "Bit 10 - Stream x clear half transfer interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn chtif5(&mut self) -> _CHTIF5W {
-        _CHTIF5W { w: self }
+    #[inline(always)]
+    pub fn chtif5(&mut self) -> CHTIF5_W {
+        CHTIF5_W { w: self }
     }
     #[doc = "Bit 9 - Stream x clear transfer error interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn cteif5(&mut self) -> _CTEIF5W {
-        _CTEIF5W { w: self }
+    #[inline(always)]
+    pub fn cteif5(&mut self) -> CTEIF5_W {
+        CTEIF5_W { w: self }
     }
     #[doc = "Bit 8 - Stream x clear direct mode error interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn cdmeif5(&mut self) -> _CDMEIF5W {
-        _CDMEIF5W { w: self }
+    #[inline(always)]
+    pub fn cdmeif5(&mut self) -> CDMEIF5_W {
+        CDMEIF5_W { w: self }
     }
     #[doc = "Bit 6 - Stream x clear FIFO error interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn cfeif5(&mut self) -> _CFEIF5W {
-        _CFEIF5W { w: self }
+    #[inline(always)]
+    pub fn cfeif5(&mut self) -> CFEIF5_W {
+        CFEIF5_W { w: self }
     }
     #[doc = "Bit 5 - Stream x clear transfer complete interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn ctcif4(&mut self) -> _CTCIF4W {
-        _CTCIF4W { w: self }
+    #[inline(always)]
+    pub fn ctcif4(&mut self) -> CTCIF4_W {
+        CTCIF4_W { w: self }
     }
     #[doc = "Bit 4 - Stream x clear half transfer interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn chtif4(&mut self) -> _CHTIF4W {
-        _CHTIF4W { w: self }
+    #[inline(always)]
+    pub fn chtif4(&mut self) -> CHTIF4_W {
+        CHTIF4_W { w: self }
     }
     #[doc = "Bit 3 - Stream x clear transfer error interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn cteif4(&mut self) -> _CTEIF4W {
-        _CTEIF4W { w: self }
+    #[inline(always)]
+    pub fn cteif4(&mut self) -> CTEIF4_W {
+        CTEIF4_W { w: self }
     }
     #[doc = "Bit 2 - Stream x clear direct mode error interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn cdmeif4(&mut self) -> _CDMEIF4W {
-        _CDMEIF4W { w: self }
+    #[inline(always)]
+    pub fn cdmeif4(&mut self) -> CDMEIF4_W {
+        CDMEIF4_W { w: self }
     }
     #[doc = "Bit 0 - Stream x clear FIFO error interrupt flag (x = 7..4)"]
-    #[inline]
-    pub fn cfeif4(&mut self) -> _CFEIF4W {
-        _CFEIF4W { w: self }
+    #[inline(always)]
+    pub fn cfeif4(&mut self) -> CFEIF4_W {
+        CFEIF4_W { w: self }
     }
 }

@@ -1,187 +1,88 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::DFSDM3_FCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register DFSDM3_FCR"]
+pub type R = crate::R<u32, super::DFSDM3_FCR>;
+#[doc = "Writer for register DFSDM3_FCR"]
+pub type W = crate::W<u32, super::DFSDM3_FCR>;
+#[doc = "Register DFSDM3_FCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::DFSDM3_FCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct IOSRR {
-    bits: u8,
-}
-impl IOSRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct FOSRR {
-    bits: u16,
-}
-impl FOSRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct FORDR {
-    bits: u8,
-}
-impl FORDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _IOSRW<'a> {
+#[doc = "Reader of field `IOSR`"]
+pub type IOSR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `IOSR`"]
+pub struct IOSR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IOSRW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> IOSR_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0xff) | ((value as u32) & 0xff);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _FOSRW<'a> {
+#[doc = "Reader of field `FOSR`"]
+pub type FOSR_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `FOSR`"]
+pub struct FOSR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FOSRW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> FOSR_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0x03ff;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03ff << 16)) | (((value as u32) & 0x03ff) << 16);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _FORDW<'a> {
+#[doc = "Reader of field `FORD`"]
+pub type FORD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FORD`"]
+pub struct FORD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FORDW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> FORD_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x07;
-        const OFFSET: u8 = 29;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x07 << 29)) | (((value as u32) & 0x07) << 29);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:7 - Integrator oversampling ratio (averaging length)"]
-    #[inline]
-    pub fn iosr(&self) -> IOSRR {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        IOSRR { bits }
+    #[inline(always)]
+    pub fn iosr(&self) -> IOSR_R {
+        IOSR_R::new((self.bits & 0xff) as u8)
     }
     #[doc = "Bits 16:25 - Sinc filter oversampling ratio (decimation rate)"]
-    #[inline]
-    pub fn fosr(&self) -> FOSRR {
-        let bits = {
-            const MASK: u16 = 0x03ff;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        FOSRR { bits }
+    #[inline(always)]
+    pub fn fosr(&self) -> FOSR_R {
+        FOSR_R::new(((self.bits >> 16) & 0x03ff) as u16)
     }
     #[doc = "Bits 29:31 - Sinc filter order"]
-    #[inline]
-    pub fn ford(&self) -> FORDR {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 29;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        FORDR { bits }
+    #[inline(always)]
+    pub fn ford(&self) -> FORD_R {
+        FORD_R::new(((self.bits >> 29) & 0x07) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:7 - Integrator oversampling ratio (averaging length)"]
-    #[inline]
-    pub fn iosr(&mut self) -> _IOSRW {
-        _IOSRW { w: self }
+    #[inline(always)]
+    pub fn iosr(&mut self) -> IOSR_W {
+        IOSR_W { w: self }
     }
     #[doc = "Bits 16:25 - Sinc filter oversampling ratio (decimation rate)"]
-    #[inline]
-    pub fn fosr(&mut self) -> _FOSRW {
-        _FOSRW { w: self }
+    #[inline(always)]
+    pub fn fosr(&mut self) -> FOSR_W {
+        FOSR_W { w: self }
     }
     #[doc = "Bits 29:31 - Sinc filter order"]
-    #[inline]
-    pub fn ford(&mut self) -> _FORDW {
-        _FORDW { w: self }
+    #[inline(always)]
+    pub fn ford(&mut self) -> FORD_W {
+        FORD_W { w: self }
     }
 }

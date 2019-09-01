@@ -1,241 +1,118 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::OTG_HS_PCGCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register OTG_HS_PCGCR"]
+pub type R = crate::R<u32, super::OTG_HS_PCGCR>;
+#[doc = "Writer for register OTG_HS_PCGCR"]
+pub type W = crate::W<u32, super::OTG_HS_PCGCR>;
+#[doc = "Register OTG_HS_PCGCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::OTG_HS_PCGCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct STPPCLKR {
-    bits: bool,
-}
-impl STPPCLKR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct GATEHCLKR {
-    bits: bool,
-}
-impl GATEHCLKR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PHYSUSPR {
-    bits: bool,
-}
-impl PHYSUSPR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _STPPCLKW<'a> {
+#[doc = "Reader of field `STPPCLK`"]
+pub type STPPCLK_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `STPPCLK`"]
+pub struct STPPCLK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STPPCLKW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> STPPCLK_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _GATEHCLKW<'a> {
+#[doc = "Reader of field `GATEHCLK`"]
+pub type GATEHCLK_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `GATEHCLK`"]
+pub struct GATEHCLK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _GATEHCLKW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> GATEHCLK_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PHYSUSPW<'a> {
+#[doc = "Reader of field `PHYSUSP`"]
+pub type PHYSUSP_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PHYSUSP`"]
+pub struct PHYSUSP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PHYSUSPW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> PHYSUSP_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Stop PHY clock"]
-    #[inline]
-    pub fn stppclk(&self) -> STPPCLKR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        STPPCLKR { bits }
+    #[inline(always)]
+    pub fn stppclk(&self) -> STPPCLK_R {
+        STPPCLK_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Gate HCLK"]
-    #[inline]
-    pub fn gatehclk(&self) -> GATEHCLKR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        GATEHCLKR { bits }
+    #[inline(always)]
+    pub fn gatehclk(&self) -> GATEHCLK_R {
+        GATEHCLK_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 4 - PHY suspended"]
-    #[inline]
-    pub fn physusp(&self) -> PHYSUSPR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PHYSUSPR { bits }
+    #[inline(always)]
+    pub fn physusp(&self) -> PHYSUSP_R {
+        PHYSUSP_R::new(((self.bits >> 4) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Stop PHY clock"]
-    #[inline]
-    pub fn stppclk(&mut self) -> _STPPCLKW {
-        _STPPCLKW { w: self }
+    #[inline(always)]
+    pub fn stppclk(&mut self) -> STPPCLK_W {
+        STPPCLK_W { w: self }
     }
     #[doc = "Bit 1 - Gate HCLK"]
-    #[inline]
-    pub fn gatehclk(&mut self) -> _GATEHCLKW {
-        _GATEHCLKW { w: self }
+    #[inline(always)]
+    pub fn gatehclk(&mut self) -> GATEHCLK_W {
+        GATEHCLK_W { w: self }
     }
     #[doc = "Bit 4 - PHY suspended"]
-    #[inline]
-    pub fn physusp(&mut self) -> _PHYSUSPW {
-        _PHYSUSPW { w: self }
+    #[inline(always)]
+    pub fn physusp(&mut self) -> PHYSUSP_W {
+        PHYSUSP_W { w: self }
     }
 }

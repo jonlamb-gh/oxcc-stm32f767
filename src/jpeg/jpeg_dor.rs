@@ -1,41 +1,11 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::JPEG_DOR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DATAOUTR {
-    bits: u32,
-}
-impl DATAOUTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-}
+#[doc = "Reader of register JPEG_DOR"]
+pub type R = crate::R<u32, super::JPEG_DOR>;
+#[doc = "Reader of field `DATAOUT`"]
+pub type DATAOUT_R = crate::R<u32, u32>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:31 - Data Output FIFO"]
-    #[inline]
-    pub fn dataout(&self) -> DATAOUTR {
-        let bits = {
-            const MASK: u32 = 0xffff_ffff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u32
-        };
-        DATAOUTR { bits }
+    #[inline(always)]
+    pub fn dataout(&self) -> DATAOUT_R {
+        DATAOUT_R::new((self.bits & 0xffff_ffff) as u32)
     }
 }

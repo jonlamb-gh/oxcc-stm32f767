@@ -1,524 +1,381 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::S3FCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register S3FCR"]
+pub type R = crate::R<u32, super::S3FCR>;
+#[doc = "Writer for register S3FCR"]
+pub type W = crate::W<u32, super::S3FCR>;
+#[doc = "Register S3FCR `reset()`'s with value 0x21"]
+impl crate::ResetValue for super::S3FCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x21
     }
 }
-#[doc = "Possible values of the field `FEIE`"]
+#[doc = "FIFO error interrupt enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FEIER {
-    #[doc = "FE interrupt disabled"]
+pub enum FEIE_A {
+    #[doc = "0: FE interrupt disabled"]
     DISABLED,
-    #[doc = "FE interrupt enabled"]
+    #[doc = "1: FE interrupt enabled"]
     ENABLED,
 }
-impl FEIER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            FEIER::DISABLED => false,
-            FEIER::ENABLED => true,
+impl From<FEIE_A> for bool {
+    #[inline(always)]
+    fn from(variant: FEIE_A) -> Self {
+        match variant {
+            FEIE_A::DISABLED => false,
+            FEIE_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> FEIER {
-        match value {
-            false => FEIER::DISABLED,
-            true => FEIER::ENABLED,
+}
+#[doc = "Reader of field `FEIE`"]
+pub type FEIE_R = crate::R<bool, FEIE_A>;
+impl FEIE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> FEIE_A {
+        match self.bits {
+            false => FEIE_A::DISABLED,
+            true => FEIE_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == FEIER::DISABLED
+        *self == FEIE_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == FEIER::ENABLED
+        *self == FEIE_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `FS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FSR {
-    #[doc = "0 < fifo_level < 1/4"]
-    FIRSTQUARTER,
-    #[doc = "1/4 <= fifo_level < 1/2"]
-    SECONDQUARTER,
-    #[doc = "1/2 <= fifo_level < 3/4"]
-    THIRDQUARTER,
-    #[doc = "3/4 <= fifo_level < full"]
-    FOURTHQUARTER,
-    #[doc = "FIFO is empty"]
-    EMPTY,
-    #[doc = "FIFO is full"]
-    FULL,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
+#[doc = "Write proxy for field `FEIE`"]
+pub struct FEIE_W<'a> {
+    w: &'a mut W,
 }
-impl FSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            FSR::FIRSTQUARTER => 0,
-            FSR::SECONDQUARTER => 0x01,
-            FSR::THIRDQUARTER => 0x02,
-            FSR::FOURTHQUARTER => 0x03,
-            FSR::EMPTY => 0x04,
-            FSR::FULL => 0x05,
-            FSR::_Reserved(bits) => bits,
+impl<'a> FEIE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: FEIE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> FSR {
-        match value {
-            0 => FSR::FIRSTQUARTER,
-            1 => FSR::SECONDQUARTER,
-            2 => FSR::THIRDQUARTER,
-            3 => FSR::FOURTHQUARTER,
-            4 => FSR::EMPTY,
-            5 => FSR::FULL,
-            i => FSR::_Reserved(i),
+    #[doc = "FE interrupt disabled"]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(FEIE_A::DISABLED)
+    }
+    #[doc = "FE interrupt enabled"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(FEIE_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w
+    }
+}
+#[doc = "FIFO status\n\nValue on reset: 4"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum FS_A {
+    #[doc = "0: 0 < fifo_level < 1/4"]
+    FIRSTQUARTER,
+    #[doc = "1: 1/4 <= fifo_level < 1/2"]
+    SECONDQUARTER,
+    #[doc = "2: 1/2 <= fifo_level < 3/4"]
+    THIRDQUARTER,
+    #[doc = "3: 3/4 <= fifo_level < full"]
+    FOURTHQUARTER,
+    #[doc = "4: FIFO is empty"]
+    EMPTY,
+    #[doc = "5: FIFO is full"]
+    FULL,
+}
+impl From<FS_A> for u8 {
+    #[inline(always)]
+    fn from(variant: FS_A) -> Self {
+        match variant {
+            FS_A::FIRSTQUARTER => 0,
+            FS_A::SECONDQUARTER => 1,
+            FS_A::THIRDQUARTER => 2,
+            FS_A::FOURTHQUARTER => 3,
+            FS_A::EMPTY => 4,
+            FS_A::FULL => 5,
+        }
+    }
+}
+#[doc = "Reader of field `FS`"]
+pub type FS_R = crate::R<u8, FS_A>;
+impl FS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, FS_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(FS_A::FIRSTQUARTER),
+            1 => Val(FS_A::SECONDQUARTER),
+            2 => Val(FS_A::THIRDQUARTER),
+            3 => Val(FS_A::FOURTHQUARTER),
+            4 => Val(FS_A::EMPTY),
+            5 => Val(FS_A::FULL),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `FIRSTQUARTER`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_first_quarter(&self) -> bool {
-        *self == FSR::FIRSTQUARTER
+        *self == FS_A::FIRSTQUARTER
     }
     #[doc = "Checks if the value of the field is `SECONDQUARTER`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_second_quarter(&self) -> bool {
-        *self == FSR::SECONDQUARTER
+        *self == FS_A::SECONDQUARTER
     }
     #[doc = "Checks if the value of the field is `THIRDQUARTER`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_third_quarter(&self) -> bool {
-        *self == FSR::THIRDQUARTER
+        *self == FS_A::THIRDQUARTER
     }
     #[doc = "Checks if the value of the field is `FOURTHQUARTER`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_fourth_quarter(&self) -> bool {
-        *self == FSR::FOURTHQUARTER
+        *self == FS_A::FOURTHQUARTER
     }
     #[doc = "Checks if the value of the field is `EMPTY`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_empty(&self) -> bool {
-        *self == FSR::EMPTY
+        *self == FS_A::EMPTY
     }
     #[doc = "Checks if the value of the field is `FULL`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_full(&self) -> bool {
-        *self == FSR::FULL
+        *self == FS_A::FULL
     }
 }
-#[doc = "Possible values of the field `DMDIS`"]
+#[doc = "Direct mode disable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DMDISR {
-    #[doc = "Direct mode is enabled"]
+pub enum DMDIS_A {
+    #[doc = "0: Direct mode is enabled"]
     ENABLED,
-    #[doc = "Direct mode is disabled"]
+    #[doc = "1: Direct mode is disabled"]
     DISABLED,
 }
-impl DMDISR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DMDISR::ENABLED => false,
-            DMDISR::DISABLED => true,
+impl From<DMDIS_A> for bool {
+    #[inline(always)]
+    fn from(variant: DMDIS_A) -> Self {
+        match variant {
+            DMDIS_A::ENABLED => false,
+            DMDIS_A::DISABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DMDISR {
-        match value {
-            false => DMDISR::ENABLED,
-            true => DMDISR::DISABLED,
+}
+#[doc = "Reader of field `DMDIS`"]
+pub type DMDIS_R = crate::R<bool, DMDIS_A>;
+impl DMDIS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DMDIS_A {
+        match self.bits {
+            false => DMDIS_A::ENABLED,
+            true => DMDIS_A::DISABLED,
         }
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == DMDISR::ENABLED
+        *self == DMDIS_A::ENABLED
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == DMDISR::DISABLED
+        *self == DMDIS_A::DISABLED
     }
 }
-#[doc = "Possible values of the field `FTH`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FTHR {
-    #[doc = "1/4 full FIFO"]
-    QUARTER,
-    #[doc = "1/2 full FIFO"]
-    HALF,
-    #[doc = "3/4 full FIFO"]
-    THREEQUARTERS,
-    #[doc = "Full FIFO"]
-    FULL,
+#[doc = "Write proxy for field `DMDIS`"]
+pub struct DMDIS_W<'a> {
+    w: &'a mut W,
 }
-impl FTHR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            FTHR::QUARTER => 0,
-            FTHR::HALF => 0x01,
-            FTHR::THREEQUARTERS => 0x02,
-            FTHR::FULL => 0x03,
+impl<'a> DMDIS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DMDIS_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> FTHR {
-        match value {
-            0 => FTHR::QUARTER,
-            1 => FTHR::HALF,
-            2 => FTHR::THREEQUARTERS,
-            3 => FTHR::FULL,
+    #[doc = "Direct mode is enabled"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(DMDIS_A::ENABLED)
+    }
+    #[doc = "Direct mode is disabled"]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(DMDIS_A::DISABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w
+    }
+}
+#[doc = "FIFO threshold selection\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum FTH_A {
+    #[doc = "0: 1/4 full FIFO"]
+    QUARTER,
+    #[doc = "1: 1/2 full FIFO"]
+    HALF,
+    #[doc = "2: 3/4 full FIFO"]
+    THREEQUARTERS,
+    #[doc = "3: Full FIFO"]
+    FULL,
+}
+impl From<FTH_A> for u8 {
+    #[inline(always)]
+    fn from(variant: FTH_A) -> Self {
+        match variant {
+            FTH_A::QUARTER => 0,
+            FTH_A::HALF => 1,
+            FTH_A::THREEQUARTERS => 2,
+            FTH_A::FULL => 3,
+        }
+    }
+}
+#[doc = "Reader of field `FTH`"]
+pub type FTH_R = crate::R<u8, FTH_A>;
+impl FTH_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> FTH_A {
+        match self.bits {
+            0 => FTH_A::QUARTER,
+            1 => FTH_A::HALF,
+            2 => FTH_A::THREEQUARTERS,
+            3 => FTH_A::FULL,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `QUARTER`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_quarter(&self) -> bool {
-        *self == FTHR::QUARTER
+        *self == FTH_A::QUARTER
     }
     #[doc = "Checks if the value of the field is `HALF`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_half(&self) -> bool {
-        *self == FTHR::HALF
+        *self == FTH_A::HALF
     }
     #[doc = "Checks if the value of the field is `THREEQUARTERS`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_three_quarters(&self) -> bool {
-        *self == FTHR::THREEQUARTERS
+        *self == FTH_A::THREEQUARTERS
     }
     #[doc = "Checks if the value of the field is `FULL`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_full(&self) -> bool {
-        *self == FTHR::FULL
+        *self == FTH_A::FULL
     }
 }
-#[doc = "Values that can be written to the field `FEIE`"]
-pub enum FEIEW {
-    #[doc = "FE interrupt disabled"]
-    DISABLED,
-    #[doc = "FE interrupt enabled"]
-    ENABLED,
-}
-impl FEIEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            FEIEW::DISABLED => false,
-            FEIEW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _FEIEW<'a> {
+#[doc = "Write proxy for field `FTH`"]
+pub struct FTH_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FEIEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: FEIEW) -> &'a mut W {
+impl<'a> FTH_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: FTH_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "FE interrupt disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(FEIEW::DISABLED)
-    }
-    #[doc = "FE interrupt enabled"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(FEIEW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `DMDIS`"]
-pub enum DMDISW {
-    #[doc = "Direct mode is enabled"]
-    ENABLED,
-    #[doc = "Direct mode is disabled"]
-    DISABLED,
-}
-impl DMDISW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DMDISW::ENABLED => false,
-            DMDISW::DISABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DMDISW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DMDISW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DMDISW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Direct mode is enabled"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(DMDISW::ENABLED)
-    }
-    #[doc = "Direct mode is disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(DMDISW::DISABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `FTH`"]
-pub enum FTHW {
-    #[doc = "1/4 full FIFO"]
-    QUARTER,
-    #[doc = "1/2 full FIFO"]
-    HALF,
-    #[doc = "3/4 full FIFO"]
-    THREEQUARTERS,
-    #[doc = "Full FIFO"]
-    FULL,
-}
-impl FTHW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            FTHW::QUARTER => 0,
-            FTHW::HALF => 1,
-            FTHW::THREEQUARTERS => 2,
-            FTHW::FULL => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _FTHW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _FTHW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: FTHW) -> &'a mut W {
-        {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "1/4 full FIFO"]
-    #[inline]
+    #[inline(always)]
     pub fn quarter(self) -> &'a mut W {
-        self.variant(FTHW::QUARTER)
+        self.variant(FTH_A::QUARTER)
     }
     #[doc = "1/2 full FIFO"]
-    #[inline]
+    #[inline(always)]
     pub fn half(self) -> &'a mut W {
-        self.variant(FTHW::HALF)
+        self.variant(FTH_A::HALF)
     }
     #[doc = "3/4 full FIFO"]
-    #[inline]
+    #[inline(always)]
     pub fn three_quarters(self) -> &'a mut W {
-        self.variant(FTHW::THREEQUARTERS)
+        self.variant(FTH_A::THREEQUARTERS)
     }
     #[doc = "Full FIFO"]
-    #[inline]
+    #[inline(always)]
     pub fn full(self) -> &'a mut W {
-        self.variant(FTHW::FULL)
+        self.variant(FTH_A::FULL)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x03) | ((value as u32) & 0x03);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 7 - FIFO error interrupt enable"]
-    #[inline]
-    pub fn feie(&self) -> FEIER {
-        FEIER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn feie(&self) -> FEIE_R {
+        FEIE_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bits 3:5 - FIFO status"]
-    #[inline]
-    pub fn fs(&self) -> FSR {
-        FSR::_from({
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn fs(&self) -> FS_R {
+        FS_R::new(((self.bits >> 3) & 0x07) as u8)
     }
     #[doc = "Bit 2 - Direct mode disable"]
-    #[inline]
-    pub fn dmdis(&self) -> DMDISR {
-        DMDISR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dmdis(&self) -> DMDIS_R {
+        DMDIS_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bits 0:1 - FIFO threshold selection"]
-    #[inline]
-    pub fn fth(&self) -> FTHR {
-        FTHR::_from({
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn fth(&self) -> FTH_R {
+        FTH_R::new((self.bits & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0x21 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 7 - FIFO error interrupt enable"]
-    #[inline]
-    pub fn feie(&mut self) -> _FEIEW {
-        _FEIEW { w: self }
+    #[inline(always)]
+    pub fn feie(&mut self) -> FEIE_W {
+        FEIE_W { w: self }
     }
     #[doc = "Bit 2 - Direct mode disable"]
-    #[inline]
-    pub fn dmdis(&mut self) -> _DMDISW {
-        _DMDISW { w: self }
+    #[inline(always)]
+    pub fn dmdis(&mut self) -> DMDIS_W {
+        DMDIS_W { w: self }
     }
     #[doc = "Bits 0:1 - FIFO threshold selection"]
-    #[inline]
-    pub fn fth(&mut self) -> _FTHW {
-        _FTHW { w: self }
+    #[inline(always)]
+    pub fn fth(&mut self) -> FTH_W {
+        FTH_W { w: self }
     }
 }

@@ -1,93 +1,25 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::DFSDM3_RDATAR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RDATACHR {
-    bits: u8,
-}
-impl RDATACHR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RPENDR {
-    bits: bool,
-}
-impl RPENDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RDATAR {
-    bits: u32,
-}
-impl RDATAR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-}
+#[doc = "Reader of register DFSDM3_RDATAR"]
+pub type R = crate::R<u32, super::DFSDM3_RDATAR>;
+#[doc = "Reader of field `RDATACH`"]
+pub type RDATACH_R = crate::R<u8, u8>;
+#[doc = "Reader of field `RPEND`"]
+pub type RPEND_R = crate::R<bool, bool>;
+#[doc = "Reader of field `RDATA`"]
+pub type RDATA_R = crate::R<u32, u32>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Regular channel most recently converted"]
-    #[inline]
-    pub fn rdatach(&self) -> RDATACHR {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        RDATACHR { bits }
+    #[inline(always)]
+    pub fn rdatach(&self) -> RDATACH_R {
+        RDATACH_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bit 4 - Regular channel pending data"]
-    #[inline]
-    pub fn rpend(&self) -> RPENDR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RPENDR { bits }
+    #[inline(always)]
+    pub fn rpend(&self) -> RPEND_R {
+        RPEND_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bits 8:31 - Regular channel conversion data"]
-    #[inline]
-    pub fn rdata(&self) -> RDATAR {
-        let bits = {
-            const MASK: u32 = 0x00ff_ffff;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u32
-        };
-        RDATAR { bits }
+    #[inline(always)]
+    pub fn rdata(&self) -> RDATA_R {
+        RDATA_R::new(((self.bits >> 8) & 0x00ff_ffff) as u32)
     }
 }

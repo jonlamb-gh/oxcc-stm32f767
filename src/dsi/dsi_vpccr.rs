@@ -1,41 +1,11 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::DSI_VPCCR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct VPSIZER {
-    bits: u16,
-}
-impl VPSIZER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
+#[doc = "Reader of register DSI_VPCCR"]
+pub type R = crate::R<u32, super::DSI_VPCCR>;
+#[doc = "Reader of field `VPSIZE`"]
+pub type VPSIZE_R = crate::R<u16, u16>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:13 - Video Packet Size"]
-    #[inline]
-    pub fn vpsize(&self) -> VPSIZER {
-        let bits = {
-            const MASK: u16 = 0x3fff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        VPSIZER { bits }
+    #[inline(always)]
+    pub fn vpsize(&self) -> VPSIZE_R {
+        VPSIZE_R::new((self.bits & 0x3fff) as u16)
     }
 }

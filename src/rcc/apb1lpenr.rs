@@ -1,1807 +1,1588 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::APB1LPENR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register APB1LPENR"]
+pub type R = crate::R<u32, super::APB1LPENR>;
+#[doc = "Writer for register APB1LPENR"]
+pub type W = crate::W<u32, super::APB1LPENR>;
+#[doc = "Register APB1LPENR `reset()`'s with value 0x36fe_c9ff"]
+impl crate::ResetValue for super::APB1LPENR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x36fe_c9ff
     }
 }
-#[doc = "Possible values of the field `TIM2LPEN`"]
+#[doc = "TIM2 clock enable during Sleep mode\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TIM2LPENR {
-    #[doc = "Selected module is disabled during Sleep mode"]
+pub enum TIM2LPEN_A {
+    #[doc = "0: Selected module is disabled during Sleep mode"]
     DISABLEDINSLEEP,
-    #[doc = "Selected module is enabled during Sleep mode"]
+    #[doc = "1: Selected module is enabled during Sleep mode"]
     ENABLEDINSLEEP,
 }
-impl TIM2LPENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TIM2LPENR::DISABLEDINSLEEP => false,
-            TIM2LPENR::ENABLEDINSLEEP => true,
+impl From<TIM2LPEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: TIM2LPEN_A) -> Self {
+        match variant {
+            TIM2LPEN_A::DISABLEDINSLEEP => false,
+            TIM2LPEN_A::ENABLEDINSLEEP => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TIM2LPENR {
-        match value {
-            false => TIM2LPENR::DISABLEDINSLEEP,
-            true => TIM2LPENR::ENABLEDINSLEEP,
+}
+#[doc = "Reader of field `TIM2LPEN`"]
+pub type TIM2LPEN_R = crate::R<bool, TIM2LPEN_A>;
+impl TIM2LPEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TIM2LPEN_A {
+        match self.bits {
+            false => TIM2LPEN_A::DISABLEDINSLEEP,
+            true => TIM2LPEN_A::ENABLEDINSLEEP,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLEDINSLEEP`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled_in_sleep(&self) -> bool {
-        *self == TIM2LPENR::DISABLEDINSLEEP
+        *self == TIM2LPEN_A::DISABLEDINSLEEP
     }
     #[doc = "Checks if the value of the field is `ENABLEDINSLEEP`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled_in_sleep(&self) -> bool {
-        *self == TIM2LPENR::ENABLEDINSLEEP
+        *self == TIM2LPEN_A::ENABLEDINSLEEP
     }
 }
-#[doc = "Possible values of the field `TIM3LPEN`"]
-pub type TIM3LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `TIM4LPEN`"]
-pub type TIM4LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `TIM5LPEN`"]
-pub type TIM5LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `TIM6LPEN`"]
-pub type TIM6LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `TIM7LPEN`"]
-pub type TIM7LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `TIM12LPEN`"]
-pub type TIM12LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `TIM13LPEN`"]
-pub type TIM13LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `TIM14LPEN`"]
-pub type TIM14LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `WWDGLPEN`"]
-pub type WWDGLPENR = TIM2LPENR;
-#[doc = "Possible values of the field `SPI2LPEN`"]
-pub type SPI2LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `SPI3LPEN`"]
-pub type SPI3LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `USART2LPEN`"]
-pub type USART2LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `USART3LPEN`"]
-pub type USART3LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `UART4LPEN`"]
-pub type UART4LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `UART5LPEN`"]
-pub type UART5LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `I2C1LPEN`"]
-pub type I2C1LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `I2C2LPEN`"]
-pub type I2C2LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `I2C3LPEN`"]
-pub type I2C3LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `CAN1LPEN`"]
-pub type CAN1LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `CAN2LPEN`"]
-pub type CAN2LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `PWRLPEN`"]
-pub type PWRLPENR = TIM2LPENR;
-#[doc = "Possible values of the field `DACLPEN`"]
-pub type DACLPENR = TIM2LPENR;
-#[doc = "Possible values of the field `UART7LPEN`"]
-pub type UART7LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `UART8LPEN`"]
-pub type UART8LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `SPDIFRXLPEN`"]
-pub type SPDIFRXLPENR = TIM2LPENR;
-#[doc = "Possible values of the field `CECLPEN`"]
-pub type CECLPENR = TIM2LPENR;
-#[doc = "Possible values of the field `LPTIM1LPEN`"]
-pub type LPTIM1LPENR = TIM2LPENR;
-#[doc = "Possible values of the field `I2C4LPEN`"]
-pub type I2C4LPENR = TIM2LPENR;
-#[doc = "Values that can be written to the field `TIM2LPEN`"]
-pub enum TIM2LPENW {
-    #[doc = "Selected module is disabled during Sleep mode"]
-    DISABLEDINSLEEP,
-    #[doc = "Selected module is enabled during Sleep mode"]
-    ENABLEDINSLEEP,
-}
-impl TIM2LPENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TIM2LPENW::DISABLEDINSLEEP => false,
-            TIM2LPENW::ENABLEDINSLEEP => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TIM2LPENW<'a> {
+#[doc = "Write proxy for field `TIM2LPEN`"]
+pub struct TIM2LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM2LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM2LPENW) -> &'a mut W {
+impl<'a> TIM2LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM2LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM3LPEN`"]
-pub type TIM3LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _TIM3LPENW<'a> {
+#[doc = "TIM3 clock enable during Sleep mode"]
+pub type TIM3LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `TIM3LPEN`"]
+pub type TIM3LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `TIM3LPEN`"]
+pub struct TIM3LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM3LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM3LPENW) -> &'a mut W {
+impl<'a> TIM3LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM3LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM4LPEN`"]
-pub type TIM4LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _TIM4LPENW<'a> {
+#[doc = "TIM4 clock enable during Sleep mode"]
+pub type TIM4LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `TIM4LPEN`"]
+pub type TIM4LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `TIM4LPEN`"]
+pub struct TIM4LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM4LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM4LPENW) -> &'a mut W {
+impl<'a> TIM4LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM4LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM5LPEN`"]
-pub type TIM5LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _TIM5LPENW<'a> {
+#[doc = "TIM5 clock enable during Sleep mode"]
+pub type TIM5LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `TIM5LPEN`"]
+pub type TIM5LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `TIM5LPEN`"]
+pub struct TIM5LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM5LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM5LPENW) -> &'a mut W {
+impl<'a> TIM5LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM5LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM6LPEN`"]
-pub type TIM6LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _TIM6LPENW<'a> {
+#[doc = "TIM6 clock enable during Sleep mode"]
+pub type TIM6LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `TIM6LPEN`"]
+pub type TIM6LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `TIM6LPEN`"]
+pub struct TIM6LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM6LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM6LPENW) -> &'a mut W {
+impl<'a> TIM6LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM6LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM7LPEN`"]
-pub type TIM7LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _TIM7LPENW<'a> {
+#[doc = "TIM7 clock enable during Sleep mode"]
+pub type TIM7LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `TIM7LPEN`"]
+pub type TIM7LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `TIM7LPEN`"]
+pub struct TIM7LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM7LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM7LPENW) -> &'a mut W {
+impl<'a> TIM7LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM7LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM12LPEN`"]
-pub type TIM12LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _TIM12LPENW<'a> {
+#[doc = "TIM12 clock enable during Sleep mode"]
+pub type TIM12LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `TIM12LPEN`"]
+pub type TIM12LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `TIM12LPEN`"]
+pub struct TIM12LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM12LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM12LPENW) -> &'a mut W {
+impl<'a> TIM12LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM12LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM13LPEN`"]
-pub type TIM13LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _TIM13LPENW<'a> {
+#[doc = "TIM13 clock enable during Sleep mode"]
+pub type TIM13LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `TIM13LPEN`"]
+pub type TIM13LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `TIM13LPEN`"]
+pub struct TIM13LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM13LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM13LPENW) -> &'a mut W {
+impl<'a> TIM13LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM13LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM14LPEN`"]
-pub type TIM14LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _TIM14LPENW<'a> {
+#[doc = "TIM14 clock enable during Sleep mode"]
+pub type TIM14LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `TIM14LPEN`"]
+pub type TIM14LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `TIM14LPEN`"]
+pub struct TIM14LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM14LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM14LPENW) -> &'a mut W {
+impl<'a> TIM14LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM14LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WWDGLPEN`"]
-pub type WWDGLPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _WWDGLPENW<'a> {
+#[doc = "Window watchdog clock enable during Sleep mode"]
+pub type WWDGLPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `WWDGLPEN`"]
+pub type WWDGLPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `WWDGLPEN`"]
+pub struct WWDGLPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WWDGLPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WWDGLPENW) -> &'a mut W {
+impl<'a> WWDGLPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WWDGLPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SPI2LPEN`"]
-pub type SPI2LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _SPI2LPENW<'a> {
+#[doc = "SPI2 clock enable during Sleep mode"]
+pub type SPI2LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `SPI2LPEN`"]
+pub type SPI2LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `SPI2LPEN`"]
+pub struct SPI2LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPI2LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SPI2LPENW) -> &'a mut W {
+impl<'a> SPI2LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SPI2LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 14;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SPI3LPEN`"]
-pub type SPI3LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _SPI3LPENW<'a> {
+#[doc = "SPI3 clock enable during Sleep mode"]
+pub type SPI3LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `SPI3LPEN`"]
+pub type SPI3LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `SPI3LPEN`"]
+pub struct SPI3LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPI3LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SPI3LPENW) -> &'a mut W {
+impl<'a> SPI3LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SPI3LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 15;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `USART2LPEN`"]
-pub type USART2LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _USART2LPENW<'a> {
+#[doc = "USART2 clock enable during Sleep mode"]
+pub type USART2LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `USART2LPEN`"]
+pub type USART2LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `USART2LPEN`"]
+pub struct USART2LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USART2LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: USART2LPENW) -> &'a mut W {
+impl<'a> USART2LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: USART2LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `USART3LPEN`"]
-pub type USART3LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _USART3LPENW<'a> {
+#[doc = "USART3 clock enable during Sleep mode"]
+pub type USART3LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `USART3LPEN`"]
+pub type USART3LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `USART3LPEN`"]
+pub struct USART3LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USART3LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: USART3LPENW) -> &'a mut W {
+impl<'a> USART3LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: USART3LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `UART4LPEN`"]
-pub type UART4LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _UART4LPENW<'a> {
+#[doc = "UART4 clock enable during Sleep mode"]
+pub type UART4LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `UART4LPEN`"]
+pub type UART4LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `UART4LPEN`"]
+pub struct UART4LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UART4LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: UART4LPENW) -> &'a mut W {
+impl<'a> UART4LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: UART4LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `UART5LPEN`"]
-pub type UART5LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _UART5LPENW<'a> {
+#[doc = "UART5 clock enable during Sleep mode"]
+pub type UART5LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `UART5LPEN`"]
+pub type UART5LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `UART5LPEN`"]
+pub struct UART5LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UART5LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: UART5LPENW) -> &'a mut W {
+impl<'a> UART5LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: UART5LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `I2C1LPEN`"]
-pub type I2C1LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _I2C1LPENW<'a> {
+#[doc = "I2C1 clock enable during Sleep mode"]
+pub type I2C1LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `I2C1LPEN`"]
+pub type I2C1LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `I2C1LPEN`"]
+pub struct I2C1LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2C1LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: I2C1LPENW) -> &'a mut W {
+impl<'a> I2C1LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: I2C1LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 21;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `I2C2LPEN`"]
-pub type I2C2LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _I2C2LPENW<'a> {
+#[doc = "I2C2 clock enable during Sleep mode"]
+pub type I2C2LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `I2C2LPEN`"]
+pub type I2C2LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `I2C2LPEN`"]
+pub struct I2C2LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2C2LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: I2C2LPENW) -> &'a mut W {
+impl<'a> I2C2LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: I2C2LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `I2C3LPEN`"]
-pub type I2C3LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _I2C3LPENW<'a> {
+#[doc = "I2C3 clock enable during Sleep mode"]
+pub type I2C3LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `I2C3LPEN`"]
+pub type I2C3LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `I2C3LPEN`"]
+pub struct I2C3LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2C3LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: I2C3LPENW) -> &'a mut W {
+impl<'a> I2C3LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: I2C3LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 23;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 23)) | (((value as u32) & 0x01) << 23);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CAN1LPEN`"]
-pub type CAN1LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _CAN1LPENW<'a> {
+#[doc = "CAN 1 clock enable during Sleep mode"]
+pub type CAN1LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `CAN1LPEN`"]
+pub type CAN1LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `CAN1LPEN`"]
+pub struct CAN1LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CAN1LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CAN1LPENW) -> &'a mut W {
+impl<'a> CAN1LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CAN1LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 25;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CAN2LPEN`"]
-pub type CAN2LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _CAN2LPENW<'a> {
+#[doc = "CAN 2 clock enable during Sleep mode"]
+pub type CAN2LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `CAN2LPEN`"]
+pub type CAN2LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `CAN2LPEN`"]
+pub struct CAN2LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CAN2LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CAN2LPENW) -> &'a mut W {
+impl<'a> CAN2LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CAN2LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 26;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PWRLPEN`"]
-pub type PWRLPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _PWRLPENW<'a> {
+#[doc = "Power interface clock enable during Sleep mode"]
+pub type PWRLPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `PWRLPEN`"]
+pub type PWRLPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `PWRLPEN`"]
+pub struct PWRLPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PWRLPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PWRLPENW) -> &'a mut W {
+impl<'a> PWRLPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PWRLPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DACLPEN`"]
-pub type DACLPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _DACLPENW<'a> {
+#[doc = "DAC interface clock enable during Sleep mode"]
+pub type DACLPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `DACLPEN`"]
+pub type DACLPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `DACLPEN`"]
+pub struct DACLPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DACLPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DACLPENW) -> &'a mut W {
+impl<'a> DACLPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DACLPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 29;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 29)) | (((value as u32) & 0x01) << 29);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `UART7LPEN`"]
-pub type UART7LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _UART7LPENW<'a> {
+#[doc = "UART7 clock enable during Sleep mode"]
+pub type UART7LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `UART7LPEN`"]
+pub type UART7LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `UART7LPEN`"]
+pub struct UART7LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UART7LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: UART7LPENW) -> &'a mut W {
+impl<'a> UART7LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: UART7LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 30;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `UART8LPEN`"]
-pub type UART8LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _UART8LPENW<'a> {
+#[doc = "UART8 clock enable during Sleep mode"]
+pub type UART8LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `UART8LPEN`"]
+pub type UART8LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `UART8LPEN`"]
+pub struct UART8LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UART8LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: UART8LPENW) -> &'a mut W {
+impl<'a> UART8LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: UART8LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SPDIFRXLPEN`"]
-pub type SPDIFRXLPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _SPDIFRXLPENW<'a> {
+#[doc = "SPDIF-RX clock enable during sleep mode"]
+pub type SPDIFRXLPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `SPDIFRXLPEN`"]
+pub type SPDIFRXLPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `SPDIFRXLPEN`"]
+pub struct SPDIFRXLPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPDIFRXLPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SPDIFRXLPENW) -> &'a mut W {
+impl<'a> SPDIFRXLPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SPDIFRXLPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CECLPEN`"]
-pub type CECLPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _CECLPENW<'a> {
+#[doc = "HDMI-CEN clock enable during Sleep mode"]
+pub type CECLPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `CECLPEN`"]
+pub type CECLPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `CECLPEN`"]
+pub struct CECLPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CECLPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CECLPENW) -> &'a mut W {
+impl<'a> CECLPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CECLPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 27;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LPTIM1LPEN`"]
-pub type LPTIM1LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _LPTIM1LPENW<'a> {
+#[doc = "low power timer 1 clock enable during Sleep mode"]
+pub type LPTIM1LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `LPTIM1LPEN`"]
+pub type LPTIM1LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `LPTIM1LPEN`"]
+pub struct LPTIM1LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LPTIM1LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LPTIM1LPENW) -> &'a mut W {
+impl<'a> LPTIM1LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LPTIM1LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `I2C4LPEN`"]
-pub type I2C4LPENW = TIM2LPENW;
-#[doc = r" Proxy"]
-pub struct _I2C4LPENW<'a> {
+#[doc = "I2C4 clock enable during Sleep mode"]
+pub type I2C4LPEN_A = TIM2LPEN_A;
+#[doc = "Reader of field `I2C4LPEN`"]
+pub type I2C4LPEN_R = crate::R<bool, TIM2LPEN_A>;
+#[doc = "Write proxy for field `I2C4LPEN`"]
+pub struct I2C4LPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2C4LPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: I2C4LPENW) -> &'a mut W {
+impl<'a> I2C4LPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: I2C4LPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::DISABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(TIM2LPENW::ENABLEDINSLEEP)
+        self.variant(TIM2LPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - TIM2 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim2lpen(&self) -> TIM2LPENR {
-        TIM2LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim2lpen(&self) -> TIM2LPEN_R {
+        TIM2LPEN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - TIM3 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim3lpen(&self) -> TIM3LPENR {
-        TIM3LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim3lpen(&self) -> TIM3LPEN_R {
+        TIM3LPEN_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - TIM4 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim4lpen(&self) -> TIM4LPENR {
-        TIM4LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim4lpen(&self) -> TIM4LPEN_R {
+        TIM4LPEN_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - TIM5 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim5lpen(&self) -> TIM5LPENR {
-        TIM5LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim5lpen(&self) -> TIM5LPEN_R {
+        TIM5LPEN_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - TIM6 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim6lpen(&self) -> TIM6LPENR {
-        TIM6LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim6lpen(&self) -> TIM6LPEN_R {
+        TIM6LPEN_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - TIM7 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim7lpen(&self) -> TIM7LPENR {
-        TIM7LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim7lpen(&self) -> TIM7LPEN_R {
+        TIM7LPEN_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - TIM12 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim12lpen(&self) -> TIM12LPENR {
-        TIM12LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim12lpen(&self) -> TIM12LPEN_R {
+        TIM12LPEN_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - TIM13 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim13lpen(&self) -> TIM13LPENR {
-        TIM13LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim13lpen(&self) -> TIM13LPEN_R {
+        TIM13LPEN_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - TIM14 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim14lpen(&self) -> TIM14LPENR {
-        TIM14LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim14lpen(&self) -> TIM14LPEN_R {
+        TIM14LPEN_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Window watchdog clock enable during Sleep mode"]
-    #[inline]
-    pub fn wwdglpen(&self) -> WWDGLPENR {
-        WWDGLPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn wwdglpen(&self) -> WWDGLPEN_R {
+        WWDGLPEN_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 14 - SPI2 clock enable during Sleep mode"]
-    #[inline]
-    pub fn spi2lpen(&self) -> SPI2LPENR {
-        SPI2LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn spi2lpen(&self) -> SPI2LPEN_R {
+        SPI2LPEN_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - SPI3 clock enable during Sleep mode"]
-    #[inline]
-    pub fn spi3lpen(&self) -> SPI3LPENR {
-        SPI3LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn spi3lpen(&self) -> SPI3LPEN_R {
+        SPI3LPEN_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 17 - USART2 clock enable during Sleep mode"]
-    #[inline]
-    pub fn usart2lpen(&self) -> USART2LPENR {
-        USART2LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn usart2lpen(&self) -> USART2LPEN_R {
+        USART2LPEN_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - USART3 clock enable during Sleep mode"]
-    #[inline]
-    pub fn usart3lpen(&self) -> USART3LPENR {
-        USART3LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn usart3lpen(&self) -> USART3LPEN_R {
+        USART3LPEN_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - UART4 clock enable during Sleep mode"]
-    #[inline]
-    pub fn uart4lpen(&self) -> UART4LPENR {
-        UART4LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn uart4lpen(&self) -> UART4LPEN_R {
+        UART4LPEN_R::new(((self.bits >> 19) & 0x01) != 0)
     }
     #[doc = "Bit 20 - UART5 clock enable during Sleep mode"]
-    #[inline]
-    pub fn uart5lpen(&self) -> UART5LPENR {
-        UART5LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn uart5lpen(&self) -> UART5LPEN_R {
+        UART5LPEN_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 21 - I2C1 clock enable during Sleep mode"]
-    #[inline]
-    pub fn i2c1lpen(&self) -> I2C1LPENR {
-        I2C1LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 21;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn i2c1lpen(&self) -> I2C1LPEN_R {
+        I2C1LPEN_R::new(((self.bits >> 21) & 0x01) != 0)
     }
     #[doc = "Bit 22 - I2C2 clock enable during Sleep mode"]
-    #[inline]
-    pub fn i2c2lpen(&self) -> I2C2LPENR {
-        I2C2LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn i2c2lpen(&self) -> I2C2LPEN_R {
+        I2C2LPEN_R::new(((self.bits >> 22) & 0x01) != 0)
     }
     #[doc = "Bit 23 - I2C3 clock enable during Sleep mode"]
-    #[inline]
-    pub fn i2c3lpen(&self) -> I2C3LPENR {
-        I2C3LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 23;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn i2c3lpen(&self) -> I2C3LPEN_R {
+        I2C3LPEN_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bit 25 - CAN 1 clock enable during Sleep mode"]
-    #[inline]
-    pub fn can1lpen(&self) -> CAN1LPENR {
-        CAN1LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 25;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn can1lpen(&self) -> CAN1LPEN_R {
+        CAN1LPEN_R::new(((self.bits >> 25) & 0x01) != 0)
     }
     #[doc = "Bit 26 - CAN 2 clock enable during Sleep mode"]
-    #[inline]
-    pub fn can2lpen(&self) -> CAN2LPENR {
-        CAN2LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 26;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn can2lpen(&self) -> CAN2LPEN_R {
+        CAN2LPEN_R::new(((self.bits >> 26) & 0x01) != 0)
     }
     #[doc = "Bit 28 - Power interface clock enable during Sleep mode"]
-    #[inline]
-    pub fn pwrlpen(&self) -> PWRLPENR {
-        PWRLPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pwrlpen(&self) -> PWRLPEN_R {
+        PWRLPEN_R::new(((self.bits >> 28) & 0x01) != 0)
     }
     #[doc = "Bit 29 - DAC interface clock enable during Sleep mode"]
-    #[inline]
-    pub fn daclpen(&self) -> DACLPENR {
-        DACLPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 29;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn daclpen(&self) -> DACLPEN_R {
+        DACLPEN_R::new(((self.bits >> 29) & 0x01) != 0)
     }
     #[doc = "Bit 30 - UART7 clock enable during Sleep mode"]
-    #[inline]
-    pub fn uart7lpen(&self) -> UART7LPENR {
-        UART7LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 30;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn uart7lpen(&self) -> UART7LPEN_R {
+        UART7LPEN_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - UART8 clock enable during Sleep mode"]
-    #[inline]
-    pub fn uart8lpen(&self) -> UART8LPENR {
-        UART8LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn uart8lpen(&self) -> UART8LPEN_R {
+        UART8LPEN_R::new(((self.bits >> 31) & 0x01) != 0)
     }
     #[doc = "Bit 16 - SPDIF-RX clock enable during sleep mode"]
-    #[inline]
-    pub fn spdifrxlpen(&self) -> SPDIFRXLPENR {
-        SPDIFRXLPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn spdifrxlpen(&self) -> SPDIFRXLPEN_R {
+        SPDIFRXLPEN_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 27 - HDMI-CEN clock enable during Sleep mode"]
-    #[inline]
-    pub fn ceclpen(&self) -> CECLPENR {
-        CECLPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 27;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ceclpen(&self) -> CECLPEN_R {
+        CECLPEN_R::new(((self.bits >> 27) & 0x01) != 0)
     }
     #[doc = "Bit 9 - low power timer 1 clock enable during Sleep mode"]
-    #[inline]
-    pub fn lptim1lpen(&self) -> LPTIM1LPENR {
-        LPTIM1LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn lptim1lpen(&self) -> LPTIM1LPEN_R {
+        LPTIM1LPEN_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 24 - I2C4 clock enable during Sleep mode"]
-    #[inline]
-    pub fn i2c4lpen(&self) -> I2C4LPENR {
-        I2C4LPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn i2c4lpen(&self) -> I2C4LPEN_R {
+        I2C4LPEN_R::new(((self.bits >> 24) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0x36fe_c9ff }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - TIM2 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim2lpen(&mut self) -> _TIM2LPENW {
-        _TIM2LPENW { w: self }
+    #[inline(always)]
+    pub fn tim2lpen(&mut self) -> TIM2LPEN_W {
+        TIM2LPEN_W { w: self }
     }
     #[doc = "Bit 1 - TIM3 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim3lpen(&mut self) -> _TIM3LPENW {
-        _TIM3LPENW { w: self }
+    #[inline(always)]
+    pub fn tim3lpen(&mut self) -> TIM3LPEN_W {
+        TIM3LPEN_W { w: self }
     }
     #[doc = "Bit 2 - TIM4 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim4lpen(&mut self) -> _TIM4LPENW {
-        _TIM4LPENW { w: self }
+    #[inline(always)]
+    pub fn tim4lpen(&mut self) -> TIM4LPEN_W {
+        TIM4LPEN_W { w: self }
     }
     #[doc = "Bit 3 - TIM5 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim5lpen(&mut self) -> _TIM5LPENW {
-        _TIM5LPENW { w: self }
+    #[inline(always)]
+    pub fn tim5lpen(&mut self) -> TIM5LPEN_W {
+        TIM5LPEN_W { w: self }
     }
     #[doc = "Bit 4 - TIM6 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim6lpen(&mut self) -> _TIM6LPENW {
-        _TIM6LPENW { w: self }
+    #[inline(always)]
+    pub fn tim6lpen(&mut self) -> TIM6LPEN_W {
+        TIM6LPEN_W { w: self }
     }
     #[doc = "Bit 5 - TIM7 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim7lpen(&mut self) -> _TIM7LPENW {
-        _TIM7LPENW { w: self }
+    #[inline(always)]
+    pub fn tim7lpen(&mut self) -> TIM7LPEN_W {
+        TIM7LPEN_W { w: self }
     }
     #[doc = "Bit 6 - TIM12 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim12lpen(&mut self) -> _TIM12LPENW {
-        _TIM12LPENW { w: self }
+    #[inline(always)]
+    pub fn tim12lpen(&mut self) -> TIM12LPEN_W {
+        TIM12LPEN_W { w: self }
     }
     #[doc = "Bit 7 - TIM13 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim13lpen(&mut self) -> _TIM13LPENW {
-        _TIM13LPENW { w: self }
+    #[inline(always)]
+    pub fn tim13lpen(&mut self) -> TIM13LPEN_W {
+        TIM13LPEN_W { w: self }
     }
     #[doc = "Bit 8 - TIM14 clock enable during Sleep mode"]
-    #[inline]
-    pub fn tim14lpen(&mut self) -> _TIM14LPENW {
-        _TIM14LPENW { w: self }
+    #[inline(always)]
+    pub fn tim14lpen(&mut self) -> TIM14LPEN_W {
+        TIM14LPEN_W { w: self }
     }
     #[doc = "Bit 11 - Window watchdog clock enable during Sleep mode"]
-    #[inline]
-    pub fn wwdglpen(&mut self) -> _WWDGLPENW {
-        _WWDGLPENW { w: self }
+    #[inline(always)]
+    pub fn wwdglpen(&mut self) -> WWDGLPEN_W {
+        WWDGLPEN_W { w: self }
     }
     #[doc = "Bit 14 - SPI2 clock enable during Sleep mode"]
-    #[inline]
-    pub fn spi2lpen(&mut self) -> _SPI2LPENW {
-        _SPI2LPENW { w: self }
+    #[inline(always)]
+    pub fn spi2lpen(&mut self) -> SPI2LPEN_W {
+        SPI2LPEN_W { w: self }
     }
     #[doc = "Bit 15 - SPI3 clock enable during Sleep mode"]
-    #[inline]
-    pub fn spi3lpen(&mut self) -> _SPI3LPENW {
-        _SPI3LPENW { w: self }
+    #[inline(always)]
+    pub fn spi3lpen(&mut self) -> SPI3LPEN_W {
+        SPI3LPEN_W { w: self }
     }
     #[doc = "Bit 17 - USART2 clock enable during Sleep mode"]
-    #[inline]
-    pub fn usart2lpen(&mut self) -> _USART2LPENW {
-        _USART2LPENW { w: self }
+    #[inline(always)]
+    pub fn usart2lpen(&mut self) -> USART2LPEN_W {
+        USART2LPEN_W { w: self }
     }
     #[doc = "Bit 18 - USART3 clock enable during Sleep mode"]
-    #[inline]
-    pub fn usart3lpen(&mut self) -> _USART3LPENW {
-        _USART3LPENW { w: self }
+    #[inline(always)]
+    pub fn usart3lpen(&mut self) -> USART3LPEN_W {
+        USART3LPEN_W { w: self }
     }
     #[doc = "Bit 19 - UART4 clock enable during Sleep mode"]
-    #[inline]
-    pub fn uart4lpen(&mut self) -> _UART4LPENW {
-        _UART4LPENW { w: self }
+    #[inline(always)]
+    pub fn uart4lpen(&mut self) -> UART4LPEN_W {
+        UART4LPEN_W { w: self }
     }
     #[doc = "Bit 20 - UART5 clock enable during Sleep mode"]
-    #[inline]
-    pub fn uart5lpen(&mut self) -> _UART5LPENW {
-        _UART5LPENW { w: self }
+    #[inline(always)]
+    pub fn uart5lpen(&mut self) -> UART5LPEN_W {
+        UART5LPEN_W { w: self }
     }
     #[doc = "Bit 21 - I2C1 clock enable during Sleep mode"]
-    #[inline]
-    pub fn i2c1lpen(&mut self) -> _I2C1LPENW {
-        _I2C1LPENW { w: self }
+    #[inline(always)]
+    pub fn i2c1lpen(&mut self) -> I2C1LPEN_W {
+        I2C1LPEN_W { w: self }
     }
     #[doc = "Bit 22 - I2C2 clock enable during Sleep mode"]
-    #[inline]
-    pub fn i2c2lpen(&mut self) -> _I2C2LPENW {
-        _I2C2LPENW { w: self }
+    #[inline(always)]
+    pub fn i2c2lpen(&mut self) -> I2C2LPEN_W {
+        I2C2LPEN_W { w: self }
     }
     #[doc = "Bit 23 - I2C3 clock enable during Sleep mode"]
-    #[inline]
-    pub fn i2c3lpen(&mut self) -> _I2C3LPENW {
-        _I2C3LPENW { w: self }
+    #[inline(always)]
+    pub fn i2c3lpen(&mut self) -> I2C3LPEN_W {
+        I2C3LPEN_W { w: self }
     }
     #[doc = "Bit 25 - CAN 1 clock enable during Sleep mode"]
-    #[inline]
-    pub fn can1lpen(&mut self) -> _CAN1LPENW {
-        _CAN1LPENW { w: self }
+    #[inline(always)]
+    pub fn can1lpen(&mut self) -> CAN1LPEN_W {
+        CAN1LPEN_W { w: self }
     }
     #[doc = "Bit 26 - CAN 2 clock enable during Sleep mode"]
-    #[inline]
-    pub fn can2lpen(&mut self) -> _CAN2LPENW {
-        _CAN2LPENW { w: self }
+    #[inline(always)]
+    pub fn can2lpen(&mut self) -> CAN2LPEN_W {
+        CAN2LPEN_W { w: self }
     }
     #[doc = "Bit 28 - Power interface clock enable during Sleep mode"]
-    #[inline]
-    pub fn pwrlpen(&mut self) -> _PWRLPENW {
-        _PWRLPENW { w: self }
+    #[inline(always)]
+    pub fn pwrlpen(&mut self) -> PWRLPEN_W {
+        PWRLPEN_W { w: self }
     }
     #[doc = "Bit 29 - DAC interface clock enable during Sleep mode"]
-    #[inline]
-    pub fn daclpen(&mut self) -> _DACLPENW {
-        _DACLPENW { w: self }
+    #[inline(always)]
+    pub fn daclpen(&mut self) -> DACLPEN_W {
+        DACLPEN_W { w: self }
     }
     #[doc = "Bit 30 - UART7 clock enable during Sleep mode"]
-    #[inline]
-    pub fn uart7lpen(&mut self) -> _UART7LPENW {
-        _UART7LPENW { w: self }
+    #[inline(always)]
+    pub fn uart7lpen(&mut self) -> UART7LPEN_W {
+        UART7LPEN_W { w: self }
     }
     #[doc = "Bit 31 - UART8 clock enable during Sleep mode"]
-    #[inline]
-    pub fn uart8lpen(&mut self) -> _UART8LPENW {
-        _UART8LPENW { w: self }
+    #[inline(always)]
+    pub fn uart8lpen(&mut self) -> UART8LPEN_W {
+        UART8LPEN_W { w: self }
     }
     #[doc = "Bit 16 - SPDIF-RX clock enable during sleep mode"]
-    #[inline]
-    pub fn spdifrxlpen(&mut self) -> _SPDIFRXLPENW {
-        _SPDIFRXLPENW { w: self }
+    #[inline(always)]
+    pub fn spdifrxlpen(&mut self) -> SPDIFRXLPEN_W {
+        SPDIFRXLPEN_W { w: self }
     }
     #[doc = "Bit 27 - HDMI-CEN clock enable during Sleep mode"]
-    #[inline]
-    pub fn ceclpen(&mut self) -> _CECLPENW {
-        _CECLPENW { w: self }
+    #[inline(always)]
+    pub fn ceclpen(&mut self) -> CECLPEN_W {
+        CECLPEN_W { w: self }
     }
     #[doc = "Bit 9 - low power timer 1 clock enable during Sleep mode"]
-    #[inline]
-    pub fn lptim1lpen(&mut self) -> _LPTIM1LPENW {
-        _LPTIM1LPENW { w: self }
+    #[inline(always)]
+    pub fn lptim1lpen(&mut self) -> LPTIM1LPEN_W {
+        LPTIM1LPEN_W { w: self }
     }
     #[doc = "Bit 24 - I2C4 clock enable during Sleep mode"]
-    #[inline]
-    pub fn i2c4lpen(&mut self) -> _I2C4LPENW {
-        _I2C4LPENW { w: self }
+    #[inline(always)]
+    pub fn i2c4lpen(&mut self) -> I2C4LPEN_W {
+        I2C4LPEN_W { w: self }
     }
 }

@@ -1,836 +1,587 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MACFCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register MACFCR"]
+pub type R = crate::R<u32, super::MACFCR>;
+#[doc = "Writer for register MACFCR"]
+pub type W = crate::W<u32, super::MACFCR>;
+#[doc = "Register MACFCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::MACFCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `FCB`"]
+#[doc = "FCB\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FCBR {
-    #[doc = "In full duplex, initiate a Pause control frame. In half duplex, assert back pressure"]
+pub enum FCB_A {
+    #[doc = "1: In full duplex, initiate a Pause control frame. In half duplex, assert back pressure"]
     PAUSEORBACKPRESSURE,
-    #[doc = "In half duplex only, deasserts back pressure"]
+    #[doc = "0: In half duplex only, deasserts back pressure"]
     DISABLEBACKPRESSURE,
 }
-impl FCBR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            FCBR::PAUSEORBACKPRESSURE => true,
-            FCBR::DISABLEBACKPRESSURE => false,
+impl From<FCB_A> for bool {
+    #[inline(always)]
+    fn from(variant: FCB_A) -> Self {
+        match variant {
+            FCB_A::PAUSEORBACKPRESSURE => true,
+            FCB_A::DISABLEBACKPRESSURE => false,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> FCBR {
-        match value {
-            true => FCBR::PAUSEORBACKPRESSURE,
-            false => FCBR::DISABLEBACKPRESSURE,
+}
+#[doc = "Reader of field `FCB`"]
+pub type FCB_R = crate::R<bool, FCB_A>;
+impl FCB_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> FCB_A {
+        match self.bits {
+            true => FCB_A::PAUSEORBACKPRESSURE,
+            false => FCB_A::DISABLEBACKPRESSURE,
         }
     }
     #[doc = "Checks if the value of the field is `PAUSEORBACKPRESSURE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_pause_or_back_pressure(&self) -> bool {
-        *self == FCBR::PAUSEORBACKPRESSURE
+        *self == FCB_A::PAUSEORBACKPRESSURE
     }
     #[doc = "Checks if the value of the field is `DISABLEBACKPRESSURE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disable_back_pressure(&self) -> bool {
-        *self == FCBR::DISABLEBACKPRESSURE
+        *self == FCB_A::DISABLEBACKPRESSURE
     }
 }
-#[doc = "Possible values of the field `TFCE`"]
+#[doc = "Write proxy for field `FCB`"]
+pub struct FCB_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> FCB_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: FCB_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "In full duplex, initiate a Pause control frame. In half duplex, assert back pressure"]
+    #[inline(always)]
+    pub fn pause_or_back_pressure(self) -> &'a mut W {
+        self.variant(FCB_A::PAUSEORBACKPRESSURE)
+    }
+    #[doc = "In half duplex only, deasserts back pressure"]
+    #[inline(always)]
+    pub fn disable_back_pressure(self) -> &'a mut W {
+        self.variant(FCB_A::DISABLEBACKPRESSURE)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w
+    }
+}
+#[doc = "TFCE\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TFCER {
+pub enum TFCE_A {
+    #[doc = "0: In full duplex, flow control is disabled. In half duplex, back pressure is disabled"]
+    DISABLED,
+    #[doc = "1: In full duplex, flow control is enabled. In half duplex, back pressure is enabled"]
+    ENABLED,
+}
+impl From<TFCE_A> for bool {
+    #[inline(always)]
+    fn from(variant: TFCE_A) -> Self {
+        match variant {
+            TFCE_A::DISABLED => false,
+            TFCE_A::ENABLED => true,
+        }
+    }
+}
+#[doc = "Reader of field `TFCE`"]
+pub type TFCE_R = crate::R<bool, TFCE_A>;
+impl TFCE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TFCE_A {
+        match self.bits {
+            false => TFCE_A::DISABLED,
+            true => TFCE_A::ENABLED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == TFCE_A::DISABLED
+    }
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == TFCE_A::ENABLED
+    }
+}
+#[doc = "Write proxy for field `TFCE`"]
+pub struct TFCE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> TFCE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TFCE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "In full duplex, flow control is disabled. In half duplex, back pressure is disabled"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(TFCE_A::DISABLED)
+    }
     #[doc = "In full duplex, flow control is enabled. In half duplex, back pressure is enabled"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(TFCE_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w
+    }
+}
+#[doc = "RFCE\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RFCE_A {
+    #[doc = "0: Pause frames are not decoded"]
+    DISABLED,
+    #[doc = "1: MAC decodes received Pause frames and disables its transmitted for a specified time"]
     ENABLED,
 }
-impl TFCER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TFCER::DISABLED => false,
-            TFCER::ENABLED => true,
+impl From<RFCE_A> for bool {
+    #[inline(always)]
+    fn from(variant: RFCE_A) -> Self {
+        match variant {
+            RFCE_A::DISABLED => false,
+            RFCE_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TFCER {
-        match value {
-            false => TFCER::DISABLED,
-            true => TFCER::ENABLED,
+}
+#[doc = "Reader of field `RFCE`"]
+pub type RFCE_R = crate::R<bool, RFCE_A>;
+impl RFCE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RFCE_A {
+        match self.bits {
+            false => RFCE_A::DISABLED,
+            true => RFCE_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == TFCER::DISABLED
+        *self == RFCE_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == TFCER::ENABLED
+        *self == RFCE_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `RFCE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RFCER {
+#[doc = "Write proxy for field `RFCE`"]
+pub struct RFCE_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> RFCE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RFCE_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Pause frames are not decoded"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(RFCE_A::DISABLED)
+    }
     #[doc = "MAC decodes received Pause frames and disables its transmitted for a specified time"]
-    ENABLED,
-}
-impl RFCER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(RFCE_A::ENABLED)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RFCER::DISABLED => false,
-            RFCER::ENABLED => true,
-        }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RFCER {
-        match value {
-            false => RFCER::DISABLED,
-            true => RFCER::ENABLED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
-    pub fn is_disabled(&self) -> bool {
-        *self == RFCER::DISABLED
-    }
-    #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
-    pub fn is_enabled(&self) -> bool {
-        *self == RFCER::ENABLED
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w
     }
 }
-#[doc = "Possible values of the field `UPFD`"]
+#[doc = "UPFD\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum UPFDR {
-    #[doc = "MAC detects only a Pause frame with the multicast address specified in the 802.3x standard"]
+pub enum UPFD_A {
+    #[doc = "0: MAC detects only a Pause frame with the multicast address specified in the 802.3x standard"]
     DISABLED,
-    #[doc = "MAC additionally detects Pause frames with the station's unicast address"]
+    #[doc = "1: MAC additionally detects Pause frames with the station's unicast address"]
     ENABLED,
 }
-impl UPFDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            UPFDR::DISABLED => false,
-            UPFDR::ENABLED => true,
+impl From<UPFD_A> for bool {
+    #[inline(always)]
+    fn from(variant: UPFD_A) -> Self {
+        match variant {
+            UPFD_A::DISABLED => false,
+            UPFD_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> UPFDR {
-        match value {
-            false => UPFDR::DISABLED,
-            true => UPFDR::ENABLED,
+}
+#[doc = "Reader of field `UPFD`"]
+pub type UPFD_R = crate::R<bool, UPFD_A>;
+impl UPFD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> UPFD_A {
+        match self.bits {
+            false => UPFD_A::DISABLED,
+            true => UPFD_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == UPFDR::DISABLED
+        *self == UPFD_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == UPFDR::ENABLED
+        *self == UPFD_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `PLT`"]
+#[doc = "Write proxy for field `UPFD`"]
+pub struct UPFD_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> UPFD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: UPFD_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "MAC detects only a Pause frame with the multicast address specified in the 802.3x standard"]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(UPFD_A::DISABLED)
+    }
+    #[doc = "MAC additionally detects Pause frames with the station's unicast address"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(UPFD_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w
+    }
+}
+#[doc = "PLT\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PLTR {
-    #[doc = "Pause time minus 4 slot times"]
+pub enum PLT_A {
+    #[doc = "0: Pause time minus 4 slot times"]
     PLT4,
-    #[doc = "Pause time minus 28 slot times"]
+    #[doc = "1: Pause time minus 28 slot times"]
     PLT28,
-    #[doc = "Pause time minus 144 slot times"]
+    #[doc = "2: Pause time minus 144 slot times"]
     PLT144,
-    #[doc = "Pause time minus 256 slot times"]
+    #[doc = "3: Pause time minus 256 slot times"]
     PLT256,
 }
-impl PLTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            PLTR::PLT4 => 0,
-            PLTR::PLT28 => 0x01,
-            PLTR::PLT144 => 0x02,
-            PLTR::PLT256 => 0x03,
+impl From<PLT_A> for u8 {
+    #[inline(always)]
+    fn from(variant: PLT_A) -> Self {
+        match variant {
+            PLT_A::PLT4 => 0,
+            PLT_A::PLT28 => 1,
+            PLT_A::PLT144 => 2,
+            PLT_A::PLT256 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> PLTR {
-        match value {
-            0 => PLTR::PLT4,
-            1 => PLTR::PLT28,
-            2 => PLTR::PLT144,
-            3 => PLTR::PLT256,
+}
+#[doc = "Reader of field `PLT`"]
+pub type PLT_R = crate::R<u8, PLT_A>;
+impl PLT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PLT_A {
+        match self.bits {
+            0 => PLT_A::PLT4,
+            1 => PLT_A::PLT28,
+            2 => PLT_A::PLT144,
+            3 => PLT_A::PLT256,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `PLT4`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_plt4(&self) -> bool {
-        *self == PLTR::PLT4
+        *self == PLT_A::PLT4
     }
     #[doc = "Checks if the value of the field is `PLT28`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_plt28(&self) -> bool {
-        *self == PLTR::PLT28
+        *self == PLT_A::PLT28
     }
     #[doc = "Checks if the value of the field is `PLT144`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_plt144(&self) -> bool {
-        *self == PLTR::PLT144
+        *self == PLT_A::PLT144
     }
     #[doc = "Checks if the value of the field is `PLT256`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_plt256(&self) -> bool {
-        *self == PLTR::PLT256
+        *self == PLT_A::PLT256
     }
 }
-#[doc = "Possible values of the field `ZQPD`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ZQPDR {
-    #[doc = "Normal operation with automatic zero-quanta pause control frame generation"]
-    ENABLED,
-    #[doc = "Automatic generation of zero-quanta pause control frames is disabled"]
-    DISABLED,
+#[doc = "Write proxy for field `PLT`"]
+pub struct PLT_W<'a> {
+    w: &'a mut W,
 }
-impl ZQPDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ZQPDR::ENABLED => false,
-            ZQPDR::DISABLED => true,
+impl<'a> PLT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PLT_A) -> &'a mut W {
+        {
+            self.bits(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ZQPDR {
-        match value {
-            false => ZQPDR::ENABLED,
-            true => ZQPDR::DISABLED,
+    #[doc = "Pause time minus 4 slot times"]
+    #[inline(always)]
+    pub fn plt4(self) -> &'a mut W {
+        self.variant(PLT_A::PLT4)
+    }
+    #[doc = "Pause time minus 28 slot times"]
+    #[inline(always)]
+    pub fn plt28(self) -> &'a mut W {
+        self.variant(PLT_A::PLT28)
+    }
+    #[doc = "Pause time minus 144 slot times"]
+    #[inline(always)]
+    pub fn plt144(self) -> &'a mut W {
+        self.variant(PLT_A::PLT144)
+    }
+    #[doc = "Pause time minus 256 slot times"]
+    #[inline(always)]
+    pub fn plt256(self) -> &'a mut W {
+        self.variant(PLT_A::PLT256)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 4)) | (((value as u32) & 0x03) << 4);
+        self.w
+    }
+}
+#[doc = "ZQPD\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ZQPD_A {
+    #[doc = "0: Normal operation with automatic zero-quanta pause control frame generation"]
+    ENABLED,
+    #[doc = "1: Automatic generation of zero-quanta pause control frames is disabled"]
+    DISABLED,
+}
+impl From<ZQPD_A> for bool {
+    #[inline(always)]
+    fn from(variant: ZQPD_A) -> Self {
+        match variant {
+            ZQPD_A::ENABLED => false,
+            ZQPD_A::DISABLED => true,
+        }
+    }
+}
+#[doc = "Reader of field `ZQPD`"]
+pub type ZQPD_R = crate::R<bool, ZQPD_A>;
+impl ZQPD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ZQPD_A {
+        match self.bits {
+            false => ZQPD_A::ENABLED,
+            true => ZQPD_A::DISABLED,
         }
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == ZQPDR::ENABLED
+        *self == ZQPD_A::ENABLED
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == ZQPDR::DISABLED
+        *self == ZQPD_A::DISABLED
     }
 }
-#[doc = r" Value of the field"]
-pub struct PTR {
-    bits: u16,
-}
-impl PTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = "Values that can be written to the field `FCB`"]
-pub enum FCBW {
-    #[doc = "In full duplex, initiate a Pause control frame. In half duplex, assert back pressure"]
-    PAUSEORBACKPRESSURE,
-    #[doc = "In half duplex only, deasserts back pressure"]
-    DISABLEBACKPRESSURE,
-}
-impl FCBW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            FCBW::PAUSEORBACKPRESSURE => true,
-            FCBW::DISABLEBACKPRESSURE => false,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _FCBW<'a> {
+#[doc = "Write proxy for field `ZQPD`"]
+pub struct ZQPD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FCBW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: FCBW) -> &'a mut W {
+impl<'a> ZQPD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ZQPD_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "In full duplex, initiate a Pause control frame. In half duplex, assert back pressure"]
-    #[inline]
-    pub fn pause_or_back_pressure(self) -> &'a mut W {
-        self.variant(FCBW::PAUSEORBACKPRESSURE)
-    }
-    #[doc = "In half duplex only, deasserts back pressure"]
-    #[inline]
-    pub fn disable_back_pressure(self) -> &'a mut W {
-        self.variant(FCBW::DISABLEBACKPRESSURE)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `TFCE`"]
-pub enum TFCEW {
-    #[doc = "In full duplex, flow control is disabled. In half duplex, back pressure is disabled"]
-    DISABLED,
-    #[doc = "In full duplex, flow control is enabled. In half duplex, back pressure is enabled"]
-    ENABLED,
-}
-impl TFCEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TFCEW::DISABLED => false,
-            TFCEW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TFCEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TFCEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TFCEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "In full duplex, flow control is disabled. In half duplex, back pressure is disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(TFCEW::DISABLED)
-    }
-    #[doc = "In full duplex, flow control is enabled. In half duplex, back pressure is enabled"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(TFCEW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `RFCE`"]
-pub enum RFCEW {
-    #[doc = "Pause frames are not decoded"]
-    DISABLED,
-    #[doc = "MAC decodes received Pause frames and disables its transmitted for a specified time"]
-    ENABLED,
-}
-impl RFCEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RFCEW::DISABLED => false,
-            RFCEW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RFCEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _RFCEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RFCEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Pause frames are not decoded"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(RFCEW::DISABLED)
-    }
-    #[doc = "MAC decodes received Pause frames and disables its transmitted for a specified time"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(RFCEW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `UPFD`"]
-pub enum UPFDW {
-    #[doc = "MAC detects only a Pause frame with the multicast address specified in the 802.3x standard"]
-    DISABLED,
-    #[doc = "MAC additionally detects Pause frames with the station's unicast address"]
-    ENABLED,
-}
-impl UPFDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            UPFDW::DISABLED => false,
-            UPFDW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _UPFDW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _UPFDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: UPFDW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "MAC detects only a Pause frame with the multicast address specified in the 802.3x standard"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(UPFDW::DISABLED)
-    }
-    #[doc = "MAC additionally detects Pause frames with the station's unicast address"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(UPFDW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PLT`"]
-pub enum PLTW {
-    #[doc = "Pause time minus 4 slot times"]
-    PLT4,
-    #[doc = "Pause time minus 28 slot times"]
-    PLT28,
-    #[doc = "Pause time minus 144 slot times"]
-    PLT144,
-    #[doc = "Pause time minus 256 slot times"]
-    PLT256,
-}
-impl PLTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PLTW::PLT4 => 0,
-            PLTW::PLT28 => 1,
-            PLTW::PLT144 => 2,
-            PLTW::PLT256 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PLTW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PLTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PLTW) -> &'a mut W {
-        {
-            self.bits(variant._bits())
-        }
-    }
-    #[doc = "Pause time minus 4 slot times"]
-    #[inline]
-    pub fn plt4(self) -> &'a mut W {
-        self.variant(PLTW::PLT4)
-    }
-    #[doc = "Pause time minus 28 slot times"]
-    #[inline]
-    pub fn plt28(self) -> &'a mut W {
-        self.variant(PLTW::PLT28)
-    }
-    #[doc = "Pause time minus 144 slot times"]
-    #[inline]
-    pub fn plt144(self) -> &'a mut W {
-        self.variant(PLTW::PLT144)
-    }
-    #[doc = "Pause time minus 256 slot times"]
-    #[inline]
-    pub fn plt256(self) -> &'a mut W {
-        self.variant(PLTW::PLT256)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ZQPD`"]
-pub enum ZQPDW {
-    #[doc = "Normal operation with automatic zero-quanta pause control frame generation"]
-    ENABLED,
-    #[doc = "Automatic generation of zero-quanta pause control frames is disabled"]
-    DISABLED,
-}
-impl ZQPDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ZQPDW::ENABLED => false,
-            ZQPDW::DISABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ZQPDW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ZQPDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ZQPDW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Normal operation with automatic zero-quanta pause control frame generation"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(ZQPDW::ENABLED)
+        self.variant(ZQPD_A::ENABLED)
     }
     #[doc = "Automatic generation of zero-quanta pause control frames is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(ZQPDW::DISABLED)
+        self.variant(ZQPD_A::DISABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PTW<'a> {
+#[doc = "Reader of field `PT`"]
+pub type PT_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `PT`"]
+pub struct PT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PTW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> PT_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0xffff;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xffff << 16)) | (((value as u32) & 0xffff) << 16);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - FCB"]
-    #[inline]
-    pub fn fcb(&self) -> FCBR {
-        FCBR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn fcb(&self) -> FCB_R {
+        FCB_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - TFCE"]
-    #[inline]
-    pub fn tfce(&self) -> TFCER {
-        TFCER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tfce(&self) -> TFCE_R {
+        TFCE_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - RFCE"]
-    #[inline]
-    pub fn rfce(&self) -> RFCER {
-        RFCER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rfce(&self) -> RFCE_R {
+        RFCE_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - UPFD"]
-    #[inline]
-    pub fn upfd(&self) -> UPFDR {
-        UPFDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn upfd(&self) -> UPFD_R {
+        UPFD_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bits 4:5 - PLT"]
-    #[inline]
-    pub fn plt(&self) -> PLTR {
-        PLTR::_from({
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn plt(&self) -> PLT_R {
+        PLT_R::new(((self.bits >> 4) & 0x03) as u8)
     }
     #[doc = "Bit 7 - ZQPD"]
-    #[inline]
-    pub fn zqpd(&self) -> ZQPDR {
-        ZQPDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn zqpd(&self) -> ZQPD_R {
+        ZQPD_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bits 16:31 - PT"]
-    #[inline]
-    pub fn pt(&self) -> PTR {
-        let bits = {
-            const MASK: u16 = 0xffff;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        PTR { bits }
+    #[inline(always)]
+    pub fn pt(&self) -> PT_R {
+        PT_R::new(((self.bits >> 16) & 0xffff) as u16)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - FCB"]
-    #[inline]
-    pub fn fcb(&mut self) -> _FCBW {
-        _FCBW { w: self }
+    #[inline(always)]
+    pub fn fcb(&mut self) -> FCB_W {
+        FCB_W { w: self }
     }
     #[doc = "Bit 1 - TFCE"]
-    #[inline]
-    pub fn tfce(&mut self) -> _TFCEW {
-        _TFCEW { w: self }
+    #[inline(always)]
+    pub fn tfce(&mut self) -> TFCE_W {
+        TFCE_W { w: self }
     }
     #[doc = "Bit 2 - RFCE"]
-    #[inline]
-    pub fn rfce(&mut self) -> _RFCEW {
-        _RFCEW { w: self }
+    #[inline(always)]
+    pub fn rfce(&mut self) -> RFCE_W {
+        RFCE_W { w: self }
     }
     #[doc = "Bit 3 - UPFD"]
-    #[inline]
-    pub fn upfd(&mut self) -> _UPFDW {
-        _UPFDW { w: self }
+    #[inline(always)]
+    pub fn upfd(&mut self) -> UPFD_W {
+        UPFD_W { w: self }
     }
     #[doc = "Bits 4:5 - PLT"]
-    #[inline]
-    pub fn plt(&mut self) -> _PLTW {
-        _PLTW { w: self }
+    #[inline(always)]
+    pub fn plt(&mut self) -> PLT_W {
+        PLT_W { w: self }
     }
     #[doc = "Bit 7 - ZQPD"]
-    #[inline]
-    pub fn zqpd(&mut self) -> _ZQPDW {
-        _ZQPDW { w: self }
+    #[inline(always)]
+    pub fn zqpd(&mut self) -> ZQPD_W {
+        ZQPD_W { w: self }
     }
     #[doc = "Bits 16:31 - PT"]
-    #[inline]
-    pub fn pt(&mut self) -> _PTW {
-        _PTW { w: self }
+    #[inline(always)]
+    pub fn pt(&mut self) -> PT_W {
+        PT_W { w: self }
     }
 }

@@ -1,761 +1,555 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::ACR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register ACR"]
+pub type R = crate::R<u32, super::ACR>;
+#[doc = "Writer for register ACR"]
+pub type W = crate::W<u32, super::ACR>;
+#[doc = "Register ACR `reset()`'s with value 0"]
+impl crate::ResetValue for super::ACR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `LATENCY`"]
+#[doc = "Latency\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LATENCYR {
-    #[doc = "0 wait states"]
+pub enum LATENCY_A {
+    #[doc = "0: 0 wait states"]
     WS0,
-    #[doc = "1 wait states"]
+    #[doc = "1: 1 wait states"]
     WS1,
-    #[doc = "2 wait states"]
+    #[doc = "2: 2 wait states"]
     WS2,
-    #[doc = "3 wait states"]
+    #[doc = "3: 3 wait states"]
     WS3,
-    #[doc = "4 wait states"]
+    #[doc = "4: 4 wait states"]
     WS4,
-    #[doc = "5 wait states"]
+    #[doc = "5: 5 wait states"]
     WS5,
-    #[doc = "6 wait states"]
+    #[doc = "6: 6 wait states"]
     WS6,
-    #[doc = "7 wait states"]
+    #[doc = "7: 7 wait states"]
     WS7,
-    #[doc = "8 wait states"]
+    #[doc = "8: 8 wait states"]
     WS8,
-    #[doc = "9 wait states"]
+    #[doc = "9: 9 wait states"]
     WS9,
-    #[doc = "10 wait states"]
+    #[doc = "10: 10 wait states"]
     WS10,
-    #[doc = "11 wait states"]
+    #[doc = "11: 11 wait states"]
     WS11,
-    #[doc = "12 wait states"]
+    #[doc = "12: 12 wait states"]
     WS12,
-    #[doc = "13 wait states"]
+    #[doc = "13: 13 wait states"]
     WS13,
-    #[doc = "14 wait states"]
+    #[doc = "14: 14 wait states"]
     WS14,
-    #[doc = "15 wait states"]
+    #[doc = "15: 15 wait states"]
     WS15,
 }
-impl LATENCYR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            LATENCYR::WS0 => 0,
-            LATENCYR::WS1 => 0x01,
-            LATENCYR::WS2 => 0x02,
-            LATENCYR::WS3 => 0x03,
-            LATENCYR::WS4 => 0x04,
-            LATENCYR::WS5 => 0x05,
-            LATENCYR::WS6 => 0x06,
-            LATENCYR::WS7 => 0x07,
-            LATENCYR::WS8 => 0x08,
-            LATENCYR::WS9 => 0x09,
-            LATENCYR::WS10 => 0x0a,
-            LATENCYR::WS11 => 0x0b,
-            LATENCYR::WS12 => 0x0c,
-            LATENCYR::WS13 => 0x0d,
-            LATENCYR::WS14 => 0x0e,
-            LATENCYR::WS15 => 0x0f,
+impl From<LATENCY_A> for u8 {
+    #[inline(always)]
+    fn from(variant: LATENCY_A) -> Self {
+        match variant {
+            LATENCY_A::WS0 => 0,
+            LATENCY_A::WS1 => 1,
+            LATENCY_A::WS2 => 2,
+            LATENCY_A::WS3 => 3,
+            LATENCY_A::WS4 => 4,
+            LATENCY_A::WS5 => 5,
+            LATENCY_A::WS6 => 6,
+            LATENCY_A::WS7 => 7,
+            LATENCY_A::WS8 => 8,
+            LATENCY_A::WS9 => 9,
+            LATENCY_A::WS10 => 10,
+            LATENCY_A::WS11 => 11,
+            LATENCY_A::WS12 => 12,
+            LATENCY_A::WS13 => 13,
+            LATENCY_A::WS14 => 14,
+            LATENCY_A::WS15 => 15,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> LATENCYR {
-        match value {
-            0 => LATENCYR::WS0,
-            1 => LATENCYR::WS1,
-            2 => LATENCYR::WS2,
-            3 => LATENCYR::WS3,
-            4 => LATENCYR::WS4,
-            5 => LATENCYR::WS5,
-            6 => LATENCYR::WS6,
-            7 => LATENCYR::WS7,
-            8 => LATENCYR::WS8,
-            9 => LATENCYR::WS9,
-            10 => LATENCYR::WS10,
-            11 => LATENCYR::WS11,
-            12 => LATENCYR::WS12,
-            13 => LATENCYR::WS13,
-            14 => LATENCYR::WS14,
-            15 => LATENCYR::WS15,
+}
+#[doc = "Reader of field `LATENCY`"]
+pub type LATENCY_R = crate::R<u8, LATENCY_A>;
+impl LATENCY_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LATENCY_A {
+        match self.bits {
+            0 => LATENCY_A::WS0,
+            1 => LATENCY_A::WS1,
+            2 => LATENCY_A::WS2,
+            3 => LATENCY_A::WS3,
+            4 => LATENCY_A::WS4,
+            5 => LATENCY_A::WS5,
+            6 => LATENCY_A::WS6,
+            7 => LATENCY_A::WS7,
+            8 => LATENCY_A::WS8,
+            9 => LATENCY_A::WS9,
+            10 => LATENCY_A::WS10,
+            11 => LATENCY_A::WS11,
+            12 => LATENCY_A::WS12,
+            13 => LATENCY_A::WS13,
+            14 => LATENCY_A::WS14,
+            15 => LATENCY_A::WS15,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `WS0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws0(&self) -> bool {
-        *self == LATENCYR::WS0
+        *self == LATENCY_A::WS0
     }
     #[doc = "Checks if the value of the field is `WS1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws1(&self) -> bool {
-        *self == LATENCYR::WS1
+        *self == LATENCY_A::WS1
     }
     #[doc = "Checks if the value of the field is `WS2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws2(&self) -> bool {
-        *self == LATENCYR::WS2
+        *self == LATENCY_A::WS2
     }
     #[doc = "Checks if the value of the field is `WS3`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws3(&self) -> bool {
-        *self == LATENCYR::WS3
+        *self == LATENCY_A::WS3
     }
     #[doc = "Checks if the value of the field is `WS4`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws4(&self) -> bool {
-        *self == LATENCYR::WS4
+        *self == LATENCY_A::WS4
     }
     #[doc = "Checks if the value of the field is `WS5`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws5(&self) -> bool {
-        *self == LATENCYR::WS5
+        *self == LATENCY_A::WS5
     }
     #[doc = "Checks if the value of the field is `WS6`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws6(&self) -> bool {
-        *self == LATENCYR::WS6
+        *self == LATENCY_A::WS6
     }
     #[doc = "Checks if the value of the field is `WS7`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws7(&self) -> bool {
-        *self == LATENCYR::WS7
+        *self == LATENCY_A::WS7
     }
     #[doc = "Checks if the value of the field is `WS8`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws8(&self) -> bool {
-        *self == LATENCYR::WS8
+        *self == LATENCY_A::WS8
     }
     #[doc = "Checks if the value of the field is `WS9`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws9(&self) -> bool {
-        *self == LATENCYR::WS9
+        *self == LATENCY_A::WS9
     }
     #[doc = "Checks if the value of the field is `WS10`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws10(&self) -> bool {
-        *self == LATENCYR::WS10
+        *self == LATENCY_A::WS10
     }
     #[doc = "Checks if the value of the field is `WS11`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws11(&self) -> bool {
-        *self == LATENCYR::WS11
+        *self == LATENCY_A::WS11
     }
     #[doc = "Checks if the value of the field is `WS12`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws12(&self) -> bool {
-        *self == LATENCYR::WS12
+        *self == LATENCY_A::WS12
     }
     #[doc = "Checks if the value of the field is `WS13`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws13(&self) -> bool {
-        *self == LATENCYR::WS13
+        *self == LATENCY_A::WS13
     }
     #[doc = "Checks if the value of the field is `WS14`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws14(&self) -> bool {
-        *self == LATENCYR::WS14
+        *self == LATENCY_A::WS14
     }
     #[doc = "Checks if the value of the field is `WS15`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ws15(&self) -> bool {
-        *self == LATENCYR::WS15
+        *self == LATENCY_A::WS15
     }
 }
-#[doc = "Possible values of the field `PRFTEN`"]
+#[doc = "Write proxy for field `LATENCY`"]
+pub struct LATENCY_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> LATENCY_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LATENCY_A) -> &'a mut W {
+        {
+            self.bits(variant.into())
+        }
+    }
+    #[doc = "0 wait states"]
+    #[inline(always)]
+    pub fn ws0(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS0)
+    }
+    #[doc = "1 wait states"]
+    #[inline(always)]
+    pub fn ws1(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS1)
+    }
+    #[doc = "2 wait states"]
+    #[inline(always)]
+    pub fn ws2(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS2)
+    }
+    #[doc = "3 wait states"]
+    #[inline(always)]
+    pub fn ws3(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS3)
+    }
+    #[doc = "4 wait states"]
+    #[inline(always)]
+    pub fn ws4(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS4)
+    }
+    #[doc = "5 wait states"]
+    #[inline(always)]
+    pub fn ws5(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS5)
+    }
+    #[doc = "6 wait states"]
+    #[inline(always)]
+    pub fn ws6(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS6)
+    }
+    #[doc = "7 wait states"]
+    #[inline(always)]
+    pub fn ws7(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS7)
+    }
+    #[doc = "8 wait states"]
+    #[inline(always)]
+    pub fn ws8(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS8)
+    }
+    #[doc = "9 wait states"]
+    #[inline(always)]
+    pub fn ws9(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS9)
+    }
+    #[doc = "10 wait states"]
+    #[inline(always)]
+    pub fn ws10(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS10)
+    }
+    #[doc = "11 wait states"]
+    #[inline(always)]
+    pub fn ws11(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS11)
+    }
+    #[doc = "12 wait states"]
+    #[inline(always)]
+    pub fn ws12(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS12)
+    }
+    #[doc = "13 wait states"]
+    #[inline(always)]
+    pub fn ws13(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS13)
+    }
+    #[doc = "14 wait states"]
+    #[inline(always)]
+    pub fn ws14(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS14)
+    }
+    #[doc = "15 wait states"]
+    #[inline(always)]
+    pub fn ws15(self) -> &'a mut W {
+        self.variant(LATENCY_A::WS15)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x0f) | ((value as u32) & 0x0f);
+        self.w
+    }
+}
+#[doc = "Prefetch enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PRFTENR {
+pub enum PRFTEN_A {
+    #[doc = "0: Prefetch is disabled"]
+    DISABLED,
+    #[doc = "1: Prefetch is enabled"]
+    ENABLED,
+}
+impl From<PRFTEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: PRFTEN_A) -> Self {
+        match variant {
+            PRFTEN_A::DISABLED => false,
+            PRFTEN_A::ENABLED => true,
+        }
+    }
+}
+#[doc = "Reader of field `PRFTEN`"]
+pub type PRFTEN_R = crate::R<bool, PRFTEN_A>;
+impl PRFTEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PRFTEN_A {
+        match self.bits {
+            false => PRFTEN_A::DISABLED,
+            true => PRFTEN_A::ENABLED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == PRFTEN_A::DISABLED
+    }
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == PRFTEN_A::ENABLED
+    }
+}
+#[doc = "Write proxy for field `PRFTEN`"]
+pub struct PRFTEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PRFTEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PRFTEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Prefetch is disabled"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(PRFTEN_A::DISABLED)
+    }
     #[doc = "Prefetch is enabled"]
-    ENABLED,
-}
-impl PRFTENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(PRFTEN_A::ENABLED)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PRFTENR::DISABLED => false,
-            PRFTENR::ENABLED => true,
-        }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PRFTENR {
-        match value {
-            false => PRFTENR::DISABLED,
-            true => PRFTENR::ENABLED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
-    pub fn is_disabled(&self) -> bool {
-        *self == PRFTENR::DISABLED
-    }
-    #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
-    pub fn is_enabled(&self) -> bool {
-        *self == PRFTENR::ENABLED
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w
     }
 }
-#[doc = "Possible values of the field `ARTEN`"]
+#[doc = "ART Accelerator Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ARTENR {
-    #[doc = "ART Accelerator is disabled"]
+pub enum ARTEN_A {
+    #[doc = "0: ART Accelerator is disabled"]
     DISABLED,
-    #[doc = "ART Accelerator is enabled"]
+    #[doc = "1: ART Accelerator is enabled"]
     ENABLED,
 }
-impl ARTENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ARTENR::DISABLED => false,
-            ARTENR::ENABLED => true,
+impl From<ARTEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: ARTEN_A) -> Self {
+        match variant {
+            ARTEN_A::DISABLED => false,
+            ARTEN_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ARTENR {
-        match value {
-            false => ARTENR::DISABLED,
-            true => ARTENR::ENABLED,
+}
+#[doc = "Reader of field `ARTEN`"]
+pub type ARTEN_R = crate::R<bool, ARTEN_A>;
+impl ARTEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ARTEN_A {
+        match self.bits {
+            false => ARTEN_A::DISABLED,
+            true => ARTEN_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == ARTENR::DISABLED
+        *self == ARTEN_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == ARTENR::ENABLED
+        *self == ARTEN_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `ARTRST`"]
+#[doc = "Write proxy for field `ARTEN`"]
+pub struct ARTEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> ARTEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ARTEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "ART Accelerator is disabled"]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(ARTEN_A::DISABLED)
+    }
+    #[doc = "ART Accelerator is enabled"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(ARTEN_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w
+    }
+}
+#[doc = "ART Accelerator reset\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ARTRSTR {
-    #[doc = "Accelerator is not reset"]
+pub enum ARTRST_A {
+    #[doc = "0: Accelerator is not reset"]
     NOTRESET,
-    #[doc = "Accelerator is reset"]
+    #[doc = "1: Accelerator is reset"]
     RESET,
 }
-impl ARTRSTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ARTRSTR::NOTRESET => false,
-            ARTRSTR::RESET => true,
+impl From<ARTRST_A> for bool {
+    #[inline(always)]
+    fn from(variant: ARTRST_A) -> Self {
+        match variant {
+            ARTRST_A::NOTRESET => false,
+            ARTRST_A::RESET => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ARTRSTR {
-        match value {
-            false => ARTRSTR::NOTRESET,
-            true => ARTRSTR::RESET,
+}
+#[doc = "Reader of field `ARTRST`"]
+pub type ARTRST_R = crate::R<bool, ARTRST_A>;
+impl ARTRST_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ARTRST_A {
+        match self.bits {
+            false => ARTRST_A::NOTRESET,
+            true => ARTRST_A::RESET,
         }
     }
     #[doc = "Checks if the value of the field is `NOTRESET`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_not_reset(&self) -> bool {
-        *self == ARTRSTR::NOTRESET
+        *self == ARTRST_A::NOTRESET
     }
     #[doc = "Checks if the value of the field is `RESET`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_reset(&self) -> bool {
-        *self == ARTRSTR::RESET
+        *self == ARTRST_A::RESET
     }
 }
-#[doc = "Values that can be written to the field `LATENCY`"]
-pub enum LATENCYW {
-    #[doc = "0 wait states"]
-    WS0,
-    #[doc = "1 wait states"]
-    WS1,
-    #[doc = "2 wait states"]
-    WS2,
-    #[doc = "3 wait states"]
-    WS3,
-    #[doc = "4 wait states"]
-    WS4,
-    #[doc = "5 wait states"]
-    WS5,
-    #[doc = "6 wait states"]
-    WS6,
-    #[doc = "7 wait states"]
-    WS7,
-    #[doc = "8 wait states"]
-    WS8,
-    #[doc = "9 wait states"]
-    WS9,
-    #[doc = "10 wait states"]
-    WS10,
-    #[doc = "11 wait states"]
-    WS11,
-    #[doc = "12 wait states"]
-    WS12,
-    #[doc = "13 wait states"]
-    WS13,
-    #[doc = "14 wait states"]
-    WS14,
-    #[doc = "15 wait states"]
-    WS15,
-}
-impl LATENCYW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            LATENCYW::WS0 => 0,
-            LATENCYW::WS1 => 1,
-            LATENCYW::WS2 => 2,
-            LATENCYW::WS3 => 3,
-            LATENCYW::WS4 => 4,
-            LATENCYW::WS5 => 5,
-            LATENCYW::WS6 => 6,
-            LATENCYW::WS7 => 7,
-            LATENCYW::WS8 => 8,
-            LATENCYW::WS9 => 9,
-            LATENCYW::WS10 => 10,
-            LATENCYW::WS11 => 11,
-            LATENCYW::WS12 => 12,
-            LATENCYW::WS13 => 13,
-            LATENCYW::WS14 => 14,
-            LATENCYW::WS15 => 15,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _LATENCYW<'a> {
+#[doc = "Write proxy for field `ARTRST`"]
+pub struct ARTRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LATENCYW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LATENCYW) -> &'a mut W {
+impl<'a> ARTRST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ARTRST_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
-        }
-    }
-    #[doc = "0 wait states"]
-    #[inline]
-    pub fn ws0(self) -> &'a mut W {
-        self.variant(LATENCYW::WS0)
-    }
-    #[doc = "1 wait states"]
-    #[inline]
-    pub fn ws1(self) -> &'a mut W {
-        self.variant(LATENCYW::WS1)
-    }
-    #[doc = "2 wait states"]
-    #[inline]
-    pub fn ws2(self) -> &'a mut W {
-        self.variant(LATENCYW::WS2)
-    }
-    #[doc = "3 wait states"]
-    #[inline]
-    pub fn ws3(self) -> &'a mut W {
-        self.variant(LATENCYW::WS3)
-    }
-    #[doc = "4 wait states"]
-    #[inline]
-    pub fn ws4(self) -> &'a mut W {
-        self.variant(LATENCYW::WS4)
-    }
-    #[doc = "5 wait states"]
-    #[inline]
-    pub fn ws5(self) -> &'a mut W {
-        self.variant(LATENCYW::WS5)
-    }
-    #[doc = "6 wait states"]
-    #[inline]
-    pub fn ws6(self) -> &'a mut W {
-        self.variant(LATENCYW::WS6)
-    }
-    #[doc = "7 wait states"]
-    #[inline]
-    pub fn ws7(self) -> &'a mut W {
-        self.variant(LATENCYW::WS7)
-    }
-    #[doc = "8 wait states"]
-    #[inline]
-    pub fn ws8(self) -> &'a mut W {
-        self.variant(LATENCYW::WS8)
-    }
-    #[doc = "9 wait states"]
-    #[inline]
-    pub fn ws9(self) -> &'a mut W {
-        self.variant(LATENCYW::WS9)
-    }
-    #[doc = "10 wait states"]
-    #[inline]
-    pub fn ws10(self) -> &'a mut W {
-        self.variant(LATENCYW::WS10)
-    }
-    #[doc = "11 wait states"]
-    #[inline]
-    pub fn ws11(self) -> &'a mut W {
-        self.variant(LATENCYW::WS11)
-    }
-    #[doc = "12 wait states"]
-    #[inline]
-    pub fn ws12(self) -> &'a mut W {
-        self.variant(LATENCYW::WS12)
-    }
-    #[doc = "13 wait states"]
-    #[inline]
-    pub fn ws13(self) -> &'a mut W {
-        self.variant(LATENCYW::WS13)
-    }
-    #[doc = "14 wait states"]
-    #[inline]
-    pub fn ws14(self) -> &'a mut W {
-        self.variant(LATENCYW::WS14)
-    }
-    #[doc = "15 wait states"]
-    #[inline]
-    pub fn ws15(self) -> &'a mut W {
-        self.variant(LATENCYW::WS15)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x0f;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PRFTEN`"]
-pub enum PRFTENW {
-    #[doc = "Prefetch is disabled"]
-    DISABLED,
-    #[doc = "Prefetch is enabled"]
-    ENABLED,
-}
-impl PRFTENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PRFTENW::DISABLED => false,
-            PRFTENW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PRFTENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PRFTENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PRFTENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Prefetch is disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(PRFTENW::DISABLED)
-    }
-    #[doc = "Prefetch is enabled"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(PRFTENW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ARTEN`"]
-pub enum ARTENW {
-    #[doc = "ART Accelerator is disabled"]
-    DISABLED,
-    #[doc = "ART Accelerator is enabled"]
-    ENABLED,
-}
-impl ARTENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ARTENW::DISABLED => false,
-            ARTENW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ARTENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ARTENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ARTENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "ART Accelerator is disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(ARTENW::DISABLED)
-    }
-    #[doc = "ART Accelerator is enabled"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(ARTENW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ARTRST`"]
-pub enum ARTRSTW {
-    #[doc = "Accelerator is not reset"]
-    NOTRESET,
-    #[doc = "Accelerator is reset"]
-    RESET,
-}
-impl ARTRSTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ARTRSTW::NOTRESET => false,
-            ARTRSTW::RESET => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ARTRSTW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ARTRSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ARTRSTW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Accelerator is not reset"]
-    #[inline]
+    #[inline(always)]
     pub fn not_reset(self) -> &'a mut W {
-        self.variant(ARTRSTW::NOTRESET)
+        self.variant(ARTRST_A::NOTRESET)
     }
     #[doc = "Accelerator is reset"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(ARTRSTW::RESET)
+        self.variant(ARTRST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - Latency"]
-    #[inline]
-    pub fn latency(&self) -> LATENCYR {
-        LATENCYR::_from({
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn latency(&self) -> LATENCY_R {
+        LATENCY_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bit 8 - Prefetch enable"]
-    #[inline]
-    pub fn prften(&self) -> PRFTENR {
-        PRFTENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn prften(&self) -> PRFTEN_R {
+        PRFTEN_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - ART Accelerator Enable"]
-    #[inline]
-    pub fn arten(&self) -> ARTENR {
-        ARTENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn arten(&self) -> ARTEN_R {
+        ARTEN_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 11 - ART Accelerator reset"]
-    #[inline]
-    pub fn artrst(&self) -> ARTRSTR {
-        ARTRSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn artrst(&self) -> ARTRST_R {
+        ARTRST_R::new(((self.bits >> 11) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:3 - Latency"]
-    #[inline]
-    pub fn latency(&mut self) -> _LATENCYW {
-        _LATENCYW { w: self }
+    #[inline(always)]
+    pub fn latency(&mut self) -> LATENCY_W {
+        LATENCY_W { w: self }
     }
     #[doc = "Bit 8 - Prefetch enable"]
-    #[inline]
-    pub fn prften(&mut self) -> _PRFTENW {
-        _PRFTENW { w: self }
+    #[inline(always)]
+    pub fn prften(&mut self) -> PRFTEN_W {
+        PRFTEN_W { w: self }
     }
     #[doc = "Bit 9 - ART Accelerator Enable"]
-    #[inline]
-    pub fn arten(&mut self) -> _ARTENW {
-        _ARTENW { w: self }
+    #[inline(always)]
+    pub fn arten(&mut self) -> ARTEN_W {
+        ARTEN_W { w: self }
     }
     #[doc = "Bit 11 - ART Accelerator reset"]
-    #[inline]
-    pub fn artrst(&mut self) -> _ARTRSTW {
-        _ARTRSTW { w: self }
+    #[inline(always)]
+    pub fn artrst(&mut self) -> ARTRST_W {
+        ARTRST_W { w: self }
     }
 }

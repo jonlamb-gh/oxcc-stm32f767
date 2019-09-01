@@ -1,421 +1,280 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MMCRIMR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register MMCRIMR"]
+pub type R = crate::R<u32, super::MMCRIMR>;
+#[doc = "Writer for register MMCRIMR"]
+pub type W = crate::W<u32, super::MMCRIMR>;
+#[doc = "Register MMCRIMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::MMCRIMR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `RFCEM`"]
+#[doc = "RFCEM\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RFCEMR {
-    #[doc = "Received-crc-error counter half-full interrupt enabled"]
+pub enum RFCEM_A {
+    #[doc = "0: Received-crc-error counter half-full interrupt enabled"]
     UNMASKED,
-    #[doc = "Received-crc-error counter half-full interrupt disabled"]
+    #[doc = "1: Received-crc-error counter half-full interrupt disabled"]
     MASKED,
 }
-impl RFCEMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RFCEMR::UNMASKED => false,
-            RFCEMR::MASKED => true,
+impl From<RFCEM_A> for bool {
+    #[inline(always)]
+    fn from(variant: RFCEM_A) -> Self {
+        match variant {
+            RFCEM_A::UNMASKED => false,
+            RFCEM_A::MASKED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RFCEMR {
-        match value {
-            false => RFCEMR::UNMASKED,
-            true => RFCEMR::MASKED,
+}
+#[doc = "Reader of field `RFCEM`"]
+pub type RFCEM_R = crate::R<bool, RFCEM_A>;
+impl RFCEM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RFCEM_A {
+        match self.bits {
+            false => RFCEM_A::UNMASKED,
+            true => RFCEM_A::MASKED,
         }
     }
     #[doc = "Checks if the value of the field is `UNMASKED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_unmasked(&self) -> bool {
-        *self == RFCEMR::UNMASKED
+        *self == RFCEM_A::UNMASKED
     }
     #[doc = "Checks if the value of the field is `MASKED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_masked(&self) -> bool {
-        *self == RFCEMR::MASKED
+        *self == RFCEM_A::MASKED
     }
 }
-#[doc = "Possible values of the field `RFAEM`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RFAEMR {
-    #[doc = "Received-alignment-error counter half-full interrupt enabled"]
-    UNMASKED,
-    #[doc = "Received-alignment-error counter half-full interrupt disabled"]
-    MASKED,
-}
-impl RFAEMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RFAEMR::UNMASKED => false,
-            RFAEMR::MASKED => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RFAEMR {
-        match value {
-            false => RFAEMR::UNMASKED,
-            true => RFAEMR::MASKED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `UNMASKED`"]
-    #[inline]
-    pub fn is_unmasked(&self) -> bool {
-        *self == RFAEMR::UNMASKED
-    }
-    #[doc = "Checks if the value of the field is `MASKED`"]
-    #[inline]
-    pub fn is_masked(&self) -> bool {
-        *self == RFAEMR::MASKED
-    }
-}
-#[doc = "Possible values of the field `RGUFM`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RGUFMR {
-    #[doc = "Received-good-unicast counter half-full interrupt enabled"]
-    UNMASKED,
-    #[doc = "Received-good-unicast counter half-full interrupt disabled"]
-    MASKED,
-}
-impl RGUFMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RGUFMR::UNMASKED => false,
-            RGUFMR::MASKED => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RGUFMR {
-        match value {
-            false => RGUFMR::UNMASKED,
-            true => RGUFMR::MASKED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `UNMASKED`"]
-    #[inline]
-    pub fn is_unmasked(&self) -> bool {
-        *self == RGUFMR::UNMASKED
-    }
-    #[doc = "Checks if the value of the field is `MASKED`"]
-    #[inline]
-    pub fn is_masked(&self) -> bool {
-        *self == RGUFMR::MASKED
-    }
-}
-#[doc = "Values that can be written to the field `RFCEM`"]
-pub enum RFCEMW {
-    #[doc = "Received-crc-error counter half-full interrupt enabled"]
-    UNMASKED,
-    #[doc = "Received-crc-error counter half-full interrupt disabled"]
-    MASKED,
-}
-impl RFCEMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RFCEMW::UNMASKED => false,
-            RFCEMW::MASKED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RFCEMW<'a> {
+#[doc = "Write proxy for field `RFCEM`"]
+pub struct RFCEM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RFCEMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RFCEMW) -> &'a mut W {
+impl<'a> RFCEM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RFCEM_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Received-crc-error counter half-full interrupt enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn unmasked(self) -> &'a mut W {
-        self.variant(RFCEMW::UNMASKED)
+        self.variant(RFCEM_A::UNMASKED)
     }
     #[doc = "Received-crc-error counter half-full interrupt disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn masked(self) -> &'a mut W {
-        self.variant(RFCEMW::MASKED)
+        self.variant(RFCEM_A::MASKED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RFAEM`"]
-pub enum RFAEMW {
-    #[doc = "Received-alignment-error counter half-full interrupt enabled"]
+#[doc = "RFAEM\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RFAEM_A {
+    #[doc = "0: Received-alignment-error counter half-full interrupt enabled"]
     UNMASKED,
-    #[doc = "Received-alignment-error counter half-full interrupt disabled"]
+    #[doc = "1: Received-alignment-error counter half-full interrupt disabled"]
     MASKED,
 }
-impl RFAEMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RFAEMW::UNMASKED => false,
-            RFAEMW::MASKED => true,
+impl From<RFAEM_A> for bool {
+    #[inline(always)]
+    fn from(variant: RFAEM_A) -> Self {
+        match variant {
+            RFAEM_A::UNMASKED => false,
+            RFAEM_A::MASKED => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _RFAEMW<'a> {
+#[doc = "Reader of field `RFAEM`"]
+pub type RFAEM_R = crate::R<bool, RFAEM_A>;
+impl RFAEM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RFAEM_A {
+        match self.bits {
+            false => RFAEM_A::UNMASKED,
+            true => RFAEM_A::MASKED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `UNMASKED`"]
+    #[inline(always)]
+    pub fn is_unmasked(&self) -> bool {
+        *self == RFAEM_A::UNMASKED
+    }
+    #[doc = "Checks if the value of the field is `MASKED`"]
+    #[inline(always)]
+    pub fn is_masked(&self) -> bool {
+        *self == RFAEM_A::MASKED
+    }
+}
+#[doc = "Write proxy for field `RFAEM`"]
+pub struct RFAEM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RFAEMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RFAEMW) -> &'a mut W {
+impl<'a> RFAEM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RFAEM_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Received-alignment-error counter half-full interrupt enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn unmasked(self) -> &'a mut W {
-        self.variant(RFAEMW::UNMASKED)
+        self.variant(RFAEM_A::UNMASKED)
     }
     #[doc = "Received-alignment-error counter half-full interrupt disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn masked(self) -> &'a mut W {
-        self.variant(RFAEMW::MASKED)
+        self.variant(RFAEM_A::MASKED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RGUFM`"]
-pub enum RGUFMW {
-    #[doc = "Received-good-unicast counter half-full interrupt enabled"]
+#[doc = "RGUFM\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RGUFM_A {
+    #[doc = "0: Received-good-unicast counter half-full interrupt enabled"]
     UNMASKED,
-    #[doc = "Received-good-unicast counter half-full interrupt disabled"]
+    #[doc = "1: Received-good-unicast counter half-full interrupt disabled"]
     MASKED,
 }
-impl RGUFMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RGUFMW::UNMASKED => false,
-            RGUFMW::MASKED => true,
+impl From<RGUFM_A> for bool {
+    #[inline(always)]
+    fn from(variant: RGUFM_A) -> Self {
+        match variant {
+            RGUFM_A::UNMASKED => false,
+            RGUFM_A::MASKED => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _RGUFMW<'a> {
+#[doc = "Reader of field `RGUFM`"]
+pub type RGUFM_R = crate::R<bool, RGUFM_A>;
+impl RGUFM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RGUFM_A {
+        match self.bits {
+            false => RGUFM_A::UNMASKED,
+            true => RGUFM_A::MASKED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `UNMASKED`"]
+    #[inline(always)]
+    pub fn is_unmasked(&self) -> bool {
+        *self == RGUFM_A::UNMASKED
+    }
+    #[doc = "Checks if the value of the field is `MASKED`"]
+    #[inline(always)]
+    pub fn is_masked(&self) -> bool {
+        *self == RGUFM_A::MASKED
+    }
+}
+#[doc = "Write proxy for field `RGUFM`"]
+pub struct RGUFM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RGUFMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RGUFMW) -> &'a mut W {
+impl<'a> RGUFM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RGUFM_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Received-good-unicast counter half-full interrupt enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn unmasked(self) -> &'a mut W {
-        self.variant(RGUFMW::UNMASKED)
+        self.variant(RGUFM_A::UNMASKED)
     }
     #[doc = "Received-good-unicast counter half-full interrupt disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn masked(self) -> &'a mut W {
-        self.variant(RGUFMW::MASKED)
+        self.variant(RGUFM_A::MASKED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 5 - RFCEM"]
-    #[inline]
-    pub fn rfcem(&self) -> RFCEMR {
-        RFCEMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rfcem(&self) -> RFCEM_R {
+        RFCEM_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - RFAEM"]
-    #[inline]
-    pub fn rfaem(&self) -> RFAEMR {
-        RFAEMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rfaem(&self) -> RFAEM_R {
+        RFAEM_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 17 - RGUFM"]
-    #[inline]
-    pub fn rgufm(&self) -> RGUFMR {
-        RGUFMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rgufm(&self) -> RGUFM_R {
+        RGUFM_R::new(((self.bits >> 17) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 5 - RFCEM"]
-    #[inline]
-    pub fn rfcem(&mut self) -> _RFCEMW {
-        _RFCEMW { w: self }
+    #[inline(always)]
+    pub fn rfcem(&mut self) -> RFCEM_W {
+        RFCEM_W { w: self }
     }
     #[doc = "Bit 6 - RFAEM"]
-    #[inline]
-    pub fn rfaem(&mut self) -> _RFAEMW {
-        _RFAEMW { w: self }
+    #[inline(always)]
+    pub fn rfaem(&mut self) -> RFAEM_W {
+        RFAEM_W { w: self }
     }
     #[doc = "Bit 17 - RGUFM"]
-    #[inline]
-    pub fn rgufm(&mut self) -> _RGUFMW {
-        _RGUFMW { w: self }
+    #[inline(always)]
+    pub fn rgufm(&mut self) -> RGUFM_W {
+        RGUFM_W { w: self }
     }
 }

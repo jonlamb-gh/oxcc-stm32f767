@@ -1,206 +1,46 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::ISR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CEIFR {
-    bits: bool,
-}
-impl CEIFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CTCIFR {
-    bits: bool,
-}
-impl CTCIFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CAEIFR {
-    bits: bool,
-}
-impl CAEIFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TWIFR {
-    bits: bool,
-}
-impl TWIFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TCIFR {
-    bits: bool,
-}
-impl TCIFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TEIFR {
-    bits: bool,
-}
-impl TEIFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = "Reader of register ISR"]
+pub type R = crate::R<u32, super::ISR>;
+#[doc = "Reader of field `CEIF`"]
+pub type CEIF_R = crate::R<bool, bool>;
+#[doc = "Reader of field `CTCIF`"]
+pub type CTCIF_R = crate::R<bool, bool>;
+#[doc = "Reader of field `CAEIF`"]
+pub type CAEIF_R = crate::R<bool, bool>;
+#[doc = "Reader of field `TWIF`"]
+pub type TWIF_R = crate::R<bool, bool>;
+#[doc = "Reader of field `TCIF`"]
+pub type TCIF_R = crate::R<bool, bool>;
+#[doc = "Reader of field `TEIF`"]
+pub type TEIF_R = crate::R<bool, bool>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 5 - Configuration error interrupt flag"]
-    #[inline]
-    pub fn ceif(&self) -> CEIFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CEIFR { bits }
+    #[inline(always)]
+    pub fn ceif(&self) -> CEIF_R {
+        CEIF_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 4 - CLUT transfer complete interrupt flag"]
-    #[inline]
-    pub fn ctcif(&self) -> CTCIFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CTCIFR { bits }
+    #[inline(always)]
+    pub fn ctcif(&self) -> CTCIF_R {
+        CTCIF_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 3 - CLUT access error interrupt flag"]
-    #[inline]
-    pub fn caeif(&self) -> CAEIFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CAEIFR { bits }
+    #[inline(always)]
+    pub fn caeif(&self) -> CAEIF_R {
+        CAEIF_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Transfer watermark interrupt flag"]
-    #[inline]
-    pub fn twif(&self) -> TWIFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        TWIFR { bits }
+    #[inline(always)]
+    pub fn twif(&self) -> TWIF_R {
+        TWIF_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 1 - Transfer complete interrupt flag"]
-    #[inline]
-    pub fn tcif(&self) -> TCIFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        TCIFR { bits }
+    #[inline(always)]
+    pub fn tcif(&self) -> TCIF_R {
+        TCIF_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 0 - Transfer error interrupt flag"]
-    #[inline]
-    pub fn teif(&self) -> TEIFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        TEIFR { bits }
+    #[inline(always)]
+    pub fn teif(&self) -> TEIF_R {
+        TEIF_R::new((self.bits & 0x01) != 0)
     }
 }

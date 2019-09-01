@@ -1,415 +1,316 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::AHB2LPENR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register AHB2LPENR"]
+pub type R = crate::R<u32, super::AHB2LPENR>;
+#[doc = "Writer for register AHB2LPENR"]
+pub type W = crate::W<u32, super::AHB2LPENR>;
+#[doc = "Register AHB2LPENR `reset()`'s with value 0xf1"]
+impl crate::ResetValue for super::AHB2LPENR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0xf1
     }
 }
-#[doc = "Possible values of the field `OTGFSLPEN`"]
+#[doc = "USB OTG FS clock enable during Sleep mode\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum OTGFSLPENR {
-    #[doc = "Selected module is disabled during Sleep mode"]
+pub enum OTGFSLPEN_A {
+    #[doc = "0: Selected module is disabled during Sleep mode"]
     DISABLEDINSLEEP,
-    #[doc = "Selected module is enabled during Sleep mode"]
+    #[doc = "1: Selected module is enabled during Sleep mode"]
     ENABLEDINSLEEP,
 }
-impl OTGFSLPENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            OTGFSLPENR::DISABLEDINSLEEP => false,
-            OTGFSLPENR::ENABLEDINSLEEP => true,
+impl From<OTGFSLPEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: OTGFSLPEN_A) -> Self {
+        match variant {
+            OTGFSLPEN_A::DISABLEDINSLEEP => false,
+            OTGFSLPEN_A::ENABLEDINSLEEP => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> OTGFSLPENR {
-        match value {
-            false => OTGFSLPENR::DISABLEDINSLEEP,
-            true => OTGFSLPENR::ENABLEDINSLEEP,
+}
+#[doc = "Reader of field `OTGFSLPEN`"]
+pub type OTGFSLPEN_R = crate::R<bool, OTGFSLPEN_A>;
+impl OTGFSLPEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> OTGFSLPEN_A {
+        match self.bits {
+            false => OTGFSLPEN_A::DISABLEDINSLEEP,
+            true => OTGFSLPEN_A::ENABLEDINSLEEP,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLEDINSLEEP`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled_in_sleep(&self) -> bool {
-        *self == OTGFSLPENR::DISABLEDINSLEEP
+        *self == OTGFSLPEN_A::DISABLEDINSLEEP
     }
     #[doc = "Checks if the value of the field is `ENABLEDINSLEEP`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled_in_sleep(&self) -> bool {
-        *self == OTGFSLPENR::ENABLEDINSLEEP
+        *self == OTGFSLPEN_A::ENABLEDINSLEEP
     }
 }
-#[doc = "Possible values of the field `RNGLPEN`"]
-pub type RNGLPENR = OTGFSLPENR;
-#[doc = "Possible values of the field `HASHLPEN`"]
-pub type HASHLPENR = OTGFSLPENR;
-#[doc = "Possible values of the field `CRYPLPEN`"]
-pub type CRYPLPENR = OTGFSLPENR;
-#[doc = "Possible values of the field `DCMILPEN`"]
-pub type DCMILPENR = OTGFSLPENR;
-#[doc = "Values that can be written to the field `OTGFSLPEN`"]
-pub enum OTGFSLPENW {
-    #[doc = "Selected module is disabled during Sleep mode"]
-    DISABLEDINSLEEP,
-    #[doc = "Selected module is enabled during Sleep mode"]
-    ENABLEDINSLEEP,
-}
-impl OTGFSLPENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            OTGFSLPENW::DISABLEDINSLEEP => false,
-            OTGFSLPENW::ENABLEDINSLEEP => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _OTGFSLPENW<'a> {
+#[doc = "Write proxy for field `OTGFSLPEN`"]
+pub struct OTGFSLPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OTGFSLPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: OTGFSLPENW) -> &'a mut W {
+impl<'a> OTGFSLPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: OTGFSLPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(OTGFSLPENW::DISABLEDINSLEEP)
+        self.variant(OTGFSLPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(OTGFSLPENW::ENABLEDINSLEEP)
+        self.variant(OTGFSLPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RNGLPEN`"]
-pub type RNGLPENW = OTGFSLPENW;
-#[doc = r" Proxy"]
-pub struct _RNGLPENW<'a> {
+#[doc = "Random number generator clock enable during Sleep mode"]
+pub type RNGLPEN_A = OTGFSLPEN_A;
+#[doc = "Reader of field `RNGLPEN`"]
+pub type RNGLPEN_R = crate::R<bool, OTGFSLPEN_A>;
+#[doc = "Write proxy for field `RNGLPEN`"]
+pub struct RNGLPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RNGLPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RNGLPENW) -> &'a mut W {
+impl<'a> RNGLPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RNGLPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(OTGFSLPENW::DISABLEDINSLEEP)
+        self.variant(OTGFSLPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(OTGFSLPENW::ENABLEDINSLEEP)
+        self.variant(OTGFSLPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HASHLPEN`"]
-pub type HASHLPENW = OTGFSLPENW;
-#[doc = r" Proxy"]
-pub struct _HASHLPENW<'a> {
+#[doc = "Hash modules clock enable during Sleep mode"]
+pub type HASHLPEN_A = OTGFSLPEN_A;
+#[doc = "Reader of field `HASHLPEN`"]
+pub type HASHLPEN_R = crate::R<bool, OTGFSLPEN_A>;
+#[doc = "Write proxy for field `HASHLPEN`"]
+pub struct HASHLPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HASHLPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HASHLPENW) -> &'a mut W {
+impl<'a> HASHLPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HASHLPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(OTGFSLPENW::DISABLEDINSLEEP)
+        self.variant(OTGFSLPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(OTGFSLPENW::ENABLEDINSLEEP)
+        self.variant(OTGFSLPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CRYPLPEN`"]
-pub type CRYPLPENW = OTGFSLPENW;
-#[doc = r" Proxy"]
-pub struct _CRYPLPENW<'a> {
+#[doc = "Cryptography modules clock enable during Sleep mode"]
+pub type CRYPLPEN_A = OTGFSLPEN_A;
+#[doc = "Reader of field `CRYPLPEN`"]
+pub type CRYPLPEN_R = crate::R<bool, OTGFSLPEN_A>;
+#[doc = "Write proxy for field `CRYPLPEN`"]
+pub struct CRYPLPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CRYPLPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CRYPLPENW) -> &'a mut W {
+impl<'a> CRYPLPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CRYPLPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(OTGFSLPENW::DISABLEDINSLEEP)
+        self.variant(OTGFSLPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(OTGFSLPENW::ENABLEDINSLEEP)
+        self.variant(OTGFSLPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DCMILPEN`"]
-pub type DCMILPENW = OTGFSLPENW;
-#[doc = r" Proxy"]
-pub struct _DCMILPENW<'a> {
+#[doc = "Camera interface enable during Sleep mode"]
+pub type DCMILPEN_A = OTGFSLPEN_A;
+#[doc = "Reader of field `DCMILPEN`"]
+pub type DCMILPEN_R = crate::R<bool, OTGFSLPEN_A>;
+#[doc = "Write proxy for field `DCMILPEN`"]
+pub struct DCMILPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DCMILPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DCMILPENW) -> &'a mut W {
+impl<'a> DCMILPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DCMILPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Selected module is disabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled_in_sleep(self) -> &'a mut W {
-        self.variant(OTGFSLPENW::DISABLEDINSLEEP)
+        self.variant(OTGFSLPEN_A::DISABLEDINSLEEP)
     }
     #[doc = "Selected module is enabled during Sleep mode"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled_in_sleep(self) -> &'a mut W {
-        self.variant(OTGFSLPENW::ENABLEDINSLEEP)
+        self.variant(OTGFSLPEN_A::ENABLEDINSLEEP)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 7 - USB OTG FS clock enable during Sleep mode"]
-    #[inline]
-    pub fn otgfslpen(&self) -> OTGFSLPENR {
-        OTGFSLPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn otgfslpen(&self) -> OTGFSLPEN_R {
+        OTGFSLPEN_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Random number generator clock enable during Sleep mode"]
-    #[inline]
-    pub fn rnglpen(&self) -> RNGLPENR {
-        RNGLPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rnglpen(&self) -> RNGLPEN_R {
+        RNGLPEN_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Hash modules clock enable during Sleep mode"]
-    #[inline]
-    pub fn hashlpen(&self) -> HASHLPENR {
-        HASHLPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn hashlpen(&self) -> HASHLPEN_R {
+        HASHLPEN_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Cryptography modules clock enable during Sleep mode"]
-    #[inline]
-    pub fn cryplpen(&self) -> CRYPLPENR {
-        CRYPLPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn cryplpen(&self) -> CRYPLPEN_R {
+        CRYPLPEN_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 0 - Camera interface enable during Sleep mode"]
-    #[inline]
-    pub fn dcmilpen(&self) -> DCMILPENR {
-        DCMILPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dcmilpen(&self) -> DCMILPEN_R {
+        DCMILPEN_R::new((self.bits & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0xf1 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 7 - USB OTG FS clock enable during Sleep mode"]
-    #[inline]
-    pub fn otgfslpen(&mut self) -> _OTGFSLPENW {
-        _OTGFSLPENW { w: self }
+    #[inline(always)]
+    pub fn otgfslpen(&mut self) -> OTGFSLPEN_W {
+        OTGFSLPEN_W { w: self }
     }
     #[doc = "Bit 6 - Random number generator clock enable during Sleep mode"]
-    #[inline]
-    pub fn rnglpen(&mut self) -> _RNGLPENW {
-        _RNGLPENW { w: self }
+    #[inline(always)]
+    pub fn rnglpen(&mut self) -> RNGLPEN_W {
+        RNGLPEN_W { w: self }
     }
     #[doc = "Bit 5 - Hash modules clock enable during Sleep mode"]
-    #[inline]
-    pub fn hashlpen(&mut self) -> _HASHLPENW {
-        _HASHLPENW { w: self }
+    #[inline(always)]
+    pub fn hashlpen(&mut self) -> HASHLPEN_W {
+        HASHLPEN_W { w: self }
     }
     #[doc = "Bit 4 - Cryptography modules clock enable during Sleep mode"]
-    #[inline]
-    pub fn cryplpen(&mut self) -> _CRYPLPENW {
-        _CRYPLPENW { w: self }
+    #[inline(always)]
+    pub fn cryplpen(&mut self) -> CRYPLPEN_W {
+        CRYPLPEN_W { w: self }
     }
     #[doc = "Bit 0 - Camera interface enable during Sleep mode"]
-    #[inline]
-    pub fn dcmilpen(&mut self) -> _DCMILPENW {
-        _DCMILPENW { w: self }
+    #[inline(always)]
+    pub fn dcmilpen(&mut self) -> DCMILPEN_W {
+        DCMILPEN_W { w: self }
     }
 }

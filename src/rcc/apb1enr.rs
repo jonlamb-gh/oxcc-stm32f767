@@ -1,1809 +1,1550 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::APB1ENR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register APB1ENR"]
+pub type R = crate::R<u32, super::APB1ENR>;
+#[doc = "Writer for register APB1ENR"]
+pub type W = crate::W<u32, super::APB1ENR>;
+#[doc = "Register APB1ENR `reset()`'s with value 0"]
+impl crate::ResetValue for super::APB1ENR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `TIM2EN`"]
+#[doc = "TIM2 clock enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TIM2ENR {
-    #[doc = "The selected clock is disabled"]
+pub enum TIM2EN_A {
+    #[doc = "0: The selected clock is disabled"]
     DISABLED,
-    #[doc = "The selected clock is enabled"]
+    #[doc = "1: The selected clock is enabled"]
     ENABLED,
 }
-impl TIM2ENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TIM2ENR::DISABLED => false,
-            TIM2ENR::ENABLED => true,
+impl From<TIM2EN_A> for bool {
+    #[inline(always)]
+    fn from(variant: TIM2EN_A) -> Self {
+        match variant {
+            TIM2EN_A::DISABLED => false,
+            TIM2EN_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TIM2ENR {
-        match value {
-            false => TIM2ENR::DISABLED,
-            true => TIM2ENR::ENABLED,
+}
+#[doc = "Reader of field `TIM2EN`"]
+pub type TIM2EN_R = crate::R<bool, TIM2EN_A>;
+impl TIM2EN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TIM2EN_A {
+        match self.bits {
+            false => TIM2EN_A::DISABLED,
+            true => TIM2EN_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == TIM2ENR::DISABLED
+        *self == TIM2EN_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == TIM2ENR::ENABLED
+        *self == TIM2EN_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `TIM3EN`"]
-pub type TIM3ENR = TIM2ENR;
-#[doc = "Possible values of the field `TIM4EN`"]
-pub type TIM4ENR = TIM2ENR;
-#[doc = "Possible values of the field `TIM5EN`"]
-pub type TIM5ENR = TIM2ENR;
-#[doc = "Possible values of the field `TIM6EN`"]
-pub type TIM6ENR = TIM2ENR;
-#[doc = "Possible values of the field `TIM7EN`"]
-pub type TIM7ENR = TIM2ENR;
-#[doc = "Possible values of the field `TIM12EN`"]
-pub type TIM12ENR = TIM2ENR;
-#[doc = "Possible values of the field `TIM13EN`"]
-pub type TIM13ENR = TIM2ENR;
-#[doc = "Possible values of the field `TIM14EN`"]
-pub type TIM14ENR = TIM2ENR;
-#[doc = "Possible values of the field `WWDGEN`"]
-pub type WWDGENR = TIM2ENR;
-#[doc = "Possible values of the field `SPI2EN`"]
-pub type SPI2ENR = TIM2ENR;
-#[doc = "Possible values of the field `SPI3EN`"]
-pub type SPI3ENR = TIM2ENR;
-#[doc = "Possible values of the field `USART2EN`"]
-pub type USART2ENR = TIM2ENR;
-#[doc = "Possible values of the field `USART3EN`"]
-pub type USART3ENR = TIM2ENR;
-#[doc = "Possible values of the field `UART4EN`"]
-pub type UART4ENR = TIM2ENR;
-#[doc = "Possible values of the field `UART5EN`"]
-pub type UART5ENR = TIM2ENR;
-#[doc = "Possible values of the field `I2C1EN`"]
-pub type I2C1ENR = TIM2ENR;
-#[doc = "Possible values of the field `I2C2EN`"]
-pub type I2C2ENR = TIM2ENR;
-#[doc = "Possible values of the field `I2C3EN`"]
-pub type I2C3ENR = TIM2ENR;
-#[doc = "Possible values of the field `CAN1EN`"]
-pub type CAN1ENR = TIM2ENR;
-#[doc = "Possible values of the field `CAN2EN`"]
-pub type CAN2ENR = TIM2ENR;
-#[doc = "Possible values of the field `PWREN`"]
-pub type PWRENR = TIM2ENR;
-#[doc = "Possible values of the field `DACEN`"]
-pub type DACENR = TIM2ENR;
-#[doc = r" Value of the field"]
-pub struct UART7ENRR {
-    bits: bool,
-}
-impl UART7ENRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct UART8ENRR {
-    bits: bool,
-}
-impl UART8ENRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = "Possible values of the field `SPDIFRXEN`"]
-pub type SPDIFRXENR = TIM2ENR;
-#[doc = "Possible values of the field `CECEN`"]
-pub type CECENR = TIM2ENR;
-#[doc = "Possible values of the field `LPTMI1EN`"]
-pub type LPTMI1ENR = TIM2ENR;
-#[doc = "Possible values of the field `I2C4EN`"]
-pub type I2C4ENR = TIM2ENR;
-#[doc = "Values that can be written to the field `TIM2EN`"]
-pub enum TIM2ENW {
-    #[doc = "The selected clock is disabled"]
-    DISABLED,
-    #[doc = "The selected clock is enabled"]
-    ENABLED,
-}
-impl TIM2ENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TIM2ENW::DISABLED => false,
-            TIM2ENW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TIM2ENW<'a> {
+#[doc = "Write proxy for field `TIM2EN`"]
+pub struct TIM2EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM2ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM2ENW) -> &'a mut W {
+impl<'a> TIM2EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM2EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM3EN`"]
-pub type TIM3ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _TIM3ENW<'a> {
+#[doc = "TIM3 clock enable"]
+pub type TIM3EN_A = TIM2EN_A;
+#[doc = "Reader of field `TIM3EN`"]
+pub type TIM3EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `TIM3EN`"]
+pub struct TIM3EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM3ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM3ENW) -> &'a mut W {
+impl<'a> TIM3EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM3EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM4EN`"]
-pub type TIM4ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _TIM4ENW<'a> {
+#[doc = "TIM4 clock enable"]
+pub type TIM4EN_A = TIM2EN_A;
+#[doc = "Reader of field `TIM4EN`"]
+pub type TIM4EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `TIM4EN`"]
+pub struct TIM4EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM4ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM4ENW) -> &'a mut W {
+impl<'a> TIM4EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM4EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM5EN`"]
-pub type TIM5ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _TIM5ENW<'a> {
+#[doc = "TIM5 clock enable"]
+pub type TIM5EN_A = TIM2EN_A;
+#[doc = "Reader of field `TIM5EN`"]
+pub type TIM5EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `TIM5EN`"]
+pub struct TIM5EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM5ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM5ENW) -> &'a mut W {
+impl<'a> TIM5EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM5EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM6EN`"]
-pub type TIM6ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _TIM6ENW<'a> {
+#[doc = "TIM6 clock enable"]
+pub type TIM6EN_A = TIM2EN_A;
+#[doc = "Reader of field `TIM6EN`"]
+pub type TIM6EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `TIM6EN`"]
+pub struct TIM6EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM6ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM6ENW) -> &'a mut W {
+impl<'a> TIM6EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM6EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM7EN`"]
-pub type TIM7ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _TIM7ENW<'a> {
+#[doc = "TIM7 clock enable"]
+pub type TIM7EN_A = TIM2EN_A;
+#[doc = "Reader of field `TIM7EN`"]
+pub type TIM7EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `TIM7EN`"]
+pub struct TIM7EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM7ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM7ENW) -> &'a mut W {
+impl<'a> TIM7EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM7EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM12EN`"]
-pub type TIM12ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _TIM12ENW<'a> {
+#[doc = "TIM12 clock enable"]
+pub type TIM12EN_A = TIM2EN_A;
+#[doc = "Reader of field `TIM12EN`"]
+pub type TIM12EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `TIM12EN`"]
+pub struct TIM12EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM12ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM12ENW) -> &'a mut W {
+impl<'a> TIM12EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM12EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM13EN`"]
-pub type TIM13ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _TIM13ENW<'a> {
+#[doc = "TIM13 clock enable"]
+pub type TIM13EN_A = TIM2EN_A;
+#[doc = "Reader of field `TIM13EN`"]
+pub type TIM13EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `TIM13EN`"]
+pub struct TIM13EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM13ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM13ENW) -> &'a mut W {
+impl<'a> TIM13EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM13EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM14EN`"]
-pub type TIM14ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _TIM14ENW<'a> {
+#[doc = "TIM14 clock enable"]
+pub type TIM14EN_A = TIM2EN_A;
+#[doc = "Reader of field `TIM14EN`"]
+pub type TIM14EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `TIM14EN`"]
+pub struct TIM14EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM14ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM14ENW) -> &'a mut W {
+impl<'a> TIM14EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM14EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WWDGEN`"]
-pub type WWDGENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _WWDGENW<'a> {
+#[doc = "Window watchdog clock enable"]
+pub type WWDGEN_A = TIM2EN_A;
+#[doc = "Reader of field `WWDGEN`"]
+pub type WWDGEN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `WWDGEN`"]
+pub struct WWDGEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WWDGENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WWDGENW) -> &'a mut W {
+impl<'a> WWDGEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WWDGEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SPI2EN`"]
-pub type SPI2ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _SPI2ENW<'a> {
+#[doc = "SPI2 clock enable"]
+pub type SPI2EN_A = TIM2EN_A;
+#[doc = "Reader of field `SPI2EN`"]
+pub type SPI2EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `SPI2EN`"]
+pub struct SPI2EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPI2ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SPI2ENW) -> &'a mut W {
+impl<'a> SPI2EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SPI2EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 14;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SPI3EN`"]
-pub type SPI3ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _SPI3ENW<'a> {
+#[doc = "SPI3 clock enable"]
+pub type SPI3EN_A = TIM2EN_A;
+#[doc = "Reader of field `SPI3EN`"]
+pub type SPI3EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `SPI3EN`"]
+pub struct SPI3EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPI3ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SPI3ENW) -> &'a mut W {
+impl<'a> SPI3EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SPI3EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 15;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `USART2EN`"]
-pub type USART2ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _USART2ENW<'a> {
+#[doc = "USART 2 clock enable"]
+pub type USART2EN_A = TIM2EN_A;
+#[doc = "Reader of field `USART2EN`"]
+pub type USART2EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `USART2EN`"]
+pub struct USART2EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USART2ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: USART2ENW) -> &'a mut W {
+impl<'a> USART2EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: USART2EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `USART3EN`"]
-pub type USART3ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _USART3ENW<'a> {
+#[doc = "USART3 clock enable"]
+pub type USART3EN_A = TIM2EN_A;
+#[doc = "Reader of field `USART3EN`"]
+pub type USART3EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `USART3EN`"]
+pub struct USART3EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USART3ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: USART3ENW) -> &'a mut W {
+impl<'a> USART3EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: USART3EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `UART4EN`"]
-pub type UART4ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _UART4ENW<'a> {
+#[doc = "UART4 clock enable"]
+pub type UART4EN_A = TIM2EN_A;
+#[doc = "Reader of field `UART4EN`"]
+pub type UART4EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `UART4EN`"]
+pub struct UART4EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UART4ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: UART4ENW) -> &'a mut W {
+impl<'a> UART4EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: UART4EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `UART5EN`"]
-pub type UART5ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _UART5ENW<'a> {
+#[doc = "UART5 clock enable"]
+pub type UART5EN_A = TIM2EN_A;
+#[doc = "Reader of field `UART5EN`"]
+pub type UART5EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `UART5EN`"]
+pub struct UART5EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UART5ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: UART5ENW) -> &'a mut W {
+impl<'a> UART5EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: UART5EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `I2C1EN`"]
-pub type I2C1ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _I2C1ENW<'a> {
+#[doc = "I2C1 clock enable"]
+pub type I2C1EN_A = TIM2EN_A;
+#[doc = "Reader of field `I2C1EN`"]
+pub type I2C1EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `I2C1EN`"]
+pub struct I2C1EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2C1ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: I2C1ENW) -> &'a mut W {
+impl<'a> I2C1EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: I2C1EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 21;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `I2C2EN`"]
-pub type I2C2ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _I2C2ENW<'a> {
+#[doc = "I2C2 clock enable"]
+pub type I2C2EN_A = TIM2EN_A;
+#[doc = "Reader of field `I2C2EN`"]
+pub type I2C2EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `I2C2EN`"]
+pub struct I2C2EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2C2ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: I2C2ENW) -> &'a mut W {
+impl<'a> I2C2EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: I2C2EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `I2C3EN`"]
-pub type I2C3ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _I2C3ENW<'a> {
+#[doc = "I2C3 clock enable"]
+pub type I2C3EN_A = TIM2EN_A;
+#[doc = "Reader of field `I2C3EN`"]
+pub type I2C3EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `I2C3EN`"]
+pub struct I2C3EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2C3ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: I2C3ENW) -> &'a mut W {
+impl<'a> I2C3EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: I2C3EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 23;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 23)) | (((value as u32) & 0x01) << 23);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CAN1EN`"]
-pub type CAN1ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _CAN1ENW<'a> {
+#[doc = "CAN 1 clock enable"]
+pub type CAN1EN_A = TIM2EN_A;
+#[doc = "Reader of field `CAN1EN`"]
+pub type CAN1EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `CAN1EN`"]
+pub struct CAN1EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CAN1ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CAN1ENW) -> &'a mut W {
+impl<'a> CAN1EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CAN1EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 25;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CAN2EN`"]
-pub type CAN2ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _CAN2ENW<'a> {
+#[doc = "CAN 2 clock enable"]
+pub type CAN2EN_A = TIM2EN_A;
+#[doc = "Reader of field `CAN2EN`"]
+pub type CAN2EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `CAN2EN`"]
+pub struct CAN2EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CAN2ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CAN2ENW) -> &'a mut W {
+impl<'a> CAN2EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CAN2EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 26;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PWREN`"]
-pub type PWRENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _PWRENW<'a> {
+#[doc = "Power interface clock enable"]
+pub type PWREN_A = TIM2EN_A;
+#[doc = "Reader of field `PWREN`"]
+pub type PWREN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `PWREN`"]
+pub struct PWREN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PWRENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PWRENW) -> &'a mut W {
+impl<'a> PWREN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PWREN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DACEN`"]
-pub type DACENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _DACENW<'a> {
+#[doc = "DAC interface clock enable"]
+pub type DACEN_A = TIM2EN_A;
+#[doc = "Reader of field `DACEN`"]
+pub type DACEN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `DACEN`"]
+pub struct DACEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DACENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DACENW) -> &'a mut W {
+impl<'a> DACEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DACEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 29;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 29)) | (((value as u32) & 0x01) << 29);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _UART7ENRW<'a> {
+#[doc = "Reader of field `UART7ENR`"]
+pub type UART7ENR_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `UART7ENR`"]
+pub struct UART7ENR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UART7ENRW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> UART7ENR_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 30;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _UART8ENRW<'a> {
+#[doc = "Reader of field `UART8ENR`"]
+pub type UART8ENR_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `UART8ENR`"]
+pub struct UART8ENR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UART8ENRW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> UART8ENR_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SPDIFRXEN`"]
-pub type SPDIFRXENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _SPDIFRXENW<'a> {
+#[doc = "SPDIF-RX clock enable"]
+pub type SPDIFRXEN_A = TIM2EN_A;
+#[doc = "Reader of field `SPDIFRXEN`"]
+pub type SPDIFRXEN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `SPDIFRXEN`"]
+pub struct SPDIFRXEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPDIFRXENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SPDIFRXENW) -> &'a mut W {
+impl<'a> SPDIFRXEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SPDIFRXEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CECEN`"]
-pub type CECENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _CECENW<'a> {
+#[doc = "HDMI-CEN clock enable"]
+pub type CECEN_A = TIM2EN_A;
+#[doc = "Reader of field `CECEN`"]
+pub type CECEN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `CECEN`"]
+pub struct CECEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CECENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CECENW) -> &'a mut W {
+impl<'a> CECEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CECEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 27;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LPTMI1EN`"]
-pub type LPTMI1ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _LPTMI1ENW<'a> {
+#[doc = "Low power timer 1 clock enable"]
+pub type LPTMI1EN_A = TIM2EN_A;
+#[doc = "Reader of field `LPTMI1EN`"]
+pub type LPTMI1EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `LPTMI1EN`"]
+pub struct LPTMI1EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LPTMI1ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LPTMI1ENW) -> &'a mut W {
+impl<'a> LPTMI1EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LPTMI1EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `I2C4EN`"]
-pub type I2C4ENW = TIM2ENW;
-#[doc = r" Proxy"]
-pub struct _I2C4ENW<'a> {
+#[doc = "I2C4 clock enable"]
+pub type I2C4EN_A = TIM2EN_A;
+#[doc = "Reader of field `I2C4EN`"]
+pub type I2C4EN_R = crate::R<bool, TIM2EN_A>;
+#[doc = "Write proxy for field `I2C4EN`"]
+pub struct I2C4EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2C4ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: I2C4ENW) -> &'a mut W {
+impl<'a> I2C4EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: I2C4EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::DISABLED)
+        self.variant(TIM2EN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TIM2ENW::ENABLED)
+        self.variant(TIM2EN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - TIM2 clock enable"]
-    #[inline]
-    pub fn tim2en(&self) -> TIM2ENR {
-        TIM2ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim2en(&self) -> TIM2EN_R {
+        TIM2EN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - TIM3 clock enable"]
-    #[inline]
-    pub fn tim3en(&self) -> TIM3ENR {
-        TIM3ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim3en(&self) -> TIM3EN_R {
+        TIM3EN_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - TIM4 clock enable"]
-    #[inline]
-    pub fn tim4en(&self) -> TIM4ENR {
-        TIM4ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim4en(&self) -> TIM4EN_R {
+        TIM4EN_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - TIM5 clock enable"]
-    #[inline]
-    pub fn tim5en(&self) -> TIM5ENR {
-        TIM5ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim5en(&self) -> TIM5EN_R {
+        TIM5EN_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - TIM6 clock enable"]
-    #[inline]
-    pub fn tim6en(&self) -> TIM6ENR {
-        TIM6ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim6en(&self) -> TIM6EN_R {
+        TIM6EN_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - TIM7 clock enable"]
-    #[inline]
-    pub fn tim7en(&self) -> TIM7ENR {
-        TIM7ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim7en(&self) -> TIM7EN_R {
+        TIM7EN_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - TIM12 clock enable"]
-    #[inline]
-    pub fn tim12en(&self) -> TIM12ENR {
-        TIM12ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim12en(&self) -> TIM12EN_R {
+        TIM12EN_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - TIM13 clock enable"]
-    #[inline]
-    pub fn tim13en(&self) -> TIM13ENR {
-        TIM13ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim13en(&self) -> TIM13EN_R {
+        TIM13EN_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - TIM14 clock enable"]
-    #[inline]
-    pub fn tim14en(&self) -> TIM14ENR {
-        TIM14ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim14en(&self) -> TIM14EN_R {
+        TIM14EN_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Window watchdog clock enable"]
-    #[inline]
-    pub fn wwdgen(&self) -> WWDGENR {
-        WWDGENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn wwdgen(&self) -> WWDGEN_R {
+        WWDGEN_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 14 - SPI2 clock enable"]
-    #[inline]
-    pub fn spi2en(&self) -> SPI2ENR {
-        SPI2ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn spi2en(&self) -> SPI2EN_R {
+        SPI2EN_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - SPI3 clock enable"]
-    #[inline]
-    pub fn spi3en(&self) -> SPI3ENR {
-        SPI3ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn spi3en(&self) -> SPI3EN_R {
+        SPI3EN_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 17 - USART 2 clock enable"]
-    #[inline]
-    pub fn usart2en(&self) -> USART2ENR {
-        USART2ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn usart2en(&self) -> USART2EN_R {
+        USART2EN_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - USART3 clock enable"]
-    #[inline]
-    pub fn usart3en(&self) -> USART3ENR {
-        USART3ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn usart3en(&self) -> USART3EN_R {
+        USART3EN_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - UART4 clock enable"]
-    #[inline]
-    pub fn uart4en(&self) -> UART4ENR {
-        UART4ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn uart4en(&self) -> UART4EN_R {
+        UART4EN_R::new(((self.bits >> 19) & 0x01) != 0)
     }
     #[doc = "Bit 20 - UART5 clock enable"]
-    #[inline]
-    pub fn uart5en(&self) -> UART5ENR {
-        UART5ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn uart5en(&self) -> UART5EN_R {
+        UART5EN_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 21 - I2C1 clock enable"]
-    #[inline]
-    pub fn i2c1en(&self) -> I2C1ENR {
-        I2C1ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 21;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn i2c1en(&self) -> I2C1EN_R {
+        I2C1EN_R::new(((self.bits >> 21) & 0x01) != 0)
     }
     #[doc = "Bit 22 - I2C2 clock enable"]
-    #[inline]
-    pub fn i2c2en(&self) -> I2C2ENR {
-        I2C2ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn i2c2en(&self) -> I2C2EN_R {
+        I2C2EN_R::new(((self.bits >> 22) & 0x01) != 0)
     }
     #[doc = "Bit 23 - I2C3 clock enable"]
-    #[inline]
-    pub fn i2c3en(&self) -> I2C3ENR {
-        I2C3ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 23;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn i2c3en(&self) -> I2C3EN_R {
+        I2C3EN_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bit 25 - CAN 1 clock enable"]
-    #[inline]
-    pub fn can1en(&self) -> CAN1ENR {
-        CAN1ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 25;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn can1en(&self) -> CAN1EN_R {
+        CAN1EN_R::new(((self.bits >> 25) & 0x01) != 0)
     }
     #[doc = "Bit 26 - CAN 2 clock enable"]
-    #[inline]
-    pub fn can2en(&self) -> CAN2ENR {
-        CAN2ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 26;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn can2en(&self) -> CAN2EN_R {
+        CAN2EN_R::new(((self.bits >> 26) & 0x01) != 0)
     }
     #[doc = "Bit 28 - Power interface clock enable"]
-    #[inline]
-    pub fn pwren(&self) -> PWRENR {
-        PWRENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pwren(&self) -> PWREN_R {
+        PWREN_R::new(((self.bits >> 28) & 0x01) != 0)
     }
     #[doc = "Bit 29 - DAC interface clock enable"]
-    #[inline]
-    pub fn dacen(&self) -> DACENR {
-        DACENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 29;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dacen(&self) -> DACEN_R {
+        DACEN_R::new(((self.bits >> 29) & 0x01) != 0)
     }
     #[doc = "Bit 30 - UART7 clock enable"]
-    #[inline]
-    pub fn uart7enr(&self) -> UART7ENRR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 30;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        UART7ENRR { bits }
+    #[inline(always)]
+    pub fn uart7enr(&self) -> UART7ENR_R {
+        UART7ENR_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - UART8 clock enable"]
-    #[inline]
-    pub fn uart8enr(&self) -> UART8ENRR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        UART8ENRR { bits }
+    #[inline(always)]
+    pub fn uart8enr(&self) -> UART8ENR_R {
+        UART8ENR_R::new(((self.bits >> 31) & 0x01) != 0)
     }
     #[doc = "Bit 16 - SPDIF-RX clock enable"]
-    #[inline]
-    pub fn spdifrxen(&self) -> SPDIFRXENR {
-        SPDIFRXENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn spdifrxen(&self) -> SPDIFRXEN_R {
+        SPDIFRXEN_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 27 - HDMI-CEN clock enable"]
-    #[inline]
-    pub fn cecen(&self) -> CECENR {
-        CECENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 27;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn cecen(&self) -> CECEN_R {
+        CECEN_R::new(((self.bits >> 27) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Low power timer 1 clock enable"]
-    #[inline]
-    pub fn lptmi1en(&self) -> LPTMI1ENR {
-        LPTMI1ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn lptmi1en(&self) -> LPTMI1EN_R {
+        LPTMI1EN_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 24 - I2C4 clock enable"]
-    #[inline]
-    pub fn i2c4en(&self) -> I2C4ENR {
-        I2C4ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn i2c4en(&self) -> I2C4EN_R {
+        I2C4EN_R::new(((self.bits >> 24) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - TIM2 clock enable"]
-    #[inline]
-    pub fn tim2en(&mut self) -> _TIM2ENW {
-        _TIM2ENW { w: self }
+    #[inline(always)]
+    pub fn tim2en(&mut self) -> TIM2EN_W {
+        TIM2EN_W { w: self }
     }
     #[doc = "Bit 1 - TIM3 clock enable"]
-    #[inline]
-    pub fn tim3en(&mut self) -> _TIM3ENW {
-        _TIM3ENW { w: self }
+    #[inline(always)]
+    pub fn tim3en(&mut self) -> TIM3EN_W {
+        TIM3EN_W { w: self }
     }
     #[doc = "Bit 2 - TIM4 clock enable"]
-    #[inline]
-    pub fn tim4en(&mut self) -> _TIM4ENW {
-        _TIM4ENW { w: self }
+    #[inline(always)]
+    pub fn tim4en(&mut self) -> TIM4EN_W {
+        TIM4EN_W { w: self }
     }
     #[doc = "Bit 3 - TIM5 clock enable"]
-    #[inline]
-    pub fn tim5en(&mut self) -> _TIM5ENW {
-        _TIM5ENW { w: self }
+    #[inline(always)]
+    pub fn tim5en(&mut self) -> TIM5EN_W {
+        TIM5EN_W { w: self }
     }
     #[doc = "Bit 4 - TIM6 clock enable"]
-    #[inline]
-    pub fn tim6en(&mut self) -> _TIM6ENW {
-        _TIM6ENW { w: self }
+    #[inline(always)]
+    pub fn tim6en(&mut self) -> TIM6EN_W {
+        TIM6EN_W { w: self }
     }
     #[doc = "Bit 5 - TIM7 clock enable"]
-    #[inline]
-    pub fn tim7en(&mut self) -> _TIM7ENW {
-        _TIM7ENW { w: self }
+    #[inline(always)]
+    pub fn tim7en(&mut self) -> TIM7EN_W {
+        TIM7EN_W { w: self }
     }
     #[doc = "Bit 6 - TIM12 clock enable"]
-    #[inline]
-    pub fn tim12en(&mut self) -> _TIM12ENW {
-        _TIM12ENW { w: self }
+    #[inline(always)]
+    pub fn tim12en(&mut self) -> TIM12EN_W {
+        TIM12EN_W { w: self }
     }
     #[doc = "Bit 7 - TIM13 clock enable"]
-    #[inline]
-    pub fn tim13en(&mut self) -> _TIM13ENW {
-        _TIM13ENW { w: self }
+    #[inline(always)]
+    pub fn tim13en(&mut self) -> TIM13EN_W {
+        TIM13EN_W { w: self }
     }
     #[doc = "Bit 8 - TIM14 clock enable"]
-    #[inline]
-    pub fn tim14en(&mut self) -> _TIM14ENW {
-        _TIM14ENW { w: self }
+    #[inline(always)]
+    pub fn tim14en(&mut self) -> TIM14EN_W {
+        TIM14EN_W { w: self }
     }
     #[doc = "Bit 11 - Window watchdog clock enable"]
-    #[inline]
-    pub fn wwdgen(&mut self) -> _WWDGENW {
-        _WWDGENW { w: self }
+    #[inline(always)]
+    pub fn wwdgen(&mut self) -> WWDGEN_W {
+        WWDGEN_W { w: self }
     }
     #[doc = "Bit 14 - SPI2 clock enable"]
-    #[inline]
-    pub fn spi2en(&mut self) -> _SPI2ENW {
-        _SPI2ENW { w: self }
+    #[inline(always)]
+    pub fn spi2en(&mut self) -> SPI2EN_W {
+        SPI2EN_W { w: self }
     }
     #[doc = "Bit 15 - SPI3 clock enable"]
-    #[inline]
-    pub fn spi3en(&mut self) -> _SPI3ENW {
-        _SPI3ENW { w: self }
+    #[inline(always)]
+    pub fn spi3en(&mut self) -> SPI3EN_W {
+        SPI3EN_W { w: self }
     }
     #[doc = "Bit 17 - USART 2 clock enable"]
-    #[inline]
-    pub fn usart2en(&mut self) -> _USART2ENW {
-        _USART2ENW { w: self }
+    #[inline(always)]
+    pub fn usart2en(&mut self) -> USART2EN_W {
+        USART2EN_W { w: self }
     }
     #[doc = "Bit 18 - USART3 clock enable"]
-    #[inline]
-    pub fn usart3en(&mut self) -> _USART3ENW {
-        _USART3ENW { w: self }
+    #[inline(always)]
+    pub fn usart3en(&mut self) -> USART3EN_W {
+        USART3EN_W { w: self }
     }
     #[doc = "Bit 19 - UART4 clock enable"]
-    #[inline]
-    pub fn uart4en(&mut self) -> _UART4ENW {
-        _UART4ENW { w: self }
+    #[inline(always)]
+    pub fn uart4en(&mut self) -> UART4EN_W {
+        UART4EN_W { w: self }
     }
     #[doc = "Bit 20 - UART5 clock enable"]
-    #[inline]
-    pub fn uart5en(&mut self) -> _UART5ENW {
-        _UART5ENW { w: self }
+    #[inline(always)]
+    pub fn uart5en(&mut self) -> UART5EN_W {
+        UART5EN_W { w: self }
     }
     #[doc = "Bit 21 - I2C1 clock enable"]
-    #[inline]
-    pub fn i2c1en(&mut self) -> _I2C1ENW {
-        _I2C1ENW { w: self }
+    #[inline(always)]
+    pub fn i2c1en(&mut self) -> I2C1EN_W {
+        I2C1EN_W { w: self }
     }
     #[doc = "Bit 22 - I2C2 clock enable"]
-    #[inline]
-    pub fn i2c2en(&mut self) -> _I2C2ENW {
-        _I2C2ENW { w: self }
+    #[inline(always)]
+    pub fn i2c2en(&mut self) -> I2C2EN_W {
+        I2C2EN_W { w: self }
     }
     #[doc = "Bit 23 - I2C3 clock enable"]
-    #[inline]
-    pub fn i2c3en(&mut self) -> _I2C3ENW {
-        _I2C3ENW { w: self }
+    #[inline(always)]
+    pub fn i2c3en(&mut self) -> I2C3EN_W {
+        I2C3EN_W { w: self }
     }
     #[doc = "Bit 25 - CAN 1 clock enable"]
-    #[inline]
-    pub fn can1en(&mut self) -> _CAN1ENW {
-        _CAN1ENW { w: self }
+    #[inline(always)]
+    pub fn can1en(&mut self) -> CAN1EN_W {
+        CAN1EN_W { w: self }
     }
     #[doc = "Bit 26 - CAN 2 clock enable"]
-    #[inline]
-    pub fn can2en(&mut self) -> _CAN2ENW {
-        _CAN2ENW { w: self }
+    #[inline(always)]
+    pub fn can2en(&mut self) -> CAN2EN_W {
+        CAN2EN_W { w: self }
     }
     #[doc = "Bit 28 - Power interface clock enable"]
-    #[inline]
-    pub fn pwren(&mut self) -> _PWRENW {
-        _PWRENW { w: self }
+    #[inline(always)]
+    pub fn pwren(&mut self) -> PWREN_W {
+        PWREN_W { w: self }
     }
     #[doc = "Bit 29 - DAC interface clock enable"]
-    #[inline]
-    pub fn dacen(&mut self) -> _DACENW {
-        _DACENW { w: self }
+    #[inline(always)]
+    pub fn dacen(&mut self) -> DACEN_W {
+        DACEN_W { w: self }
     }
     #[doc = "Bit 30 - UART7 clock enable"]
-    #[inline]
-    pub fn uart7enr(&mut self) -> _UART7ENRW {
-        _UART7ENRW { w: self }
+    #[inline(always)]
+    pub fn uart7enr(&mut self) -> UART7ENR_W {
+        UART7ENR_W { w: self }
     }
     #[doc = "Bit 31 - UART8 clock enable"]
-    #[inline]
-    pub fn uart8enr(&mut self) -> _UART8ENRW {
-        _UART8ENRW { w: self }
+    #[inline(always)]
+    pub fn uart8enr(&mut self) -> UART8ENR_W {
+        UART8ENR_W { w: self }
     }
     #[doc = "Bit 16 - SPDIF-RX clock enable"]
-    #[inline]
-    pub fn spdifrxen(&mut self) -> _SPDIFRXENW {
-        _SPDIFRXENW { w: self }
+    #[inline(always)]
+    pub fn spdifrxen(&mut self) -> SPDIFRXEN_W {
+        SPDIFRXEN_W { w: self }
     }
     #[doc = "Bit 27 - HDMI-CEN clock enable"]
-    #[inline]
-    pub fn cecen(&mut self) -> _CECENW {
-        _CECENW { w: self }
+    #[inline(always)]
+    pub fn cecen(&mut self) -> CECEN_W {
+        CECEN_W { w: self }
     }
     #[doc = "Bit 9 - Low power timer 1 clock enable"]
-    #[inline]
-    pub fn lptmi1en(&mut self) -> _LPTMI1ENW {
-        _LPTMI1ENW { w: self }
+    #[inline(always)]
+    pub fn lptmi1en(&mut self) -> LPTMI1EN_W {
+        LPTMI1EN_W { w: self }
     }
     #[doc = "Bit 24 - I2C4 clock enable"]
-    #[inline]
-    pub fn i2c4en(&mut self) -> _I2C4ENW {
-        _I2C4ENW { w: self }
+    #[inline(always)]
+    pub fn i2c4en(&mut self) -> I2C4EN_W {
+        I2C4EN_W { w: self }
     }
 }

@@ -1,125 +1,39 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::CTR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct _IMINLINER {
-    bits: u8,
-}
-impl _IMINLINER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DMINLINER {
-    bits: u8,
-}
-impl DMINLINER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct ERGR {
-    bits: u8,
-}
-impl ERGR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CWGR {
-    bits: u8,
-}
-impl CWGR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct FORMATR {
-    bits: u8,
-}
-impl FORMATR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
+#[doc = "Reader of register CTR"]
+pub type R = crate::R<u32, super::CTR>;
+#[doc = "Reader of field `_IminLine`"]
+pub type _IMINLINE_R = crate::R<u8, u8>;
+#[doc = "Reader of field `DMinLine`"]
+pub type DMINLINE_R = crate::R<u8, u8>;
+#[doc = "Reader of field `ERG`"]
+pub type ERG_R = crate::R<u8, u8>;
+#[doc = "Reader of field `CWG`"]
+pub type CWG_R = crate::R<u8, u8>;
+#[doc = "Reader of field `Format`"]
+pub type FORMAT_R = crate::R<u8, u8>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - IminLine"]
-    #[inline]
-    pub fn _imin_line(&self) -> _IMINLINER {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        _IMINLINER { bits }
+    #[inline(always)]
+    pub fn _imin_line(&self) -> _IMINLINE_R {
+        _IMINLINE_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bits 16:19 - DMinLine"]
-    #[inline]
-    pub fn dmin_line(&self) -> DMINLINER {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        DMINLINER { bits }
+    #[inline(always)]
+    pub fn dmin_line(&self) -> DMINLINE_R {
+        DMINLINE_R::new(((self.bits >> 16) & 0x0f) as u8)
     }
     #[doc = "Bits 20:23 - ERG"]
-    #[inline]
-    pub fn erg(&self) -> ERGR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        ERGR { bits }
+    #[inline(always)]
+    pub fn erg(&self) -> ERG_R {
+        ERG_R::new(((self.bits >> 20) & 0x0f) as u8)
     }
     #[doc = "Bits 24:27 - CWG"]
-    #[inline]
-    pub fn cwg(&self) -> CWGR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        CWGR { bits }
+    #[inline(always)]
+    pub fn cwg(&self) -> CWG_R {
+        CWG_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
     #[doc = "Bits 29:31 - Format"]
-    #[inline]
-    pub fn format(&self) -> FORMATR {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 29;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        FORMATR { bits }
+    #[inline(always)]
+    pub fn format(&self) -> FORMAT_R {
+        FORMAT_R::new(((self.bits >> 29) & 0x07) as u8)
     }
 }

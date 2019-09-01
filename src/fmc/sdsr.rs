@@ -1,124 +1,32 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::SDSR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RER {
-    bits: bool,
-}
-impl RER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct MODES1R {
-    bits: u8,
-}
-impl MODES1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct MODES2R {
-    bits: u8,
-}
-impl MODES2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct BUSYR {
-    bits: bool,
-}
-impl BUSYR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = "Reader of register SDSR"]
+pub type R = crate::R<u32, super::SDSR>;
+#[doc = "Reader of field `RE`"]
+pub type RE_R = crate::R<bool, bool>;
+#[doc = "Reader of field `MODES1`"]
+pub type MODES1_R = crate::R<u8, u8>;
+#[doc = "Reader of field `MODES2`"]
+pub type MODES2_R = crate::R<u8, u8>;
+#[doc = "Reader of field `BUSY`"]
+pub type BUSY_R = crate::R<bool, bool>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Refresh error flag"]
-    #[inline]
-    pub fn re(&self) -> RER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RER { bits }
+    #[inline(always)]
+    pub fn re(&self) -> RE_R {
+        RE_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bits 1:2 - Status Mode for Bank 1"]
-    #[inline]
-    pub fn modes1(&self) -> MODES1R {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        MODES1R { bits }
+    #[inline(always)]
+    pub fn modes1(&self) -> MODES1_R {
+        MODES1_R::new(((self.bits >> 1) & 0x03) as u8)
     }
     #[doc = "Bits 3:4 - Status Mode for Bank 2"]
-    #[inline]
-    pub fn modes2(&self) -> MODES2R {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        MODES2R { bits }
+    #[inline(always)]
+    pub fn modes2(&self) -> MODES2_R {
+        MODES2_R::new(((self.bits >> 3) & 0x03) as u8)
     }
     #[doc = "Bit 5 - Busy status"]
-    #[inline]
-    pub fn busy(&self) -> BUSYR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        BUSYR { bits }
+    #[inline(always)]
+    pub fn busy(&self) -> BUSY_R {
+        BUSY_R::new(((self.bits >> 5) & 0x01) != 0)
     }
 }

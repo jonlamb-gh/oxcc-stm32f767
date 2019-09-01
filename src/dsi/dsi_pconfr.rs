@@ -1,146 +1,64 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::DSI_PCONFR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register DSI_PCONFR"]
+pub type R = crate::R<u32, super::DSI_PCONFR>;
+#[doc = "Writer for register DSI_PCONFR"]
+pub type W = crate::W<u32, super::DSI_PCONFR>;
+#[doc = "Register DSI_PCONFR `reset()`'s with value 0"]
+impl crate::ResetValue for super::DSI_PCONFR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct NLR {
-    bits: u8,
-}
-impl NLR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SW_TIMER {
-    bits: u8,
-}
-impl SW_TIMER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _NLW<'a> {
+#[doc = "Reader of field `NL`"]
+pub type NL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `NL`"]
+pub struct NL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NLW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> NL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x03) | ((value as u32) & 0x03);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _SW_TIMEW<'a> {
+#[doc = "Reader of field `SW_TIME`"]
+pub type SW_TIME_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `SW_TIME`"]
+pub struct SW_TIME_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SW_TIMEW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> SW_TIME_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xff << 8)) | (((value as u32) & 0xff) << 8);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Number of Lanes"]
-    #[inline]
-    pub fn nl(&self) -> NLR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        NLR { bits }
+    #[inline(always)]
+    pub fn nl(&self) -> NL_R {
+        NL_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bits 8:15 - Stop Wait Time"]
-    #[inline]
-    pub fn sw_time(&self) -> SW_TIMER {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        SW_TIMER { bits }
+    #[inline(always)]
+    pub fn sw_time(&self) -> SW_TIME_R {
+        SW_TIME_R::new(((self.bits >> 8) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Number of Lanes"]
-    #[inline]
-    pub fn nl(&mut self) -> _NLW {
-        _NLW { w: self }
+    #[inline(always)]
+    pub fn nl(&mut self) -> NL_W {
+        NL_W { w: self }
     }
     #[doc = "Bits 8:15 - Stop Wait Time"]
-    #[inline]
-    pub fn sw_time(&mut self) -> _SW_TIMEW {
-        _SW_TIMEW { w: self }
+    #[inline(always)]
+    pub fn sw_time(&mut self) -> SW_TIME_W {
+        SW_TIME_W { w: self }
     }
 }

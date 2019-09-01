@@ -1,62 +1,18 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::CPSR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CXPOSR {
-    bits: u16,
-}
-impl CXPOSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CYPOSR {
-    bits: u16,
-}
-impl CYPOSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
+#[doc = "Reader of register CPSR"]
+pub type R = crate::R<u32, super::CPSR>;
+#[doc = "Reader of field `CXPOS`"]
+pub type CXPOS_R = crate::R<u16, u16>;
+#[doc = "Reader of field `CYPOS`"]
+pub type CYPOS_R = crate::R<u16, u16>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 16:31 - Current X Position"]
-    #[inline]
-    pub fn cxpos(&self) -> CXPOSR {
-        let bits = {
-            const MASK: u16 = 0xffff;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        CXPOSR { bits }
+    #[inline(always)]
+    pub fn cxpos(&self) -> CXPOS_R {
+        CXPOS_R::new(((self.bits >> 16) & 0xffff) as u16)
     }
     #[doc = "Bits 0:15 - Current Y Position"]
-    #[inline]
-    pub fn cypos(&self) -> CYPOSR {
-        let bits = {
-            const MASK: u16 = 0xffff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        CYPOSR { bits }
+    #[inline(always)]
+    pub fn cypos(&self) -> CYPOS_R {
+        CYPOS_R::new((self.bits & 0xffff) as u16)
     }
 }

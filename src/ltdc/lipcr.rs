@@ -1,105 +1,40 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::LIPCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register LIPCR"]
+pub type R = crate::R<u32, super::LIPCR>;
+#[doc = "Writer for register LIPCR"]
+pub type W = crate::W<u32, super::LIPCR>;
+#[doc = "Register LIPCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::LIPCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct LIPOSR {
-    bits: u16,
-}
-impl LIPOSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _LIPOSW<'a> {
+#[doc = "Reader of field `LIPOS`"]
+pub type LIPOS_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `LIPOS`"]
+pub struct LIPOS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LIPOSW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> LIPOS_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0x07ff;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x07ff) | ((value as u32) & 0x07ff);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:10 - Line Interrupt Position"]
-    #[inline]
-    pub fn lipos(&self) -> LIPOSR {
-        let bits = {
-            const MASK: u16 = 0x07ff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        LIPOSR { bits }
+    #[inline(always)]
+    pub fn lipos(&self) -> LIPOS_R {
+        LIPOS_R::new((self.bits & 0x07ff) as u16)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:10 - Line Interrupt Position"]
-    #[inline]
-    pub fn lipos(&mut self) -> _LIPOSW {
-        _LIPOSW { w: self }
+    #[inline(always)]
+    pub fn lipos(&mut self) -> LIPOS_W {
+        LIPOS_W { w: self }
     }
 }

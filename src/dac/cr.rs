@@ -1,1968 +1,1439 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
+#[doc = "Reader of register CR"]
+pub type R = crate::R<u32, super::CR>;
+#[doc = "Writer for register CR"]
+pub type W = crate::W<u32, super::CR>;
+#[doc = "Register CR `reset()`'s with value 0"]
+impl crate::ResetValue for super::CR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
+}
+#[doc = "DAC channel2 DMA underrun interrupt enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DMAUDRIE2_A {
+    #[doc = "0: DAC channel2 DMA Underrun Interrupt disabled"]
+    DISABLED,
+    #[doc = "1: DAC channel2 DMA Underrun Interrupt enabled"]
+    ENABLED,
+}
+impl From<DMAUDRIE2_A> for bool {
+    #[inline(always)]
+    fn from(variant: DMAUDRIE2_A) -> Self {
+        match variant {
+            DMAUDRIE2_A::DISABLED => false,
+            DMAUDRIE2_A::ENABLED => true,
         }
     }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+}
+#[doc = "Reader of field `DMAUDRIE2`"]
+pub type DMAUDRIE2_R = crate::R<bool, DMAUDRIE2_A>;
+impl DMAUDRIE2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DMAUDRIE2_A {
+        match self.bits {
+            false => DMAUDRIE2_A::DISABLED,
+            true => DMAUDRIE2_A::ENABLED,
+        }
     }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == DMAUDRIE2_A::DISABLED
+    }
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == DMAUDRIE2_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `DMAUDRIE2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DMAUDRIE2R {
+#[doc = "Write proxy for field `DMAUDRIE2`"]
+pub struct DMAUDRIE2_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> DMAUDRIE2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DMAUDRIE2_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "DAC channel2 DMA Underrun Interrupt disabled"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(DMAUDRIE2_A::DISABLED)
+    }
     #[doc = "DAC channel2 DMA Underrun Interrupt enabled"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(DMAUDRIE2_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 29)) | (((value as u32) & 0x01) << 29);
+        self.w
+    }
+}
+#[doc = "DAC channel2 DMA enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DMAEN2_A {
+    #[doc = "0: DAC channel2 DMA mode disabled"]
+    DISABLED,
+    #[doc = "1: DAC channel2 DMA mode enabled"]
     ENABLED,
 }
-impl DMAUDRIE2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DMAUDRIE2R::DISABLED => false,
-            DMAUDRIE2R::ENABLED => true,
+impl From<DMAEN2_A> for bool {
+    #[inline(always)]
+    fn from(variant: DMAEN2_A) -> Self {
+        match variant {
+            DMAEN2_A::DISABLED => false,
+            DMAEN2_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DMAUDRIE2R {
-        match value {
-            false => DMAUDRIE2R::DISABLED,
-            true => DMAUDRIE2R::ENABLED,
+}
+#[doc = "Reader of field `DMAEN2`"]
+pub type DMAEN2_R = crate::R<bool, DMAEN2_A>;
+impl DMAEN2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DMAEN2_A {
+        match self.bits {
+            false => DMAEN2_A::DISABLED,
+            true => DMAEN2_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == DMAUDRIE2R::DISABLED
+        *self == DMAEN2_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == DMAUDRIE2R::ENABLED
+        *self == DMAEN2_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `DMAEN2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DMAEN2R {
+#[doc = "Write proxy for field `DMAEN2`"]
+pub struct DMAEN2_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> DMAEN2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DMAEN2_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "DAC channel2 DMA mode disabled"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(DMAEN2_A::DISABLED)
+    }
     #[doc = "DAC channel2 DMA mode enabled"]
-    ENABLED,
-}
-impl DMAEN2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(DMAEN2_A::ENABLED)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DMAEN2R::DISABLED => false,
-            DMAEN2R::ENABLED => true,
-        }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DMAEN2R {
-        match value {
-            false => DMAEN2R::DISABLED,
-            true => DMAEN2R::ENABLED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
-    pub fn is_disabled(&self) -> bool {
-        *self == DMAEN2R::DISABLED
-    }
-    #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
-    pub fn is_enabled(&self) -> bool {
-        *self == DMAEN2R::ENABLED
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct MAMP2R {
-    bits: u8,
+#[doc = "Reader of field `MAMP2`"]
+pub type MAMP2_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `MAMP2`"]
+pub struct MAMP2_W<'a> {
+    w: &'a mut W,
 }
-impl MAMP2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> MAMP2_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x0f << 24)) | (((value as u32) & 0x0f) << 24);
+        self.w
     }
 }
-#[doc = "Possible values of the field `WAVE2`"]
+#[doc = "DAC channel2 noise/triangle wave generation enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WAVE2R {
-    #[doc = "Wave generation disabled"]
+pub enum WAVE2_A {
+    #[doc = "0: Wave generation disabled"]
     DISABLED,
-    #[doc = "Noise wave generation enabled"]
+    #[doc = "1: Noise wave generation enabled"]
     NOISE,
-    #[doc = "Triangle wave generation enabled"]
+    #[doc = "2: Triangle wave generation enabled"]
     TRIANGLE,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl WAVE2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            WAVE2R::DISABLED => 0,
-            WAVE2R::NOISE => 0x01,
-            WAVE2R::TRIANGLE => 0x02,
-            WAVE2R::_Reserved(bits) => bits,
+impl From<WAVE2_A> for u8 {
+    #[inline(always)]
+    fn from(variant: WAVE2_A) -> Self {
+        match variant {
+            WAVE2_A::DISABLED => 0,
+            WAVE2_A::NOISE => 1,
+            WAVE2_A::TRIANGLE => 2,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> WAVE2R {
-        match value {
-            0 => WAVE2R::DISABLED,
-            1 => WAVE2R::NOISE,
-            2 => WAVE2R::TRIANGLE,
-            i => WAVE2R::_Reserved(i),
+}
+#[doc = "Reader of field `WAVE2`"]
+pub type WAVE2_R = crate::R<u8, WAVE2_A>;
+impl WAVE2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, WAVE2_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(WAVE2_A::DISABLED),
+            1 => Val(WAVE2_A::NOISE),
+            2 => Val(WAVE2_A::TRIANGLE),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == WAVE2R::DISABLED
+        *self == WAVE2_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `NOISE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_noise(&self) -> bool {
-        *self == WAVE2R::NOISE
+        *self == WAVE2_A::NOISE
     }
     #[doc = "Checks if the value of the field is `TRIANGLE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_triangle(&self) -> bool {
-        *self == WAVE2R::TRIANGLE
+        *self == WAVE2_A::TRIANGLE
     }
 }
-#[doc = "Possible values of the field `TSEL2`"]
+#[doc = "Write proxy for field `WAVE2`"]
+pub struct WAVE2_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> WAVE2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WAVE2_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "Wave generation disabled"]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(WAVE2_A::DISABLED)
+    }
+    #[doc = "Noise wave generation enabled"]
+    #[inline(always)]
+    pub fn noise(self) -> &'a mut W {
+        self.variant(WAVE2_A::NOISE)
+    }
+    #[doc = "Triangle wave generation enabled"]
+    #[inline(always)]
+    pub fn triangle(self) -> &'a mut W {
+        self.variant(WAVE2_A::TRIANGLE)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 22)) | (((value as u32) & 0x03) << 22);
+        self.w
+    }
+}
+#[doc = "DAC channel2 trigger selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TSEL2R {
-    #[doc = "Timer 6 TRGO event"]
+pub enum TSEL2_A {
+    #[doc = "0: Timer 6 TRGO event"]
     TIM6_TRGO,
-    #[doc = "Timer 8 TRGO event"]
+    #[doc = "1: Timer 8 TRGO event"]
     TIM8_TRGO,
-    #[doc = "Timer 7 TRGO event"]
+    #[doc = "2: Timer 7 TRGO event"]
     TIM7_TRGO,
-    #[doc = "Timer 5 TRGO event"]
+    #[doc = "3: Timer 5 TRGO event"]
     TIM5_TRGO,
-    #[doc = "Timer 2 TRGO event"]
+    #[doc = "4: Timer 2 TRGO event"]
     TIM2_TRGO,
-    #[doc = "Timer 4 TRGO event"]
+    #[doc = "5: Timer 4 TRGO event"]
     TIM4_TRGO,
-    #[doc = "EXTI line9"]
+    #[doc = "6: EXTI line9"]
     EXTI9,
-    #[doc = "Software trigger"]
+    #[doc = "7: Software trigger"]
     SOFTWARE,
 }
-impl TSEL2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            TSEL2R::TIM6_TRGO => 0,
-            TSEL2R::TIM8_TRGO => 0x01,
-            TSEL2R::TIM7_TRGO => 0x02,
-            TSEL2R::TIM5_TRGO => 0x03,
-            TSEL2R::TIM2_TRGO => 0x04,
-            TSEL2R::TIM4_TRGO => 0x05,
-            TSEL2R::EXTI9 => 0x06,
-            TSEL2R::SOFTWARE => 0x07,
+impl From<TSEL2_A> for u8 {
+    #[inline(always)]
+    fn from(variant: TSEL2_A) -> Self {
+        match variant {
+            TSEL2_A::TIM6_TRGO => 0,
+            TSEL2_A::TIM8_TRGO => 1,
+            TSEL2_A::TIM7_TRGO => 2,
+            TSEL2_A::TIM5_TRGO => 3,
+            TSEL2_A::TIM2_TRGO => 4,
+            TSEL2_A::TIM4_TRGO => 5,
+            TSEL2_A::EXTI9 => 6,
+            TSEL2_A::SOFTWARE => 7,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> TSEL2R {
-        match value {
-            0 => TSEL2R::TIM6_TRGO,
-            1 => TSEL2R::TIM8_TRGO,
-            2 => TSEL2R::TIM7_TRGO,
-            3 => TSEL2R::TIM5_TRGO,
-            4 => TSEL2R::TIM2_TRGO,
-            5 => TSEL2R::TIM4_TRGO,
-            6 => TSEL2R::EXTI9,
-            7 => TSEL2R::SOFTWARE,
+}
+#[doc = "Reader of field `TSEL2`"]
+pub type TSEL2_R = crate::R<u8, TSEL2_A>;
+impl TSEL2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TSEL2_A {
+        match self.bits {
+            0 => TSEL2_A::TIM6_TRGO,
+            1 => TSEL2_A::TIM8_TRGO,
+            2 => TSEL2_A::TIM7_TRGO,
+            3 => TSEL2_A::TIM5_TRGO,
+            4 => TSEL2_A::TIM2_TRGO,
+            5 => TSEL2_A::TIM4_TRGO,
+            6 => TSEL2_A::EXTI9,
+            7 => TSEL2_A::SOFTWARE,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `TIM6_TRGO`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_tim6_trgo(&self) -> bool {
-        *self == TSEL2R::TIM6_TRGO
+        *self == TSEL2_A::TIM6_TRGO
     }
     #[doc = "Checks if the value of the field is `TIM8_TRGO`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_tim8_trgo(&self) -> bool {
-        *self == TSEL2R::TIM8_TRGO
+        *self == TSEL2_A::TIM8_TRGO
     }
     #[doc = "Checks if the value of the field is `TIM7_TRGO`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_tim7_trgo(&self) -> bool {
-        *self == TSEL2R::TIM7_TRGO
+        *self == TSEL2_A::TIM7_TRGO
     }
     #[doc = "Checks if the value of the field is `TIM5_TRGO`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_tim5_trgo(&self) -> bool {
-        *self == TSEL2R::TIM5_TRGO
+        *self == TSEL2_A::TIM5_TRGO
     }
     #[doc = "Checks if the value of the field is `TIM2_TRGO`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_tim2_trgo(&self) -> bool {
-        *self == TSEL2R::TIM2_TRGO
+        *self == TSEL2_A::TIM2_TRGO
     }
     #[doc = "Checks if the value of the field is `TIM4_TRGO`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_tim4_trgo(&self) -> bool {
-        *self == TSEL2R::TIM4_TRGO
+        *self == TSEL2_A::TIM4_TRGO
     }
     #[doc = "Checks if the value of the field is `EXTI9`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_exti9(&self) -> bool {
-        *self == TSEL2R::EXTI9
+        *self == TSEL2_A::EXTI9
     }
     #[doc = "Checks if the value of the field is `SOFTWARE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_software(&self) -> bool {
-        *self == TSEL2R::SOFTWARE
+        *self == TSEL2_A::SOFTWARE
     }
 }
-#[doc = "Possible values of the field `TEN2`"]
+#[doc = "Write proxy for field `TSEL2`"]
+pub struct TSEL2_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> TSEL2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TSEL2_A) -> &'a mut W {
+        {
+            self.bits(variant.into())
+        }
+    }
+    #[doc = "Timer 6 TRGO event"]
+    #[inline(always)]
+    pub fn tim6_trgo(self) -> &'a mut W {
+        self.variant(TSEL2_A::TIM6_TRGO)
+    }
+    #[doc = "Timer 8 TRGO event"]
+    #[inline(always)]
+    pub fn tim8_trgo(self) -> &'a mut W {
+        self.variant(TSEL2_A::TIM8_TRGO)
+    }
+    #[doc = "Timer 7 TRGO event"]
+    #[inline(always)]
+    pub fn tim7_trgo(self) -> &'a mut W {
+        self.variant(TSEL2_A::TIM7_TRGO)
+    }
+    #[doc = "Timer 5 TRGO event"]
+    #[inline(always)]
+    pub fn tim5_trgo(self) -> &'a mut W {
+        self.variant(TSEL2_A::TIM5_TRGO)
+    }
+    #[doc = "Timer 2 TRGO event"]
+    #[inline(always)]
+    pub fn tim2_trgo(self) -> &'a mut W {
+        self.variant(TSEL2_A::TIM2_TRGO)
+    }
+    #[doc = "Timer 4 TRGO event"]
+    #[inline(always)]
+    pub fn tim4_trgo(self) -> &'a mut W {
+        self.variant(TSEL2_A::TIM4_TRGO)
+    }
+    #[doc = "EXTI line9"]
+    #[inline(always)]
+    pub fn exti9(self) -> &'a mut W {
+        self.variant(TSEL2_A::EXTI9)
+    }
+    #[doc = "Software trigger"]
+    #[inline(always)]
+    pub fn software(self) -> &'a mut W {
+        self.variant(TSEL2_A::SOFTWARE)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x07 << 19)) | (((value as u32) & 0x07) << 19);
+        self.w
+    }
+}
+#[doc = "DAC channel2 trigger enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TEN2R {
+pub enum TEN2_A {
+    #[doc = "0: DAC channel2 trigger disabled"]
+    DISABLED,
+    #[doc = "1: DAC channel2 trigger enabled"]
+    ENABLED,
+}
+impl From<TEN2_A> for bool {
+    #[inline(always)]
+    fn from(variant: TEN2_A) -> Self {
+        match variant {
+            TEN2_A::DISABLED => false,
+            TEN2_A::ENABLED => true,
+        }
+    }
+}
+#[doc = "Reader of field `TEN2`"]
+pub type TEN2_R = crate::R<bool, TEN2_A>;
+impl TEN2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TEN2_A {
+        match self.bits {
+            false => TEN2_A::DISABLED,
+            true => TEN2_A::ENABLED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == TEN2_A::DISABLED
+    }
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == TEN2_A::ENABLED
+    }
+}
+#[doc = "Write proxy for field `TEN2`"]
+pub struct TEN2_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> TEN2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TEN2_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "DAC channel2 trigger disabled"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(TEN2_A::DISABLED)
+    }
     #[doc = "DAC channel2 trigger enabled"]
-    ENABLED,
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(TEN2_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
+        self.w
+    }
 }
-impl TEN2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TEN2R::DISABLED => false,
-            TEN2R::ENABLED => true,
+#[doc = "DAC channel2 output buffer disable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BOFF2_A {
+    #[doc = "0: DAC channel2 output buffer enabled"]
+    ENABLED,
+    #[doc = "1: DAC channel2 output buffer disabled"]
+    DISABLED,
+}
+impl From<BOFF2_A> for bool {
+    #[inline(always)]
+    fn from(variant: BOFF2_A) -> Self {
+        match variant {
+            BOFF2_A::ENABLED => false,
+            BOFF2_A::DISABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TEN2R {
-        match value {
-            false => TEN2R::DISABLED,
-            true => TEN2R::ENABLED,
+}
+#[doc = "Reader of field `BOFF2`"]
+pub type BOFF2_R = crate::R<bool, BOFF2_A>;
+impl BOFF2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BOFF2_A {
+        match self.bits {
+            false => BOFF2_A::ENABLED,
+            true => BOFF2_A::DISABLED,
         }
-    }
-    #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
-    pub fn is_disabled(&self) -> bool {
-        *self == TEN2R::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == TEN2R::ENABLED
+        *self == BOFF2_A::ENABLED
+    }
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == BOFF2_A::DISABLED
     }
 }
-#[doc = "Possible values of the field `BOFF2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BOFF2R {
+#[doc = "Write proxy for field `BOFF2`"]
+pub struct BOFF2_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> BOFF2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BOFF2_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "DAC channel2 output buffer enabled"]
-    ENABLED,
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(BOFF2_A::ENABLED)
+    }
     #[doc = "DAC channel2 output buffer disabled"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(BOFF2_A::DISABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
+        self.w
+    }
 }
-impl BOFF2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BOFF2R::ENABLED => false,
-            BOFF2R::DISABLED => true,
+#[doc = "DAC channel2 enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum EN2_A {
+    #[doc = "0: DAC channel2 disabled"]
+    DISABLED,
+    #[doc = "1: DAC channel2 enabled"]
+    ENABLED,
+}
+impl From<EN2_A> for bool {
+    #[inline(always)]
+    fn from(variant: EN2_A) -> Self {
+        match variant {
+            EN2_A::DISABLED => false,
+            EN2_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BOFF2R {
-        match value {
-            false => BOFF2R::ENABLED,
-            true => BOFF2R::DISABLED,
+}
+#[doc = "Reader of field `EN2`"]
+pub type EN2_R = crate::R<bool, EN2_A>;
+impl EN2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EN2_A {
+        match self.bits {
+            false => EN2_A::DISABLED,
+            true => EN2_A::ENABLED,
         }
-    }
-    #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
-    pub fn is_enabled(&self) -> bool {
-        *self == BOFF2R::ENABLED
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == BOFF2R::DISABLED
+        *self == EN2_A::DISABLED
+    }
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == EN2_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `EN2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EN2R {
+#[doc = "Write proxy for field `EN2`"]
+pub struct EN2_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> EN2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EN2_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "DAC channel2 disabled"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(EN2_A::DISABLED)
+    }
     #[doc = "DAC channel2 enabled"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(EN2_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
+        self.w
+    }
+}
+#[doc = "DAC channel1 DMA Underrun Interrupt enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DMAUDRIE1_A {
+    #[doc = "0: DAC channel1 DMA Underrun Interrupt disabled"]
+    DISABLED,
+    #[doc = "1: DAC channel1 DMA Underrun Interrupt enabled"]
     ENABLED,
 }
-impl EN2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            EN2R::DISABLED => false,
-            EN2R::ENABLED => true,
+impl From<DMAUDRIE1_A> for bool {
+    #[inline(always)]
+    fn from(variant: DMAUDRIE1_A) -> Self {
+        match variant {
+            DMAUDRIE1_A::DISABLED => false,
+            DMAUDRIE1_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> EN2R {
-        match value {
-            false => EN2R::DISABLED,
-            true => EN2R::ENABLED,
+}
+#[doc = "Reader of field `DMAUDRIE1`"]
+pub type DMAUDRIE1_R = crate::R<bool, DMAUDRIE1_A>;
+impl DMAUDRIE1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DMAUDRIE1_A {
+        match self.bits {
+            false => DMAUDRIE1_A::DISABLED,
+            true => DMAUDRIE1_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == EN2R::DISABLED
+        *self == DMAUDRIE1_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == EN2R::ENABLED
+        *self == DMAUDRIE1_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `DMAUDRIE1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DMAUDRIE1R {
+#[doc = "Write proxy for field `DMAUDRIE1`"]
+pub struct DMAUDRIE1_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> DMAUDRIE1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DMAUDRIE1_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "DAC channel1 DMA Underrun Interrupt disabled"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(DMAUDRIE1_A::DISABLED)
+    }
     #[doc = "DAC channel1 DMA Underrun Interrupt enabled"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(DMAUDRIE1_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
+        self.w
+    }
+}
+#[doc = "DAC channel1 DMA enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DMAEN1_A {
+    #[doc = "0: DAC channel1 DMA mode disabled"]
+    DISABLED,
+    #[doc = "1: DAC channel1 DMA mode enabled"]
     ENABLED,
 }
-impl DMAUDRIE1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DMAUDRIE1R::DISABLED => false,
-            DMAUDRIE1R::ENABLED => true,
+impl From<DMAEN1_A> for bool {
+    #[inline(always)]
+    fn from(variant: DMAEN1_A) -> Self {
+        match variant {
+            DMAEN1_A::DISABLED => false,
+            DMAEN1_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DMAUDRIE1R {
-        match value {
-            false => DMAUDRIE1R::DISABLED,
-            true => DMAUDRIE1R::ENABLED,
+}
+#[doc = "Reader of field `DMAEN1`"]
+pub type DMAEN1_R = crate::R<bool, DMAEN1_A>;
+impl DMAEN1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DMAEN1_A {
+        match self.bits {
+            false => DMAEN1_A::DISABLED,
+            true => DMAEN1_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == DMAUDRIE1R::DISABLED
+        *self == DMAEN1_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == DMAUDRIE1R::ENABLED
+        *self == DMAEN1_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `DMAEN1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DMAEN1R {
+#[doc = "Write proxy for field `DMAEN1`"]
+pub struct DMAEN1_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> DMAEN1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DMAEN1_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "DAC channel1 DMA mode disabled"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(DMAEN1_A::DISABLED)
+    }
     #[doc = "DAC channel1 DMA mode enabled"]
-    ENABLED,
-}
-impl DMAEN1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(DMAEN1_A::ENABLED)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DMAEN1R::DISABLED => false,
-            DMAEN1R::ENABLED => true,
-        }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DMAEN1R {
-        match value {
-            false => DMAEN1R::DISABLED,
-            true => DMAEN1R::ENABLED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
-    pub fn is_disabled(&self) -> bool {
-        *self == DMAEN1R::DISABLED
-    }
-    #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
-    pub fn is_enabled(&self) -> bool {
-        *self == DMAEN1R::ENABLED
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct MAMP1R {
-    bits: u8,
+#[doc = "Reader of field `MAMP1`"]
+pub type MAMP1_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `MAMP1`"]
+pub struct MAMP1_W<'a> {
+    w: &'a mut W,
 }
-impl MAMP1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> MAMP1_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x0f << 8)) | (((value as u32) & 0x0f) << 8);
+        self.w
     }
 }
-#[doc = "Possible values of the field `WAVE1`"]
+#[doc = "DAC channel1 noise/triangle wave generation enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WAVE1R {
-    #[doc = "Wave generation disabled"]
+pub enum WAVE1_A {
+    #[doc = "0: Wave generation disabled"]
     DISABLED,
-    #[doc = "Noise wave generation enabled"]
+    #[doc = "1: Noise wave generation enabled"]
     NOISE,
-    #[doc = "Triangle wave generation enabled"]
+    #[doc = "2: Triangle wave generation enabled"]
     TRIANGLE,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl WAVE1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            WAVE1R::DISABLED => 0,
-            WAVE1R::NOISE => 0x01,
-            WAVE1R::TRIANGLE => 0x02,
-            WAVE1R::_Reserved(bits) => bits,
+impl From<WAVE1_A> for u8 {
+    #[inline(always)]
+    fn from(variant: WAVE1_A) -> Self {
+        match variant {
+            WAVE1_A::DISABLED => 0,
+            WAVE1_A::NOISE => 1,
+            WAVE1_A::TRIANGLE => 2,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> WAVE1R {
-        match value {
-            0 => WAVE1R::DISABLED,
-            1 => WAVE1R::NOISE,
-            2 => WAVE1R::TRIANGLE,
-            i => WAVE1R::_Reserved(i),
+}
+#[doc = "Reader of field `WAVE1`"]
+pub type WAVE1_R = crate::R<u8, WAVE1_A>;
+impl WAVE1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, WAVE1_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(WAVE1_A::DISABLED),
+            1 => Val(WAVE1_A::NOISE),
+            2 => Val(WAVE1_A::TRIANGLE),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == WAVE1R::DISABLED
+        *self == WAVE1_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `NOISE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_noise(&self) -> bool {
-        *self == WAVE1R::NOISE
+        *self == WAVE1_A::NOISE
     }
     #[doc = "Checks if the value of the field is `TRIANGLE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_triangle(&self) -> bool {
-        *self == WAVE1R::TRIANGLE
+        *self == WAVE1_A::TRIANGLE
     }
 }
-#[doc = "Possible values of the field `TSEL1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TSEL1R {
-    #[doc = "Timer 6 TRGO event"]
-    TIM6_TRGO,
-    #[doc = "Timer 3 TRGO event"]
-    TIM3_TRGO,
-    #[doc = "Timer 7 TRGO event"]
-    TIM7_TRGO,
-    #[doc = "Timer 15 TRGO event"]
-    TIM15_TRGO,
-    #[doc = "Timer 2 TRGO event"]
-    TIM2_TRGO,
-    #[doc = "EXTI line9"]
-    EXTI9,
-    #[doc = "Software trigger"]
-    SOFTWARE,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
+#[doc = "Write proxy for field `WAVE1`"]
+pub struct WAVE1_W<'a> {
+    w: &'a mut W,
 }
-impl TSEL1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            TSEL1R::TIM6_TRGO => 0,
-            TSEL1R::TIM3_TRGO => 0x01,
-            TSEL1R::TIM7_TRGO => 0x02,
-            TSEL1R::TIM15_TRGO => 0x03,
-            TSEL1R::TIM2_TRGO => 0x04,
-            TSEL1R::EXTI9 => 0x06,
-            TSEL1R::SOFTWARE => 0x07,
-            TSEL1R::_Reserved(bits) => bits,
+impl<'a> WAVE1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WAVE1_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "Wave generation disabled"]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(WAVE1_A::DISABLED)
+    }
+    #[doc = "Noise wave generation enabled"]
+    #[inline(always)]
+    pub fn noise(self) -> &'a mut W {
+        self.variant(WAVE1_A::NOISE)
+    }
+    #[doc = "Triangle wave generation enabled"]
+    #[inline(always)]
+    pub fn triangle(self) -> &'a mut W {
+        self.variant(WAVE1_A::TRIANGLE)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 6)) | (((value as u32) & 0x03) << 6);
+        self.w
+    }
+}
+#[doc = "DAC channel1 trigger selection\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TSEL1_A {
+    #[doc = "0: Timer 6 TRGO event"]
+    TIM6_TRGO,
+    #[doc = "1: Timer 3 TRGO event"]
+    TIM3_TRGO,
+    #[doc = "2: Timer 7 TRGO event"]
+    TIM7_TRGO,
+    #[doc = "3: Timer 15 TRGO event"]
+    TIM15_TRGO,
+    #[doc = "4: Timer 2 TRGO event"]
+    TIM2_TRGO,
+    #[doc = "6: EXTI line9"]
+    EXTI9,
+    #[doc = "7: Software trigger"]
+    SOFTWARE,
+}
+impl From<TSEL1_A> for u8 {
+    #[inline(always)]
+    fn from(variant: TSEL1_A) -> Self {
+        match variant {
+            TSEL1_A::TIM6_TRGO => 0,
+            TSEL1_A::TIM3_TRGO => 1,
+            TSEL1_A::TIM7_TRGO => 2,
+            TSEL1_A::TIM15_TRGO => 3,
+            TSEL1_A::TIM2_TRGO => 4,
+            TSEL1_A::EXTI9 => 6,
+            TSEL1_A::SOFTWARE => 7,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> TSEL1R {
-        match value {
-            0 => TSEL1R::TIM6_TRGO,
-            1 => TSEL1R::TIM3_TRGO,
-            2 => TSEL1R::TIM7_TRGO,
-            3 => TSEL1R::TIM15_TRGO,
-            4 => TSEL1R::TIM2_TRGO,
-            6 => TSEL1R::EXTI9,
-            7 => TSEL1R::SOFTWARE,
-            i => TSEL1R::_Reserved(i),
+}
+#[doc = "Reader of field `TSEL1`"]
+pub type TSEL1_R = crate::R<u8, TSEL1_A>;
+impl TSEL1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, TSEL1_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(TSEL1_A::TIM6_TRGO),
+            1 => Val(TSEL1_A::TIM3_TRGO),
+            2 => Val(TSEL1_A::TIM7_TRGO),
+            3 => Val(TSEL1_A::TIM15_TRGO),
+            4 => Val(TSEL1_A::TIM2_TRGO),
+            6 => Val(TSEL1_A::EXTI9),
+            7 => Val(TSEL1_A::SOFTWARE),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `TIM6_TRGO`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_tim6_trgo(&self) -> bool {
-        *self == TSEL1R::TIM6_TRGO
+        *self == TSEL1_A::TIM6_TRGO
     }
     #[doc = "Checks if the value of the field is `TIM3_TRGO`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_tim3_trgo(&self) -> bool {
-        *self == TSEL1R::TIM3_TRGO
+        *self == TSEL1_A::TIM3_TRGO
     }
     #[doc = "Checks if the value of the field is `TIM7_TRGO`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_tim7_trgo(&self) -> bool {
-        *self == TSEL1R::TIM7_TRGO
+        *self == TSEL1_A::TIM7_TRGO
     }
     #[doc = "Checks if the value of the field is `TIM15_TRGO`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_tim15_trgo(&self) -> bool {
-        *self == TSEL1R::TIM15_TRGO
+        *self == TSEL1_A::TIM15_TRGO
     }
     #[doc = "Checks if the value of the field is `TIM2_TRGO`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_tim2_trgo(&self) -> bool {
-        *self == TSEL1R::TIM2_TRGO
+        *self == TSEL1_A::TIM2_TRGO
     }
     #[doc = "Checks if the value of the field is `EXTI9`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_exti9(&self) -> bool {
-        *self == TSEL1R::EXTI9
+        *self == TSEL1_A::EXTI9
     }
     #[doc = "Checks if the value of the field is `SOFTWARE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_software(&self) -> bool {
-        *self == TSEL1R::SOFTWARE
+        *self == TSEL1_A::SOFTWARE
     }
 }
-#[doc = "Possible values of the field `TEN1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TEN1R {
-    #[doc = "DAC channel1 trigger disabled"]
-    DISABLED,
-    #[doc = "DAC channel1 trigger enabled"]
-    ENABLED,
-}
-impl TEN1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TEN1R::DISABLED => false,
-            TEN1R::ENABLED => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TEN1R {
-        match value {
-            false => TEN1R::DISABLED,
-            true => TEN1R::ENABLED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
-    pub fn is_disabled(&self) -> bool {
-        *self == TEN1R::DISABLED
-    }
-    #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
-    pub fn is_enabled(&self) -> bool {
-        *self == TEN1R::ENABLED
-    }
-}
-#[doc = "Possible values of the field `BOFF1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BOFF1R {
-    #[doc = "DAC channel1 output buffer enabled"]
-    ENABLED,
-    #[doc = "DAC channel1 output buffer disabled"]
-    DISABLED,
-}
-impl BOFF1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BOFF1R::ENABLED => false,
-            BOFF1R::DISABLED => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BOFF1R {
-        match value {
-            false => BOFF1R::ENABLED,
-            true => BOFF1R::DISABLED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
-    pub fn is_enabled(&self) -> bool {
-        *self == BOFF1R::ENABLED
-    }
-    #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
-    pub fn is_disabled(&self) -> bool {
-        *self == BOFF1R::DISABLED
-    }
-}
-#[doc = "Possible values of the field `EN1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EN1R {
-    #[doc = "DAC channel1 disabled"]
-    DISABLED,
-    #[doc = "DAC channel1 enabled"]
-    ENABLED,
-}
-impl EN1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            EN1R::DISABLED => false,
-            EN1R::ENABLED => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> EN1R {
-        match value {
-            false => EN1R::DISABLED,
-            true => EN1R::ENABLED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
-    pub fn is_disabled(&self) -> bool {
-        *self == EN1R::DISABLED
-    }
-    #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
-    pub fn is_enabled(&self) -> bool {
-        *self == EN1R::ENABLED
-    }
-}
-#[doc = "Values that can be written to the field `DMAUDRIE2`"]
-pub enum DMAUDRIE2W {
-    #[doc = "DAC channel2 DMA Underrun Interrupt disabled"]
-    DISABLED,
-    #[doc = "DAC channel2 DMA Underrun Interrupt enabled"]
-    ENABLED,
-}
-impl DMAUDRIE2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DMAUDRIE2W::DISABLED => false,
-            DMAUDRIE2W::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DMAUDRIE2W<'a> {
+#[doc = "Write proxy for field `TSEL1`"]
+pub struct TSEL1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DMAUDRIE2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DMAUDRIE2W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "DAC channel2 DMA Underrun Interrupt disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(DMAUDRIE2W::DISABLED)
-    }
-    #[doc = "DAC channel2 DMA Underrun Interrupt enabled"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(DMAUDRIE2W::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 29;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `DMAEN2`"]
-pub enum DMAEN2W {
-    #[doc = "DAC channel2 DMA mode disabled"]
-    DISABLED,
-    #[doc = "DAC channel2 DMA mode enabled"]
-    ENABLED,
-}
-impl DMAEN2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DMAEN2W::DISABLED => false,
-            DMAEN2W::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DMAEN2W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DMAEN2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DMAEN2W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "DAC channel2 DMA mode disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(DMAEN2W::DISABLED)
-    }
-    #[doc = "DAC channel2 DMA mode enabled"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(DMAEN2W::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MAMP2W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _MAMP2W<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x0f;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `WAVE2`"]
-pub enum WAVE2W {
-    #[doc = "Wave generation disabled"]
-    DISABLED,
-    #[doc = "Noise wave generation enabled"]
-    NOISE,
-    #[doc = "Triangle wave generation enabled"]
-    TRIANGLE,
-}
-impl WAVE2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            WAVE2W::DISABLED => 0,
-            WAVE2W::NOISE => 1,
-            WAVE2W::TRIANGLE => 2,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WAVE2W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _WAVE2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WAVE2W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "Wave generation disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(WAVE2W::DISABLED)
-    }
-    #[doc = "Noise wave generation enabled"]
-    #[inline]
-    pub fn noise(self) -> &'a mut W {
-        self.variant(WAVE2W::NOISE)
-    }
-    #[doc = "Triangle wave generation enabled"]
-    #[inline]
-    pub fn triangle(self) -> &'a mut W {
-        self.variant(WAVE2W::TRIANGLE)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `TSEL2`"]
-pub enum TSEL2W {
-    #[doc = "Timer 6 TRGO event"]
-    TIM6_TRGO,
-    #[doc = "Timer 8 TRGO event"]
-    TIM8_TRGO,
-    #[doc = "Timer 7 TRGO event"]
-    TIM7_TRGO,
-    #[doc = "Timer 5 TRGO event"]
-    TIM5_TRGO,
-    #[doc = "Timer 2 TRGO event"]
-    TIM2_TRGO,
-    #[doc = "Timer 4 TRGO event"]
-    TIM4_TRGO,
-    #[doc = "EXTI line9"]
-    EXTI9,
-    #[doc = "Software trigger"]
-    SOFTWARE,
-}
-impl TSEL2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TSEL2W::TIM6_TRGO => 0,
-            TSEL2W::TIM8_TRGO => 1,
-            TSEL2W::TIM7_TRGO => 2,
-            TSEL2W::TIM5_TRGO => 3,
-            TSEL2W::TIM2_TRGO => 4,
-            TSEL2W::TIM4_TRGO => 5,
-            TSEL2W::EXTI9 => 6,
-            TSEL2W::SOFTWARE => 7,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TSEL2W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TSEL2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TSEL2W) -> &'a mut W {
-        {
-            self.bits(variant._bits())
-        }
+impl<'a> TSEL1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TSEL1_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Timer 6 TRGO event"]
-    #[inline]
+    #[inline(always)]
     pub fn tim6_trgo(self) -> &'a mut W {
-        self.variant(TSEL2W::TIM6_TRGO)
-    }
-    #[doc = "Timer 8 TRGO event"]
-    #[inline]
-    pub fn tim8_trgo(self) -> &'a mut W {
-        self.variant(TSEL2W::TIM8_TRGO)
-    }
-    #[doc = "Timer 7 TRGO event"]
-    #[inline]
-    pub fn tim7_trgo(self) -> &'a mut W {
-        self.variant(TSEL2W::TIM7_TRGO)
-    }
-    #[doc = "Timer 5 TRGO event"]
-    #[inline]
-    pub fn tim5_trgo(self) -> &'a mut W {
-        self.variant(TSEL2W::TIM5_TRGO)
-    }
-    #[doc = "Timer 2 TRGO event"]
-    #[inline]
-    pub fn tim2_trgo(self) -> &'a mut W {
-        self.variant(TSEL2W::TIM2_TRGO)
-    }
-    #[doc = "Timer 4 TRGO event"]
-    #[inline]
-    pub fn tim4_trgo(self) -> &'a mut W {
-        self.variant(TSEL2W::TIM4_TRGO)
-    }
-    #[doc = "EXTI line9"]
-    #[inline]
-    pub fn exti9(self) -> &'a mut W {
-        self.variant(TSEL2W::EXTI9)
-    }
-    #[doc = "Software trigger"]
-    #[inline]
-    pub fn software(self) -> &'a mut W {
-        self.variant(TSEL2W::SOFTWARE)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x07;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `TEN2`"]
-pub enum TEN2W {
-    #[doc = "DAC channel2 trigger disabled"]
-    DISABLED,
-    #[doc = "DAC channel2 trigger enabled"]
-    ENABLED,
-}
-impl TEN2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TEN2W::DISABLED => false,
-            TEN2W::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TEN2W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TEN2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TEN2W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "DAC channel2 trigger disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(TEN2W::DISABLED)
-    }
-    #[doc = "DAC channel2 trigger enabled"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(TEN2W::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `BOFF2`"]
-pub enum BOFF2W {
-    #[doc = "DAC channel2 output buffer enabled"]
-    ENABLED,
-    #[doc = "DAC channel2 output buffer disabled"]
-    DISABLED,
-}
-impl BOFF2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BOFF2W::ENABLED => false,
-            BOFF2W::DISABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _BOFF2W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _BOFF2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BOFF2W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "DAC channel2 output buffer enabled"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(BOFF2W::ENABLED)
-    }
-    #[doc = "DAC channel2 output buffer disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(BOFF2W::DISABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `EN2`"]
-pub enum EN2W {
-    #[doc = "DAC channel2 disabled"]
-    DISABLED,
-    #[doc = "DAC channel2 enabled"]
-    ENABLED,
-}
-impl EN2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            EN2W::DISABLED => false,
-            EN2W::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _EN2W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _EN2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: EN2W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "DAC channel2 disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(EN2W::DISABLED)
-    }
-    #[doc = "DAC channel2 enabled"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(EN2W::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `DMAUDRIE1`"]
-pub enum DMAUDRIE1W {
-    #[doc = "DAC channel1 DMA Underrun Interrupt disabled"]
-    DISABLED,
-    #[doc = "DAC channel1 DMA Underrun Interrupt enabled"]
-    ENABLED,
-}
-impl DMAUDRIE1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DMAUDRIE1W::DISABLED => false,
-            DMAUDRIE1W::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DMAUDRIE1W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DMAUDRIE1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DMAUDRIE1W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "DAC channel1 DMA Underrun Interrupt disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(DMAUDRIE1W::DISABLED)
-    }
-    #[doc = "DAC channel1 DMA Underrun Interrupt enabled"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(DMAUDRIE1W::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 13;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `DMAEN1`"]
-pub enum DMAEN1W {
-    #[doc = "DAC channel1 DMA mode disabled"]
-    DISABLED,
-    #[doc = "DAC channel1 DMA mode enabled"]
-    ENABLED,
-}
-impl DMAEN1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DMAEN1W::DISABLED => false,
-            DMAEN1W::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DMAEN1W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DMAEN1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DMAEN1W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "DAC channel1 DMA mode disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(DMAEN1W::DISABLED)
-    }
-    #[doc = "DAC channel1 DMA mode enabled"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(DMAEN1W::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MAMP1W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _MAMP1W<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x0f;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `WAVE1`"]
-pub enum WAVE1W {
-    #[doc = "Wave generation disabled"]
-    DISABLED,
-    #[doc = "Noise wave generation enabled"]
-    NOISE,
-    #[doc = "Triangle wave generation enabled"]
-    TRIANGLE,
-}
-impl WAVE1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            WAVE1W::DISABLED => 0,
-            WAVE1W::NOISE => 1,
-            WAVE1W::TRIANGLE => 2,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _WAVE1W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _WAVE1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: WAVE1W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "Wave generation disabled"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(WAVE1W::DISABLED)
-    }
-    #[doc = "Noise wave generation enabled"]
-    #[inline]
-    pub fn noise(self) -> &'a mut W {
-        self.variant(WAVE1W::NOISE)
-    }
-    #[doc = "Triangle wave generation enabled"]
-    #[inline]
-    pub fn triangle(self) -> &'a mut W {
-        self.variant(WAVE1W::TRIANGLE)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `TSEL1`"]
-pub enum TSEL1W {
-    #[doc = "Timer 6 TRGO event"]
-    TIM6_TRGO,
-    #[doc = "Timer 3 TRGO event"]
-    TIM3_TRGO,
-    #[doc = "Timer 7 TRGO event"]
-    TIM7_TRGO,
-    #[doc = "Timer 15 TRGO event"]
-    TIM15_TRGO,
-    #[doc = "Timer 2 TRGO event"]
-    TIM2_TRGO,
-    #[doc = "EXTI line9"]
-    EXTI9,
-    #[doc = "Software trigger"]
-    SOFTWARE,
-}
-impl TSEL1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TSEL1W::TIM6_TRGO => 0,
-            TSEL1W::TIM3_TRGO => 1,
-            TSEL1W::TIM7_TRGO => 2,
-            TSEL1W::TIM15_TRGO => 3,
-            TSEL1W::TIM2_TRGO => 4,
-            TSEL1W::EXTI9 => 6,
-            TSEL1W::SOFTWARE => 7,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TSEL1W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TSEL1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TSEL1W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "Timer 6 TRGO event"]
-    #[inline]
-    pub fn tim6_trgo(self) -> &'a mut W {
-        self.variant(TSEL1W::TIM6_TRGO)
+        self.variant(TSEL1_A::TIM6_TRGO)
     }
     #[doc = "Timer 3 TRGO event"]
-    #[inline]
+    #[inline(always)]
     pub fn tim3_trgo(self) -> &'a mut W {
-        self.variant(TSEL1W::TIM3_TRGO)
+        self.variant(TSEL1_A::TIM3_TRGO)
     }
     #[doc = "Timer 7 TRGO event"]
-    #[inline]
+    #[inline(always)]
     pub fn tim7_trgo(self) -> &'a mut W {
-        self.variant(TSEL1W::TIM7_TRGO)
+        self.variant(TSEL1_A::TIM7_TRGO)
     }
     #[doc = "Timer 15 TRGO event"]
-    #[inline]
+    #[inline(always)]
     pub fn tim15_trgo(self) -> &'a mut W {
-        self.variant(TSEL1W::TIM15_TRGO)
+        self.variant(TSEL1_A::TIM15_TRGO)
     }
     #[doc = "Timer 2 TRGO event"]
-    #[inline]
+    #[inline(always)]
     pub fn tim2_trgo(self) -> &'a mut W {
-        self.variant(TSEL1W::TIM2_TRGO)
+        self.variant(TSEL1_A::TIM2_TRGO)
     }
     #[doc = "EXTI line9"]
-    #[inline]
+    #[inline(always)]
     pub fn exti9(self) -> &'a mut W {
-        self.variant(TSEL1W::EXTI9)
+        self.variant(TSEL1_A::EXTI9)
     }
     #[doc = "Software trigger"]
-    #[inline]
+    #[inline(always)]
     pub fn software(self) -> &'a mut W {
-        self.variant(TSEL1W::SOFTWARE)
+        self.variant(TSEL1_A::SOFTWARE)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x07;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x07 << 3)) | (((value as u32) & 0x07) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TEN1`"]
-pub enum TEN1W {
+#[doc = "DAC channel1 trigger enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TEN1_A {
+    #[doc = "0: DAC channel1 trigger disabled"]
+    DISABLED,
+    #[doc = "1: DAC channel1 trigger enabled"]
+    ENABLED,
+}
+impl From<TEN1_A> for bool {
+    #[inline(always)]
+    fn from(variant: TEN1_A) -> Self {
+        match variant {
+            TEN1_A::DISABLED => false,
+            TEN1_A::ENABLED => true,
+        }
+    }
+}
+#[doc = "Reader of field `TEN1`"]
+pub type TEN1_R = crate::R<bool, TEN1_A>;
+impl TEN1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TEN1_A {
+        match self.bits {
+            false => TEN1_A::DISABLED,
+            true => TEN1_A::ENABLED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == TEN1_A::DISABLED
+    }
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == TEN1_A::ENABLED
+    }
+}
+#[doc = "Write proxy for field `TEN1`"]
+pub struct TEN1_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> TEN1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TEN1_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "DAC channel1 trigger disabled"]
-    DISABLED,
-    #[doc = "DAC channel1 trigger enabled"]
-    ENABLED,
-}
-impl TEN1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TEN1W::DISABLED => false,
-            TEN1W::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TEN1W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TEN1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TEN1W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "DAC channel1 trigger disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(TEN1W::DISABLED)
+        self.variant(TEN1_A::DISABLED)
     }
     #[doc = "DAC channel1 trigger enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(TEN1W::ENABLED)
+        self.variant(TEN1_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BOFF1`"]
-pub enum BOFF1W {
-    #[doc = "DAC channel1 output buffer enabled"]
+#[doc = "DAC channel1 output buffer disable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BOFF1_A {
+    #[doc = "0: DAC channel1 output buffer enabled"]
     ENABLED,
-    #[doc = "DAC channel1 output buffer disabled"]
+    #[doc = "1: DAC channel1 output buffer disabled"]
     DISABLED,
 }
-impl BOFF1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BOFF1W::ENABLED => false,
-            BOFF1W::DISABLED => true,
+impl From<BOFF1_A> for bool {
+    #[inline(always)]
+    fn from(variant: BOFF1_A) -> Self {
+        match variant {
+            BOFF1_A::ENABLED => false,
+            BOFF1_A::DISABLED => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BOFF1W<'a> {
+#[doc = "Reader of field `BOFF1`"]
+pub type BOFF1_R = crate::R<bool, BOFF1_A>;
+impl BOFF1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BOFF1_A {
+        match self.bits {
+            false => BOFF1_A::ENABLED,
+            true => BOFF1_A::DISABLED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == BOFF1_A::ENABLED
+    }
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == BOFF1_A::DISABLED
+    }
+}
+#[doc = "Write proxy for field `BOFF1`"]
+pub struct BOFF1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BOFF1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BOFF1W) -> &'a mut W {
+impl<'a> BOFF1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BOFF1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "DAC channel1 output buffer enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(BOFF1W::ENABLED)
+        self.variant(BOFF1_A::ENABLED)
     }
     #[doc = "DAC channel1 output buffer disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(BOFF1W::DISABLED)
+        self.variant(BOFF1_A::DISABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `EN1`"]
-pub enum EN1W {
-    #[doc = "DAC channel1 disabled"]
+#[doc = "DAC channel1 enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum EN1_A {
+    #[doc = "0: DAC channel1 disabled"]
     DISABLED,
-    #[doc = "DAC channel1 enabled"]
+    #[doc = "1: DAC channel1 enabled"]
     ENABLED,
 }
-impl EN1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            EN1W::DISABLED => false,
-            EN1W::ENABLED => true,
+impl From<EN1_A> for bool {
+    #[inline(always)]
+    fn from(variant: EN1_A) -> Self {
+        match variant {
+            EN1_A::DISABLED => false,
+            EN1_A::ENABLED => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _EN1W<'a> {
+#[doc = "Reader of field `EN1`"]
+pub type EN1_R = crate::R<bool, EN1_A>;
+impl EN1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> EN1_A {
+        match self.bits {
+            false => EN1_A::DISABLED,
+            true => EN1_A::ENABLED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == EN1_A::DISABLED
+    }
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == EN1_A::ENABLED
+    }
+}
+#[doc = "Write proxy for field `EN1`"]
+pub struct EN1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: EN1W) -> &'a mut W {
+impl<'a> EN1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: EN1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "DAC channel1 disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(EN1W::DISABLED)
+        self.variant(EN1_A::DISABLED)
     }
     #[doc = "DAC channel1 enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(EN1W::ENABLED)
+        self.variant(EN1_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 29 - DAC channel2 DMA underrun interrupt enable"]
-    #[inline]
-    pub fn dmaudrie2(&self) -> DMAUDRIE2R {
-        DMAUDRIE2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 29;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dmaudrie2(&self) -> DMAUDRIE2_R {
+        DMAUDRIE2_R::new(((self.bits >> 29) & 0x01) != 0)
     }
     #[doc = "Bit 28 - DAC channel2 DMA enable"]
-    #[inline]
-    pub fn dmaen2(&self) -> DMAEN2R {
-        DMAEN2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dmaen2(&self) -> DMAEN2_R {
+        DMAEN2_R::new(((self.bits >> 28) & 0x01) != 0)
     }
     #[doc = "Bits 24:27 - DAC channel2 mask/amplitude selector"]
-    #[inline]
-    pub fn mamp2(&self) -> MAMP2R {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        MAMP2R { bits }
+    #[inline(always)]
+    pub fn mamp2(&self) -> MAMP2_R {
+        MAMP2_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
     #[doc = "Bits 22:23 - DAC channel2 noise/triangle wave generation enable"]
-    #[inline]
-    pub fn wave2(&self) -> WAVE2R {
-        WAVE2R::_from({
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn wave2(&self) -> WAVE2_R {
+        WAVE2_R::new(((self.bits >> 22) & 0x03) as u8)
     }
     #[doc = "Bits 19:21 - DAC channel2 trigger selection"]
-    #[inline]
-    pub fn tsel2(&self) -> TSEL2R {
-        TSEL2R::_from({
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn tsel2(&self) -> TSEL2_R {
+        TSEL2_R::new(((self.bits >> 19) & 0x07) as u8)
     }
     #[doc = "Bit 18 - DAC channel2 trigger enable"]
-    #[inline]
-    pub fn ten2(&self) -> TEN2R {
-        TEN2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ten2(&self) -> TEN2_R {
+        TEN2_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 17 - DAC channel2 output buffer disable"]
-    #[inline]
-    pub fn boff2(&self) -> BOFF2R {
-        BOFF2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn boff2(&self) -> BOFF2_R {
+        BOFF2_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 16 - DAC channel2 enable"]
-    #[inline]
-    pub fn en2(&self) -> EN2R {
-        EN2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn en2(&self) -> EN2_R {
+        EN2_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 13 - DAC channel1 DMA Underrun Interrupt enable"]
-    #[inline]
-    pub fn dmaudrie1(&self) -> DMAUDRIE1R {
-        DMAUDRIE1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 13;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dmaudrie1(&self) -> DMAUDRIE1_R {
+        DMAUDRIE1_R::new(((self.bits >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 12 - DAC channel1 DMA enable"]
-    #[inline]
-    pub fn dmaen1(&self) -> DMAEN1R {
-        DMAEN1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dmaen1(&self) -> DMAEN1_R {
+        DMAEN1_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bits 8:11 - DAC channel1 mask/amplitude selector"]
-    #[inline]
-    pub fn mamp1(&self) -> MAMP1R {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        MAMP1R { bits }
+    #[inline(always)]
+    pub fn mamp1(&self) -> MAMP1_R {
+        MAMP1_R::new(((self.bits >> 8) & 0x0f) as u8)
     }
     #[doc = "Bits 6:7 - DAC channel1 noise/triangle wave generation enable"]
-    #[inline]
-    pub fn wave1(&self) -> WAVE1R {
-        WAVE1R::_from({
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn wave1(&self) -> WAVE1_R {
+        WAVE1_R::new(((self.bits >> 6) & 0x03) as u8)
     }
     #[doc = "Bits 3:5 - DAC channel1 trigger selection"]
-    #[inline]
-    pub fn tsel1(&self) -> TSEL1R {
-        TSEL1R::_from({
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn tsel1(&self) -> TSEL1_R {
+        TSEL1_R::new(((self.bits >> 3) & 0x07) as u8)
     }
     #[doc = "Bit 2 - DAC channel1 trigger enable"]
-    #[inline]
-    pub fn ten1(&self) -> TEN1R {
-        TEN1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ten1(&self) -> TEN1_R {
+        TEN1_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 1 - DAC channel1 output buffer disable"]
-    #[inline]
-    pub fn boff1(&self) -> BOFF1R {
-        BOFF1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn boff1(&self) -> BOFF1_R {
+        BOFF1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 0 - DAC channel1 enable"]
-    #[inline]
-    pub fn en1(&self) -> EN1R {
-        EN1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn en1(&self) -> EN1_R {
+        EN1_R::new((self.bits & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 29 - DAC channel2 DMA underrun interrupt enable"]
-    #[inline]
-    pub fn dmaudrie2(&mut self) -> _DMAUDRIE2W {
-        _DMAUDRIE2W { w: self }
+    #[inline(always)]
+    pub fn dmaudrie2(&mut self) -> DMAUDRIE2_W {
+        DMAUDRIE2_W { w: self }
     }
     #[doc = "Bit 28 - DAC channel2 DMA enable"]
-    #[inline]
-    pub fn dmaen2(&mut self) -> _DMAEN2W {
-        _DMAEN2W { w: self }
+    #[inline(always)]
+    pub fn dmaen2(&mut self) -> DMAEN2_W {
+        DMAEN2_W { w: self }
     }
     #[doc = "Bits 24:27 - DAC channel2 mask/amplitude selector"]
-    #[inline]
-    pub fn mamp2(&mut self) -> _MAMP2W {
-        _MAMP2W { w: self }
+    #[inline(always)]
+    pub fn mamp2(&mut self) -> MAMP2_W {
+        MAMP2_W { w: self }
     }
     #[doc = "Bits 22:23 - DAC channel2 noise/triangle wave generation enable"]
-    #[inline]
-    pub fn wave2(&mut self) -> _WAVE2W {
-        _WAVE2W { w: self }
+    #[inline(always)]
+    pub fn wave2(&mut self) -> WAVE2_W {
+        WAVE2_W { w: self }
     }
     #[doc = "Bits 19:21 - DAC channel2 trigger selection"]
-    #[inline]
-    pub fn tsel2(&mut self) -> _TSEL2W {
-        _TSEL2W { w: self }
+    #[inline(always)]
+    pub fn tsel2(&mut self) -> TSEL2_W {
+        TSEL2_W { w: self }
     }
     #[doc = "Bit 18 - DAC channel2 trigger enable"]
-    #[inline]
-    pub fn ten2(&mut self) -> _TEN2W {
-        _TEN2W { w: self }
+    #[inline(always)]
+    pub fn ten2(&mut self) -> TEN2_W {
+        TEN2_W { w: self }
     }
     #[doc = "Bit 17 - DAC channel2 output buffer disable"]
-    #[inline]
-    pub fn boff2(&mut self) -> _BOFF2W {
-        _BOFF2W { w: self }
+    #[inline(always)]
+    pub fn boff2(&mut self) -> BOFF2_W {
+        BOFF2_W { w: self }
     }
     #[doc = "Bit 16 - DAC channel2 enable"]
-    #[inline]
-    pub fn en2(&mut self) -> _EN2W {
-        _EN2W { w: self }
+    #[inline(always)]
+    pub fn en2(&mut self) -> EN2_W {
+        EN2_W { w: self }
     }
     #[doc = "Bit 13 - DAC channel1 DMA Underrun Interrupt enable"]
-    #[inline]
-    pub fn dmaudrie1(&mut self) -> _DMAUDRIE1W {
-        _DMAUDRIE1W { w: self }
+    #[inline(always)]
+    pub fn dmaudrie1(&mut self) -> DMAUDRIE1_W {
+        DMAUDRIE1_W { w: self }
     }
     #[doc = "Bit 12 - DAC channel1 DMA enable"]
-    #[inline]
-    pub fn dmaen1(&mut self) -> _DMAEN1W {
-        _DMAEN1W { w: self }
+    #[inline(always)]
+    pub fn dmaen1(&mut self) -> DMAEN1_W {
+        DMAEN1_W { w: self }
     }
     #[doc = "Bits 8:11 - DAC channel1 mask/amplitude selector"]
-    #[inline]
-    pub fn mamp1(&mut self) -> _MAMP1W {
-        _MAMP1W { w: self }
+    #[inline(always)]
+    pub fn mamp1(&mut self) -> MAMP1_W {
+        MAMP1_W { w: self }
     }
     #[doc = "Bits 6:7 - DAC channel1 noise/triangle wave generation enable"]
-    #[inline]
-    pub fn wave1(&mut self) -> _WAVE1W {
-        _WAVE1W { w: self }
+    #[inline(always)]
+    pub fn wave1(&mut self) -> WAVE1_W {
+        WAVE1_W { w: self }
     }
     #[doc = "Bits 3:5 - DAC channel1 trigger selection"]
-    #[inline]
-    pub fn tsel1(&mut self) -> _TSEL1W {
-        _TSEL1W { w: self }
+    #[inline(always)]
+    pub fn tsel1(&mut self) -> TSEL1_W {
+        TSEL1_W { w: self }
     }
     #[doc = "Bit 2 - DAC channel1 trigger enable"]
-    #[inline]
-    pub fn ten1(&mut self) -> _TEN1W {
-        _TEN1W { w: self }
+    #[inline(always)]
+    pub fn ten1(&mut self) -> TEN1_W {
+        TEN1_W { w: self }
     }
     #[doc = "Bit 1 - DAC channel1 output buffer disable"]
-    #[inline]
-    pub fn boff1(&mut self) -> _BOFF1W {
-        _BOFF1W { w: self }
+    #[inline(always)]
+    pub fn boff1(&mut self) -> BOFF1_W {
+        BOFF1_W { w: self }
     }
     #[doc = "Bit 0 - DAC channel1 enable"]
-    #[inline]
-    pub fn en1(&mut self) -> _EN1W {
-        _EN1W { w: self }
+    #[inline(always)]
+    pub fn en1(&mut self) -> EN1_W {
+        EN1_W { w: self }
     }
 }

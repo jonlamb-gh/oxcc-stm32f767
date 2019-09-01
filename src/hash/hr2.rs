@@ -1,41 +1,11 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::HR2 {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct H2R {
-    bits: u32,
-}
-impl H2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-}
+#[doc = "Reader of register HR2"]
+pub type R = crate::R<u32, super::HR2>;
+#[doc = "Reader of field `H2`"]
+pub type H2_R = crate::R<u32, u32>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:31 - H2"]
-    #[inline]
-    pub fn h2(&self) -> H2R {
-        let bits = {
-            const MASK: u32 = 0xffff_ffff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u32
-        };
-        H2R { bits }
+    #[inline(always)]
+    pub fn h2(&self) -> H2_R {
+        H2_R::new((self.bits & 0xffff_ffff) as u32)
     }
 }

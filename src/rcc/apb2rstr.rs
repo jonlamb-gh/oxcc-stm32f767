@@ -1,1018 +1,860 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::APB2RSTR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register APB2RSTR"]
+pub type R = crate::R<u32, super::APB2RSTR>;
+#[doc = "Writer for register APB2RSTR"]
+pub type W = crate::W<u32, super::APB2RSTR>;
+#[doc = "Register APB2RSTR `reset()`'s with value 0"]
+impl crate::ResetValue for super::APB2RSTR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `TIM1RST`"]
+#[doc = "TIM1 reset\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TIM1RSTR {
-    #[doc = "Reset the selected module"]
+pub enum TIM1RST_A {
+    #[doc = "1: Reset the selected module"]
     RESET,
-    #[doc = r" Reserved"]
-    _Reserved(bool),
 }
-impl TIM1RSTR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TIM1RSTR::RESET => true,
-            TIM1RSTR::_Reserved(bits) => bits,
+impl From<TIM1RST_A> for bool {
+    #[inline(always)]
+    fn from(variant: TIM1RST_A) -> Self {
+        match variant {
+            TIM1RST_A::RESET => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TIM1RSTR {
-        match value {
-            true => TIM1RSTR::RESET,
-            i => TIM1RSTR::_Reserved(i),
+}
+#[doc = "Reader of field `TIM1RST`"]
+pub type TIM1RST_R = crate::R<bool, TIM1RST_A>;
+impl TIM1RST_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<bool, TIM1RST_A> {
+        use crate::Variant::*;
+        match self.bits {
+            true => Val(TIM1RST_A::RESET),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `RESET`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_reset(&self) -> bool {
-        *self == TIM1RSTR::RESET
+        *self == TIM1RST_A::RESET
     }
 }
-#[doc = "Possible values of the field `TIM8RST`"]
-pub type TIM8RSTR = TIM1RSTR;
-#[doc = "Possible values of the field `USART1RST`"]
-pub type USART1RSTR = TIM1RSTR;
-#[doc = "Possible values of the field `USART6RST`"]
-pub type USART6RSTR = TIM1RSTR;
-#[doc = "Possible values of the field `ADCRST`"]
-pub type ADCRSTR = TIM1RSTR;
-#[doc = "Possible values of the field `SPI1RST`"]
-pub type SPI1RSTR = TIM1RSTR;
-#[doc = "Possible values of the field `SPI4RST`"]
-pub type SPI4RSTR = TIM1RSTR;
-#[doc = "Possible values of the field `SYSCFGRST`"]
-pub type SYSCFGRSTR = TIM1RSTR;
-#[doc = "Possible values of the field `TIM9RST`"]
-pub type TIM9RSTR = TIM1RSTR;
-#[doc = "Possible values of the field `TIM10RST`"]
-pub type TIM10RSTR = TIM1RSTR;
-#[doc = "Possible values of the field `TIM11RST`"]
-pub type TIM11RSTR = TIM1RSTR;
-#[doc = "Possible values of the field `SPI5RST`"]
-pub type SPI5RSTR = TIM1RSTR;
-#[doc = "Possible values of the field `SPI6RST`"]
-pub type SPI6RSTR = TIM1RSTR;
-#[doc = "Possible values of the field `SAI1RST`"]
-pub type SAI1RSTR = TIM1RSTR;
-#[doc = "Possible values of the field `LTDCRST`"]
-pub type LTDCRSTR = TIM1RSTR;
-#[doc = "Possible values of the field `SAI2RST`"]
-pub type SAI2RSTR = TIM1RSTR;
-#[doc = "Possible values of the field `SDMMC1RST`"]
-pub type SDMMC1RSTR = TIM1RSTR;
-#[doc = "Values that can be written to the field `TIM1RST`"]
-pub enum TIM1RSTW {
-    #[doc = "Reset the selected module"]
-    RESET,
-}
-impl TIM1RSTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TIM1RSTW::RESET => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TIM1RSTW<'a> {
+#[doc = "Write proxy for field `TIM1RST`"]
+pub struct TIM1RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM1RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM1RSTW) -> &'a mut W {
+impl<'a> TIM1RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM1RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM8RST`"]
-pub type TIM8RSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _TIM8RSTW<'a> {
+#[doc = "TIM8 reset"]
+pub type TIM8RST_A = TIM1RST_A;
+#[doc = "Reader of field `TIM8RST`"]
+pub type TIM8RST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `TIM8RST`"]
+pub struct TIM8RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM8RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM8RSTW) -> &'a mut W {
+impl<'a> TIM8RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM8RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `USART1RST`"]
-pub type USART1RSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _USART1RSTW<'a> {
+#[doc = "USART1 reset"]
+pub type USART1RST_A = TIM1RST_A;
+#[doc = "Reader of field `USART1RST`"]
+pub type USART1RST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `USART1RST`"]
+pub struct USART1RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USART1RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: USART1RSTW) -> &'a mut W {
+impl<'a> USART1RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: USART1RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `USART6RST`"]
-pub type USART6RSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _USART6RSTW<'a> {
+#[doc = "USART6 reset"]
+pub type USART6RST_A = TIM1RST_A;
+#[doc = "Reader of field `USART6RST`"]
+pub type USART6RST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `USART6RST`"]
+pub struct USART6RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USART6RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: USART6RSTW) -> &'a mut W {
+impl<'a> USART6RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: USART6RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ADCRST`"]
-pub type ADCRSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _ADCRSTW<'a> {
+#[doc = "ADC interface reset (common to all ADCs)"]
+pub type ADCRST_A = TIM1RST_A;
+#[doc = "Reader of field `ADCRST`"]
+pub type ADCRST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `ADCRST`"]
+pub struct ADCRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ADCRSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ADCRSTW) -> &'a mut W {
+impl<'a> ADCRST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ADCRST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SPI1RST`"]
-pub type SPI1RSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _SPI1RSTW<'a> {
+#[doc = "SPI 1 reset"]
+pub type SPI1RST_A = TIM1RST_A;
+#[doc = "Reader of field `SPI1RST`"]
+pub type SPI1RST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `SPI1RST`"]
+pub struct SPI1RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPI1RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SPI1RSTW) -> &'a mut W {
+impl<'a> SPI1RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SPI1RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SPI4RST`"]
-pub type SPI4RSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _SPI4RSTW<'a> {
+#[doc = "SPI4 reset"]
+pub type SPI4RST_A = TIM1RST_A;
+#[doc = "Reader of field `SPI4RST`"]
+pub type SPI4RST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `SPI4RST`"]
+pub struct SPI4RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPI4RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SPI4RSTW) -> &'a mut W {
+impl<'a> SPI4RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SPI4RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 13;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SYSCFGRST`"]
-pub type SYSCFGRSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _SYSCFGRSTW<'a> {
+#[doc = "System configuration controller reset"]
+pub type SYSCFGRST_A = TIM1RST_A;
+#[doc = "Reader of field `SYSCFGRST`"]
+pub type SYSCFGRST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `SYSCFGRST`"]
+pub struct SYSCFGRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SYSCFGRSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SYSCFGRSTW) -> &'a mut W {
+impl<'a> SYSCFGRST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SYSCFGRST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 14;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM9RST`"]
-pub type TIM9RSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _TIM9RSTW<'a> {
+#[doc = "TIM9 reset"]
+pub type TIM9RST_A = TIM1RST_A;
+#[doc = "Reader of field `TIM9RST`"]
+pub type TIM9RST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `TIM9RST`"]
+pub struct TIM9RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM9RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM9RSTW) -> &'a mut W {
+impl<'a> TIM9RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM9RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM10RST`"]
-pub type TIM10RSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _TIM10RSTW<'a> {
+#[doc = "TIM10 reset"]
+pub type TIM10RST_A = TIM1RST_A;
+#[doc = "Reader of field `TIM10RST`"]
+pub type TIM10RST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `TIM10RST`"]
+pub struct TIM10RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM10RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM10RSTW) -> &'a mut W {
+impl<'a> TIM10RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM10RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TIM11RST`"]
-pub type TIM11RSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _TIM11RSTW<'a> {
+#[doc = "TIM11 reset"]
+pub type TIM11RST_A = TIM1RST_A;
+#[doc = "Reader of field `TIM11RST`"]
+pub type TIM11RST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `TIM11RST`"]
+pub struct TIM11RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIM11RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TIM11RSTW) -> &'a mut W {
+impl<'a> TIM11RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TIM11RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SPI5RST`"]
-pub type SPI5RSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _SPI5RSTW<'a> {
+#[doc = "SPI5 reset"]
+pub type SPI5RST_A = TIM1RST_A;
+#[doc = "Reader of field `SPI5RST`"]
+pub type SPI5RST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `SPI5RST`"]
+pub struct SPI5RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPI5RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SPI5RSTW) -> &'a mut W {
+impl<'a> SPI5RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SPI5RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SPI6RST`"]
-pub type SPI6RSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _SPI6RSTW<'a> {
+#[doc = "SPI6 reset"]
+pub type SPI6RST_A = TIM1RST_A;
+#[doc = "Reader of field `SPI6RST`"]
+pub type SPI6RST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `SPI6RST`"]
+pub struct SPI6RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPI6RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SPI6RSTW) -> &'a mut W {
+impl<'a> SPI6RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SPI6RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 21;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SAI1RST`"]
-pub type SAI1RSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _SAI1RSTW<'a> {
+#[doc = "SAI1 reset"]
+pub type SAI1RST_A = TIM1RST_A;
+#[doc = "Reader of field `SAI1RST`"]
+pub type SAI1RST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `SAI1RST`"]
+pub struct SAI1RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SAI1RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SAI1RSTW) -> &'a mut W {
+impl<'a> SAI1RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SAI1RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LTDCRST`"]
-pub type LTDCRSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _LTDCRSTW<'a> {
+#[doc = "LTDC reset"]
+pub type LTDCRST_A = TIM1RST_A;
+#[doc = "Reader of field `LTDCRST`"]
+pub type LTDCRST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `LTDCRST`"]
+pub struct LTDCRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LTDCRSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LTDCRSTW) -> &'a mut W {
+impl<'a> LTDCRST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LTDCRST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 26;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SAI2RST`"]
-pub type SAI2RSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _SAI2RSTW<'a> {
+#[doc = "SAI2 reset"]
+pub type SAI2RST_A = TIM1RST_A;
+#[doc = "Reader of field `SAI2RST`"]
+pub type SAI2RST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `SAI2RST`"]
+pub struct SAI2RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SAI2RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SAI2RSTW) -> &'a mut W {
+impl<'a> SAI2RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SAI2RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 23;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 23)) | (((value as u32) & 0x01) << 23);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SDMMC1RST`"]
-pub type SDMMC1RSTW = TIM1RSTW;
-#[doc = r" Proxy"]
-pub struct _SDMMC1RSTW<'a> {
+#[doc = "SDMMC1 reset"]
+pub type SDMMC1RST_A = TIM1RST_A;
+#[doc = "Reader of field `SDMMC1RST`"]
+pub type SDMMC1RST_R = crate::R<bool, TIM1RST_A>;
+#[doc = "Write proxy for field `SDMMC1RST`"]
+pub struct SDMMC1RST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SDMMC1RSTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SDMMC1RSTW) -> &'a mut W {
+impl<'a> SDMMC1RST_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SDMMC1RST_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Reset the selected module"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(TIM1RSTW::RESET)
+        self.variant(TIM1RST_A::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - TIM1 reset"]
-    #[inline]
-    pub fn tim1rst(&self) -> TIM1RSTR {
-        TIM1RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim1rst(&self) -> TIM1RST_R {
+        TIM1RST_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - TIM8 reset"]
-    #[inline]
-    pub fn tim8rst(&self) -> TIM8RSTR {
-        TIM8RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim8rst(&self) -> TIM8RST_R {
+        TIM8RST_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 4 - USART1 reset"]
-    #[inline]
-    pub fn usart1rst(&self) -> USART1RSTR {
-        USART1RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn usart1rst(&self) -> USART1RST_R {
+        USART1RST_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - USART6 reset"]
-    #[inline]
-    pub fn usart6rst(&self) -> USART6RSTR {
-        USART6RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn usart6rst(&self) -> USART6RST_R {
+        USART6RST_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 8 - ADC interface reset (common to all ADCs)"]
-    #[inline]
-    pub fn adcrst(&self) -> ADCRSTR {
-        ADCRSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn adcrst(&self) -> ADCRST_R {
+        ADCRST_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 12 - SPI 1 reset"]
-    #[inline]
-    pub fn spi1rst(&self) -> SPI1RSTR {
-        SPI1RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn spi1rst(&self) -> SPI1RST_R {
+        SPI1RST_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - SPI4 reset"]
-    #[inline]
-    pub fn spi4rst(&self) -> SPI4RSTR {
-        SPI4RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 13;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn spi4rst(&self) -> SPI4RST_R {
+        SPI4RST_R::new(((self.bits >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 14 - System configuration controller reset"]
-    #[inline]
-    pub fn syscfgrst(&self) -> SYSCFGRSTR {
-        SYSCFGRSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn syscfgrst(&self) -> SYSCFGRST_R {
+        SYSCFGRST_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 16 - TIM9 reset"]
-    #[inline]
-    pub fn tim9rst(&self) -> TIM9RSTR {
-        TIM9RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim9rst(&self) -> TIM9RST_R {
+        TIM9RST_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - TIM10 reset"]
-    #[inline]
-    pub fn tim10rst(&self) -> TIM10RSTR {
-        TIM10RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim10rst(&self) -> TIM10RST_R {
+        TIM10RST_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - TIM11 reset"]
-    #[inline]
-    pub fn tim11rst(&self) -> TIM11RSTR {
-        TIM11RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tim11rst(&self) -> TIM11RST_R {
+        TIM11RST_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 20 - SPI5 reset"]
-    #[inline]
-    pub fn spi5rst(&self) -> SPI5RSTR {
-        SPI5RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn spi5rst(&self) -> SPI5RST_R {
+        SPI5RST_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 21 - SPI6 reset"]
-    #[inline]
-    pub fn spi6rst(&self) -> SPI6RSTR {
-        SPI6RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 21;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn spi6rst(&self) -> SPI6RST_R {
+        SPI6RST_R::new(((self.bits >> 21) & 0x01) != 0)
     }
     #[doc = "Bit 22 - SAI1 reset"]
-    #[inline]
-    pub fn sai1rst(&self) -> SAI1RSTR {
-        SAI1RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sai1rst(&self) -> SAI1RST_R {
+        SAI1RST_R::new(((self.bits >> 22) & 0x01) != 0)
     }
     #[doc = "Bit 26 - LTDC reset"]
-    #[inline]
-    pub fn ltdcrst(&self) -> LTDCRSTR {
-        LTDCRSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 26;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ltdcrst(&self) -> LTDCRST_R {
+        LTDCRST_R::new(((self.bits >> 26) & 0x01) != 0)
     }
     #[doc = "Bit 23 - SAI2 reset"]
-    #[inline]
-    pub fn sai2rst(&self) -> SAI2RSTR {
-        SAI2RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 23;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sai2rst(&self) -> SAI2RST_R {
+        SAI2RST_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bit 11 - SDMMC1 reset"]
-    #[inline]
-    pub fn sdmmc1rst(&self) -> SDMMC1RSTR {
-        SDMMC1RSTR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sdmmc1rst(&self) -> SDMMC1RST_R {
+        SDMMC1RST_R::new(((self.bits >> 11) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - TIM1 reset"]
-    #[inline]
-    pub fn tim1rst(&mut self) -> _TIM1RSTW {
-        _TIM1RSTW { w: self }
+    #[inline(always)]
+    pub fn tim1rst(&mut self) -> TIM1RST_W {
+        TIM1RST_W { w: self }
     }
     #[doc = "Bit 1 - TIM8 reset"]
-    #[inline]
-    pub fn tim8rst(&mut self) -> _TIM8RSTW {
-        _TIM8RSTW { w: self }
+    #[inline(always)]
+    pub fn tim8rst(&mut self) -> TIM8RST_W {
+        TIM8RST_W { w: self }
     }
     #[doc = "Bit 4 - USART1 reset"]
-    #[inline]
-    pub fn usart1rst(&mut self) -> _USART1RSTW {
-        _USART1RSTW { w: self }
+    #[inline(always)]
+    pub fn usart1rst(&mut self) -> USART1RST_W {
+        USART1RST_W { w: self }
     }
     #[doc = "Bit 5 - USART6 reset"]
-    #[inline]
-    pub fn usart6rst(&mut self) -> _USART6RSTW {
-        _USART6RSTW { w: self }
+    #[inline(always)]
+    pub fn usart6rst(&mut self) -> USART6RST_W {
+        USART6RST_W { w: self }
     }
     #[doc = "Bit 8 - ADC interface reset (common to all ADCs)"]
-    #[inline]
-    pub fn adcrst(&mut self) -> _ADCRSTW {
-        _ADCRSTW { w: self }
+    #[inline(always)]
+    pub fn adcrst(&mut self) -> ADCRST_W {
+        ADCRST_W { w: self }
     }
     #[doc = "Bit 12 - SPI 1 reset"]
-    #[inline]
-    pub fn spi1rst(&mut self) -> _SPI1RSTW {
-        _SPI1RSTW { w: self }
+    #[inline(always)]
+    pub fn spi1rst(&mut self) -> SPI1RST_W {
+        SPI1RST_W { w: self }
     }
     #[doc = "Bit 13 - SPI4 reset"]
-    #[inline]
-    pub fn spi4rst(&mut self) -> _SPI4RSTW {
-        _SPI4RSTW { w: self }
+    #[inline(always)]
+    pub fn spi4rst(&mut self) -> SPI4RST_W {
+        SPI4RST_W { w: self }
     }
     #[doc = "Bit 14 - System configuration controller reset"]
-    #[inline]
-    pub fn syscfgrst(&mut self) -> _SYSCFGRSTW {
-        _SYSCFGRSTW { w: self }
+    #[inline(always)]
+    pub fn syscfgrst(&mut self) -> SYSCFGRST_W {
+        SYSCFGRST_W { w: self }
     }
     #[doc = "Bit 16 - TIM9 reset"]
-    #[inline]
-    pub fn tim9rst(&mut self) -> _TIM9RSTW {
-        _TIM9RSTW { w: self }
+    #[inline(always)]
+    pub fn tim9rst(&mut self) -> TIM9RST_W {
+        TIM9RST_W { w: self }
     }
     #[doc = "Bit 17 - TIM10 reset"]
-    #[inline]
-    pub fn tim10rst(&mut self) -> _TIM10RSTW {
-        _TIM10RSTW { w: self }
+    #[inline(always)]
+    pub fn tim10rst(&mut self) -> TIM10RST_W {
+        TIM10RST_W { w: self }
     }
     #[doc = "Bit 18 - TIM11 reset"]
-    #[inline]
-    pub fn tim11rst(&mut self) -> _TIM11RSTW {
-        _TIM11RSTW { w: self }
+    #[inline(always)]
+    pub fn tim11rst(&mut self) -> TIM11RST_W {
+        TIM11RST_W { w: self }
     }
     #[doc = "Bit 20 - SPI5 reset"]
-    #[inline]
-    pub fn spi5rst(&mut self) -> _SPI5RSTW {
-        _SPI5RSTW { w: self }
+    #[inline(always)]
+    pub fn spi5rst(&mut self) -> SPI5RST_W {
+        SPI5RST_W { w: self }
     }
     #[doc = "Bit 21 - SPI6 reset"]
-    #[inline]
-    pub fn spi6rst(&mut self) -> _SPI6RSTW {
-        _SPI6RSTW { w: self }
+    #[inline(always)]
+    pub fn spi6rst(&mut self) -> SPI6RST_W {
+        SPI6RST_W { w: self }
     }
     #[doc = "Bit 22 - SAI1 reset"]
-    #[inline]
-    pub fn sai1rst(&mut self) -> _SAI1RSTW {
-        _SAI1RSTW { w: self }
+    #[inline(always)]
+    pub fn sai1rst(&mut self) -> SAI1RST_W {
+        SAI1RST_W { w: self }
     }
     #[doc = "Bit 26 - LTDC reset"]
-    #[inline]
-    pub fn ltdcrst(&mut self) -> _LTDCRSTW {
-        _LTDCRSTW { w: self }
+    #[inline(always)]
+    pub fn ltdcrst(&mut self) -> LTDCRST_W {
+        LTDCRST_W { w: self }
     }
     #[doc = "Bit 23 - SAI2 reset"]
-    #[inline]
-    pub fn sai2rst(&mut self) -> _SAI2RSTW {
-        _SAI2RSTW { w: self }
+    #[inline(always)]
+    pub fn sai2rst(&mut self) -> SAI2RST_W {
+        SAI2RST_W { w: self }
     }
     #[doc = "Bit 11 - SDMMC1 reset"]
-    #[inline]
-    pub fn sdmmc1rst(&mut self) -> _SDMMC1RSTW {
-        _SDMMC1RSTW { w: self }
+    #[inline(always)]
+    pub fn sdmmc1rst(&mut self) -> SDMMC1RST_W {
+        SDMMC1RST_W { w: self }
     }
 }

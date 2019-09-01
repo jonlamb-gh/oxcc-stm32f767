@@ -1,175 +1,39 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::MIS {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct LINE_MISR {
-    bits: bool,
-}
-impl LINE_MISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct VSYNC_MISR {
-    bits: bool,
-}
-impl VSYNC_MISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct ERR_MISR {
-    bits: bool,
-}
-impl ERR_MISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVR_MISR {
-    bits: bool,
-}
-impl OVR_MISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct FRAME_MISR {
-    bits: bool,
-}
-impl FRAME_MISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = "Reader of register MIS"]
+pub type R = crate::R<u32, super::MIS>;
+#[doc = "Reader of field `LINE_MIS`"]
+pub type LINE_MIS_R = crate::R<bool, bool>;
+#[doc = "Reader of field `VSYNC_MIS`"]
+pub type VSYNC_MIS_R = crate::R<bool, bool>;
+#[doc = "Reader of field `ERR_MIS`"]
+pub type ERR_MIS_R = crate::R<bool, bool>;
+#[doc = "Reader of field `OVR_MIS`"]
+pub type OVR_MIS_R = crate::R<bool, bool>;
+#[doc = "Reader of field `FRAME_MIS`"]
+pub type FRAME_MIS_R = crate::R<bool, bool>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 4 - Line masked interrupt status"]
-    #[inline]
-    pub fn line_mis(&self) -> LINE_MISR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        LINE_MISR { bits }
+    #[inline(always)]
+    pub fn line_mis(&self) -> LINE_MIS_R {
+        LINE_MIS_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 3 - VSYNC masked interrupt status"]
-    #[inline]
-    pub fn vsync_mis(&self) -> VSYNC_MISR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        VSYNC_MISR { bits }
+    #[inline(always)]
+    pub fn vsync_mis(&self) -> VSYNC_MIS_R {
+        VSYNC_MIS_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Synchronization error masked interrupt status"]
-    #[inline]
-    pub fn err_mis(&self) -> ERR_MISR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        ERR_MISR { bits }
+    #[inline(always)]
+    pub fn err_mis(&self) -> ERR_MIS_R {
+        ERR_MIS_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 1 - Overrun masked interrupt status"]
-    #[inline]
-    pub fn ovr_mis(&self) -> OVR_MISR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVR_MISR { bits }
+    #[inline(always)]
+    pub fn ovr_mis(&self) -> OVR_MIS_R {
+        OVR_MIS_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 0 - Capture complete masked interrupt status"]
-    #[inline]
-    pub fn frame_mis(&self) -> FRAME_MISR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        FRAME_MISR { bits }
+    #[inline(always)]
+    pub fn frame_mis(&self) -> FRAME_MIS_R {
+        FRAME_MIS_R::new((self.bits & 0x01) != 0)
     }
 }

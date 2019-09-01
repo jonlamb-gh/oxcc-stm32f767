@@ -1,774 +1,430 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::DKCFGR2 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register DKCFGR2"]
+pub type R = crate::R<u32, super::DKCFGR2>;
+#[doc = "Writer for register DKCFGR2"]
+pub type W = crate::W<u32, super::DKCFGR2>;
+#[doc = "Register DKCFGR2 `reset()`'s with value 0x2000_3000"]
+impl crate::ResetValue for super::DKCFGR2 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x2000_3000
     }
 }
-#[doc = r" Value of the field"]
-pub struct USART1SELR {
-    bits: u8,
-}
-impl USART1SELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct USART2SELR {
-    bits: u8,
-}
-impl USART2SELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct USART3SELR {
-    bits: u8,
-}
-impl USART3SELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct UART4SELR {
-    bits: u8,
-}
-impl UART4SELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct UART5SELR {
-    bits: u8,
-}
-impl UART5SELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct USART6SELR {
-    bits: u8,
-}
-impl USART6SELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct UART7SELR {
-    bits: u8,
-}
-impl UART7SELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct UART8SELR {
-    bits: u8,
-}
-impl UART8SELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct I2C1SELR {
-    bits: u8,
-}
-impl I2C1SELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct I2C2SELR {
-    bits: u8,
-}
-impl I2C2SELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct I2C3SELR {
-    bits: u8,
-}
-impl I2C3SELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct I2C4SELR {
-    bits: u8,
-}
-impl I2C4SELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct LPTIM1SELR {
-    bits: u8,
-}
-impl LPTIM1SELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CECSELR {
-    bits: bool,
-}
-impl CECSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CK48MSELR {
-    bits: bool,
-}
-impl CK48MSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SDMMCSELR {
-    bits: bool,
-}
-impl SDMMCSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _USART1SELW<'a> {
+#[doc = "Reader of field `USART1SEL`"]
+pub type USART1SEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `USART1SEL`"]
+pub struct USART1SEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USART1SELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> USART1SEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x03) | ((value as u32) & 0x03);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _USART2SELW<'a> {
+#[doc = "Reader of field `USART2SEL`"]
+pub type USART2SEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `USART2SEL`"]
+pub struct USART2SEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USART2SELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> USART2SEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 2)) | (((value as u32) & 0x03) << 2);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _USART3SELW<'a> {
+#[doc = "Reader of field `USART3SEL`"]
+pub type USART3SEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `USART3SEL`"]
+pub struct USART3SEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USART3SELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> USART3SEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 4)) | (((value as u32) & 0x03) << 4);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _UART4SELW<'a> {
+#[doc = "Reader of field `UART4SEL`"]
+pub type UART4SEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `UART4SEL`"]
+pub struct UART4SEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UART4SELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> UART4SEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 6)) | (((value as u32) & 0x03) << 6);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _UART5SELW<'a> {
+#[doc = "Reader of field `UART5SEL`"]
+pub type UART5SEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `UART5SEL`"]
+pub struct UART5SEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UART5SELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> UART5SEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 8)) | (((value as u32) & 0x03) << 8);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _USART6SELW<'a> {
+#[doc = "Reader of field `USART6SEL`"]
+pub type USART6SEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `USART6SEL`"]
+pub struct USART6SEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USART6SELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> USART6SEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 10)) | (((value as u32) & 0x03) << 10);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _UART7SELW<'a> {
+#[doc = "Reader of field `UART7SEL`"]
+pub type UART7SEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `UART7SEL`"]
+pub struct UART7SEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UART7SELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> UART7SEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 12)) | (((value as u32) & 0x03) << 12);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _UART8SELW<'a> {
+#[doc = "Reader of field `UART8SEL`"]
+pub type UART8SEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `UART8SEL`"]
+pub struct UART8SEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UART8SELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> UART8SEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 14;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 14)) | (((value as u32) & 0x03) << 14);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _I2C1SELW<'a> {
+#[doc = "Reader of field `I2C1SEL`"]
+pub type I2C1SEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `I2C1SEL`"]
+pub struct I2C1SEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2C1SELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> I2C1SEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 16)) | (((value as u32) & 0x03) << 16);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _I2C2SELW<'a> {
+#[doc = "Reader of field `I2C2SEL`"]
+pub type I2C2SEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `I2C2SEL`"]
+pub struct I2C2SEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2C2SELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> I2C2SEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 18)) | (((value as u32) & 0x03) << 18);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _I2C3SELW<'a> {
+#[doc = "Reader of field `I2C3SEL`"]
+pub type I2C3SEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `I2C3SEL`"]
+pub struct I2C3SEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2C3SELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> I2C3SEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 20)) | (((value as u32) & 0x03) << 20);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _I2C4SELW<'a> {
+#[doc = "Reader of field `I2C4SEL`"]
+pub type I2C4SEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `I2C4SEL`"]
+pub struct I2C4SEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2C4SELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> I2C4SEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 22)) | (((value as u32) & 0x03) << 22);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _LPTIM1SELW<'a> {
+#[doc = "Reader of field `LPTIM1SEL`"]
+pub type LPTIM1SEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `LPTIM1SEL`"]
+pub struct LPTIM1SEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LPTIM1SELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> LPTIM1SEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 24)) | (((value as u32) & 0x03) << 24);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _CECSELW<'a> {
+#[doc = "Reader of field `CECSEL`"]
+pub type CECSEL_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CECSEL`"]
+pub struct CECSEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CECSELW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> CECSEL_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 26;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _CK48MSELW<'a> {
+#[doc = "Reader of field `CK48MSEL`"]
+pub type CK48MSEL_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CK48MSEL`"]
+pub struct CK48MSEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CK48MSELW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> CK48MSEL_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 27;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _SDMMCSELW<'a> {
+#[doc = "Reader of field `SDMMCSEL`"]
+pub type SDMMCSEL_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SDMMCSEL`"]
+pub struct SDMMCSEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SDMMCSELW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> SDMMCSEL_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - USART 1 clock source selection"]
-    #[inline]
-    pub fn usart1sel(&self) -> USART1SELR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        USART1SELR { bits }
+    #[inline(always)]
+    pub fn usart1sel(&self) -> USART1SEL_R {
+        USART1SEL_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bits 2:3 - USART 2 clock source selection"]
-    #[inline]
-    pub fn usart2sel(&self) -> USART2SELR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        USART2SELR { bits }
+    #[inline(always)]
+    pub fn usart2sel(&self) -> USART2SEL_R {
+        USART2SEL_R::new(((self.bits >> 2) & 0x03) as u8)
     }
     #[doc = "Bits 4:5 - USART 3 clock source selection"]
-    #[inline]
-    pub fn usart3sel(&self) -> USART3SELR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        USART3SELR { bits }
+    #[inline(always)]
+    pub fn usart3sel(&self) -> USART3SEL_R {
+        USART3SEL_R::new(((self.bits >> 4) & 0x03) as u8)
     }
     #[doc = "Bits 6:7 - UART 4 clock source selection"]
-    #[inline]
-    pub fn uart4sel(&self) -> UART4SELR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        UART4SELR { bits }
+    #[inline(always)]
+    pub fn uart4sel(&self) -> UART4SEL_R {
+        UART4SEL_R::new(((self.bits >> 6) & 0x03) as u8)
     }
     #[doc = "Bits 8:9 - UART 5 clock source selection"]
-    #[inline]
-    pub fn uart5sel(&self) -> UART5SELR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        UART5SELR { bits }
+    #[inline(always)]
+    pub fn uart5sel(&self) -> UART5SEL_R {
+        UART5SEL_R::new(((self.bits >> 8) & 0x03) as u8)
     }
     #[doc = "Bits 10:11 - USART 6 clock source selection"]
-    #[inline]
-    pub fn usart6sel(&self) -> USART6SELR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        USART6SELR { bits }
+    #[inline(always)]
+    pub fn usart6sel(&self) -> USART6SEL_R {
+        USART6SEL_R::new(((self.bits >> 10) & 0x03) as u8)
     }
     #[doc = "Bits 12:13 - UART 7 clock source selection"]
-    #[inline]
-    pub fn uart7sel(&self) -> UART7SELR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        UART7SELR { bits }
+    #[inline(always)]
+    pub fn uart7sel(&self) -> UART7SEL_R {
+        UART7SEL_R::new(((self.bits >> 12) & 0x03) as u8)
     }
     #[doc = "Bits 14:15 - UART 8 clock source selection"]
-    #[inline]
-    pub fn uart8sel(&self) -> UART8SELR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        UART8SELR { bits }
+    #[inline(always)]
+    pub fn uart8sel(&self) -> UART8SEL_R {
+        UART8SEL_R::new(((self.bits >> 14) & 0x03) as u8)
     }
     #[doc = "Bits 16:17 - I2C1 clock source selection"]
-    #[inline]
-    pub fn i2c1sel(&self) -> I2C1SELR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        I2C1SELR { bits }
+    #[inline(always)]
+    pub fn i2c1sel(&self) -> I2C1SEL_R {
+        I2C1SEL_R::new(((self.bits >> 16) & 0x03) as u8)
     }
     #[doc = "Bits 18:19 - I2C2 clock source selection"]
-    #[inline]
-    pub fn i2c2sel(&self) -> I2C2SELR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        I2C2SELR { bits }
+    #[inline(always)]
+    pub fn i2c2sel(&self) -> I2C2SEL_R {
+        I2C2SEL_R::new(((self.bits >> 18) & 0x03) as u8)
     }
     #[doc = "Bits 20:21 - I2C3 clock source selection"]
-    #[inline]
-    pub fn i2c3sel(&self) -> I2C3SELR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        I2C3SELR { bits }
+    #[inline(always)]
+    pub fn i2c3sel(&self) -> I2C3SEL_R {
+        I2C3SEL_R::new(((self.bits >> 20) & 0x03) as u8)
     }
     #[doc = "Bits 22:23 - I2C4 clock source selection"]
-    #[inline]
-    pub fn i2c4sel(&self) -> I2C4SELR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        I2C4SELR { bits }
+    #[inline(always)]
+    pub fn i2c4sel(&self) -> I2C4SEL_R {
+        I2C4SEL_R::new(((self.bits >> 22) & 0x03) as u8)
     }
     #[doc = "Bits 24:25 - Low power timer 1 clock source selection"]
-    #[inline]
-    pub fn lptim1sel(&self) -> LPTIM1SELR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        LPTIM1SELR { bits }
+    #[inline(always)]
+    pub fn lptim1sel(&self) -> LPTIM1SEL_R {
+        LPTIM1SEL_R::new(((self.bits >> 24) & 0x03) as u8)
     }
     #[doc = "Bit 26 - HDMI-CEC clock source selection"]
-    #[inline]
-    pub fn cecsel(&self) -> CECSELR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 26;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CECSELR { bits }
+    #[inline(always)]
+    pub fn cecsel(&self) -> CECSEL_R {
+        CECSEL_R::new(((self.bits >> 26) & 0x01) != 0)
     }
     #[doc = "Bit 27 - 48MHz clock source selection"]
-    #[inline]
-    pub fn ck48msel(&self) -> CK48MSELR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 27;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CK48MSELR { bits }
+    #[inline(always)]
+    pub fn ck48msel(&self) -> CK48MSEL_R {
+        CK48MSEL_R::new(((self.bits >> 27) & 0x01) != 0)
     }
     #[doc = "Bit 28 - SDMMC clock source selection"]
-    #[inline]
-    pub fn sdmmcsel(&self) -> SDMMCSELR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SDMMCSELR { bits }
+    #[inline(always)]
+    pub fn sdmmcsel(&self) -> SDMMCSEL_R {
+        SDMMCSEL_R::new(((self.bits >> 28) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0x2000_3000 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - USART 1 clock source selection"]
-    #[inline]
-    pub fn usart1sel(&mut self) -> _USART1SELW {
-        _USART1SELW { w: self }
+    #[inline(always)]
+    pub fn usart1sel(&mut self) -> USART1SEL_W {
+        USART1SEL_W { w: self }
     }
     #[doc = "Bits 2:3 - USART 2 clock source selection"]
-    #[inline]
-    pub fn usart2sel(&mut self) -> _USART2SELW {
-        _USART2SELW { w: self }
+    #[inline(always)]
+    pub fn usart2sel(&mut self) -> USART2SEL_W {
+        USART2SEL_W { w: self }
     }
     #[doc = "Bits 4:5 - USART 3 clock source selection"]
-    #[inline]
-    pub fn usart3sel(&mut self) -> _USART3SELW {
-        _USART3SELW { w: self }
+    #[inline(always)]
+    pub fn usart3sel(&mut self) -> USART3SEL_W {
+        USART3SEL_W { w: self }
     }
     #[doc = "Bits 6:7 - UART 4 clock source selection"]
-    #[inline]
-    pub fn uart4sel(&mut self) -> _UART4SELW {
-        _UART4SELW { w: self }
+    #[inline(always)]
+    pub fn uart4sel(&mut self) -> UART4SEL_W {
+        UART4SEL_W { w: self }
     }
     #[doc = "Bits 8:9 - UART 5 clock source selection"]
-    #[inline]
-    pub fn uart5sel(&mut self) -> _UART5SELW {
-        _UART5SELW { w: self }
+    #[inline(always)]
+    pub fn uart5sel(&mut self) -> UART5SEL_W {
+        UART5SEL_W { w: self }
     }
     #[doc = "Bits 10:11 - USART 6 clock source selection"]
-    #[inline]
-    pub fn usart6sel(&mut self) -> _USART6SELW {
-        _USART6SELW { w: self }
+    #[inline(always)]
+    pub fn usart6sel(&mut self) -> USART6SEL_W {
+        USART6SEL_W { w: self }
     }
     #[doc = "Bits 12:13 - UART 7 clock source selection"]
-    #[inline]
-    pub fn uart7sel(&mut self) -> _UART7SELW {
-        _UART7SELW { w: self }
+    #[inline(always)]
+    pub fn uart7sel(&mut self) -> UART7SEL_W {
+        UART7SEL_W { w: self }
     }
     #[doc = "Bits 14:15 - UART 8 clock source selection"]
-    #[inline]
-    pub fn uart8sel(&mut self) -> _UART8SELW {
-        _UART8SELW { w: self }
+    #[inline(always)]
+    pub fn uart8sel(&mut self) -> UART8SEL_W {
+        UART8SEL_W { w: self }
     }
     #[doc = "Bits 16:17 - I2C1 clock source selection"]
-    #[inline]
-    pub fn i2c1sel(&mut self) -> _I2C1SELW {
-        _I2C1SELW { w: self }
+    #[inline(always)]
+    pub fn i2c1sel(&mut self) -> I2C1SEL_W {
+        I2C1SEL_W { w: self }
     }
     #[doc = "Bits 18:19 - I2C2 clock source selection"]
-    #[inline]
-    pub fn i2c2sel(&mut self) -> _I2C2SELW {
-        _I2C2SELW { w: self }
+    #[inline(always)]
+    pub fn i2c2sel(&mut self) -> I2C2SEL_W {
+        I2C2SEL_W { w: self }
     }
     #[doc = "Bits 20:21 - I2C3 clock source selection"]
-    #[inline]
-    pub fn i2c3sel(&mut self) -> _I2C3SELW {
-        _I2C3SELW { w: self }
+    #[inline(always)]
+    pub fn i2c3sel(&mut self) -> I2C3SEL_W {
+        I2C3SEL_W { w: self }
     }
     #[doc = "Bits 22:23 - I2C4 clock source selection"]
-    #[inline]
-    pub fn i2c4sel(&mut self) -> _I2C4SELW {
-        _I2C4SELW { w: self }
+    #[inline(always)]
+    pub fn i2c4sel(&mut self) -> I2C4SEL_W {
+        I2C4SEL_W { w: self }
     }
     #[doc = "Bits 24:25 - Low power timer 1 clock source selection"]
-    #[inline]
-    pub fn lptim1sel(&mut self) -> _LPTIM1SELW {
-        _LPTIM1SELW { w: self }
+    #[inline(always)]
+    pub fn lptim1sel(&mut self) -> LPTIM1SEL_W {
+        LPTIM1SEL_W { w: self }
     }
     #[doc = "Bit 26 - HDMI-CEC clock source selection"]
-    #[inline]
-    pub fn cecsel(&mut self) -> _CECSELW {
-        _CECSELW { w: self }
+    #[inline(always)]
+    pub fn cecsel(&mut self) -> CECSEL_W {
+        CECSEL_W { w: self }
     }
     #[doc = "Bit 27 - 48MHz clock source selection"]
-    #[inline]
-    pub fn ck48msel(&mut self) -> _CK48MSELW {
-        _CK48MSELW { w: self }
+    #[inline(always)]
+    pub fn ck48msel(&mut self) -> CK48MSEL_W {
+        CK48MSEL_W { w: self }
     }
     #[doc = "Bit 28 - SDMMC clock source selection"]
-    #[inline]
-    pub fn sdmmcsel(&mut self) -> _SDMMCSELW {
-        _SDMMCSELW { w: self }
+    #[inline(always)]
+    pub fn sdmmcsel(&mut self) -> SDMMCSEL_W {
+        SDMMCSEL_W { w: self }
     }
 }

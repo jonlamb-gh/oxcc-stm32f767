@@ -1,228 +1,112 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PMEM {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register PMEM"]
+pub type R = crate::R<u32, super::PMEM>;
+#[doc = "Writer for register PMEM"]
+pub type W = crate::W<u32, super::PMEM>;
+#[doc = "Register PMEM `reset()`'s with value 0xfcfc_fcfc"]
+impl crate::ResetValue for super::PMEM {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0xfcfc_fcfc
     }
 }
-#[doc = r" Value of the field"]
-pub struct MEMHIZXR {
-    bits: u8,
-}
-impl MEMHIZXR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct MEMHOLDXR {
-    bits: u8,
-}
-impl MEMHOLDXR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct MEMWAITXR {
-    bits: u8,
-}
-impl MEMWAITXR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct MEMSETXR {
-    bits: u8,
-}
-impl MEMSETXR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MEMHIZXW<'a> {
+#[doc = "Reader of field `MEMHIZx`"]
+pub type MEMHIZX_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `MEMHIZx`"]
+pub struct MEMHIZX_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MEMHIZXW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> MEMHIZX_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xff << 24)) | (((value as u32) & 0xff) << 24);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _MEMHOLDXW<'a> {
+#[doc = "Reader of field `MEMHOLDx`"]
+pub type MEMHOLDX_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `MEMHOLDx`"]
+pub struct MEMHOLDX_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MEMHOLDXW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> MEMHOLDX_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xff << 16)) | (((value as u32) & 0xff) << 16);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _MEMWAITXW<'a> {
+#[doc = "Reader of field `MEMWAITx`"]
+pub type MEMWAITX_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `MEMWAITx`"]
+pub struct MEMWAITX_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MEMWAITXW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> MEMWAITX_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xff << 8)) | (((value as u32) & 0xff) << 8);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _MEMSETXW<'a> {
+#[doc = "Reader of field `MEMSETx`"]
+pub type MEMSETX_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `MEMSETx`"]
+pub struct MEMSETX_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MEMSETXW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> MEMSETX_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0xff) | ((value as u32) & 0xff);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 24:31 - MEMHIZx"]
-    #[inline]
-    pub fn memhizx(&self) -> MEMHIZXR {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        MEMHIZXR { bits }
+    #[inline(always)]
+    pub fn memhizx(&self) -> MEMHIZX_R {
+        MEMHIZX_R::new(((self.bits >> 24) & 0xff) as u8)
     }
     #[doc = "Bits 16:23 - MEMHOLDx"]
-    #[inline]
-    pub fn memholdx(&self) -> MEMHOLDXR {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        MEMHOLDXR { bits }
+    #[inline(always)]
+    pub fn memholdx(&self) -> MEMHOLDX_R {
+        MEMHOLDX_R::new(((self.bits >> 16) & 0xff) as u8)
     }
     #[doc = "Bits 8:15 - MEMWAITx"]
-    #[inline]
-    pub fn memwaitx(&self) -> MEMWAITXR {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        MEMWAITXR { bits }
+    #[inline(always)]
+    pub fn memwaitx(&self) -> MEMWAITX_R {
+        MEMWAITX_R::new(((self.bits >> 8) & 0xff) as u8)
     }
     #[doc = "Bits 0:7 - MEMSETx"]
-    #[inline]
-    pub fn memsetx(&self) -> MEMSETXR {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        MEMSETXR { bits }
+    #[inline(always)]
+    pub fn memsetx(&self) -> MEMSETX_R {
+        MEMSETX_R::new((self.bits & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0xfcfc_fcfc }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 24:31 - MEMHIZx"]
-    #[inline]
-    pub fn memhizx(&mut self) -> _MEMHIZXW {
-        _MEMHIZXW { w: self }
+    #[inline(always)]
+    pub fn memhizx(&mut self) -> MEMHIZX_W {
+        MEMHIZX_W { w: self }
     }
     #[doc = "Bits 16:23 - MEMHOLDx"]
-    #[inline]
-    pub fn memholdx(&mut self) -> _MEMHOLDXW {
-        _MEMHOLDXW { w: self }
+    #[inline(always)]
+    pub fn memholdx(&mut self) -> MEMHOLDX_W {
+        MEMHOLDX_W { w: self }
     }
     #[doc = "Bits 8:15 - MEMWAITx"]
-    #[inline]
-    pub fn memwaitx(&mut self) -> _MEMWAITXW {
-        _MEMWAITXW { w: self }
+    #[inline(always)]
+    pub fn memwaitx(&mut self) -> MEMWAITX_W {
+        MEMWAITX_W { w: self }
     }
     #[doc = "Bits 0:7 - MEMSETx"]
-    #[inline]
-    pub fn memsetx(&mut self) -> _MEMSETXW {
-        _MEMSETXW { w: self }
+    #[inline(always)]
+    pub fn memsetx(&mut self) -> MEMSETX_W {
+        MEMSETX_W { w: self }
     }
 }

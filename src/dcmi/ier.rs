@@ -1,359 +1,186 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::IER {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register IER"]
+pub type R = crate::R<u32, super::IER>;
+#[doc = "Writer for register IER"]
+pub type W = crate::W<u32, super::IER>;
+#[doc = "Register IER `reset()`'s with value 0"]
+impl crate::ResetValue for super::IER {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct LINE_IER {
-    bits: bool,
-}
-impl LINE_IER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct VSYNC_IER {
-    bits: bool,
-}
-impl VSYNC_IER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct ERR_IER {
-    bits: bool,
-}
-impl ERR_IER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVR_IER {
-    bits: bool,
-}
-impl OVR_IER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct FRAME_IER {
-    bits: bool,
-}
-impl FRAME_IER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _LINE_IEW<'a> {
+#[doc = "Reader of field `LINE_IE`"]
+pub type LINE_IE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `LINE_IE`"]
+pub struct LINE_IE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE_IEW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> LINE_IE_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _VSYNC_IEW<'a> {
+#[doc = "Reader of field `VSYNC_IE`"]
+pub type VSYNC_IE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `VSYNC_IE`"]
+pub struct VSYNC_IE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _VSYNC_IEW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> VSYNC_IE_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _ERR_IEW<'a> {
+#[doc = "Reader of field `ERR_IE`"]
+pub type ERR_IE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ERR_IE`"]
+pub struct ERR_IE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ERR_IEW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> ERR_IE_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _OVR_IEW<'a> {
+#[doc = "Reader of field `OVR_IE`"]
+pub type OVR_IE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `OVR_IE`"]
+pub struct OVR_IE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OVR_IEW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> OVR_IE_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _FRAME_IEW<'a> {
+#[doc = "Reader of field `FRAME_IE`"]
+pub type FRAME_IE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FRAME_IE`"]
+pub struct FRAME_IE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FRAME_IEW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> FRAME_IE_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 4 - Line interrupt enable"]
-    #[inline]
-    pub fn line_ie(&self) -> LINE_IER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        LINE_IER { bits }
+    #[inline(always)]
+    pub fn line_ie(&self) -> LINE_IE_R {
+        LINE_IE_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 3 - VSYNC interrupt enable"]
-    #[inline]
-    pub fn vsync_ie(&self) -> VSYNC_IER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        VSYNC_IER { bits }
+    #[inline(always)]
+    pub fn vsync_ie(&self) -> VSYNC_IE_R {
+        VSYNC_IE_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Synchronization error interrupt enable"]
-    #[inline]
-    pub fn err_ie(&self) -> ERR_IER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        ERR_IER { bits }
+    #[inline(always)]
+    pub fn err_ie(&self) -> ERR_IE_R {
+        ERR_IE_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 1 - Overrun interrupt enable"]
-    #[inline]
-    pub fn ovr_ie(&self) -> OVR_IER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVR_IER { bits }
+    #[inline(always)]
+    pub fn ovr_ie(&self) -> OVR_IE_R {
+        OVR_IE_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 0 - Capture complete interrupt enable"]
-    #[inline]
-    pub fn frame_ie(&self) -> FRAME_IER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        FRAME_IER { bits }
+    #[inline(always)]
+    pub fn frame_ie(&self) -> FRAME_IE_R {
+        FRAME_IE_R::new((self.bits & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 4 - Line interrupt enable"]
-    #[inline]
-    pub fn line_ie(&mut self) -> _LINE_IEW {
-        _LINE_IEW { w: self }
+    #[inline(always)]
+    pub fn line_ie(&mut self) -> LINE_IE_W {
+        LINE_IE_W { w: self }
     }
     #[doc = "Bit 3 - VSYNC interrupt enable"]
-    #[inline]
-    pub fn vsync_ie(&mut self) -> _VSYNC_IEW {
-        _VSYNC_IEW { w: self }
+    #[inline(always)]
+    pub fn vsync_ie(&mut self) -> VSYNC_IE_W {
+        VSYNC_IE_W { w: self }
     }
     #[doc = "Bit 2 - Synchronization error interrupt enable"]
-    #[inline]
-    pub fn err_ie(&mut self) -> _ERR_IEW {
-        _ERR_IEW { w: self }
+    #[inline(always)]
+    pub fn err_ie(&mut self) -> ERR_IE_W {
+        ERR_IE_W { w: self }
     }
     #[doc = "Bit 1 - Overrun interrupt enable"]
-    #[inline]
-    pub fn ovr_ie(&mut self) -> _OVR_IEW {
-        _OVR_IEW { w: self }
+    #[inline(always)]
+    pub fn ovr_ie(&mut self) -> OVR_IE_W {
+        OVR_IE_W { w: self }
     }
     #[doc = "Bit 0 - Capture complete interrupt enable"]
-    #[inline]
-    pub fn frame_ie(&mut self) -> _FRAME_IEW {
-        _FRAME_IEW { w: self }
+    #[inline(always)]
+    pub fn frame_ie(&mut self) -> FRAME_IE_W {
+        FRAME_IE_W { w: self }
     }
 }

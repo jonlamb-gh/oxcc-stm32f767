@@ -1,62 +1,18 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::OTG_FS_DAINT {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct IEPINTR {
-    bits: u16,
-}
-impl IEPINTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OEPINTR {
-    bits: u16,
-}
-impl OEPINTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
+#[doc = "Reader of register OTG_FS_DAINT"]
+pub type R = crate::R<u32, super::OTG_FS_DAINT>;
+#[doc = "Reader of field `IEPINT`"]
+pub type IEPINT_R = crate::R<u16, u16>;
+#[doc = "Reader of field `OEPINT`"]
+pub type OEPINT_R = crate::R<u16, u16>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:15 - IN endpoint interrupt bits"]
-    #[inline]
-    pub fn iepint(&self) -> IEPINTR {
-        let bits = {
-            const MASK: u16 = 0xffff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        IEPINTR { bits }
+    #[inline(always)]
+    pub fn iepint(&self) -> IEPINT_R {
+        IEPINT_R::new((self.bits & 0xffff) as u16)
     }
     #[doc = "Bits 16:31 - OUT endpoint interrupt bits"]
-    #[inline]
-    pub fn oepint(&self) -> OEPINTR {
-        let bits = {
-            const MASK: u16 = 0xffff;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        OEPINTR { bits }
+    #[inline(always)]
+    pub fn oepint(&self) -> OEPINT_R {
+        OEPINT_R::new(((self.bits >> 16) & 0xffff) as u16)
     }
 }

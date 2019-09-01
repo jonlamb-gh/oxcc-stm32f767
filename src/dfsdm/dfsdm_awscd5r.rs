@@ -1,228 +1,112 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::DFSDM_AWSCD5R {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register DFSDM_AWSCD5R"]
+pub type R = crate::R<u32, super::DFSDM_AWSCD5R>;
+#[doc = "Writer for register DFSDM_AWSCD5R"]
+pub type W = crate::W<u32, super::DFSDM_AWSCD5R>;
+#[doc = "Register DFSDM_AWSCD5R `reset()`'s with value 0"]
+impl crate::ResetValue for super::DFSDM_AWSCD5R {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct SCDTR {
-    bits: u8,
-}
-impl SCDTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct BKSCDR {
-    bits: u8,
-}
-impl BKSCDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct AWFOSRR {
-    bits: u8,
-}
-impl AWFOSRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct AWFORDR {
-    bits: u8,
-}
-impl AWFORDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SCDTW<'a> {
+#[doc = "Reader of field `SCDT`"]
+pub type SCDT_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `SCDT`"]
+pub struct SCDT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SCDTW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> SCDT_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0xff) | ((value as u32) & 0xff);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _BKSCDW<'a> {
+#[doc = "Reader of field `BKSCD`"]
+pub type BKSCD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `BKSCD`"]
+pub struct BKSCD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BKSCDW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> BKSCD_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x0f;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 12)) | (((value as u32) & 0x0f) << 12);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _AWFOSRW<'a> {
+#[doc = "Reader of field `AWFOSR`"]
+pub type AWFOSR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `AWFOSR`"]
+pub struct AWFOSR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _AWFOSRW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> AWFOSR_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x1f;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x1f << 16)) | (((value as u32) & 0x1f) << 16);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _AWFORDW<'a> {
+#[doc = "Reader of field `AWFORD`"]
+pub type AWFORD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `AWFORD`"]
+pub struct AWFORD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _AWFORDW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> AWFORD_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 22)) | (((value as u32) & 0x03) << 22);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:7 - short-circuit detector threshold for channel 5"]
-    #[inline]
-    pub fn scdt(&self) -> SCDTR {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        SCDTR { bits }
+    #[inline(always)]
+    pub fn scdt(&self) -> SCDT_R {
+        SCDT_R::new((self.bits & 0xff) as u8)
     }
     #[doc = "Bits 12:15 - Break signal assignment for short-circuit detector on channel 5"]
-    #[inline]
-    pub fn bkscd(&self) -> BKSCDR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        BKSCDR { bits }
+    #[inline(always)]
+    pub fn bkscd(&self) -> BKSCD_R {
+        BKSCD_R::new(((self.bits >> 12) & 0x0f) as u8)
     }
     #[doc = "Bits 16:20 - Analog watchdog filter oversampling ratio (decimation rate) on channel 5"]
-    #[inline]
-    pub fn awfosr(&self) -> AWFOSRR {
-        let bits = {
-            const MASK: u8 = 0x1f;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        AWFOSRR { bits }
+    #[inline(always)]
+    pub fn awfosr(&self) -> AWFOSR_R {
+        AWFOSR_R::new(((self.bits >> 16) & 0x1f) as u8)
     }
     #[doc = "Bits 22:23 - Analog watchdog Sinc filter order on channel 5"]
-    #[inline]
-    pub fn awford(&self) -> AWFORDR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        AWFORDR { bits }
+    #[inline(always)]
+    pub fn awford(&self) -> AWFORD_R {
+        AWFORD_R::new(((self.bits >> 22) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:7 - short-circuit detector threshold for channel 5"]
-    #[inline]
-    pub fn scdt(&mut self) -> _SCDTW {
-        _SCDTW { w: self }
+    #[inline(always)]
+    pub fn scdt(&mut self) -> SCDT_W {
+        SCDT_W { w: self }
     }
     #[doc = "Bits 12:15 - Break signal assignment for short-circuit detector on channel 5"]
-    #[inline]
-    pub fn bkscd(&mut self) -> _BKSCDW {
-        _BKSCDW { w: self }
+    #[inline(always)]
+    pub fn bkscd(&mut self) -> BKSCD_W {
+        BKSCD_W { w: self }
     }
     #[doc = "Bits 16:20 - Analog watchdog filter oversampling ratio (decimation rate) on channel 5"]
-    #[inline]
-    pub fn awfosr(&mut self) -> _AWFOSRW {
-        _AWFOSRW { w: self }
+    #[inline(always)]
+    pub fn awfosr(&mut self) -> AWFOSR_W {
+        AWFOSR_W { w: self }
     }
     #[doc = "Bits 22:23 - Analog watchdog Sinc filter order on channel 5"]
-    #[inline]
-    pub fn awford(&mut self) -> _AWFORDW {
-        _AWFORDW { w: self }
+    #[inline(always)]
+    pub fn awford(&mut self) -> AWFORD_W {
+        AWFORD_W { w: self }
     }
 }

@@ -1,264 +1,132 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SSCGR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register SSCGR"]
+pub type R = crate::R<u32, super::SSCGR>;
+#[doc = "Writer for register SSCGR"]
+pub type W = crate::W<u32, super::SSCGR>;
+#[doc = "Register SSCGR `reset()`'s with value 0"]
+impl crate::ResetValue for super::SSCGR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct SSCGENR {
-    bits: bool,
-}
-impl SSCGENR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SPREADSELR {
-    bits: bool,
-}
-impl SPREADSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct INCSTEPR {
-    bits: u16,
-}
-impl INCSTEPR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct MODPERR {
-    bits: u16,
-}
-impl MODPERR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SSCGENW<'a> {
+#[doc = "Reader of field `SSCGEN`"]
+pub type SSCGEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SSCGEN`"]
+pub struct SSCGEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SSCGENW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> SSCGEN_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _SPREADSELW<'a> {
+#[doc = "Reader of field `SPREADSEL`"]
+pub type SPREADSEL_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SPREADSEL`"]
+pub struct SPREADSEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPREADSELW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> SPREADSEL_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 30;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _INCSTEPW<'a> {
+#[doc = "Reader of field `INCSTEP`"]
+pub type INCSTEP_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `INCSTEP`"]
+pub struct INCSTEP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _INCSTEPW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> INCSTEP_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0x7fff;
-        const OFFSET: u8 = 13;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x7fff << 13)) | (((value as u32) & 0x7fff) << 13);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _MODPERW<'a> {
+#[doc = "Reader of field `MODPER`"]
+pub type MODPER_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `MODPER`"]
+pub struct MODPER_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MODPERW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> MODPER_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0x1fff;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x1fff) | ((value as u32) & 0x1fff);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 31 - Spread spectrum modulation enable"]
-    #[inline]
-    pub fn sscgen(&self) -> SSCGENR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SSCGENR { bits }
+    #[inline(always)]
+    pub fn sscgen(&self) -> SSCGEN_R {
+        SSCGEN_R::new(((self.bits >> 31) & 0x01) != 0)
     }
     #[doc = "Bit 30 - Spread Select"]
-    #[inline]
-    pub fn spreadsel(&self) -> SPREADSELR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 30;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SPREADSELR { bits }
+    #[inline(always)]
+    pub fn spreadsel(&self) -> SPREADSEL_R {
+        SPREADSEL_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bits 13:27 - Incrementation step"]
-    #[inline]
-    pub fn incstep(&self) -> INCSTEPR {
-        let bits = {
-            const MASK: u16 = 0x7fff;
-            const OFFSET: u8 = 13;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        INCSTEPR { bits }
+    #[inline(always)]
+    pub fn incstep(&self) -> INCSTEP_R {
+        INCSTEP_R::new(((self.bits >> 13) & 0x7fff) as u16)
     }
     #[doc = "Bits 0:12 - Modulation period"]
-    #[inline]
-    pub fn modper(&self) -> MODPERR {
-        let bits = {
-            const MASK: u16 = 0x1fff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        MODPERR { bits }
+    #[inline(always)]
+    pub fn modper(&self) -> MODPER_R {
+        MODPER_R::new((self.bits & 0x1fff) as u16)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 31 - Spread spectrum modulation enable"]
-    #[inline]
-    pub fn sscgen(&mut self) -> _SSCGENW {
-        _SSCGENW { w: self }
+    #[inline(always)]
+    pub fn sscgen(&mut self) -> SSCGEN_W {
+        SSCGEN_W { w: self }
     }
     #[doc = "Bit 30 - Spread Select"]
-    #[inline]
-    pub fn spreadsel(&mut self) -> _SPREADSELW {
-        _SPREADSELW { w: self }
+    #[inline(always)]
+    pub fn spreadsel(&mut self) -> SPREADSEL_W {
+        SPREADSEL_W { w: self }
     }
     #[doc = "Bits 13:27 - Incrementation step"]
-    #[inline]
-    pub fn incstep(&mut self) -> _INCSTEPW {
-        _INCSTEPW { w: self }
+    #[inline(always)]
+    pub fn incstep(&mut self) -> INCSTEP_W {
+        INCSTEP_W { w: self }
     }
     #[doc = "Bits 0:12 - Modulation period"]
-    #[inline]
-    pub fn modper(&mut self) -> _MODPERW {
-        _MODPERW { w: self }
+    #[inline(always)]
+    pub fn modper(&mut self) -> MODPER_W {
+        MODPER_W { w: self }
     }
 }

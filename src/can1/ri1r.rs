@@ -1,124 +1,32 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::RI1R {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct STIDR {
-    bits: u16,
-}
-impl STIDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct EXIDR {
-    bits: u32,
-}
-impl EXIDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct IDER {
-    bits: bool,
-}
-impl IDER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RTRR {
-    bits: bool,
-}
-impl RTRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = "Reader of register RI1R"]
+pub type R = crate::R<u32, super::RI1R>;
+#[doc = "Reader of field `STID`"]
+pub type STID_R = crate::R<u16, u16>;
+#[doc = "Reader of field `EXID`"]
+pub type EXID_R = crate::R<u32, u32>;
+#[doc = "Reader of field `IDE`"]
+pub type IDE_R = crate::R<bool, bool>;
+#[doc = "Reader of field `RTR`"]
+pub type RTR_R = crate::R<bool, bool>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 21:31 - STID"]
-    #[inline]
-    pub fn stid(&self) -> STIDR {
-        let bits = {
-            const MASK: u16 = 0x07ff;
-            const OFFSET: u8 = 21;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        STIDR { bits }
+    #[inline(always)]
+    pub fn stid(&self) -> STID_R {
+        STID_R::new(((self.bits >> 21) & 0x07ff) as u16)
     }
     #[doc = "Bits 3:20 - EXID"]
-    #[inline]
-    pub fn exid(&self) -> EXIDR {
-        let bits = {
-            const MASK: u32 = 0x0003_ffff;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) as u32
-        };
-        EXIDR { bits }
+    #[inline(always)]
+    pub fn exid(&self) -> EXID_R {
+        EXID_R::new(((self.bits >> 3) & 0x0003_ffff) as u32)
     }
     #[doc = "Bit 2 - IDE"]
-    #[inline]
-    pub fn ide(&self) -> IDER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        IDER { bits }
+    #[inline(always)]
+    pub fn ide(&self) -> IDE_R {
+        IDE_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 1 - RTR"]
-    #[inline]
-    pub fn rtr(&self) -> RTRR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RTRR { bits }
+    #[inline(always)]
+    pub fn rtr(&self) -> RTR_R {
+        RTR_R::new(((self.bits >> 1) & 0x01) != 0)
     }
 }

@@ -1,41 +1,11 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::FIFOCNT {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct FIFOCOUNTR {
-    bits: u32,
-}
-impl FIFOCOUNTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-}
+#[doc = "Reader of register FIFOCNT"]
+pub type R = crate::R<u32, super::FIFOCNT>;
+#[doc = "Reader of field `FIFOCOUNT`"]
+pub type FIFOCOUNT_R = crate::R<u32, u32>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:23 - Remaining number of words to be written to or read from the FIFO"]
-    #[inline]
-    pub fn fifocount(&self) -> FIFOCOUNTR {
-        let bits = {
-            const MASK: u32 = 0x00ff_ffff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u32
-        };
-        FIFOCOUNTR { bits }
+    #[inline(always)]
+    pub fn fifocount(&self) -> FIFOCOUNT_R {
+        FIFOCOUNT_R::new((self.bits & 0x00ff_ffff) as u32)
     }
 }

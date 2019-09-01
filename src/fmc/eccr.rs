@@ -1,41 +1,11 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::ECCR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct ECCXR {
-    bits: u32,
-}
-impl ECCXR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-}
+#[doc = "Reader of register ECCR"]
+pub type R = crate::R<u32, super::ECCR>;
+#[doc = "Reader of field `ECCx`"]
+pub type ECCX_R = crate::R<u32, u32>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:31 - ECCx"]
-    #[inline]
-    pub fn eccx(&self) -> ECCXR {
-        let bits = {
-            const MASK: u32 = 0xffff_ffff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u32
-        };
-        ECCXR { bits }
+    #[inline(always)]
+    pub fn eccx(&self) -> ECCX_R {
+        ECCX_R::new((self.bits & 0xffff_ffff) as u32)
     }
 }

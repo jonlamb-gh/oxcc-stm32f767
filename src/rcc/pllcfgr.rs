@@ -1,483 +1,307 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PLLCFGR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register PLLCFGR"]
+pub type R = crate::R<u32, super::PLLCFGR>;
+#[doc = "Writer for register PLLCFGR"]
+pub type W = crate::W<u32, super::PLLCFGR>;
+#[doc = "Register PLLCFGR `reset()`'s with value 0x2400_3010"]
+impl crate::ResetValue for super::PLLCFGR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x2400_3010
     }
 }
-#[doc = "Possible values of the field `PLLSRC`"]
+#[doc = "Main PLL(PLL) and audio PLL (PLLI2S) entry clock source\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PLLSRCR {
-    #[doc = "HSI clock selected as PLL and PLLI2S clock entry"]
+pub enum PLLSRC_A {
+    #[doc = "0: HSI clock selected as PLL and PLLI2S clock entry"]
     HSI,
-    #[doc = "HSE oscillator clock selected as PLL and PLLI2S clock entry"]
+    #[doc = "1: HSE oscillator clock selected as PLL and PLLI2S clock entry"]
     HSE,
 }
-impl PLLSRCR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PLLSRCR::HSI => false,
-            PLLSRCR::HSE => true,
+impl From<PLLSRC_A> for bool {
+    #[inline(always)]
+    fn from(variant: PLLSRC_A) -> Self {
+        match variant {
+            PLLSRC_A::HSI => false,
+            PLLSRC_A::HSE => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PLLSRCR {
-        match value {
-            false => PLLSRCR::HSI,
-            true => PLLSRCR::HSE,
+}
+#[doc = "Reader of field `PLLSRC`"]
+pub type PLLSRC_R = crate::R<bool, PLLSRC_A>;
+impl PLLSRC_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PLLSRC_A {
+        match self.bits {
+            false => PLLSRC_A::HSI,
+            true => PLLSRC_A::HSE,
         }
     }
     #[doc = "Checks if the value of the field is `HSI`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_hsi(&self) -> bool {
-        *self == PLLSRCR::HSI
+        *self == PLLSRC_A::HSI
     }
     #[doc = "Checks if the value of the field is `HSE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_hse(&self) -> bool {
-        *self == PLLSRCR::HSE
+        *self == PLLSRC_A::HSE
     }
 }
-#[doc = r" Value of the field"]
-pub struct PLLRR {
-    bits: u8,
+#[doc = "Write proxy for field `PLLSRC`"]
+pub struct PLLSRC_W<'a> {
+    w: &'a mut W,
 }
-impl PLLRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PLLMR {
-    bits: u8,
-}
-impl PLLMR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PLLNR {
-    bits: u16,
-}
-impl PLLNR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `PLLP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PLLPR {
-    #[doc = "PLLP=2"]
-    DIV2,
-    #[doc = "PLLP=4"]
-    DIV4,
-    #[doc = "PLLP=6"]
-    DIV6,
-    #[doc = "PLLP=8"]
-    DIV8,
-}
-impl PLLPR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            PLLPR::DIV2 => 0,
-            PLLPR::DIV4 => 0x01,
-            PLLPR::DIV6 => 0x02,
-            PLLPR::DIV8 => 0x03,
+impl<'a> PLLSRC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PLLSRC_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> PLLPR {
-        match value {
-            0 => PLLPR::DIV2,
-            1 => PLLPR::DIV4,
-            2 => PLLPR::DIV6,
-            3 => PLLPR::DIV8,
+    #[doc = "HSI clock selected as PLL and PLLI2S clock entry"]
+    #[inline(always)]
+    pub fn hsi(self) -> &'a mut W {
+        self.variant(PLLSRC_A::HSI)
+    }
+    #[doc = "HSE oscillator clock selected as PLL and PLLI2S clock entry"]
+    #[inline(always)]
+    pub fn hse(self) -> &'a mut W {
+        self.variant(PLLSRC_A::HSE)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
+        self.w
+    }
+}
+#[doc = "Reader of field `PLLR`"]
+pub type PLLR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PLLR`"]
+pub struct PLLR_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PLLR_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x07 << 28)) | (((value as u32) & 0x07) << 28);
+        self.w
+    }
+}
+#[doc = "Reader of field `PLLM`"]
+pub type PLLM_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PLLM`"]
+pub struct PLLM_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PLLM_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x3f) | ((value as u32) & 0x3f);
+        self.w
+    }
+}
+#[doc = "Reader of field `PLLN`"]
+pub type PLLN_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `PLLN`"]
+pub struct PLLN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PLLN_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u16) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01ff << 6)) | (((value as u32) & 0x01ff) << 6);
+        self.w
+    }
+}
+#[doc = "Main PLL (PLL) division factor for main system clock\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PLLP_A {
+    #[doc = "0: PLLP=2"]
+    DIV2,
+    #[doc = "1: PLLP=4"]
+    DIV4,
+    #[doc = "2: PLLP=6"]
+    DIV6,
+    #[doc = "3: PLLP=8"]
+    DIV8,
+}
+impl From<PLLP_A> for u8 {
+    #[inline(always)]
+    fn from(variant: PLLP_A) -> Self {
+        match variant {
+            PLLP_A::DIV2 => 0,
+            PLLP_A::DIV4 => 1,
+            PLLP_A::DIV6 => 2,
+            PLLP_A::DIV8 => 3,
+        }
+    }
+}
+#[doc = "Reader of field `PLLP`"]
+pub type PLLP_R = crate::R<u8, PLLP_A>;
+impl PLLP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PLLP_A {
+        match self.bits {
+            0 => PLLP_A::DIV2,
+            1 => PLLP_A::DIV4,
+            2 => PLLP_A::DIV6,
+            3 => PLLP_A::DIV8,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `DIV2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_div2(&self) -> bool {
-        *self == PLLPR::DIV2
+        *self == PLLP_A::DIV2
     }
     #[doc = "Checks if the value of the field is `DIV4`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_div4(&self) -> bool {
-        *self == PLLPR::DIV4
+        *self == PLLP_A::DIV4
     }
     #[doc = "Checks if the value of the field is `DIV6`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_div6(&self) -> bool {
-        *self == PLLPR::DIV6
+        *self == PLLP_A::DIV6
     }
     #[doc = "Checks if the value of the field is `DIV8`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_div8(&self) -> bool {
-        *self == PLLPR::DIV8
+        *self == PLLP_A::DIV8
     }
 }
-#[doc = r" Value of the field"]
-pub struct PLLQR {
-    bits: u8,
-}
-impl PLLQR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Values that can be written to the field `PLLSRC`"]
-pub enum PLLSRCW {
-    #[doc = "HSI clock selected as PLL and PLLI2S clock entry"]
-    HSI,
-    #[doc = "HSE oscillator clock selected as PLL and PLLI2S clock entry"]
-    HSE,
-}
-impl PLLSRCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PLLSRCW::HSI => false,
-            PLLSRCW::HSE => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PLLSRCW<'a> {
+#[doc = "Write proxy for field `PLLP`"]
+pub struct PLLP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PLLSRCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PLLSRCW) -> &'a mut W {
+impl<'a> PLLP_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PLLP_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "HSI clock selected as PLL and PLLI2S clock entry"]
-    #[inline]
-    pub fn hsi(self) -> &'a mut W {
-        self.variant(PLLSRCW::HSI)
-    }
-    #[doc = "HSE oscillator clock selected as PLL and PLLI2S clock entry"]
-    #[inline]
-    pub fn hse(self) -> &'a mut W {
-        self.variant(PLLSRCW::HSE)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PLLRW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PLLRW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x07;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PLLMW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PLLMW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x3f;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PLLNW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PLLNW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0x01ff;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PLLP`"]
-pub enum PLLPW {
-    #[doc = "PLLP=2"]
-    DIV2,
-    #[doc = "PLLP=4"]
-    DIV4,
-    #[doc = "PLLP=6"]
-    DIV6,
-    #[doc = "PLLP=8"]
-    DIV8,
-}
-impl PLLPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PLLPW::DIV2 => 0,
-            PLLPW::DIV4 => 1,
-            PLLPW::DIV6 => 2,
-            PLLPW::DIV8 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PLLPW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PLLPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PLLPW) -> &'a mut W {
-        {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "PLLP=2"]
-    #[inline]
+    #[inline(always)]
     pub fn div2(self) -> &'a mut W {
-        self.variant(PLLPW::DIV2)
+        self.variant(PLLP_A::DIV2)
     }
     #[doc = "PLLP=4"]
-    #[inline]
+    #[inline(always)]
     pub fn div4(self) -> &'a mut W {
-        self.variant(PLLPW::DIV4)
+        self.variant(PLLP_A::DIV4)
     }
     #[doc = "PLLP=6"]
-    #[inline]
+    #[inline(always)]
     pub fn div6(self) -> &'a mut W {
-        self.variant(PLLPW::DIV6)
+        self.variant(PLLP_A::DIV6)
     }
     #[doc = "PLLP=8"]
-    #[inline]
+    #[inline(always)]
     pub fn div8(self) -> &'a mut W {
-        self.variant(PLLPW::DIV8)
+        self.variant(PLLP_A::DIV8)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 16)) | (((value as u32) & 0x03) << 16);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _PLLQW<'a> {
+#[doc = "Reader of field `PLLQ`"]
+pub type PLLQ_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PLLQ`"]
+pub struct PLLQ_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PLLQW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> PLLQ_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x0f;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 24)) | (((value as u32) & 0x0f) << 24);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 22 - Main PLL(PLL) and audio PLL (PLLI2S) entry clock source"]
-    #[inline]
-    pub fn pllsrc(&self) -> PLLSRCR {
-        PLLSRCR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pllsrc(&self) -> PLLSRC_R {
+        PLLSRC_R::new(((self.bits >> 22) & 0x01) != 0)
     }
     #[doc = "Bits 28:30 - PLL division factor for DSI clock"]
-    #[inline]
-    pub fn pllr(&self) -> PLLRR {
-        let bits = {
-            const MASK: u8 = 0x07;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        PLLRR { bits }
+    #[inline(always)]
+    pub fn pllr(&self) -> PLLR_R {
+        PLLR_R::new(((self.bits >> 28) & 0x07) as u8)
     }
     #[doc = "Bits 0:5 - Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock"]
-    #[inline]
-    pub fn pllm(&self) -> PLLMR {
-        let bits = {
-            const MASK: u8 = 0x3f;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        PLLMR { bits }
+    #[inline(always)]
+    pub fn pllm(&self) -> PLLM_R {
+        PLLM_R::new((self.bits & 0x3f) as u8)
     }
     #[doc = "Bits 6:14 - Main PLL (PLL) multiplication factor for VCO"]
-    #[inline]
-    pub fn plln(&self) -> PLLNR {
-        let bits = {
-            const MASK: u16 = 0x01ff;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        PLLNR { bits }
+    #[inline(always)]
+    pub fn plln(&self) -> PLLN_R {
+        PLLN_R::new(((self.bits >> 6) & 0x01ff) as u16)
     }
     #[doc = "Bits 16:17 - Main PLL (PLL) division factor for main system clock"]
-    #[inline]
-    pub fn pllp(&self) -> PLLPR {
-        PLLPR::_from({
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn pllp(&self) -> PLLP_R {
+        PLLP_R::new(((self.bits >> 16) & 0x03) as u8)
     }
     #[doc = "Bits 24:27 - Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks"]
-    #[inline]
-    pub fn pllq(&self) -> PLLQR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        PLLQR { bits }
+    #[inline(always)]
+    pub fn pllq(&self) -> PLLQ_R {
+        PLLQ_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0x2400_3010 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 22 - Main PLL(PLL) and audio PLL (PLLI2S) entry clock source"]
-    #[inline]
-    pub fn pllsrc(&mut self) -> _PLLSRCW {
-        _PLLSRCW { w: self }
+    #[inline(always)]
+    pub fn pllsrc(&mut self) -> PLLSRC_W {
+        PLLSRC_W { w: self }
     }
     #[doc = "Bits 28:30 - PLL division factor for DSI clock"]
-    #[inline]
-    pub fn pllr(&mut self) -> _PLLRW {
-        _PLLRW { w: self }
+    #[inline(always)]
+    pub fn pllr(&mut self) -> PLLR_W {
+        PLLR_W { w: self }
     }
     #[doc = "Bits 0:5 - Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock"]
-    #[inline]
-    pub fn pllm(&mut self) -> _PLLMW {
-        _PLLMW { w: self }
+    #[inline(always)]
+    pub fn pllm(&mut self) -> PLLM_W {
+        PLLM_W { w: self }
     }
     #[doc = "Bits 6:14 - Main PLL (PLL) multiplication factor for VCO"]
-    #[inline]
-    pub fn plln(&mut self) -> _PLLNW {
-        _PLLNW { w: self }
+    #[inline(always)]
+    pub fn plln(&mut self) -> PLLN_W {
+        PLLN_W { w: self }
     }
     #[doc = "Bits 16:17 - Main PLL (PLL) division factor for main system clock"]
-    #[inline]
-    pub fn pllp(&mut self) -> _PLLPW {
-        _PLLPW { w: self }
+    #[inline(always)]
+    pub fn pllp(&mut self) -> PLLP_W {
+        PLLP_W { w: self }
     }
     #[doc = "Bits 24:27 - Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clocks"]
-    #[inline]
-    pub fn pllq(&mut self) -> _PLLQW {
-        _PLLQW { w: self }
+    #[inline(always)]
+    pub fn pllq(&mut self) -> PLLQ_W {
+        PLLQ_W { w: self }
     }
 }

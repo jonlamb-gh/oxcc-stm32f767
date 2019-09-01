@@ -1,351 +1,184 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::BTR3 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register BTR3"]
+pub type R = crate::R<u32, super::BTR3>;
+#[doc = "Writer for register BTR3"]
+pub type W = crate::W<u32, super::BTR3>;
+#[doc = "Register BTR3 `reset()`'s with value 0xffff_ffff"]
+impl crate::ResetValue for super::BTR3 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0xffff_ffff
     }
 }
-#[doc = r" Value of the field"]
-pub struct ACCMODR {
-    bits: u8,
-}
-impl ACCMODR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DATLATR {
-    bits: u8,
-}
-impl DATLATR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CLKDIVR {
-    bits: u8,
-}
-impl CLKDIVR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct BUSTURNR {
-    bits: u8,
-}
-impl BUSTURNR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DATASTR {
-    bits: u8,
-}
-impl DATASTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct ADDHLDR {
-    bits: u8,
-}
-impl ADDHLDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct ADDSETR {
-    bits: u8,
-}
-impl ADDSETR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ACCMODW<'a> {
+#[doc = "Reader of field `ACCMOD`"]
+pub type ACCMOD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `ACCMOD`"]
+pub struct ACCMOD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ACCMODW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> ACCMOD_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 28)) | (((value as u32) & 0x03) << 28);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _DATLATW<'a> {
+#[doc = "Reader of field `DATLAT`"]
+pub type DATLAT_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DATLAT`"]
+pub struct DATLAT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DATLATW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> DATLAT_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x0f;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 24)) | (((value as u32) & 0x0f) << 24);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _CLKDIVW<'a> {
+#[doc = "Reader of field `CLKDIV`"]
+pub type CLKDIV_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `CLKDIV`"]
+pub struct CLKDIV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CLKDIVW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> CLKDIV_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x0f;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 20)) | (((value as u32) & 0x0f) << 20);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _BUSTURNW<'a> {
+#[doc = "Reader of field `BUSTURN`"]
+pub type BUSTURN_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `BUSTURN`"]
+pub struct BUSTURN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUSTURNW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> BUSTURN_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x0f;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 16)) | (((value as u32) & 0x0f) << 16);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _DATASTW<'a> {
+#[doc = "Reader of field `DATAST`"]
+pub type DATAST_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DATAST`"]
+pub struct DATAST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DATASTW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> DATAST_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0xff;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0xff << 8)) | (((value as u32) & 0xff) << 8);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _ADDHLDW<'a> {
+#[doc = "Reader of field `ADDHLD`"]
+pub type ADDHLD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `ADDHLD`"]
+pub struct ADDHLD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ADDHLDW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> ADDHLD_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x0f;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x0f << 4)) | (((value as u32) & 0x0f) << 4);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _ADDSETW<'a> {
+#[doc = "Reader of field `ADDSET`"]
+pub type ADDSET_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `ADDSET`"]
+pub struct ADDSET_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ADDSETW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> ADDSET_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x0f;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x0f) | ((value as u32) & 0x0f);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 28:29 - ACCMOD"]
-    #[inline]
-    pub fn accmod(&self) -> ACCMODR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        ACCMODR { bits }
+    #[inline(always)]
+    pub fn accmod(&self) -> ACCMOD_R {
+        ACCMOD_R::new(((self.bits >> 28) & 0x03) as u8)
     }
     #[doc = "Bits 24:27 - DATLAT"]
-    #[inline]
-    pub fn datlat(&self) -> DATLATR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        DATLATR { bits }
+    #[inline(always)]
+    pub fn datlat(&self) -> DATLAT_R {
+        DATLAT_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
     #[doc = "Bits 20:23 - CLKDIV"]
-    #[inline]
-    pub fn clkdiv(&self) -> CLKDIVR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        CLKDIVR { bits }
+    #[inline(always)]
+    pub fn clkdiv(&self) -> CLKDIV_R {
+        CLKDIV_R::new(((self.bits >> 20) & 0x0f) as u8)
     }
     #[doc = "Bits 16:19 - BUSTURN"]
-    #[inline]
-    pub fn busturn(&self) -> BUSTURNR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        BUSTURNR { bits }
+    #[inline(always)]
+    pub fn busturn(&self) -> BUSTURN_R {
+        BUSTURN_R::new(((self.bits >> 16) & 0x0f) as u8)
     }
     #[doc = "Bits 8:15 - DATAST"]
-    #[inline]
-    pub fn datast(&self) -> DATASTR {
-        let bits = {
-            const MASK: u8 = 0xff;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        DATASTR { bits }
+    #[inline(always)]
+    pub fn datast(&self) -> DATAST_R {
+        DATAST_R::new(((self.bits >> 8) & 0xff) as u8)
     }
     #[doc = "Bits 4:7 - ADDHLD"]
-    #[inline]
-    pub fn addhld(&self) -> ADDHLDR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        ADDHLDR { bits }
+    #[inline(always)]
+    pub fn addhld(&self) -> ADDHLD_R {
+        ADDHLD_R::new(((self.bits >> 4) & 0x0f) as u8)
     }
     #[doc = "Bits 0:3 - ADDSET"]
-    #[inline]
-    pub fn addset(&self) -> ADDSETR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        ADDSETR { bits }
+    #[inline(always)]
+    pub fn addset(&self) -> ADDSET_R {
+        ADDSET_R::new((self.bits & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0xffff_ffff }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 28:29 - ACCMOD"]
-    #[inline]
-    pub fn accmod(&mut self) -> _ACCMODW {
-        _ACCMODW { w: self }
+    #[inline(always)]
+    pub fn accmod(&mut self) -> ACCMOD_W {
+        ACCMOD_W { w: self }
     }
     #[doc = "Bits 24:27 - DATLAT"]
-    #[inline]
-    pub fn datlat(&mut self) -> _DATLATW {
-        _DATLATW { w: self }
+    #[inline(always)]
+    pub fn datlat(&mut self) -> DATLAT_W {
+        DATLAT_W { w: self }
     }
     #[doc = "Bits 20:23 - CLKDIV"]
-    #[inline]
-    pub fn clkdiv(&mut self) -> _CLKDIVW {
-        _CLKDIVW { w: self }
+    #[inline(always)]
+    pub fn clkdiv(&mut self) -> CLKDIV_W {
+        CLKDIV_W { w: self }
     }
     #[doc = "Bits 16:19 - BUSTURN"]
-    #[inline]
-    pub fn busturn(&mut self) -> _BUSTURNW {
-        _BUSTURNW { w: self }
+    #[inline(always)]
+    pub fn busturn(&mut self) -> BUSTURN_W {
+        BUSTURN_W { w: self }
     }
     #[doc = "Bits 8:15 - DATAST"]
-    #[inline]
-    pub fn datast(&mut self) -> _DATASTW {
-        _DATASTW { w: self }
+    #[inline(always)]
+    pub fn datast(&mut self) -> DATAST_W {
+        DATAST_W { w: self }
     }
     #[doc = "Bits 4:7 - ADDHLD"]
-    #[inline]
-    pub fn addhld(&mut self) -> _ADDHLDW {
-        _ADDHLDW { w: self }
+    #[inline(always)]
+    pub fn addhld(&mut self) -> ADDHLD_W {
+        ADDHLD_W { w: self }
     }
     #[doc = "Bits 0:3 - ADDSET"]
-    #[inline]
-    pub fn addset(&mut self) -> _ADDSETW {
-        _ADDSETW { w: self }
+    #[inline(always)]
+    pub fn addset(&mut self) -> ADDSET_W {
+        ADDSET_W { w: self }
     }
 }

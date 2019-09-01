@@ -1,384 +1,240 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MACA3HR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register MACA3HR"]
+pub type R = crate::R<u32, super::MACA3HR>;
+#[doc = "Writer for register MACA3HR"]
+pub type W = crate::W<u32, super::MACA3HR>;
+#[doc = "Register MACA3HR `reset()`'s with value 0xffff"]
+impl crate::ResetValue for super::MACA3HR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0xffff
     }
 }
-#[doc = r" Value of the field"]
-pub struct MACA3HR {
-    bits: u16,
+#[doc = "Reader of field `MACA3H`"]
+pub type MACA3H_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `MACA3H`"]
+pub struct MACA3H_W<'a> {
+    w: &'a mut W,
 }
-impl MACA3HR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
+impl<'a> MACA3H_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u16) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0xffff) | ((value as u32) & 0xffff);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct MBCR {
-    bits: u8,
+#[doc = "Reader of field `MBC`"]
+pub type MBC_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `MBC`"]
+pub struct MBC_W<'a> {
+    w: &'a mut W,
 }
-impl MBCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> MBC_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x3f << 24)) | (((value as u32) & 0x3f) << 24);
+        self.w
     }
 }
-#[doc = "Possible values of the field `SA`"]
+#[doc = "SA\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SAR {
-    #[doc = "This address is used for comparison with DA fields of the received frame"]
+pub enum SA_A {
+    #[doc = "0: This address is used for comparison with DA fields of the received frame"]
     DESTINATION,
-    #[doc = "This address is used for comparison with SA fields of received frames"]
+    #[doc = "1: This address is used for comparison with SA fields of received frames"]
     SOURCE,
 }
-impl SAR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SAR::DESTINATION => false,
-            SAR::SOURCE => true,
+impl From<SA_A> for bool {
+    #[inline(always)]
+    fn from(variant: SA_A) -> Self {
+        match variant {
+            SA_A::DESTINATION => false,
+            SA_A::SOURCE => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SAR {
-        match value {
-            false => SAR::DESTINATION,
-            true => SAR::SOURCE,
+}
+#[doc = "Reader of field `SA`"]
+pub type SA_R = crate::R<bool, SA_A>;
+impl SA_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SA_A {
+        match self.bits {
+            false => SA_A::DESTINATION,
+            true => SA_A::SOURCE,
         }
     }
     #[doc = "Checks if the value of the field is `DESTINATION`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_destination(&self) -> bool {
-        *self == SAR::DESTINATION
+        *self == SA_A::DESTINATION
     }
     #[doc = "Checks if the value of the field is `SOURCE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_source(&self) -> bool {
-        *self == SAR::SOURCE
+        *self == SA_A::SOURCE
     }
 }
-#[doc = "Possible values of the field `AE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum AER {
-    #[doc = "Address filters ignore this address"]
-    DISABLED,
-    #[doc = "Address filters use this address"]
-    ENABLED,
+#[doc = "Write proxy for field `SA`"]
+pub struct SA_W<'a> {
+    w: &'a mut W,
 }
-impl AER {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            AER::DISABLED => false,
-            AER::ENABLED => true,
+impl<'a> SA_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SA_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> AER {
-        match value {
-            false => AER::DISABLED,
-            true => AER::ENABLED,
+    #[doc = "This address is used for comparison with DA fields of the received frame"]
+    #[inline(always)]
+    pub fn destination(self) -> &'a mut W {
+        self.variant(SA_A::DESTINATION)
+    }
+    #[doc = "This address is used for comparison with SA fields of received frames"]
+    #[inline(always)]
+    pub fn source(self) -> &'a mut W {
+        self.variant(SA_A::SOURCE)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
+        self.w
+    }
+}
+#[doc = "AE\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum AE_A {
+    #[doc = "0: Address filters ignore this address"]
+    DISABLED,
+    #[doc = "1: Address filters use this address"]
+    ENABLED,
+}
+impl From<AE_A> for bool {
+    #[inline(always)]
+    fn from(variant: AE_A) -> Self {
+        match variant {
+            AE_A::DISABLED => false,
+            AE_A::ENABLED => true,
+        }
+    }
+}
+#[doc = "Reader of field `AE`"]
+pub type AE_R = crate::R<bool, AE_A>;
+impl AE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> AE_A {
+        match self.bits {
+            false => AE_A::DISABLED,
+            true => AE_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == AER::DISABLED
+        *self == AE_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == AER::ENABLED
+        *self == AE_A::ENABLED
     }
 }
-#[doc = r" Proxy"]
-pub struct _MACA3HW<'a> {
+#[doc = "Write proxy for field `AE`"]
+pub struct AE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MACA3HW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0xffff;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MBCW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _MBCW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x3f;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SA`"]
-pub enum SAW {
-    #[doc = "This address is used for comparison with DA fields of the received frame"]
-    DESTINATION,
-    #[doc = "This address is used for comparison with SA fields of received frames"]
-    SOURCE,
-}
-impl SAW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SAW::DESTINATION => false,
-            SAW::SOURCE => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SAW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SAW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SAW) -> &'a mut W {
+impl<'a> AE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: AE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "This address is used for comparison with DA fields of the received frame"]
-    #[inline]
-    pub fn destination(self) -> &'a mut W {
-        self.variant(SAW::DESTINATION)
-    }
-    #[doc = "This address is used for comparison with SA fields of received frames"]
-    #[inline]
-    pub fn source(self) -> &'a mut W {
-        self.variant(SAW::SOURCE)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 30;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `AE`"]
-pub enum AEW {
-    #[doc = "Address filters ignore this address"]
-    DISABLED,
-    #[doc = "Address filters use this address"]
-    ENABLED,
-}
-impl AEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            AEW::DISABLED => false,
-            AEW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _AEW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _AEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: AEW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Address filters ignore this address"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(AEW::DISABLED)
+        self.variant(AE_A::DISABLED)
     }
     #[doc = "Address filters use this address"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(AEW::ENABLED)
+        self.variant(AE_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:15 - MACA3H"]
-    #[inline]
-    pub fn maca3h(&self) -> MACA3HR {
-        let bits = {
-            const MASK: u16 = 0xffff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        MACA3HR { bits }
+    #[inline(always)]
+    pub fn maca3h(&self) -> MACA3H_R {
+        MACA3H_R::new((self.bits & 0xffff) as u16)
     }
     #[doc = "Bits 24:29 - MBC"]
-    #[inline]
-    pub fn mbc(&self) -> MBCR {
-        let bits = {
-            const MASK: u8 = 0x3f;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        MBCR { bits }
+    #[inline(always)]
+    pub fn mbc(&self) -> MBC_R {
+        MBC_R::new(((self.bits >> 24) & 0x3f) as u8)
     }
     #[doc = "Bit 30 - SA"]
-    #[inline]
-    pub fn sa(&self) -> SAR {
-        SAR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 30;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sa(&self) -> SA_R {
+        SA_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - AE"]
-    #[inline]
-    pub fn ae(&self) -> AER {
-        AER::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ae(&self) -> AE_R {
+        AE_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0xffff }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:15 - MACA3H"]
-    #[inline]
-    pub fn maca3h(&mut self) -> _MACA3HW {
-        _MACA3HW { w: self }
+    #[inline(always)]
+    pub fn maca3h(&mut self) -> MACA3H_W {
+        MACA3H_W { w: self }
     }
     #[doc = "Bits 24:29 - MBC"]
-    #[inline]
-    pub fn mbc(&mut self) -> _MBCW {
-        _MBCW { w: self }
+    #[inline(always)]
+    pub fn mbc(&mut self) -> MBC_W {
+        MBC_W { w: self }
     }
     #[doc = "Bit 30 - SA"]
-    #[inline]
-    pub fn sa(&mut self) -> _SAW {
-        _SAW { w: self }
+    #[inline(always)]
+    pub fn sa(&mut self) -> SA_W {
+        SA_W { w: self }
     }
     #[doc = "Bit 31 - AE"]
-    #[inline]
-    pub fn ae(&mut self) -> _AEW {
-        _AEW { w: self }
+    #[inline(always)]
+    pub fn ae(&mut self) -> AE_W {
+        AE_W { w: self }
     }
 }

@@ -1,421 +1,280 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MMCTIMR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register MMCTIMR"]
+pub type R = crate::R<u32, super::MMCTIMR>;
+#[doc = "Writer for register MMCTIMR"]
+pub type W = crate::W<u32, super::MMCTIMR>;
+#[doc = "Register MMCTIMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::MMCTIMR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `TGFSCM`"]
+#[doc = "TGFSCM\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TGFSCMR {
-    #[doc = "Transmitted-good-single-collision half-full interrupt enabled"]
+pub enum TGFSCM_A {
+    #[doc = "0: Transmitted-good-single-collision half-full interrupt enabled"]
     UNMASKED,
-    #[doc = "Transmitted-good-single-collision half-full interrupt disabled"]
+    #[doc = "1: Transmitted-good-single-collision half-full interrupt disabled"]
     MASKED,
 }
-impl TGFSCMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TGFSCMR::UNMASKED => false,
-            TGFSCMR::MASKED => true,
+impl From<TGFSCM_A> for bool {
+    #[inline(always)]
+    fn from(variant: TGFSCM_A) -> Self {
+        match variant {
+            TGFSCM_A::UNMASKED => false,
+            TGFSCM_A::MASKED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TGFSCMR {
-        match value {
-            false => TGFSCMR::UNMASKED,
-            true => TGFSCMR::MASKED,
+}
+#[doc = "Reader of field `TGFSCM`"]
+pub type TGFSCM_R = crate::R<bool, TGFSCM_A>;
+impl TGFSCM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TGFSCM_A {
+        match self.bits {
+            false => TGFSCM_A::UNMASKED,
+            true => TGFSCM_A::MASKED,
         }
     }
     #[doc = "Checks if the value of the field is `UNMASKED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_unmasked(&self) -> bool {
-        *self == TGFSCMR::UNMASKED
+        *self == TGFSCM_A::UNMASKED
     }
     #[doc = "Checks if the value of the field is `MASKED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_masked(&self) -> bool {
-        *self == TGFSCMR::MASKED
+        *self == TGFSCM_A::MASKED
     }
 }
-#[doc = "Possible values of the field `TGFMSCM`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TGFMSCMR {
-    #[doc = "Transmitted-good-multiple-collision half-full interrupt enabled"]
-    UNMASKED,
-    #[doc = "Transmitted-good-multiple-collision half-full interrupt disabled"]
-    MASKED,
-}
-impl TGFMSCMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TGFMSCMR::UNMASKED => false,
-            TGFMSCMR::MASKED => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TGFMSCMR {
-        match value {
-            false => TGFMSCMR::UNMASKED,
-            true => TGFMSCMR::MASKED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `UNMASKED`"]
-    #[inline]
-    pub fn is_unmasked(&self) -> bool {
-        *self == TGFMSCMR::UNMASKED
-    }
-    #[doc = "Checks if the value of the field is `MASKED`"]
-    #[inline]
-    pub fn is_masked(&self) -> bool {
-        *self == TGFMSCMR::MASKED
-    }
-}
-#[doc = "Possible values of the field `TGFM`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TGFMR {
-    #[doc = "Transmitted-good counter half-full interrupt enabled"]
-    UNMASKED,
-    #[doc = "Transmitted-good counter half-full interrupt disabled"]
-    MASKED,
-}
-impl TGFMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TGFMR::UNMASKED => false,
-            TGFMR::MASKED => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TGFMR {
-        match value {
-            false => TGFMR::UNMASKED,
-            true => TGFMR::MASKED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `UNMASKED`"]
-    #[inline]
-    pub fn is_unmasked(&self) -> bool {
-        *self == TGFMR::UNMASKED
-    }
-    #[doc = "Checks if the value of the field is `MASKED`"]
-    #[inline]
-    pub fn is_masked(&self) -> bool {
-        *self == TGFMR::MASKED
-    }
-}
-#[doc = "Values that can be written to the field `TGFSCM`"]
-pub enum TGFSCMW {
-    #[doc = "Transmitted-good-single-collision half-full interrupt enabled"]
-    UNMASKED,
-    #[doc = "Transmitted-good-single-collision half-full interrupt disabled"]
-    MASKED,
-}
-impl TGFSCMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TGFSCMW::UNMASKED => false,
-            TGFSCMW::MASKED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TGFSCMW<'a> {
+#[doc = "Write proxy for field `TGFSCM`"]
+pub struct TGFSCM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TGFSCMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TGFSCMW) -> &'a mut W {
+impl<'a> TGFSCM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TGFSCM_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Transmitted-good-single-collision half-full interrupt enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn unmasked(self) -> &'a mut W {
-        self.variant(TGFSCMW::UNMASKED)
+        self.variant(TGFSCM_A::UNMASKED)
     }
     #[doc = "Transmitted-good-single-collision half-full interrupt disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn masked(self) -> &'a mut W {
-        self.variant(TGFSCMW::MASKED)
+        self.variant(TGFSCM_A::MASKED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 14;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TGFMSCM`"]
-pub enum TGFMSCMW {
-    #[doc = "Transmitted-good-multiple-collision half-full interrupt enabled"]
+#[doc = "TGFMSCM\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TGFMSCM_A {
+    #[doc = "0: Transmitted-good-multiple-collision half-full interrupt enabled"]
     UNMASKED,
-    #[doc = "Transmitted-good-multiple-collision half-full interrupt disabled"]
+    #[doc = "1: Transmitted-good-multiple-collision half-full interrupt disabled"]
     MASKED,
 }
-impl TGFMSCMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TGFMSCMW::UNMASKED => false,
-            TGFMSCMW::MASKED => true,
+impl From<TGFMSCM_A> for bool {
+    #[inline(always)]
+    fn from(variant: TGFMSCM_A) -> Self {
+        match variant {
+            TGFMSCM_A::UNMASKED => false,
+            TGFMSCM_A::MASKED => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TGFMSCMW<'a> {
+#[doc = "Reader of field `TGFMSCM`"]
+pub type TGFMSCM_R = crate::R<bool, TGFMSCM_A>;
+impl TGFMSCM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TGFMSCM_A {
+        match self.bits {
+            false => TGFMSCM_A::UNMASKED,
+            true => TGFMSCM_A::MASKED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `UNMASKED`"]
+    #[inline(always)]
+    pub fn is_unmasked(&self) -> bool {
+        *self == TGFMSCM_A::UNMASKED
+    }
+    #[doc = "Checks if the value of the field is `MASKED`"]
+    #[inline(always)]
+    pub fn is_masked(&self) -> bool {
+        *self == TGFMSCM_A::MASKED
+    }
+}
+#[doc = "Write proxy for field `TGFMSCM`"]
+pub struct TGFMSCM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TGFMSCMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TGFMSCMW) -> &'a mut W {
+impl<'a> TGFMSCM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TGFMSCM_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Transmitted-good-multiple-collision half-full interrupt enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn unmasked(self) -> &'a mut W {
-        self.variant(TGFMSCMW::UNMASKED)
+        self.variant(TGFMSCM_A::UNMASKED)
     }
     #[doc = "Transmitted-good-multiple-collision half-full interrupt disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn masked(self) -> &'a mut W {
-        self.variant(TGFMSCMW::MASKED)
+        self.variant(TGFMSCM_A::MASKED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 15;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TGFM`"]
-pub enum TGFMW {
-    #[doc = "Transmitted-good counter half-full interrupt enabled"]
+#[doc = "TGFM\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TGFM_A {
+    #[doc = "0: Transmitted-good counter half-full interrupt enabled"]
     UNMASKED,
-    #[doc = "Transmitted-good counter half-full interrupt disabled"]
+    #[doc = "1: Transmitted-good counter half-full interrupt disabled"]
     MASKED,
 }
-impl TGFMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TGFMW::UNMASKED => false,
-            TGFMW::MASKED => true,
+impl From<TGFM_A> for bool {
+    #[inline(always)]
+    fn from(variant: TGFM_A) -> Self {
+        match variant {
+            TGFM_A::UNMASKED => false,
+            TGFM_A::MASKED => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _TGFMW<'a> {
+#[doc = "Reader of field `TGFM`"]
+pub type TGFM_R = crate::R<bool, TGFM_A>;
+impl TGFM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TGFM_A {
+        match self.bits {
+            false => TGFM_A::UNMASKED,
+            true => TGFM_A::MASKED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `UNMASKED`"]
+    #[inline(always)]
+    pub fn is_unmasked(&self) -> bool {
+        *self == TGFM_A::UNMASKED
+    }
+    #[doc = "Checks if the value of the field is `MASKED`"]
+    #[inline(always)]
+    pub fn is_masked(&self) -> bool {
+        *self == TGFM_A::MASKED
+    }
+}
+#[doc = "Write proxy for field `TGFM`"]
+pub struct TGFM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TGFMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TGFMW) -> &'a mut W {
+impl<'a> TGFM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TGFM_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Transmitted-good counter half-full interrupt enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn unmasked(self) -> &'a mut W {
-        self.variant(TGFMW::UNMASKED)
+        self.variant(TGFM_A::UNMASKED)
     }
     #[doc = "Transmitted-good counter half-full interrupt disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn masked(self) -> &'a mut W {
-        self.variant(TGFMW::MASKED)
+        self.variant(TGFM_A::MASKED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 14 - TGFSCM"]
-    #[inline]
-    pub fn tgfscm(&self) -> TGFSCMR {
-        TGFSCMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tgfscm(&self) -> TGFSCM_R {
+        TGFSCM_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - TGFMSCM"]
-    #[inline]
-    pub fn tgfmscm(&self) -> TGFMSCMR {
-        TGFMSCMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tgfmscm(&self) -> TGFMSCM_R {
+        TGFMSCM_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 16 - TGFM"]
-    #[inline]
-    pub fn tgfm(&self) -> TGFMR {
-        TGFMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn tgfm(&self) -> TGFM_R {
+        TGFM_R::new(((self.bits >> 16) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 14 - TGFSCM"]
-    #[inline]
-    pub fn tgfscm(&mut self) -> _TGFSCMW {
-        _TGFSCMW { w: self }
+    #[inline(always)]
+    pub fn tgfscm(&mut self) -> TGFSCM_W {
+        TGFSCM_W { w: self }
     }
     #[doc = "Bit 15 - TGFMSCM"]
-    #[inline]
-    pub fn tgfmscm(&mut self) -> _TGFMSCMW {
-        _TGFMSCMW { w: self }
+    #[inline(always)]
+    pub fn tgfmscm(&mut self) -> TGFMSCM_W {
+        TGFMSCM_W { w: self }
     }
     #[doc = "Bit 16 - TGFM"]
-    #[inline]
-    pub fn tgfm(&mut self) -> _TGFMW {
-        _TGFMW { w: self }
+    #[inline(always)]
+    pub fn tgfm(&mut self) -> TGFM_W {
+        TGFM_W { w: self }
     }
 }

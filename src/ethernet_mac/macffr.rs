@@ -1,1390 +1,1003 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MACFFR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register MACFFR"]
+pub type R = crate::R<u32, super::MACFFR>;
+#[doc = "Writer for register MACFFR"]
+pub type W = crate::W<u32, super::MACFFR>;
+#[doc = "Register MACFFR `reset()`'s with value 0"]
+impl crate::ResetValue for super::MACFFR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `PM`"]
+#[doc = "PM\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PMR {
-    #[doc = "Normal address filtering"]
+pub enum PM_A {
+    #[doc = "0: Normal address filtering"]
     DISABLED,
-    #[doc = "Address filters pass all incoming frames regardless of their destination or source address"]
+    #[doc = "1: Address filters pass all incoming frames regardless of their destination or source address"]
     ENABLED,
 }
-impl PMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PMR::DISABLED => false,
-            PMR::ENABLED => true,
+impl From<PM_A> for bool {
+    #[inline(always)]
+    fn from(variant: PM_A) -> Self {
+        match variant {
+            PM_A::DISABLED => false,
+            PM_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PMR {
-        match value {
-            false => PMR::DISABLED,
-            true => PMR::ENABLED,
+}
+#[doc = "Reader of field `PM`"]
+pub type PM_R = crate::R<bool, PM_A>;
+impl PM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PM_A {
+        match self.bits {
+            false => PM_A::DISABLED,
+            true => PM_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == PMR::DISABLED
+        *self == PM_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == PMR::ENABLED
+        *self == PM_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `HU`"]
+#[doc = "Write proxy for field `PM`"]
+pub struct PM_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PM_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Normal address filtering"]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(PM_A::DISABLED)
+    }
+    #[doc = "Address filters pass all incoming frames regardless of their destination or source address"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(PM_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w
+    }
+}
+#[doc = "HU\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HUR {
+pub enum HU_A {
+    #[doc = "0: MAC performs a perfect destination address filtering for unicast frames"]
+    PERFECT,
+    #[doc = "1: MAC performs destination address filtering of received unicast frames according to the hash table"]
+    HASH,
+}
+impl From<HU_A> for bool {
+    #[inline(always)]
+    fn from(variant: HU_A) -> Self {
+        match variant {
+            HU_A::PERFECT => false,
+            HU_A::HASH => true,
+        }
+    }
+}
+#[doc = "Reader of field `HU`"]
+pub type HU_R = crate::R<bool, HU_A>;
+impl HU_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> HU_A {
+        match self.bits {
+            false => HU_A::PERFECT,
+            true => HU_A::HASH,
+        }
+    }
+    #[doc = "Checks if the value of the field is `PERFECT`"]
+    #[inline(always)]
+    pub fn is_perfect(&self) -> bool {
+        *self == HU_A::PERFECT
+    }
+    #[doc = "Checks if the value of the field is `HASH`"]
+    #[inline(always)]
+    pub fn is_hash(&self) -> bool {
+        *self == HU_A::HASH
+    }
+}
+#[doc = "Write proxy for field `HU`"]
+pub struct HU_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> HU_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HU_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "MAC performs a perfect destination address filtering for unicast frames"]
-    PERFECT,
+    #[inline(always)]
+    pub fn perfect(self) -> &'a mut W {
+        self.variant(HU_A::PERFECT)
+    }
     #[doc = "MAC performs destination address filtering of received unicast frames according to the hash table"]
-    HASH,
-}
-impl HUR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[inline(always)]
+    pub fn hash(self) -> &'a mut W {
+        self.variant(HU_A::HASH)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            HUR::PERFECT => false,
-            HUR::HASH => true,
-        }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> HUR {
-        match value {
-            false => HUR::PERFECT,
-            true => HUR::HASH,
-        }
-    }
-    #[doc = "Checks if the value of the field is `PERFECT`"]
-    #[inline]
-    pub fn is_perfect(&self) -> bool {
-        *self == HUR::PERFECT
-    }
-    #[doc = "Checks if the value of the field is `HASH`"]
-    #[inline]
-    pub fn is_hash(&self) -> bool {
-        *self == HUR::HASH
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w
     }
 }
-#[doc = "Possible values of the field `HM`"]
+#[doc = "HM\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HMR {
-    #[doc = "MAC performs a perfect destination address filtering for multicast frames"]
+pub enum HM_A {
+    #[doc = "0: MAC performs a perfect destination address filtering for multicast frames"]
     PERFECT,
-    #[doc = "MAC performs destination address filtering of received multicast frames according to the hash table"]
+    #[doc = "1: MAC performs destination address filtering of received multicast frames according to the hash table"]
     HASH,
 }
-impl HMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            HMR::PERFECT => false,
-            HMR::HASH => true,
+impl From<HM_A> for bool {
+    #[inline(always)]
+    fn from(variant: HM_A) -> Self {
+        match variant {
+            HM_A::PERFECT => false,
+            HM_A::HASH => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> HMR {
-        match value {
-            false => HMR::PERFECT,
-            true => HMR::HASH,
+}
+#[doc = "Reader of field `HM`"]
+pub type HM_R = crate::R<bool, HM_A>;
+impl HM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> HM_A {
+        match self.bits {
+            false => HM_A::PERFECT,
+            true => HM_A::HASH,
         }
     }
     #[doc = "Checks if the value of the field is `PERFECT`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_perfect(&self) -> bool {
-        *self == HMR::PERFECT
+        *self == HM_A::PERFECT
     }
     #[doc = "Checks if the value of the field is `HASH`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_hash(&self) -> bool {
-        *self == HMR::HASH
+        *self == HM_A::HASH
     }
 }
-#[doc = "Possible values of the field `DAIF`"]
+#[doc = "Write proxy for field `HM`"]
+pub struct HM_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> HM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HM_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "MAC performs a perfect destination address filtering for multicast frames"]
+    #[inline(always)]
+    pub fn perfect(self) -> &'a mut W {
+        self.variant(HM_A::PERFECT)
+    }
+    #[doc = "MAC performs destination address filtering of received multicast frames according to the hash table"]
+    #[inline(always)]
+    pub fn hash(self) -> &'a mut W {
+        self.variant(HM_A::HASH)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w
+    }
+}
+#[doc = "DAIF\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DAIFR {
-    #[doc = "Normal filtering of frames"]
+pub enum DAIF_A {
+    #[doc = "0: Normal filtering of frames"]
     NORMAL,
-    #[doc = "Address check block operates in inverse filtering mode for the DA address comparison"]
+    #[doc = "1: Address check block operates in inverse filtering mode for the DA address comparison"]
     INVERT,
 }
-impl DAIFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            DAIFR::NORMAL => false,
-            DAIFR::INVERT => true,
+impl From<DAIF_A> for bool {
+    #[inline(always)]
+    fn from(variant: DAIF_A) -> Self {
+        match variant {
+            DAIF_A::NORMAL => false,
+            DAIF_A::INVERT => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> DAIFR {
-        match value {
-            false => DAIFR::NORMAL,
-            true => DAIFR::INVERT,
+}
+#[doc = "Reader of field `DAIF`"]
+pub type DAIF_R = crate::R<bool, DAIF_A>;
+impl DAIF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DAIF_A {
+        match self.bits {
+            false => DAIF_A::NORMAL,
+            true => DAIF_A::INVERT,
         }
     }
     #[doc = "Checks if the value of the field is `NORMAL`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_normal(&self) -> bool {
-        *self == DAIFR::NORMAL
+        *self == DAIF_A::NORMAL
     }
     #[doc = "Checks if the value of the field is `INVERT`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_invert(&self) -> bool {
-        *self == DAIFR::INVERT
+        *self == DAIF_A::INVERT
     }
 }
-#[doc = "Possible values of the field `RAM`"]
+#[doc = "Write proxy for field `DAIF`"]
+pub struct DAIF_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> DAIF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DAIF_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Normal filtering of frames"]
+    #[inline(always)]
+    pub fn normal(self) -> &'a mut W {
+        self.variant(DAIF_A::NORMAL)
+    }
+    #[doc = "Address check block operates in inverse filtering mode for the DA address comparison"]
+    #[inline(always)]
+    pub fn invert(self) -> &'a mut W {
+        self.variant(DAIF_A::INVERT)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w
+    }
+}
+#[doc = "RAM\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RAMR {
+pub enum RAM_A {
+    #[doc = "0: Filtering of multicast frames depends on HM"]
+    DISABLED,
+    #[doc = "1: All received frames with a multicast destination address are passed"]
+    ENABLED,
+}
+impl From<RAM_A> for bool {
+    #[inline(always)]
+    fn from(variant: RAM_A) -> Self {
+        match variant {
+            RAM_A::DISABLED => false,
+            RAM_A::ENABLED => true,
+        }
+    }
+}
+#[doc = "Reader of field `RAM`"]
+pub type RAM_R = crate::R<bool, RAM_A>;
+impl RAM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RAM_A {
+        match self.bits {
+            false => RAM_A::DISABLED,
+            true => RAM_A::ENABLED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == RAM_A::DISABLED
+    }
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == RAM_A::ENABLED
+    }
+}
+#[doc = "Write proxy for field `RAM`"]
+pub struct RAM_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> RAM_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RAM_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Filtering of multicast frames depends on HM"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(RAM_A::DISABLED)
+    }
     #[doc = "All received frames with a multicast destination address are passed"]
-    ENABLED,
-}
-impl RAMR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(RAM_A::ENABLED)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RAMR::DISABLED => false,
-            RAMR::ENABLED => true,
-        }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RAMR {
-        match value {
-            false => RAMR::DISABLED,
-            true => RAMR::ENABLED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
-    pub fn is_disabled(&self) -> bool {
-        *self == RAMR::DISABLED
-    }
-    #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
-    pub fn is_enabled(&self) -> bool {
-        *self == RAMR::ENABLED
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w
     }
 }
-#[doc = "Possible values of the field `BFD`"]
+#[doc = "BFD\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BFDR {
-    #[doc = "Address filters pass all received broadcast frames"]
+pub enum BFD_A {
+    #[doc = "0: Address filters pass all received broadcast frames"]
     ENABLED,
-    #[doc = "Address filters filter all incoming broadcast frames"]
+    #[doc = "1: Address filters filter all incoming broadcast frames"]
     DISABLED,
 }
-impl BFDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BFDR::ENABLED => false,
-            BFDR::DISABLED => true,
+impl From<BFD_A> for bool {
+    #[inline(always)]
+    fn from(variant: BFD_A) -> Self {
+        match variant {
+            BFD_A::ENABLED => false,
+            BFD_A::DISABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BFDR {
-        match value {
-            false => BFDR::ENABLED,
-            true => BFDR::DISABLED,
+}
+#[doc = "Reader of field `BFD`"]
+pub type BFD_R = crate::R<bool, BFD_A>;
+impl BFD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BFD_A {
+        match self.bits {
+            false => BFD_A::ENABLED,
+            true => BFD_A::DISABLED,
         }
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == BFDR::ENABLED
+        *self == BFD_A::ENABLED
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == BFDR::DISABLED
+        *self == BFD_A::DISABLED
     }
 }
-#[doc = "Possible values of the field `PCF`"]
+#[doc = "Write proxy for field `BFD`"]
+pub struct BFD_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> BFD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BFD_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Address filters pass all received broadcast frames"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(BFD_A::ENABLED)
+    }
+    #[doc = "Address filters filter all incoming broadcast frames"]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(BFD_A::DISABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w
+    }
+}
+#[doc = "PCF\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PCFR {
-    #[doc = "MAC prevents all control frames from reaching the application"]
+pub enum PCF_A {
+    #[doc = "0: MAC prevents all control frames from reaching the application"]
     PREVENTALL,
-    #[doc = "MAC forwards all control frames to application except Pause"]
+    #[doc = "1: MAC forwards all control frames to application except Pause"]
     FORWARDALLEXCEPTPAUSE,
-    #[doc = "MAC forwards all control frames to application even if they fail the address filter"]
+    #[doc = "2: MAC forwards all control frames to application even if they fail the address filter"]
     FORWARDALL,
-    #[doc = "MAC forwards control frames that pass the address filter"]
+    #[doc = "3: MAC forwards control frames that pass the address filter"]
     FORWARDALLFILTERED,
 }
-impl PCFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            PCFR::PREVENTALL => 0,
-            PCFR::FORWARDALLEXCEPTPAUSE => 0x01,
-            PCFR::FORWARDALL => 0x02,
-            PCFR::FORWARDALLFILTERED => 0x03,
+impl From<PCF_A> for u8 {
+    #[inline(always)]
+    fn from(variant: PCF_A) -> Self {
+        match variant {
+            PCF_A::PREVENTALL => 0,
+            PCF_A::FORWARDALLEXCEPTPAUSE => 1,
+            PCF_A::FORWARDALL => 2,
+            PCF_A::FORWARDALLFILTERED => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> PCFR {
-        match value {
-            0 => PCFR::PREVENTALL,
-            1 => PCFR::FORWARDALLEXCEPTPAUSE,
-            2 => PCFR::FORWARDALL,
-            3 => PCFR::FORWARDALLFILTERED,
+}
+#[doc = "Reader of field `PCF`"]
+pub type PCF_R = crate::R<u8, PCF_A>;
+impl PCF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PCF_A {
+        match self.bits {
+            0 => PCF_A::PREVENTALL,
+            1 => PCF_A::FORWARDALLEXCEPTPAUSE,
+            2 => PCF_A::FORWARDALL,
+            3 => PCF_A::FORWARDALLFILTERED,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `PREVENTALL`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_prevent_all(&self) -> bool {
-        *self == PCFR::PREVENTALL
+        *self == PCF_A::PREVENTALL
     }
     #[doc = "Checks if the value of the field is `FORWARDALLEXCEPTPAUSE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_forward_all_except_pause(&self) -> bool {
-        *self == PCFR::FORWARDALLEXCEPTPAUSE
+        *self == PCF_A::FORWARDALLEXCEPTPAUSE
     }
     #[doc = "Checks if the value of the field is `FORWARDALL`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_forward_all(&self) -> bool {
-        *self == PCFR::FORWARDALL
+        *self == PCF_A::FORWARDALL
     }
     #[doc = "Checks if the value of the field is `FORWARDALLFILTERED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_forward_all_filtered(&self) -> bool {
-        *self == PCFR::FORWARDALLFILTERED
+        *self == PCF_A::FORWARDALLFILTERED
     }
 }
-#[doc = "Possible values of the field `SAIF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SAIFR {
-    #[doc = "Source address filter operates normally"]
-    NORMAL,
-    #[doc = "Source address filter operation inverted"]
-    INVERT,
+#[doc = "Write proxy for field `PCF`"]
+pub struct PCF_W<'a> {
+    w: &'a mut W,
 }
-impl SAIFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SAIFR::NORMAL => false,
-            SAIFR::INVERT => true,
+impl<'a> PCF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PCF_A) -> &'a mut W {
+        {
+            self.bits(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SAIFR {
-        match value {
-            false => SAIFR::NORMAL,
-            true => SAIFR::INVERT,
+    #[doc = "MAC prevents all control frames from reaching the application"]
+    #[inline(always)]
+    pub fn prevent_all(self) -> &'a mut W {
+        self.variant(PCF_A::PREVENTALL)
+    }
+    #[doc = "MAC forwards all control frames to application except Pause"]
+    #[inline(always)]
+    pub fn forward_all_except_pause(self) -> &'a mut W {
+        self.variant(PCF_A::FORWARDALLEXCEPTPAUSE)
+    }
+    #[doc = "MAC forwards all control frames to application even if they fail the address filter"]
+    #[inline(always)]
+    pub fn forward_all(self) -> &'a mut W {
+        self.variant(PCF_A::FORWARDALL)
+    }
+    #[doc = "MAC forwards control frames that pass the address filter"]
+    #[inline(always)]
+    pub fn forward_all_filtered(self) -> &'a mut W {
+        self.variant(PCF_A::FORWARDALLFILTERED)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 6)) | (((value as u32) & 0x03) << 6);
+        self.w
+    }
+}
+#[doc = "SAIF\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SAIF_A {
+    #[doc = "0: Source address filter operates normally"]
+    NORMAL,
+    #[doc = "1: Source address filter operation inverted"]
+    INVERT,
+}
+impl From<SAIF_A> for bool {
+    #[inline(always)]
+    fn from(variant: SAIF_A) -> Self {
+        match variant {
+            SAIF_A::NORMAL => false,
+            SAIF_A::INVERT => true,
+        }
+    }
+}
+#[doc = "Reader of field `SAIF`"]
+pub type SAIF_R = crate::R<bool, SAIF_A>;
+impl SAIF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SAIF_A {
+        match self.bits {
+            false => SAIF_A::NORMAL,
+            true => SAIF_A::INVERT,
         }
     }
     #[doc = "Checks if the value of the field is `NORMAL`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_normal(&self) -> bool {
-        *self == SAIFR::NORMAL
+        *self == SAIF_A::NORMAL
     }
     #[doc = "Checks if the value of the field is `INVERT`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_invert(&self) -> bool {
-        *self == SAIFR::INVERT
+        *self == SAIF_A::INVERT
     }
 }
-#[doc = "Possible values of the field `SAF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SAFR {
-    #[doc = "Source address ignored"]
-    DISABLED,
-    #[doc = "MAC drops frames that fail the source address filter"]
-    ENABLED,
+#[doc = "Write proxy for field `SAIF`"]
+pub struct SAIF_W<'a> {
+    w: &'a mut W,
 }
-impl SAFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SAFR::DISABLED => false,
-            SAFR::ENABLED => true,
+impl<'a> SAIF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SAIF_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SAFR {
-        match value {
-            false => SAFR::DISABLED,
-            true => SAFR::ENABLED,
+    #[doc = "Source address filter operates normally"]
+    #[inline(always)]
+    pub fn normal(self) -> &'a mut W {
+        self.variant(SAIF_A::NORMAL)
+    }
+    #[doc = "Source address filter operation inverted"]
+    #[inline(always)]
+    pub fn invert(self) -> &'a mut W {
+        self.variant(SAIF_A::INVERT)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w
+    }
+}
+#[doc = "SAF\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SAF_A {
+    #[doc = "0: Source address ignored"]
+    DISABLED,
+    #[doc = "1: MAC drops frames that fail the source address filter"]
+    ENABLED,
+}
+impl From<SAF_A> for bool {
+    #[inline(always)]
+    fn from(variant: SAF_A) -> Self {
+        match variant {
+            SAF_A::DISABLED => false,
+            SAF_A::ENABLED => true,
+        }
+    }
+}
+#[doc = "Reader of field `SAF`"]
+pub type SAF_R = crate::R<bool, SAF_A>;
+impl SAF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SAF_A {
+        match self.bits {
+            false => SAF_A::DISABLED,
+            true => SAF_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == SAFR::DISABLED
+        *self == SAF_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == SAFR::ENABLED
+        *self == SAF_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `HPF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HPFR {
-    #[doc = "If HM or HU is set, only frames that match the Hash filter are passed"]
-    HASHONLY,
-    #[doc = "If HM or HU is set, frames that match either the perfect filter or the hash filter are passed"]
-    HASHORPERFECT,
+#[doc = "Write proxy for field `SAF`"]
+pub struct SAF_W<'a> {
+    w: &'a mut W,
 }
-impl HPFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            HPFR::HASHONLY => false,
-            HPFR::HASHORPERFECT => true,
+impl<'a> SAF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SAF_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> HPFR {
-        match value {
-            false => HPFR::HASHONLY,
-            true => HPFR::HASHORPERFECT,
+    #[doc = "Source address ignored"]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(SAF_A::DISABLED)
+    }
+    #[doc = "MAC drops frames that fail the source address filter"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(SAF_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w
+    }
+}
+#[doc = "HPF\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HPF_A {
+    #[doc = "0: If HM or HU is set, only frames that match the Hash filter are passed"]
+    HASHONLY,
+    #[doc = "1: If HM or HU is set, frames that match either the perfect filter or the hash filter are passed"]
+    HASHORPERFECT,
+}
+impl From<HPF_A> for bool {
+    #[inline(always)]
+    fn from(variant: HPF_A) -> Self {
+        match variant {
+            HPF_A::HASHONLY => false,
+            HPF_A::HASHORPERFECT => true,
+        }
+    }
+}
+#[doc = "Reader of field `HPF`"]
+pub type HPF_R = crate::R<bool, HPF_A>;
+impl HPF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> HPF_A {
+        match self.bits {
+            false => HPF_A::HASHONLY,
+            true => HPF_A::HASHORPERFECT,
         }
     }
     #[doc = "Checks if the value of the field is `HASHONLY`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_hash_only(&self) -> bool {
-        *self == HPFR::HASHONLY
+        *self == HPF_A::HASHONLY
     }
     #[doc = "Checks if the value of the field is `HASHORPERFECT`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_hash_or_perfect(&self) -> bool {
-        *self == HPFR::HASHORPERFECT
+        *self == HPF_A::HASHORPERFECT
     }
 }
-#[doc = "Possible values of the field `RA`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RAR {
-    #[doc = "MAC receiver passes on to the application only those frames that have passed the SA/DA address file"]
-    DISABLED,
-    #[doc = "MAC receiver passes oll received frames on to the application"]
-    ENABLED,
+#[doc = "Write proxy for field `HPF`"]
+pub struct HPF_W<'a> {
+    w: &'a mut W,
 }
-impl RAR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RAR::DISABLED => false,
-            RAR::ENABLED => true,
+impl<'a> HPF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HPF_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RAR {
-        match value {
-            false => RAR::DISABLED,
-            true => RAR::ENABLED,
+    #[doc = "If HM or HU is set, only frames that match the Hash filter are passed"]
+    #[inline(always)]
+    pub fn hash_only(self) -> &'a mut W {
+        self.variant(HPF_A::HASHONLY)
+    }
+    #[doc = "If HM or HU is set, frames that match either the perfect filter or the hash filter are passed"]
+    #[inline(always)]
+    pub fn hash_or_perfect(self) -> &'a mut W {
+        self.variant(HPF_A::HASHORPERFECT)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w
+    }
+}
+#[doc = "RA\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RA_A {
+    #[doc = "0: MAC receiver passes on to the application only those frames that have passed the SA/DA address file"]
+    DISABLED,
+    #[doc = "1: MAC receiver passes oll received frames on to the application"]
+    ENABLED,
+}
+impl From<RA_A> for bool {
+    #[inline(always)]
+    fn from(variant: RA_A) -> Self {
+        match variant {
+            RA_A::DISABLED => false,
+            RA_A::ENABLED => true,
+        }
+    }
+}
+#[doc = "Reader of field `RA`"]
+pub type RA_R = crate::R<bool, RA_A>;
+impl RA_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RA_A {
+        match self.bits {
+            false => RA_A::DISABLED,
+            true => RA_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == RAR::DISABLED
+        *self == RA_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == RAR::ENABLED
+        *self == RA_A::ENABLED
     }
 }
-#[doc = "Values that can be written to the field `PM`"]
-pub enum PMW {
-    #[doc = "Normal address filtering"]
-    DISABLED,
-    #[doc = "Address filters pass all incoming frames regardless of their destination or source address"]
-    ENABLED,
-}
-impl PMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PMW::DISABLED => false,
-            PMW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PMW<'a> {
+#[doc = "Write proxy for field `RA`"]
+pub struct RA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PMW) -> &'a mut W {
+impl<'a> RA_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RA_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Normal address filtering"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(PMW::DISABLED)
-    }
-    #[doc = "Address filters pass all incoming frames regardless of their destination or source address"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(PMW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `HU`"]
-pub enum HUW {
-    #[doc = "MAC performs a perfect destination address filtering for unicast frames"]
-    PERFECT,
-    #[doc = "MAC performs destination address filtering of received unicast frames according to the hash table"]
-    HASH,
-}
-impl HUW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            HUW::PERFECT => false,
-            HUW::HASH => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _HUW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _HUW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HUW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "MAC performs a perfect destination address filtering for unicast frames"]
-    #[inline]
-    pub fn perfect(self) -> &'a mut W {
-        self.variant(HUW::PERFECT)
-    }
-    #[doc = "MAC performs destination address filtering of received unicast frames according to the hash table"]
-    #[inline]
-    pub fn hash(self) -> &'a mut W {
-        self.variant(HUW::HASH)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `HM`"]
-pub enum HMW {
-    #[doc = "MAC performs a perfect destination address filtering for multicast frames"]
-    PERFECT,
-    #[doc = "MAC performs destination address filtering of received multicast frames according to the hash table"]
-    HASH,
-}
-impl HMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            HMW::PERFECT => false,
-            HMW::HASH => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _HMW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _HMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HMW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "MAC performs a perfect destination address filtering for multicast frames"]
-    #[inline]
-    pub fn perfect(self) -> &'a mut W {
-        self.variant(HMW::PERFECT)
-    }
-    #[doc = "MAC performs destination address filtering of received multicast frames according to the hash table"]
-    #[inline]
-    pub fn hash(self) -> &'a mut W {
-        self.variant(HMW::HASH)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `DAIF`"]
-pub enum DAIFW {
-    #[doc = "Normal filtering of frames"]
-    NORMAL,
-    #[doc = "Address check block operates in inverse filtering mode for the DA address comparison"]
-    INVERT,
-}
-impl DAIFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DAIFW::NORMAL => false,
-            DAIFW::INVERT => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DAIFW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DAIFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DAIFW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Normal filtering of frames"]
-    #[inline]
-    pub fn normal(self) -> &'a mut W {
-        self.variant(DAIFW::NORMAL)
-    }
-    #[doc = "Address check block operates in inverse filtering mode for the DA address comparison"]
-    #[inline]
-    pub fn invert(self) -> &'a mut W {
-        self.variant(DAIFW::INVERT)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `RAM`"]
-pub enum RAMW {
-    #[doc = "Filtering of multicast frames depends on HM"]
-    DISABLED,
-    #[doc = "All received frames with a multicast destination address are passed"]
-    ENABLED,
-}
-impl RAMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RAMW::DISABLED => false,
-            RAMW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RAMW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _RAMW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RAMW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Filtering of multicast frames depends on HM"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(RAMW::DISABLED)
-    }
-    #[doc = "All received frames with a multicast destination address are passed"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(RAMW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `BFD`"]
-pub enum BFDW {
-    #[doc = "Address filters pass all received broadcast frames"]
-    ENABLED,
-    #[doc = "Address filters filter all incoming broadcast frames"]
-    DISABLED,
-}
-impl BFDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BFDW::ENABLED => false,
-            BFDW::DISABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _BFDW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _BFDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BFDW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Address filters pass all received broadcast frames"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(BFDW::ENABLED)
-    }
-    #[doc = "Address filters filter all incoming broadcast frames"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(BFDW::DISABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `PCF`"]
-pub enum PCFW {
-    #[doc = "MAC prevents all control frames from reaching the application"]
-    PREVENTALL,
-    #[doc = "MAC forwards all control frames to application except Pause"]
-    FORWARDALLEXCEPTPAUSE,
-    #[doc = "MAC forwards all control frames to application even if they fail the address filter"]
-    FORWARDALL,
-    #[doc = "MAC forwards control frames that pass the address filter"]
-    FORWARDALLFILTERED,
-}
-impl PCFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PCFW::PREVENTALL => 0,
-            PCFW::FORWARDALLEXCEPTPAUSE => 1,
-            PCFW::FORWARDALL => 2,
-            PCFW::FORWARDALLFILTERED => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PCFW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PCFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PCFW) -> &'a mut W {
-        {
-            self.bits(variant._bits())
-        }
-    }
-    #[doc = "MAC prevents all control frames from reaching the application"]
-    #[inline]
-    pub fn prevent_all(self) -> &'a mut W {
-        self.variant(PCFW::PREVENTALL)
-    }
-    #[doc = "MAC forwards all control frames to application except Pause"]
-    #[inline]
-    pub fn forward_all_except_pause(self) -> &'a mut W {
-        self.variant(PCFW::FORWARDALLEXCEPTPAUSE)
-    }
-    #[doc = "MAC forwards all control frames to application even if they fail the address filter"]
-    #[inline]
-    pub fn forward_all(self) -> &'a mut W {
-        self.variant(PCFW::FORWARDALL)
-    }
-    #[doc = "MAC forwards control frames that pass the address filter"]
-    #[inline]
-    pub fn forward_all_filtered(self) -> &'a mut W {
-        self.variant(PCFW::FORWARDALLFILTERED)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SAIF`"]
-pub enum SAIFW {
-    #[doc = "Source address filter operates normally"]
-    NORMAL,
-    #[doc = "Source address filter operation inverted"]
-    INVERT,
-}
-impl SAIFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SAIFW::NORMAL => false,
-            SAIFW::INVERT => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SAIFW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SAIFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SAIFW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Source address filter operates normally"]
-    #[inline]
-    pub fn normal(self) -> &'a mut W {
-        self.variant(SAIFW::NORMAL)
-    }
-    #[doc = "Source address filter operation inverted"]
-    #[inline]
-    pub fn invert(self) -> &'a mut W {
-        self.variant(SAIFW::INVERT)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SAF`"]
-pub enum SAFW {
-    #[doc = "Source address ignored"]
-    DISABLED,
-    #[doc = "MAC drops frames that fail the source address filter"]
-    ENABLED,
-}
-impl SAFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SAFW::DISABLED => false,
-            SAFW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SAFW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SAFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SAFW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Source address ignored"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(SAFW::DISABLED)
-    }
-    #[doc = "MAC drops frames that fail the source address filter"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(SAFW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `HPF`"]
-pub enum HPFW {
-    #[doc = "If HM or HU is set, only frames that match the Hash filter are passed"]
-    HASHONLY,
-    #[doc = "If HM or HU is set, frames that match either the perfect filter or the hash filter are passed"]
-    HASHORPERFECT,
-}
-impl HPFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            HPFW::HASHONLY => false,
-            HPFW::HASHORPERFECT => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _HPFW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _HPFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HPFW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "If HM or HU is set, only frames that match the Hash filter are passed"]
-    #[inline]
-    pub fn hash_only(self) -> &'a mut W {
-        self.variant(HPFW::HASHONLY)
-    }
-    #[doc = "If HM or HU is set, frames that match either the perfect filter or the hash filter are passed"]
-    #[inline]
-    pub fn hash_or_perfect(self) -> &'a mut W {
-        self.variant(HPFW::HASHORPERFECT)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `RA`"]
-pub enum RAW {
-    #[doc = "MAC receiver passes on to the application only those frames that have passed the SA/DA address file"]
-    DISABLED,
-    #[doc = "MAC receiver passes oll received frames on to the application"]
-    ENABLED,
-}
-impl RAW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RAW::DISABLED => false,
-            RAW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RAW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _RAW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RAW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "MAC receiver passes on to the application only those frames that have passed the SA/DA address file"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(RAW::DISABLED)
+        self.variant(RA_A::DISABLED)
     }
     #[doc = "MAC receiver passes oll received frames on to the application"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(RAW::ENABLED)
+        self.variant(RA_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - PM"]
-    #[inline]
-    pub fn pm(&self) -> PMR {
-        PMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pm(&self) -> PM_R {
+        PM_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - HU"]
-    #[inline]
-    pub fn hu(&self) -> HUR {
-        HUR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn hu(&self) -> HU_R {
+        HU_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - HM"]
-    #[inline]
-    pub fn hm(&self) -> HMR {
-        HMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn hm(&self) -> HM_R {
+        HM_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - DAIF"]
-    #[inline]
-    pub fn daif(&self) -> DAIFR {
-        DAIFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn daif(&self) -> DAIF_R {
+        DAIF_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - RAM"]
-    #[inline]
-    pub fn ram(&self) -> RAMR {
-        RAMR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ram(&self) -> RAM_R {
+        RAM_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - BFD"]
-    #[inline]
-    pub fn bfd(&self) -> BFDR {
-        BFDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn bfd(&self) -> BFD_R {
+        BFD_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bits 6:7 - PCF"]
-    #[inline]
-    pub fn pcf(&self) -> PCFR {
-        PCFR::_from({
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn pcf(&self) -> PCF_R {
+        PCF_R::new(((self.bits >> 6) & 0x03) as u8)
     }
     #[doc = "Bit 7 - SAIF"]
-    #[inline]
-    pub fn saif(&self) -> SAIFR {
-        SAIFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn saif(&self) -> SAIF_R {
+        SAIF_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - SAF"]
-    #[inline]
-    pub fn saf(&self) -> SAFR {
-        SAFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn saf(&self) -> SAF_R {
+        SAF_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - HPF"]
-    #[inline]
-    pub fn hpf(&self) -> HPFR {
-        HPFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn hpf(&self) -> HPF_R {
+        HPF_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 31 - RA"]
-    #[inline]
-    pub fn ra(&self) -> RAR {
-        RAR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ra(&self) -> RA_R {
+        RA_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - PM"]
-    #[inline]
-    pub fn pm(&mut self) -> _PMW {
-        _PMW { w: self }
+    #[inline(always)]
+    pub fn pm(&mut self) -> PM_W {
+        PM_W { w: self }
     }
     #[doc = "Bit 1 - HU"]
-    #[inline]
-    pub fn hu(&mut self) -> _HUW {
-        _HUW { w: self }
+    #[inline(always)]
+    pub fn hu(&mut self) -> HU_W {
+        HU_W { w: self }
     }
     #[doc = "Bit 2 - HM"]
-    #[inline]
-    pub fn hm(&mut self) -> _HMW {
-        _HMW { w: self }
+    #[inline(always)]
+    pub fn hm(&mut self) -> HM_W {
+        HM_W { w: self }
     }
     #[doc = "Bit 3 - DAIF"]
-    #[inline]
-    pub fn daif(&mut self) -> _DAIFW {
-        _DAIFW { w: self }
+    #[inline(always)]
+    pub fn daif(&mut self) -> DAIF_W {
+        DAIF_W { w: self }
     }
     #[doc = "Bit 4 - RAM"]
-    #[inline]
-    pub fn ram(&mut self) -> _RAMW {
-        _RAMW { w: self }
+    #[inline(always)]
+    pub fn ram(&mut self) -> RAM_W {
+        RAM_W { w: self }
     }
     #[doc = "Bit 5 - BFD"]
-    #[inline]
-    pub fn bfd(&mut self) -> _BFDW {
-        _BFDW { w: self }
+    #[inline(always)]
+    pub fn bfd(&mut self) -> BFD_W {
+        BFD_W { w: self }
     }
     #[doc = "Bits 6:7 - PCF"]
-    #[inline]
-    pub fn pcf(&mut self) -> _PCFW {
-        _PCFW { w: self }
+    #[inline(always)]
+    pub fn pcf(&mut self) -> PCF_W {
+        PCF_W { w: self }
     }
     #[doc = "Bit 7 - SAIF"]
-    #[inline]
-    pub fn saif(&mut self) -> _SAIFW {
-        _SAIFW { w: self }
+    #[inline(always)]
+    pub fn saif(&mut self) -> SAIF_W {
+        SAIF_W { w: self }
     }
     #[doc = "Bit 8 - SAF"]
-    #[inline]
-    pub fn saf(&mut self) -> _SAFW {
-        _SAFW { w: self }
+    #[inline(always)]
+    pub fn saf(&mut self) -> SAF_W {
+        SAF_W { w: self }
     }
     #[doc = "Bit 9 - HPF"]
-    #[inline]
-    pub fn hpf(&mut self) -> _HPFW {
-        _HPFW { w: self }
+    #[inline(always)]
+    pub fn hpf(&mut self) -> HPF_W {
+        HPF_W { w: self }
     }
     #[doc = "Bit 31 - RA"]
-    #[inline]
-    pub fn ra(&mut self) -> _RAW {
-        _RAW { w: self }
+    #[inline(always)]
+    pub fn ra(&mut self) -> RA_W {
+        RA_W { w: self }
     }
 }

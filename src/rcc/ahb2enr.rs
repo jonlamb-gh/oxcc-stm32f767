@@ -1,415 +1,316 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::AHB2ENR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register AHB2ENR"]
+pub type R = crate::R<u32, super::AHB2ENR>;
+#[doc = "Writer for register AHB2ENR"]
+pub type W = crate::W<u32, super::AHB2ENR>;
+#[doc = "Register AHB2ENR `reset()`'s with value 0"]
+impl crate::ResetValue for super::AHB2ENR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `OTGFSEN`"]
+#[doc = "USB OTG FS clock enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum OTGFSENR {
-    #[doc = "The selected clock is disabled"]
+pub enum OTGFSEN_A {
+    #[doc = "0: The selected clock is disabled"]
     DISABLED,
-    #[doc = "The selected clock is enabled"]
+    #[doc = "1: The selected clock is enabled"]
     ENABLED,
 }
-impl OTGFSENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            OTGFSENR::DISABLED => false,
-            OTGFSENR::ENABLED => true,
+impl From<OTGFSEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: OTGFSEN_A) -> Self {
+        match variant {
+            OTGFSEN_A::DISABLED => false,
+            OTGFSEN_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> OTGFSENR {
-        match value {
-            false => OTGFSENR::DISABLED,
-            true => OTGFSENR::ENABLED,
+}
+#[doc = "Reader of field `OTGFSEN`"]
+pub type OTGFSEN_R = crate::R<bool, OTGFSEN_A>;
+impl OTGFSEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> OTGFSEN_A {
+        match self.bits {
+            false => OTGFSEN_A::DISABLED,
+            true => OTGFSEN_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == OTGFSENR::DISABLED
+        *self == OTGFSEN_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == OTGFSENR::ENABLED
+        *self == OTGFSEN_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `RNGEN`"]
-pub type RNGENR = OTGFSENR;
-#[doc = "Possible values of the field `HASHEN`"]
-pub type HASHENR = OTGFSENR;
-#[doc = "Possible values of the field `CRYPEN`"]
-pub type CRYPENR = OTGFSENR;
-#[doc = "Possible values of the field `DCMIEN`"]
-pub type DCMIENR = OTGFSENR;
-#[doc = "Values that can be written to the field `OTGFSEN`"]
-pub enum OTGFSENW {
-    #[doc = "The selected clock is disabled"]
-    DISABLED,
-    #[doc = "The selected clock is enabled"]
-    ENABLED,
-}
-impl OTGFSENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            OTGFSENW::DISABLED => false,
-            OTGFSENW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _OTGFSENW<'a> {
+#[doc = "Write proxy for field `OTGFSEN`"]
+pub struct OTGFSEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OTGFSENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: OTGFSENW) -> &'a mut W {
+impl<'a> OTGFSEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: OTGFSEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(OTGFSENW::DISABLED)
+        self.variant(OTGFSEN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(OTGFSENW::ENABLED)
+        self.variant(OTGFSEN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RNGEN`"]
-pub type RNGENW = OTGFSENW;
-#[doc = r" Proxy"]
-pub struct _RNGENW<'a> {
+#[doc = "Random number generator clock enable"]
+pub type RNGEN_A = OTGFSEN_A;
+#[doc = "Reader of field `RNGEN`"]
+pub type RNGEN_R = crate::R<bool, OTGFSEN_A>;
+#[doc = "Write proxy for field `RNGEN`"]
+pub struct RNGEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RNGENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RNGENW) -> &'a mut W {
+impl<'a> RNGEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RNGEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(OTGFSENW::DISABLED)
+        self.variant(OTGFSEN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(OTGFSENW::ENABLED)
+        self.variant(OTGFSEN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HASHEN`"]
-pub type HASHENW = OTGFSENW;
-#[doc = r" Proxy"]
-pub struct _HASHENW<'a> {
+#[doc = "Hash modules clock enable"]
+pub type HASHEN_A = OTGFSEN_A;
+#[doc = "Reader of field `HASHEN`"]
+pub type HASHEN_R = crate::R<bool, OTGFSEN_A>;
+#[doc = "Write proxy for field `HASHEN`"]
+pub struct HASHEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HASHENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HASHENW) -> &'a mut W {
+impl<'a> HASHEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HASHEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(OTGFSENW::DISABLED)
+        self.variant(OTGFSEN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(OTGFSENW::ENABLED)
+        self.variant(OTGFSEN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CRYPEN`"]
-pub type CRYPENW = OTGFSENW;
-#[doc = r" Proxy"]
-pub struct _CRYPENW<'a> {
+#[doc = "Cryptographic modules clock enable"]
+pub type CRYPEN_A = OTGFSEN_A;
+#[doc = "Reader of field `CRYPEN`"]
+pub type CRYPEN_R = crate::R<bool, OTGFSEN_A>;
+#[doc = "Write proxy for field `CRYPEN`"]
+pub struct CRYPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CRYPENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CRYPENW) -> &'a mut W {
+impl<'a> CRYPEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CRYPEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(OTGFSENW::DISABLED)
+        self.variant(OTGFSEN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(OTGFSENW::ENABLED)
+        self.variant(OTGFSEN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `DCMIEN`"]
-pub type DCMIENW = OTGFSENW;
-#[doc = r" Proxy"]
-pub struct _DCMIENW<'a> {
+#[doc = "Camera interface enable"]
+pub type DCMIEN_A = OTGFSEN_A;
+#[doc = "Reader of field `DCMIEN`"]
+pub type DCMIEN_R = crate::R<bool, OTGFSEN_A>;
+#[doc = "Write proxy for field `DCMIEN`"]
+pub struct DCMIEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DCMIENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DCMIENW) -> &'a mut W {
+impl<'a> DCMIEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DCMIEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(OTGFSENW::DISABLED)
+        self.variant(OTGFSEN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(OTGFSENW::ENABLED)
+        self.variant(OTGFSEN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 7 - USB OTG FS clock enable"]
-    #[inline]
-    pub fn otgfsen(&self) -> OTGFSENR {
-        OTGFSENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn otgfsen(&self) -> OTGFSEN_R {
+        OTGFSEN_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Random number generator clock enable"]
-    #[inline]
-    pub fn rngen(&self) -> RNGENR {
-        RNGENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn rngen(&self) -> RNGEN_R {
+        RNGEN_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Hash modules clock enable"]
-    #[inline]
-    pub fn hashen(&self) -> HASHENR {
-        HASHENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn hashen(&self) -> HASHEN_R {
+        HASHEN_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Cryptographic modules clock enable"]
-    #[inline]
-    pub fn crypen(&self) -> CRYPENR {
-        CRYPENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn crypen(&self) -> CRYPEN_R {
+        CRYPEN_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 0 - Camera interface enable"]
-    #[inline]
-    pub fn dcmien(&self) -> DCMIENR {
-        DCMIENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn dcmien(&self) -> DCMIEN_R {
+        DCMIEN_R::new((self.bits & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 7 - USB OTG FS clock enable"]
-    #[inline]
-    pub fn otgfsen(&mut self) -> _OTGFSENW {
-        _OTGFSENW { w: self }
+    #[inline(always)]
+    pub fn otgfsen(&mut self) -> OTGFSEN_W {
+        OTGFSEN_W { w: self }
     }
     #[doc = "Bit 6 - Random number generator clock enable"]
-    #[inline]
-    pub fn rngen(&mut self) -> _RNGENW {
-        _RNGENW { w: self }
+    #[inline(always)]
+    pub fn rngen(&mut self) -> RNGEN_W {
+        RNGEN_W { w: self }
     }
     #[doc = "Bit 5 - Hash modules clock enable"]
-    #[inline]
-    pub fn hashen(&mut self) -> _HASHENW {
-        _HASHENW { w: self }
+    #[inline(always)]
+    pub fn hashen(&mut self) -> HASHEN_W {
+        HASHEN_W { w: self }
     }
     #[doc = "Bit 4 - Cryptographic modules clock enable"]
-    #[inline]
-    pub fn crypen(&mut self) -> _CRYPENW {
-        _CRYPENW { w: self }
+    #[inline(always)]
+    pub fn crypen(&mut self) -> CRYPEN_W {
+        CRYPEN_W { w: self }
     }
     #[doc = "Bit 0 - Camera interface enable"]
-    #[inline]
-    pub fn dcmien(&mut self) -> _DCMIENW {
-        _DCMIENW { w: self }
+    #[inline(always)]
+    pub fn dcmien(&mut self) -> DCMIEN_W {
+        DCMIEN_W { w: self }
     }
 }

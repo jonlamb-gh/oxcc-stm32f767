@@ -1,752 +1,520 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MMCCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register MMCCR"]
+pub type R = crate::R<u32, super::MMCCR>;
+#[doc = "Writer for register MMCCR"]
+pub type W = crate::W<u32, super::MMCCR>;
+#[doc = "Register MMCCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::MMCCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `CR`"]
+#[doc = "CR\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CRR {
-    #[doc = "Reset all counters. Cleared automatically"]
+pub enum CR_A {
+    #[doc = "1: Reset all counters. Cleared automatically"]
     RESET,
-    #[doc = r" Reserved"]
-    _Reserved(bool),
 }
-impl CRR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CRR::RESET => true,
-            CRR::_Reserved(bits) => bits,
+impl From<CR_A> for bool {
+    #[inline(always)]
+    fn from(variant: CR_A) -> Self {
+        match variant {
+            CR_A::RESET => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CRR {
-        match value {
-            true => CRR::RESET,
-            i => CRR::_Reserved(i),
+}
+#[doc = "Reader of field `CR`"]
+pub type CR_R = crate::R<bool, CR_A>;
+impl CR_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<bool, CR_A> {
+        use crate::Variant::*;
+        match self.bits {
+            true => Val(CR_A::RESET),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `RESET`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_reset(&self) -> bool {
-        *self == CRR::RESET
+        *self == CR_A::RESET
     }
 }
-#[doc = "Possible values of the field `CSR`"]
+#[doc = "Write proxy for field `CR`"]
+pub struct CR_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> CR_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CR_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Reset all counters. Cleared automatically"]
+    #[inline(always)]
+    pub fn reset(self) -> &'a mut W {
+        self.variant(CR_A::RESET)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w
+    }
+}
+#[doc = "CSR\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CSRR {
+pub enum CSR_A {
+    #[doc = "0: Counters roll over to zero after reaching the maximum value"]
+    DISABLED,
+    #[doc = "1: Counters do not roll over to zero after reaching the maximum value"]
+    ENABLED,
+}
+impl From<CSR_A> for bool {
+    #[inline(always)]
+    fn from(variant: CSR_A) -> Self {
+        match variant {
+            CSR_A::DISABLED => false,
+            CSR_A::ENABLED => true,
+        }
+    }
+}
+#[doc = "Reader of field `CSR`"]
+pub type CSR_R = crate::R<bool, CSR_A>;
+impl CSR_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CSR_A {
+        match self.bits {
+            false => CSR_A::DISABLED,
+            true => CSR_A::ENABLED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == CSR_A::DISABLED
+    }
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == CSR_A::ENABLED
+    }
+}
+#[doc = "Write proxy for field `CSR`"]
+pub struct CSR_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> CSR_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CSR_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Counters roll over to zero after reaching the maximum value"]
-    DISABLED,
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(CSR_A::DISABLED)
+    }
     #[doc = "Counters do not roll over to zero after reaching the maximum value"]
-    ENABLED,
-}
-impl CSRR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(CSR_A::ENABLED)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CSRR::DISABLED => false,
-            CSRR::ENABLED => true,
-        }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CSRR {
-        match value {
-            false => CSRR::DISABLED,
-            true => CSRR::ENABLED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
-    pub fn is_disabled(&self) -> bool {
-        *self == CSRR::DISABLED
-    }
-    #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
-    pub fn is_enabled(&self) -> bool {
-        *self == CSRR::ENABLED
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w
     }
 }
-#[doc = "Possible values of the field `ROR`"]
+#[doc = "ROR\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RORR {
-    #[doc = "MMC counters do not reset on read"]
+pub enum ROR_A {
+    #[doc = "0: MMC counters do not reset on read"]
     DISABLED,
-    #[doc = "MMC counters reset to zero after read"]
+    #[doc = "1: MMC counters reset to zero after read"]
     ENABLED,
 }
-impl RORR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RORR::DISABLED => false,
-            RORR::ENABLED => true,
+impl From<ROR_A> for bool {
+    #[inline(always)]
+    fn from(variant: ROR_A) -> Self {
+        match variant {
+            ROR_A::DISABLED => false,
+            ROR_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RORR {
-        match value {
-            false => RORR::DISABLED,
-            true => RORR::ENABLED,
+}
+#[doc = "Reader of field `ROR`"]
+pub type ROR_R = crate::R<bool, ROR_A>;
+impl ROR_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ROR_A {
+        match self.bits {
+            false => ROR_A::DISABLED,
+            true => ROR_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == RORR::DISABLED
+        *self == ROR_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == RORR::ENABLED
+        *self == ROR_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `MCF`"]
+#[doc = "Write proxy for field `ROR`"]
+pub struct ROR_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> ROR_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ROR_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "MMC counters do not reset on read"]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(ROR_A::DISABLED)
+    }
+    #[doc = "MMC counters reset to zero after read"]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(ROR_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w
+    }
+}
+#[doc = "MCF\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MCFR {
-    #[doc = "All MMC counters update normally"]
+pub enum MCF_A {
+    #[doc = "0: All MMC counters update normally"]
     UNFROZEN,
-    #[doc = "All MMC counters frozen to their current value"]
+    #[doc = "1: All MMC counters frozen to their current value"]
     FROZEN,
 }
-impl MCFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MCFR::UNFROZEN => false,
-            MCFR::FROZEN => true,
+impl From<MCF_A> for bool {
+    #[inline(always)]
+    fn from(variant: MCF_A) -> Self {
+        match variant {
+            MCF_A::UNFROZEN => false,
+            MCF_A::FROZEN => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MCFR {
-        match value {
-            false => MCFR::UNFROZEN,
-            true => MCFR::FROZEN,
+}
+#[doc = "Reader of field `MCF`"]
+pub type MCF_R = crate::R<bool, MCF_A>;
+impl MCF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MCF_A {
+        match self.bits {
+            false => MCF_A::UNFROZEN,
+            true => MCF_A::FROZEN,
         }
     }
     #[doc = "Checks if the value of the field is `UNFROZEN`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_unfrozen(&self) -> bool {
-        *self == MCFR::UNFROZEN
+        *self == MCF_A::UNFROZEN
     }
     #[doc = "Checks if the value of the field is `FROZEN`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_frozen(&self) -> bool {
-        *self == MCFR::FROZEN
+        *self == MCF_A::FROZEN
     }
 }
-#[doc = "Possible values of the field `MCP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MCPR {
-    #[doc = "MMC counters will be preset to almost full or almost half. Cleared automatically"]
-    PRESET,
-    #[doc = r" Reserved"]
-    _Reserved(bool),
+#[doc = "Write proxy for field `MCF`"]
+pub struct MCF_W<'a> {
+    w: &'a mut W,
 }
-impl MCPR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MCPR::PRESET => true,
-            MCPR::_Reserved(bits) => bits,
+impl<'a> MCF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MCF_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MCPR {
-        match value {
-            true => MCPR::PRESET,
-            i => MCPR::_Reserved(i),
+    #[doc = "All MMC counters update normally"]
+    #[inline(always)]
+    pub fn unfrozen(self) -> &'a mut W {
+        self.variant(MCF_A::UNFROZEN)
+    }
+    #[doc = "All MMC counters frozen to their current value"]
+    #[inline(always)]
+    pub fn frozen(self) -> &'a mut W {
+        self.variant(MCF_A::FROZEN)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w
+    }
+}
+#[doc = "MCP\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MCP_A {
+    #[doc = "1: MMC counters will be preset to almost full or almost half. Cleared automatically"]
+    PRESET,
+}
+impl From<MCP_A> for bool {
+    #[inline(always)]
+    fn from(variant: MCP_A) -> Self {
+        match variant {
+            MCP_A::PRESET => true,
+        }
+    }
+}
+#[doc = "Reader of field `MCP`"]
+pub type MCP_R = crate::R<bool, MCP_A>;
+impl MCP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<bool, MCP_A> {
+        use crate::Variant::*;
+        match self.bits {
+            true => Val(MCP_A::PRESET),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `PRESET`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_preset(&self) -> bool {
-        *self == MCPR::PRESET
+        *self == MCP_A::PRESET
     }
 }
-#[doc = "Possible values of the field `MCFHP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MCFHPR {
-    #[doc = "When MCP is set, MMC counters are preset to almost-half value 0x7FFF_FFF0"]
-    ALMOSTHALF,
-    #[doc = "When MCP is set, MMC counters are preset to almost-full value 0xFFFF_FFF0"]
-    ALMOSTFULL,
+#[doc = "Write proxy for field `MCP`"]
+pub struct MCP_W<'a> {
+    w: &'a mut W,
 }
-impl MCFHPR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            MCFHPR::ALMOSTHALF => false,
-            MCFHPR::ALMOSTFULL => true,
+impl<'a> MCP_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MCP_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> MCFHPR {
-        match value {
-            false => MCFHPR::ALMOSTHALF,
-            true => MCFHPR::ALMOSTFULL,
+    #[doc = "MMC counters will be preset to almost full or almost half. Cleared automatically"]
+    #[inline(always)]
+    pub fn preset(self) -> &'a mut W {
+        self.variant(MCP_A::PRESET)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w
+    }
+}
+#[doc = "MCFHP\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MCFHP_A {
+    #[doc = "0: When MCP is set, MMC counters are preset to almost-half value 0x7FFF_FFF0"]
+    ALMOSTHALF,
+    #[doc = "1: When MCP is set, MMC counters are preset to almost-full value 0xFFFF_FFF0"]
+    ALMOSTFULL,
+}
+impl From<MCFHP_A> for bool {
+    #[inline(always)]
+    fn from(variant: MCFHP_A) -> Self {
+        match variant {
+            MCFHP_A::ALMOSTHALF => false,
+            MCFHP_A::ALMOSTFULL => true,
+        }
+    }
+}
+#[doc = "Reader of field `MCFHP`"]
+pub type MCFHP_R = crate::R<bool, MCFHP_A>;
+impl MCFHP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MCFHP_A {
+        match self.bits {
+            false => MCFHP_A::ALMOSTHALF,
+            true => MCFHP_A::ALMOSTFULL,
         }
     }
     #[doc = "Checks if the value of the field is `ALMOSTHALF`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_almost_half(&self) -> bool {
-        *self == MCFHPR::ALMOSTHALF
+        *self == MCFHP_A::ALMOSTHALF
     }
     #[doc = "Checks if the value of the field is `ALMOSTFULL`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_almost_full(&self) -> bool {
-        *self == MCFHPR::ALMOSTFULL
+        *self == MCFHP_A::ALMOSTFULL
     }
 }
-#[doc = "Values that can be written to the field `CR`"]
-pub enum CRW {
-    #[doc = "Reset all counters. Cleared automatically"]
-    RESET,
-}
-impl CRW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CRW::RESET => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CRW<'a> {
+#[doc = "Write proxy for field `MCFHP`"]
+pub struct MCFHP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CRW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CRW) -> &'a mut W {
+impl<'a> MCFHP_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MCFHP_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Reset all counters. Cleared automatically"]
-    #[inline]
-    pub fn reset(self) -> &'a mut W {
-        self.variant(CRW::RESET)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `CSR`"]
-pub enum CSRW {
-    #[doc = "Counters roll over to zero after reaching the maximum value"]
-    DISABLED,
-    #[doc = "Counters do not roll over to zero after reaching the maximum value"]
-    ENABLED,
-}
-impl CSRW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CSRW::DISABLED => false,
-            CSRW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CSRW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _CSRW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CSRW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Counters roll over to zero after reaching the maximum value"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(CSRW::DISABLED)
-    }
-    #[doc = "Counters do not roll over to zero after reaching the maximum value"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(CSRW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ROR`"]
-pub enum RORW {
-    #[doc = "MMC counters do not reset on read"]
-    DISABLED,
-    #[doc = "MMC counters reset to zero after read"]
-    ENABLED,
-}
-impl RORW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RORW::DISABLED => false,
-            RORW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RORW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _RORW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RORW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "MMC counters do not reset on read"]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(RORW::DISABLED)
-    }
-    #[doc = "MMC counters reset to zero after read"]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(RORW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `MCF`"]
-pub enum MCFW {
-    #[doc = "All MMC counters update normally"]
-    UNFROZEN,
-    #[doc = "All MMC counters frozen to their current value"]
-    FROZEN,
-}
-impl MCFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MCFW::UNFROZEN => false,
-            MCFW::FROZEN => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MCFW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _MCFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MCFW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "All MMC counters update normally"]
-    #[inline]
-    pub fn unfrozen(self) -> &'a mut W {
-        self.variant(MCFW::UNFROZEN)
-    }
-    #[doc = "All MMC counters frozen to their current value"]
-    #[inline]
-    pub fn frozen(self) -> &'a mut W {
-        self.variant(MCFW::FROZEN)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `MCP`"]
-pub enum MCPW {
-    #[doc = "MMC counters will be preset to almost full or almost half. Cleared automatically"]
-    PRESET,
-}
-impl MCPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MCPW::PRESET => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MCPW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _MCPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MCPW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "MMC counters will be preset to almost full or almost half. Cleared automatically"]
-    #[inline]
-    pub fn preset(self) -> &'a mut W {
-        self.variant(MCPW::PRESET)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `MCFHP`"]
-pub enum MCFHPW {
-    #[doc = "When MCP is set, MMC counters are preset to almost-half value 0x7FFF_FFF0"]
-    ALMOSTHALF,
-    #[doc = "When MCP is set, MMC counters are preset to almost-full value 0xFFFF_FFF0"]
-    ALMOSTFULL,
-}
-impl MCFHPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MCFHPW::ALMOSTHALF => false,
-            MCFHPW::ALMOSTFULL => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MCFHPW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _MCFHPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MCFHPW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "When MCP is set, MMC counters are preset to almost-half value 0x7FFF_FFF0"]
-    #[inline]
+    #[inline(always)]
     pub fn almost_half(self) -> &'a mut W {
-        self.variant(MCFHPW::ALMOSTHALF)
+        self.variant(MCFHP_A::ALMOSTHALF)
     }
     #[doc = "When MCP is set, MMC counters are preset to almost-full value 0xFFFF_FFF0"]
-    #[inline]
+    #[inline(always)]
     pub fn almost_full(self) -> &'a mut W {
-        self.variant(MCFHPW::ALMOSTFULL)
+        self.variant(MCFHP_A::ALMOSTFULL)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - CR"]
-    #[inline]
-    pub fn cr(&self) -> CRR {
-        CRR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn cr(&self) -> CR_R {
+        CR_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - CSR"]
-    #[inline]
-    pub fn csr(&self) -> CSRR {
-        CSRR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn csr(&self) -> CSR_R {
+        CSR_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - ROR"]
-    #[inline]
-    pub fn ror(&self) -> RORR {
-        RORR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ror(&self) -> ROR_R {
+        ROR_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - MCF"]
-    #[inline]
-    pub fn mcf(&self) -> MCFR {
-        MCFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mcf(&self) -> MCF_R {
+        MCF_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - MCP"]
-    #[inline]
-    pub fn mcp(&self) -> MCPR {
-        MCPR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mcp(&self) -> MCP_R {
+        MCP_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - MCFHP"]
-    #[inline]
-    pub fn mcfhp(&self) -> MCFHPR {
-        MCFHPR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn mcfhp(&self) -> MCFHP_R {
+        MCFHP_R::new(((self.bits >> 5) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - CR"]
-    #[inline]
-    pub fn cr(&mut self) -> _CRW {
-        _CRW { w: self }
+    #[inline(always)]
+    pub fn cr(&mut self) -> CR_W {
+        CR_W { w: self }
     }
     #[doc = "Bit 1 - CSR"]
-    #[inline]
-    pub fn csr(&mut self) -> _CSRW {
-        _CSRW { w: self }
+    #[inline(always)]
+    pub fn csr(&mut self) -> CSR_W {
+        CSR_W { w: self }
     }
     #[doc = "Bit 2 - ROR"]
-    #[inline]
-    pub fn ror(&mut self) -> _RORW {
-        _RORW { w: self }
+    #[inline(always)]
+    pub fn ror(&mut self) -> ROR_W {
+        ROR_W { w: self }
     }
     #[doc = "Bit 3 - MCF"]
-    #[inline]
-    pub fn mcf(&mut self) -> _MCFW {
-        _MCFW { w: self }
+    #[inline(always)]
+    pub fn mcf(&mut self) -> MCF_W {
+        MCF_W { w: self }
     }
     #[doc = "Bit 4 - MCP"]
-    #[inline]
-    pub fn mcp(&mut self) -> _MCPW {
-        _MCPW { w: self }
+    #[inline(always)]
+    pub fn mcp(&mut self) -> MCP_W {
+        MCP_W { w: self }
     }
     #[doc = "Bit 5 - MCFHP"]
-    #[inline]
-    pub fn mcfhp(&mut self) -> _MCFHPW {
-        _MCFHPW { w: self }
+    #[inline(always)]
+    pub fn mcfhp(&mut self) -> MCFHP_W {
+        MCFHP_W { w: self }
     }
 }

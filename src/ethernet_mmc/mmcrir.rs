@@ -1,241 +1,118 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MMCRIR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register MMCRIR"]
+pub type R = crate::R<u32, super::MMCRIR>;
+#[doc = "Writer for register MMCRIR"]
+pub type W = crate::W<u32, super::MMCRIR>;
+#[doc = "Register MMCRIR `reset()`'s with value 0"]
+impl crate::ResetValue for super::MMCRIR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct RFCESR {
-    bits: bool,
-}
-impl RFCESR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RFAESR {
-    bits: bool,
-}
-impl RFAESR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RGUFSR {
-    bits: bool,
-}
-impl RGUFSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RFCESW<'a> {
+#[doc = "Reader of field `RFCES`"]
+pub type RFCES_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RFCES`"]
+pub struct RFCES_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RFCESW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> RFCES_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _RFAESW<'a> {
+#[doc = "Reader of field `RFAES`"]
+pub type RFAES_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RFAES`"]
+pub struct RFAES_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RFAESW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> RFAES_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _RGUFSW<'a> {
+#[doc = "Reader of field `RGUFS`"]
+pub type RGUFS_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RGUFS`"]
+pub struct RGUFS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RGUFSW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> RGUFS_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 5 - RFCES"]
-    #[inline]
-    pub fn rfces(&self) -> RFCESR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RFCESR { bits }
+    #[inline(always)]
+    pub fn rfces(&self) -> RFCES_R {
+        RFCES_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - RFAES"]
-    #[inline]
-    pub fn rfaes(&self) -> RFAESR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RFAESR { bits }
+    #[inline(always)]
+    pub fn rfaes(&self) -> RFAES_R {
+        RFAES_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 17 - RGUFS"]
-    #[inline]
-    pub fn rgufs(&self) -> RGUFSR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RGUFSR { bits }
+    #[inline(always)]
+    pub fn rgufs(&self) -> RGUFS_R {
+        RGUFS_R::new(((self.bits >> 17) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 5 - RFCES"]
-    #[inline]
-    pub fn rfces(&mut self) -> _RFCESW {
-        _RFCESW { w: self }
+    #[inline(always)]
+    pub fn rfces(&mut self) -> RFCES_W {
+        RFCES_W { w: self }
     }
     #[doc = "Bit 6 - RFAES"]
-    #[inline]
-    pub fn rfaes(&mut self) -> _RFAESW {
-        _RFAESW { w: self }
+    #[inline(always)]
+    pub fn rfaes(&mut self) -> RFAES_W {
+        RFAES_W { w: self }
     }
     #[doc = "Bit 17 - RGUFS"]
-    #[inline]
-    pub fn rgufs(&mut self) -> _RGUFSW {
-        _RGUFSW { w: self }
+    #[inline(always)]
+    pub fn rgufs(&mut self) -> RGUFS_W {
+        RGUFS_W { w: self }
     }
 }

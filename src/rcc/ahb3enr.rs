@@ -1,241 +1,157 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::AHB3ENR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register AHB3ENR"]
+pub type R = crate::R<u32, super::AHB3ENR>;
+#[doc = "Writer for register AHB3ENR"]
+pub type W = crate::W<u32, super::AHB3ENR>;
+#[doc = "Register AHB3ENR `reset()`'s with value 0"]
+impl crate::ResetValue for super::AHB3ENR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `FMCEN`"]
+#[doc = "Flexible memory controller module clock enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FMCENR {
-    #[doc = "The selected clock is disabled"]
+pub enum FMCEN_A {
+    #[doc = "0: The selected clock is disabled"]
     DISABLED,
-    #[doc = "The selected clock is enabled"]
+    #[doc = "1: The selected clock is enabled"]
     ENABLED,
 }
-impl FMCENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            FMCENR::DISABLED => false,
-            FMCENR::ENABLED => true,
+impl From<FMCEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: FMCEN_A) -> Self {
+        match variant {
+            FMCEN_A::DISABLED => false,
+            FMCEN_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> FMCENR {
-        match value {
-            false => FMCENR::DISABLED,
-            true => FMCENR::ENABLED,
+}
+#[doc = "Reader of field `FMCEN`"]
+pub type FMCEN_R = crate::R<bool, FMCEN_A>;
+impl FMCEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> FMCEN_A {
+        match self.bits {
+            false => FMCEN_A::DISABLED,
+            true => FMCEN_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == FMCENR::DISABLED
+        *self == FMCEN_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == FMCENR::ENABLED
+        *self == FMCEN_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `QSPIEN`"]
-pub type QSPIENR = FMCENR;
-#[doc = "Values that can be written to the field `FMCEN`"]
-pub enum FMCENW {
-    #[doc = "The selected clock is disabled"]
-    DISABLED,
-    #[doc = "The selected clock is enabled"]
-    ENABLED,
-}
-impl FMCENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            FMCENW::DISABLED => false,
-            FMCENW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _FMCENW<'a> {
+#[doc = "Write proxy for field `FMCEN`"]
+pub struct FMCEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FMCENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: FMCENW) -> &'a mut W {
+impl<'a> FMCEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: FMCEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(FMCENW::DISABLED)
+        self.variant(FMCEN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(FMCENW::ENABLED)
+        self.variant(FMCEN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `QSPIEN`"]
-pub type QSPIENW = FMCENW;
-#[doc = r" Proxy"]
-pub struct _QSPIENW<'a> {
+#[doc = "Quad SPI memory controller clock enable"]
+pub type QSPIEN_A = FMCEN_A;
+#[doc = "Reader of field `QSPIEN`"]
+pub type QSPIEN_R = crate::R<bool, FMCEN_A>;
+#[doc = "Write proxy for field `QSPIEN`"]
+pub struct QSPIEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _QSPIENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: QSPIENW) -> &'a mut W {
+impl<'a> QSPIEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: QSPIEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The selected clock is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(FMCENW::DISABLED)
+        self.variant(FMCEN_A::DISABLED)
     }
     #[doc = "The selected clock is enabled"]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(FMCENW::ENABLED)
+        self.variant(FMCEN_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Flexible memory controller module clock enable"]
-    #[inline]
-    pub fn fmcen(&self) -> FMCENR {
-        FMCENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn fmcen(&self) -> FMCEN_R {
+        FMCEN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Quad SPI memory controller clock enable"]
-    #[inline]
-    pub fn qspien(&self) -> QSPIENR {
-        QSPIENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn qspien(&self) -> QSPIEN_R {
+        QSPIEN_R::new(((self.bits >> 1) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Flexible memory controller module clock enable"]
-    #[inline]
-    pub fn fmcen(&mut self) -> _FMCENW {
-        _FMCENW { w: self }
+    #[inline(always)]
+    pub fn fmcen(&mut self) -> FMCEN_W {
+        FMCEN_W { w: self }
     }
     #[doc = "Bit 1 - Quad SPI memory controller clock enable"]
-    #[inline]
-    pub fn qspien(&mut self) -> _QSPIENW {
-        _QSPIENW { w: self }
+    #[inline(always)]
+    pub fn qspien(&mut self) -> QSPIEN_W {
+        QSPIEN_W { w: self }
     }
 }

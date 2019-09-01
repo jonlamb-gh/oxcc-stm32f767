@@ -1,152 +1,126 @@
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CR {
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+#[doc = "Writer for register CR"]
+pub type W = crate::W<u32, super::CR>;
+#[doc = "Register CR `reset()`'s with value 0"]
+impl crate::ResetValue for super::CR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Values that can be written to the field `RESET`"]
-pub enum RESETW {
-    #[doc = "Resets the CRC calculation unit and sets the data register to 0xFFFF FFFF"]
+#[doc = "Control regidter\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RESET_AW {
+    #[doc = "1: Resets the CRC calculation unit and sets the data register to 0xFFFF FFFF"]
     RESET,
 }
-impl RESETW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RESETW::RESET => true,
+impl From<RESET_AW> for bool {
+    #[inline(always)]
+    fn from(variant: RESET_AW) -> Self {
+        match variant {
+            RESET_AW::RESET => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _RESETW<'a> {
+#[doc = "Write proxy for field `RESET`"]
+pub struct RESET_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RESETW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RESETW) -> &'a mut W {
+impl<'a> RESET_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RESET_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Resets the CRC calculation unit and sets the data register to 0xFFFF FFFF"]
-    #[inline]
+    #[inline(always)]
     pub fn reset(self) -> &'a mut W {
-        self.variant(RESETW::RESET)
+        self.variant(RESET_AW::RESET)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _REV_OUTW<'a> {
+#[doc = "Write proxy for field `REV_OUT`"]
+pub struct REV_OUT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _REV_OUTW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> REV_OUT_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _REV_INW<'a> {
+#[doc = "Write proxy for field `REV_IN`"]
+pub struct REV_IN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _REV_INW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> REV_IN_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 5)) | (((value as u32) & 0x03) << 5);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _POLYSIZEW<'a> {
+#[doc = "Write proxy for field `POLYSIZE`"]
+pub struct POLYSIZE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _POLYSIZEW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> POLYSIZE_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 0x03;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 3)) | (((value as u32) & 0x03) << 3);
         self.w
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Control regidter"]
-    #[inline]
-    pub fn reset(&mut self) -> _RESETW {
-        _RESETW { w: self }
+    #[inline(always)]
+    pub fn reset(&mut self) -> RESET_W {
+        RESET_W { w: self }
     }
     #[doc = "Bit 7 - Reverse output data"]
-    #[inline]
-    pub fn rev_out(&mut self) -> _REV_OUTW {
-        _REV_OUTW { w: self }
+    #[inline(always)]
+    pub fn rev_out(&mut self) -> REV_OUT_W {
+        REV_OUT_W { w: self }
     }
     #[doc = "Bits 5:6 - Reverse input data"]
-    #[inline]
-    pub fn rev_in(&mut self) -> _REV_INW {
-        _REV_INW { w: self }
+    #[inline(always)]
+    pub fn rev_in(&mut self) -> REV_IN_W {
+        REV_IN_W { w: self }
     }
     #[doc = "Bits 3:4 - Polynomial size"]
-    #[inline]
-    pub fn polysize(&mut self) -> _POLYSIZEW {
-        _POLYSIZEW { w: self }
+    #[inline(always)]
+    pub fn polysize(&mut self) -> POLYSIZE_W {
+        POLYSIZE_W { w: self }
     }
 }

@@ -1,146 +1,64 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::L1CFBLR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register L1CFBLR"]
+pub type R = crate::R<u32, super::L1CFBLR>;
+#[doc = "Writer for register L1CFBLR"]
+pub type W = crate::W<u32, super::L1CFBLR>;
+#[doc = "Register L1CFBLR `reset()`'s with value 0"]
+impl crate::ResetValue for super::L1CFBLR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct CFBPR {
-    bits: u16,
-}
-impl CFBPR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CFBLLR {
-    bits: u16,
-}
-impl CFBLLR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CFBPW<'a> {
+#[doc = "Reader of field `CFBP`"]
+pub type CFBP_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `CFBP`"]
+pub struct CFBP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CFBPW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> CFBP_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0x1fff;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x1fff << 16)) | (((value as u32) & 0x1fff) << 16);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _CFBLLW<'a> {
+#[doc = "Reader of field `CFBLL`"]
+pub type CFBLL_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `CFBLL`"]
+pub struct CFBLL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CFBLLW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> CFBLL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0x1fff;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x1fff) | ((value as u32) & 0x1fff);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 16:28 - Color Frame Buffer Pitch in bytes"]
-    #[inline]
-    pub fn cfbp(&self) -> CFBPR {
-        let bits = {
-            const MASK: u16 = 0x1fff;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        CFBPR { bits }
+    #[inline(always)]
+    pub fn cfbp(&self) -> CFBP_R {
+        CFBP_R::new(((self.bits >> 16) & 0x1fff) as u16)
     }
     #[doc = "Bits 0:12 - Color Frame Buffer Line Length"]
-    #[inline]
-    pub fn cfbll(&self) -> CFBLLR {
-        let bits = {
-            const MASK: u16 = 0x1fff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        CFBLLR { bits }
+    #[inline(always)]
+    pub fn cfbll(&self) -> CFBLL_R {
+        CFBLL_R::new((self.bits & 0x1fff) as u16)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 16:28 - Color Frame Buffer Pitch in bytes"]
-    #[inline]
-    pub fn cfbp(&mut self) -> _CFBPW {
-        _CFBPW { w: self }
+    #[inline(always)]
+    pub fn cfbp(&mut self) -> CFBP_W {
+        CFBP_W { w: self }
     }
     #[doc = "Bits 0:12 - Color Frame Buffer Line Length"]
-    #[inline]
-    pub fn cfbll(&mut self) -> _CFBLLW {
-        _CFBLLW { w: self }
+    #[inline(always)]
+    pub fn cfbll(&mut self) -> CFBLL_W {
+        CFBLL_W { w: self }
     }
 }

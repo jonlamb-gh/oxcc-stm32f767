@@ -1,41 +1,11 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::DFSDM0_CNVTIMR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CNVCNTR {
-    bits: u32,
-}
-impl CNVCNTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
-}
+#[doc = "Reader of register DFSDM0_CNVTIMR"]
+pub type R = crate::R<u32, super::DFSDM0_CNVTIMR>;
+#[doc = "Reader of field `CNVCNT`"]
+pub type CNVCNT_R = crate::R<u32, u32>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 4:31 - 28-bit timer counting conversion time"]
-    #[inline]
-    pub fn cnvcnt(&self) -> CNVCNTR {
-        let bits = {
-            const MASK: u32 = 0x0fff_ffff;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) as u32
-        };
-        CNVCNTR { bits }
+    #[inline(always)]
+    pub fn cnvcnt(&self) -> CNVCNT_R {
+        CNVCNT_R::new(((self.bits >> 4) & 0x0fff_ffff) as u32)
     }
 }

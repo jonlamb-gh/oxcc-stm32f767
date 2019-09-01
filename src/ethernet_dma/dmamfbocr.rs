@@ -1,264 +1,132 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::DMAMFBOCR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register DMAMFBOCR"]
+pub type R = crate::R<u32, super::DMAMFBOCR>;
+#[doc = "Writer for register DMAMFBOCR"]
+pub type W = crate::W<u32, super::DMAMFBOCR>;
+#[doc = "Register DMAMFBOCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::DMAMFBOCR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct MFCR {
-    bits: u16,
-}
-impl MFCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OMFCR {
-    bits: bool,
-}
-impl OMFCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct MFAR {
-    bits: u16,
-}
-impl MFAR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OFOCR {
-    bits: bool,
-}
-impl OFOCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MFCW<'a> {
+#[doc = "Reader of field `MFC`"]
+pub type MFC_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `MFC`"]
+pub struct MFC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MFCW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> MFC_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0xffff;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0xffff) | ((value as u32) & 0xffff);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _OMFCW<'a> {
+#[doc = "Reader of field `OMFC`"]
+pub type OMFC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `OMFC`"]
+pub struct OMFC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OMFCW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> OMFC_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _MFAW<'a> {
+#[doc = "Reader of field `MFA`"]
+pub type MFA_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `MFA`"]
+pub struct MFA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MFAW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> MFA_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 0x07ff;
-        const OFFSET: u8 = 17;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x07ff << 17)) | (((value as u32) & 0x07ff) << 17);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _OFOCW<'a> {
+#[doc = "Reader of field `OFOC`"]
+pub type OFOC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `OFOC`"]
+pub struct OFOC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OFOCW<'a> {
-    #[doc = r" Sets the field bit"]
+impl<'a> OFOC_W<'a> {
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:15 - MFC"]
-    #[inline]
-    pub fn mfc(&self) -> MFCR {
-        let bits = {
-            const MASK: u16 = 0xffff;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        MFCR { bits }
+    #[inline(always)]
+    pub fn mfc(&self) -> MFC_R {
+        MFC_R::new((self.bits & 0xffff) as u16)
     }
     #[doc = "Bit 16 - OMFC"]
-    #[inline]
-    pub fn omfc(&self) -> OMFCR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OMFCR { bits }
+    #[inline(always)]
+    pub fn omfc(&self) -> OMFC_R {
+        OMFC_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bits 17:27 - MFA"]
-    #[inline]
-    pub fn mfa(&self) -> MFAR {
-        let bits = {
-            const MASK: u16 = 0x07ff;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        MFAR { bits }
+    #[inline(always)]
+    pub fn mfa(&self) -> MFA_R {
+        MFA_R::new(((self.bits >> 17) & 0x07ff) as u16)
     }
     #[doc = "Bit 28 - OFOC"]
-    #[inline]
-    pub fn ofoc(&self) -> OFOCR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OFOCR { bits }
+    #[inline(always)]
+    pub fn ofoc(&self) -> OFOC_R {
+        OFOC_R::new(((self.bits >> 28) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:15 - MFC"]
-    #[inline]
-    pub fn mfc(&mut self) -> _MFCW {
-        _MFCW { w: self }
+    #[inline(always)]
+    pub fn mfc(&mut self) -> MFC_W {
+        MFC_W { w: self }
     }
     #[doc = "Bit 16 - OMFC"]
-    #[inline]
-    pub fn omfc(&mut self) -> _OMFCW {
-        _OMFCW { w: self }
+    #[inline(always)]
+    pub fn omfc(&mut self) -> OMFC_W {
+        OMFC_W { w: self }
     }
     #[doc = "Bits 17:27 - MFA"]
-    #[inline]
-    pub fn mfa(&mut self) -> _MFAW {
-        _MFAW { w: self }
+    #[inline(always)]
+    pub fn mfa(&mut self) -> MFA_W {
+        MFA_W { w: self }
     }
     #[doc = "Bit 28 - OFOC"]
-    #[inline]
-    pub fn ofoc(&mut self) -> _OFOCW {
-        _OFOCW { w: self }
+    #[inline(always)]
+    pub fn ofoc(&mut self) -> OFOC_W {
+        OFOC_W { w: self }
     }
 }

@@ -1,104 +1,32 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::OTG_HS_GRXSTSR_HOST {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CHNUMR {
-    bits: u8,
-}
-impl CHNUMR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct BCNTR {
-    bits: u16,
-}
-impl BCNTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DPIDR {
-    bits: u8,
-}
-impl DPIDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PKTSTSR {
-    bits: u8,
-}
-impl PKTSTSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
+#[doc = "Reader of register OTG_HS_GRXSTSR_Host"]
+pub type R = crate::R<u32, super::OTG_HS_GRXSTSR_HOST>;
+#[doc = "Reader of field `CHNUM`"]
+pub type CHNUM_R = crate::R<u8, u8>;
+#[doc = "Reader of field `BCNT`"]
+pub type BCNT_R = crate::R<u16, u16>;
+#[doc = "Reader of field `DPID`"]
+pub type DPID_R = crate::R<u8, u8>;
+#[doc = "Reader of field `PKTSTS`"]
+pub type PKTSTS_R = crate::R<u8, u8>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - Channel number"]
-    #[inline]
-    pub fn chnum(&self) -> CHNUMR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        CHNUMR { bits }
+    #[inline(always)]
+    pub fn chnum(&self) -> CHNUM_R {
+        CHNUM_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bits 4:14 - Byte count"]
-    #[inline]
-    pub fn bcnt(&self) -> BCNTR {
-        let bits = {
-            const MASK: u16 = 0x07ff;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        BCNTR { bits }
+    #[inline(always)]
+    pub fn bcnt(&self) -> BCNT_R {
+        BCNT_R::new(((self.bits >> 4) & 0x07ff) as u16)
     }
     #[doc = "Bits 15:16 - Data PID"]
-    #[inline]
-    pub fn dpid(&self) -> DPIDR {
-        let bits = {
-            const MASK: u8 = 0x03;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        DPIDR { bits }
+    #[inline(always)]
+    pub fn dpid(&self) -> DPID_R {
+        DPID_R::new(((self.bits >> 15) & 0x03) as u8)
     }
     #[doc = "Bits 17:20 - Packet status"]
-    #[inline]
-    pub fn pktsts(&self) -> PKTSTSR {
-        let bits = {
-            const MASK: u8 = 0x0f;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        PKTSTSR { bits }
+    #[inline(always)]
+    pub fn pktsts(&self) -> PKTSTS_R {
+        PKTSTS_R::new(((self.bits >> 17) & 0x0f) as u8)
     }
 }
